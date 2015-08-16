@@ -19,6 +19,7 @@ a:hover{text-decoration: underline;}
 img{margin:0;padding:0;border:none;}
 ul,li{list-style: none;}
 
+.bk-gray{background: #fafafa;width: 100%;padding: 50px 0;}
 .wmain{width:1003px;margin:0 auto;overflow:hidden;}
 .fl{float:left;}
 .fr{float:right;}
@@ -73,6 +74,14 @@ h4.col-ti a{color:#f27835;text-decoration: underline;font-size: 14px;}
 .footer .end p.cert a{width:85px;height:31px;background-position: 0 -90px;}
 .footer .end p.cert a{background-position: 0 -90px;}
 .footer .end p.cert a.cert2{background-position: 0 -125px;margin-left: 10px;}
+
+/* 侧边栏 */
+.left-tab{width: 205px;border:1px solid #f0f0f0;}
+.left-tab p.ti{width:100%;background: #f27835;height: 45px;line-height:45px;color:#fff;font-size: 12px;}
+.left-tab .cont-tab{width: 120px;margin:0 auto;}
+.left-tab .cont-tab p{height:14px;line-height: 14px;}
+.left-tab .cont-tab p span.name{background:url(../img/icon.png) no-repeat;padding-left: 22px;font-size: 12px;}
+.left-tab .cont-tab p span.sub-link{width:13px;height:7px;display: inline-block;background: url(../img/icon.png) no-repeat;background-position: 0 -90px;padding-left: 10px;}
 
 
 
