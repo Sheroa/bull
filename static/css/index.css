@@ -2,38 +2,36 @@
 /* CSS Document */
 
 /* 特点部分 */
-.feature{width:1035px;overflow: hidden;margin:80px 0 65px 0;}
-.feature .each-fea{float:left;margin-right:32px;text-align:center;}
+.feature{width:1170px;overflow: hidden;margin:80px 0 65px 0;}
+.feature .each-fea{float:left;margin-right:30px;text-align:center;}
 .feature .each-fea span{display:inline-block;height:66px;width:56px;margin:15px 0;background: url(../img/sy-feature.png) no-repeat;}
 .feature .each-fea span.fea2{width:74px;background-position: -60px 0;}
 .feature .each-fea span.fea3{width:64px;background-position: -135px 0;}
 .feature .each-fea span.fea4{width:50px;background-position: -200px 0;}
 .feature .each-fea span.fea5{width:50px;background-position: -255px 0;}
-.feature .each-fea p{color:#f27835;}
-.feature .each-fea h5{color:#919191;font-size: 12px;}
+.feature .each-fea h4{color:#f27835;}
+.feature .each-fea h5{color:#919191;}
 
 
 /* 横屏版 */
-.horizon{width:100%;height:148px;position:relative;z-index:1;margin-bottom:25px;}
+.horizon{width:100%;height:130px;position:relative;z-index:1;margin-bottom:25px;}
 
-.horizon .back-area{height:130px;width:944px;position: absolute;z-index:2;top:0;left:0;background: #f27835;}
-.horizon .back-area div{height:120px;width:190px;padding:10px 0 0 10px;background:url(../img/horizon.jpg) no-repeat;}
-.horizon .back-area div p,.horizon .back-area div h5, .horizon .back-area div a, .horizon .back-area div h6{color:#fff;text-align: left;}
-.horizon .back-area div h5{margin:2px 0 10px 0;}
-.horizon .back-area div h6{line-height: 18px;font-size: 11px;}
+.horizon .back-area{height:116px;width:1075px;position: absolute;z-index:2;top:0;left:0;background: #f27835;}
+.horizon .back-area div{height:110px;width:169px;padding:5px 0 0 10px;background:url(../img/horizon.jpg) no-repeat;}
+.horizon .back-area div h4, .horizon .back-area div a, .horizon .back-area div h6{color:#fff;text-align: left;}
+.horizon .back-area div h6{line-height: 18px;margin-bottom: 8px;}
 .horizon .back-area div a{text-decoration: underline;}
 .horizon .back-area div a.a-tab{text-decoration: none;padding:0 8px;}
 .horizon .back-area div a.selected{background: #d75d1f;border-radius:9px;}
-.horizon .back-area .text-area2{background-position: 0 -130px;}
-.horizon .back-area .text-area3{background-position: 0 -260px;}
+.horizon .back-area .text-area2{background-position: 0 -115px;}
+.horizon .back-area .text-area3{background-position: 0 -230px;}
 
-.horizon .front-area{height:115px;width:766px;padding:15px 0 0 35px;position: absolute;z-index:3;bottom:0;right:0;background:#fff;border:1px solid #d3d3d3;}
-.horizon .front-area div{float:left;width:190px;height:115px;}
-.horizon .front-area div p.ti{font-size: 16px;}
-.horizon .front-area div p.num{color:#f27835;font-size:30px;margin:10px 0;}
+.horizon .front-area{height:98px;width:861px;padding:15px 0 0 100px;position: absolute;z-index:3;bottom:0;right:0;background:#fff;border:1px solid #d3d3d3;}
+.horizon .front-area div{float:left;width:215px;height:98px;}
+.horizon .front-area div p.num{color:#f27835;font-size:24px;margin:10px 0;}
 .horizon .front-area div p.subti{font-size:12px;}
-.horizon .front-area .operate{height:82px;padding-top:33px;}
-.horizon .front-area .operate button{background: #f27835;color:#fff;width:150px;height:40px;cursor:pointer;}
+.horizon .front-area .operate{height:73px;padding-top:25px;}
+.horizon .front-area .operate button{background: #f27835;color:#fff;width:137px;height:33px;cursor:pointer;}
 .horizon .front-area .operate p{font-size: 12px;margin-top:12px;}
 .horizon .front-area .operate p em{color:#f27835;}
 .horizon .front-area .assure{position: absolute;top:0;right:10px;}
@@ -43,4 +41,5 @@
 .media-report ul li{overflow: hidden;line-height: 74px;height: 74px;}
 .media-report ul li span{font-size: 14px;}
 .media-report ul li span.fr{border-bottom: 1px dashed #dedede;width:840px;height: 73px;}
+.media-report ul li span.fr a:hover{text-decoration: none;color:#f27835;}
 .media-report ul li .img-area{display: inline-block;line-height: 88px;background: #fff;}

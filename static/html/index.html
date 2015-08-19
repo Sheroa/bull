@@ -10,16 +10,16 @@
 <body>
 	<div class="header">
 		<div class="wmain">
-			<span class="fl">
+			<div class="fl">
 				<a href="#"><img src="../img/logo.png" alt="LOGO"></a><img src="../img/slogan.png" alt="SLOGAN" class="slogan">
-			</span>
-			<span class="fr">
-				<a href="#">首页</a>
-				<a href="#">我要理财</a>
-				<a href="#">新手指引</a>
-				<a href="#">关于我们</a>
-				<a href="#" class="login">注册登录</a>
-			</span>
+			</div>
+			<div class="fr">
+				<a href="#" class="link">首页</a>
+				<a href="#"><span class="sub-link">我要理财</span></a>
+				<a href="#" class="link">新手指引</a>
+				<a href="#"><span class="sub-link">关于我们</span></a>
+				<span class="regis-login"><a href="#">注册</a><em>|</em><a href="#">登录</a></span>
+			</div>
 		</div>
 	</div>
 	<div class="banner">
@@ -35,7 +35,7 @@
 					<p class="remember">
 						<input name="" value="1" id="" type="checkbox" class="fl"><span class="fl">记住登录</span><a href="#" class="fr">忘记密码?</a>
 					</p>
-					<button class="btn_login" type="submit" onfocus="this.blur()" onclick="logicInit();">登录</button>
+					<button class="btn_login" type="submit" onfocus="this.blur()" onclick="logicInit();">立即登录</button>
 					<h5><a href="#" target="_blank">没有账户，立即注册</a></h5>
 					<p id="loginErr" style="color: red; margin: 0px; margin-top: -8px;"></p>
 					<div id="js-pp" style="display: none;"></div>
@@ -47,27 +47,27 @@
 	<div class="wmain">
 		<div class="feature">
 			<div class="each-fea">
-				<p>高流动性</p>
+				<h4>高流动性</h4>
 				<span class="fea1"></span>
 				<h5>持有最低只需7天，流动堪比余额宝</h5>
 			</div>
 			<div class="each-fea">
-				<p>超高收益</p>
+				<h4>超高收益</h4>
 				<span class="fea2"></span>
 				<h5>30倍银行收益，最高11%年化利率</h5>
 			</div>
 			<div class="each-fea">
-				<p>更低门槛</p>
+				<h4>更低门槛</h4>
 				<span class="fea3"></span>
 				<h5>100元起投，无需任何手续费</h5>
 			</div>
 			<div class="each-fea">
-				<p>多种选择</p>
+				<h4>多种选择</h4>
 				<span class="fea4"></span>
 				<h5>投资项目类型丰富，满足不同理财需求</h5>
 			</div>
 			<div class="each-fea">
-				<p>安全保障</p>
+				<h4>安全保障</h4>
 				<span class="fea5"></span>
 				<h5>多种本息保障，投资更安心</h5>
 			</div>
@@ -75,8 +75,8 @@
 		<div class="horizon">
 			<div class="back-area">
 				<div class="text-area1">
-					<p class="ti">活期宝</p>
-					<h5><a href="#">返现20元红包</a></h5>
+					<h4 class="ti">活期宝</h4>
+					<h6><a href="#">返现20元红包</a></h6>
 				</div>
 			</div>
 			<div class="front-area">
@@ -104,8 +104,8 @@
 		<div class="horizon">
 			<div class="back-area">
 				<div class="text-area2">
-					<p class="ti">固定收益</p>
-					<h5><a href="#">天添牛A款</a></h5>
+					<h4 class="ti">固定收益</h4>
+					<h6><a href="#">天添牛A款</a></h6>
 					<h6><a href="#" class="a-tab selected">90天</a><br><a href="#" class="a-tab">180天</a><br><a href="#" class="a-tab">360天</a><a href="#">更多></a></h6>
 				</div>
 			</div>
@@ -133,8 +133,8 @@
 		<div class="horizon">
 			<div class="back-area">
 				<div class="text-area3">
-					<p class="ti">浮动收益</p>
-					<h5><a href="#">惠房宝1期</a></h5>
+					<h4 class="ti">浮动收益</h4>
+					<h6><a href="#">惠房宝1期</a></h6>
 				</div>
 			</div>
 			<div class="front-area">
