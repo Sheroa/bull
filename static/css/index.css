@@ -12,30 +12,7 @@
 .feature .each-fea h4{color:#f27835;}
 .feature .each-fea h5{color:#919191;}
 
-
-/* 横屏版 */
-.horizon{width:100%;height:130px;position:relative;z-index:1;margin-bottom:25px;}
-
-.horizon .back-area{height:116px;width:1075px;position: absolute;z-index:2;top:0;left:0;background: #f27835;}
-.horizon .back-area div{height:110px;width:169px;padding:5px 0 0 10px;background:url(../img/horizon.jpg) no-repeat;}
-.horizon .back-area div h4, .horizon .back-area div a, .horizon .back-area div h6{color:#fff;text-align: left;}
-.horizon .back-area div h6{line-height: 18px;margin-bottom: 8px;}
-.horizon .back-area div a{text-decoration: underline;}
-.horizon .back-area div a.a-tab{text-decoration: none;padding:0 8px;}
-.horizon .back-area div a.selected{background: #d75d1f;border-radius:9px;}
-.horizon .back-area .text-area2{background-position: 0 -115px;}
-.horizon .back-area .text-area3{background-position: 0 -230px;}
-
-.horizon .front-area{height:98px;width:861px;padding:15px 0 0 100px;position: absolute;z-index:3;bottom:0;right:0;background:#fff;border:1px solid #d3d3d3;}
-.horizon .front-area div{float:left;width:215px;height:98px;}
-.horizon .front-area div p.num{color:#f27835;font-size:24px;margin:10px 0;}
-.horizon .front-area div p.subti{font-size:12px;}
-.horizon .front-area .operate{height:73px;padding-top:25px;}
-.horizon .front-area .operate button{background: #f27835;color:#fff;width:137px;height:33px;cursor:pointer;}
-.horizon .front-area .operate p{font-size: 12px;margin-top:12px;}
-.horizon .front-area .operate p em{color:#f27835;}
-.horizon .front-area .assure{position: absolute;top:0;right:10px;}
-
+/* 媒体区 */
 .media-report{margin: 60px 0;}
 .media-report ul{}
 .media-report ul li{overflow: hidden;line-height: 74px;height: 74px;}
