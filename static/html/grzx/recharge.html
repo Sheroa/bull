@@ -4,14 +4,14 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>小牛钱罐子</title>
-	<link rel="stylesheet" href="../css/base.css" type="text/css">
-	<link rel="stylesheet" href="../css/grzx.css" type="text/css">
+	<link rel="stylesheet" href="../../css/base.css" type="text/css">
+	<link rel="stylesheet" href="../../css/grzx.css" type="text/css">
 </head>
 <body>
 	<div class="header">
 		<div class="wmain">
 			<div class="fl">
-				<a href="#"><img src="../img/logo.png" alt="LOGO"></a><img src="../img/slogan.png" alt="SLOGAN" class="slogan">
+				<a href="#"><img src="../../img/logo.png" alt="LOGO"></a><img src="../../img/slogan.png" alt="SLOGAN" class="slogan">
 			</div>
 			<div class="fr">
 				<a href="#" class="link selected">首页</a>
@@ -25,13 +25,13 @@
 	<div class="bk-gray">
 		<div class="wmain">
 			<div class="fl">
-				<div class="left-tab">
+				<div class="left-tab shadow-box">
 					<p><span class="profile">个人中心</span></p>
 					<p class="selected"><span class="dollar">我的资金<em class="sub-column"></em></span></p>
 					<ul class="dollar-sub show">
 						<li>交易记录</li>
-						<li>充值</li>
-						<li class="selected">提现</li>
+						<li class="selected">充值</li>
+						<li>提现</li>
 					</ul>
 					<p><span class="invest">我的投资</span></p>
 					<p><span class="account">我的账号<em class="sub-column"></em></span></p>
@@ -45,39 +45,42 @@
 				<div class="left-adver">广告区</div>	
 			</div>
 			<div class="fr-main recharge">
-				<h4 class="col-ti"><span class="ti-logo"></span><span class="ti-cont">提现</span></h4>
-				<div class="bank-msg">
-					<div class="bank-own">
-						<div class="each-border bank-icbc">
-							<div class="border-pad">
-								<p class="bank-name">中国工商银行</p>
-								<p class="card-kind">储蓄卡</p>
-								<p class="card-num">****  ****  ****  ****  657</p>
-								<span></span>
-							</div>
-						</div>
-						<a href="#" class="bank-add"></a>
-					</div>
-					<p class="sub-text">单笔限额20万，单日限额200万。<br>实际请参考您的银行限额设置。</p>
+				<div class="border-box">
+					<h4 class="col-ti"><span class="ti-logo"></span><span class="ti-cont">充值</span></h4>
+					<p><span class="p-ti">真实姓名</span><input type="text" placeholder="请输入真实姓名"></p>
+					<p><span class="p-ti">身份证号码</span><input type="text" placeholder="请输入您真实的身份证号码"></p>
+					<p><span class="p-ti">银行卡号</span><input type="text" placeholder="请输入您本人的借记卡号"></p>
+					<p>
+						<span class="p-ti">选择银行</span>
+						<select name="bank-select" id="">
+							<option value="工商银行">工商银行</option>
+							<option value="中国银行">中国银行</option>
+							<option value="中信银行">中信银行</option>
+							<option value="兴业银行">兴业银行</option>
+							<option value="光大银行">光大银行</option>
+							<option value="民生银行">民生银行</option>
+							<option value="邮政储蓄银行">邮政储蓄银行</option>
+							<option value="农业银行">农业银行</option>
+							<option value="建设银行">建设银行</option>
+							<option value="招商银行">招商银行</option>
+							<option value="交通银行">交通银行</option>
+							<option value="浦发银行">浦发银行</option>
+							<option value="广发银行">广发银行</option>
+							<option value="平安银行">平安银行</option>
+							<option value="华夏银行">华夏银行</option>
+						</select>
+						<img src="../../img/bank/ICBC.png" alt="" class="bank-logo">
+					</p>
+					<p><span class="p-ti"></span><button class="light-btn">下一步</button></p>
+					<p><span class="p-ti"><em></em>银行预留手机号</span><input type="text" placeholder="请输入银行预留手机号"></p>
+					<p><span class="p-ti"></span><a href="#" target="_blank" class="moreInf">查看充值支持银行及限额</a></p>
+					<p><span class="p-ti"><em></em>验证码</span><input type="text" placeholder="请输入短信验证码" class="shortOne"><a href="#" class="light-btn">获取短信验证码</a></p>
 				</div>
 				<div class="border-box" style="padding:45px 0 45px 20px;">
-					<p class="address"><span class="p-ti">开户行地址</span><em>省份</em>
-					<select name="" id=""><option value="0">北京</option><option value="1">内蒙古自治区</option></select>
-					<em>城市</em>
-					<select name="" id=""><option value="0">海淀区</option></select>
-					<em>支行名称</em>
-					<select name="" id=""><option value="0">北京市海淀支行</option></select>
-					</p>
 					<div class="fl">
 						<p><span class="p-ti">账户余额</span><strong class="num">￥50.00</strong></p>
-						<p><span class="p-ti"><em></em>提现金额</span><input type="text" placeholder="本次可提取50元"></p>
-						<p class="alert"><span class="p-ti"></span>账户余额不足，请重新输入提现金额</p>
-						<p>
-							<span class="p-ti"><em></em>交易密码</span>
-							<span class="bank-pwd"><input type="text"><input type="text"><input type="text"><input type="text"><input type="text"><input type="text"></span>
-						</p>
-						<p class="sub-text"><span class="p-ti"></span><span>请输入6位字交易密码</span><a href="#" class="forget-pwd">忘记密码</a></p>
-						<p><span class="p-ti"></span><button class="light-btn">提现</button></p>
+						<p><span class="p-ti"><em></em>充值金额</span><input type="text"></p>
+						<p><span class="p-ti"></span><button class="light-btn">充值</button></p>
 					</div>
 					<div class="remind-msg">
 						<h4>温馨提示</h4>
@@ -110,7 +113,7 @@
 				<div class="fr">
 					<a href="#" class="app1"></a>
 					<a href="#" class="app2"></a>
-					<img src="../img/erwei.jpg" width="80" alt="二维码">
+					<img src="../../img/erwei.jpg" width="80" alt="二维码">
 					<p>关注微信</p>
 				</div>
 			</div>
