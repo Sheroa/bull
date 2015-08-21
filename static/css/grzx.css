@@ -25,12 +25,38 @@
 
 
 /* * * * * * * * * * * * * * * * 我的资金 * * * * * * * * * * * * * * * */
-/* 充值 */
-.recharge{width:854px;padding:15px 0 0 20px;}
+/* 我的资金 */
+.recharge .border-box{width:854px;padding:15px 0 20px 20px;margin-bottom: 15px;}
 .recharge p{overflow: hidden;margin-bottom: 10px;}
-.recharge p span{display: inline-block;width: 150px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}
-.recharge p input{height:28px;line-height:28px; width:216px;padding: 0 5px;border:2px solid;font-size: 14px;}
-.recharge p input.shortOne{width:134px;}
-.recharge p button{width: 230px;height:30px;font-size: 14px;}
-.recharge p a.moreInf{text-decoration: underline;padding-left: 15px;}
-.recharge p a.light-btn{padding:8px 0;margin-left:5px;font-size: 10px;}
+.recharge p span.p-ti{display: inline-block;width: 150px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}
+.recharge p input{width:216px;}
+.recharge p select{height:32px;line-height:32px; width:230px;border:2px solid #919191;font-size: 14px;margin-left: -4px;}
+.recharge p.address select{width:auto;margin-right: 15px}
+.recharge p.address em{font-size: 14px;margin-right: 5px;}
+
+.recharge p input.shortOne{width:120px;}
+.recharge p button{width: 230px;}
+.recharge p a{font-size: 12px}
+.recharge p a.moreInf{text-decoration: underline;padding-left: 10px;}
+.recharge p a.light-btn{display:inline-block;width:90px;height: 32px;line-height: 32px;vertical-align: top;text-align: center;margin-left:5px;font-size: 10px;text-decoration: none;}
+.recharge p span em{display: inline-block;vertical-align: middle;background: url(../img/star-decorate.png) no-repeat;width: 10px;height: 8px;}
+.recharge .bank-logo{height:20px;margin-left: 10px;vertical-align: middle;}
+.recharge p strong.num{font-size: 24px;font-weight:normal;color:#f27835;}
+.recharge .remind-msg{float:right;margin-right: 5px;margin-top: 10px;}
+.recharge .remind-msg p{font-size: 12px;margin-bottom: 5px;}
+.recharge .remind-msg h4{font-size: 16px;margin-bottom: 8px;}
+
+.recharge .bank-own{overflow: hidden;width: 100%;}
+.recharge .bank-own .each-border{width:257px;height: 111px;background: #f27835;border-radius: 4px;float:left;margin-right: 20px;margin-bottom: 15px;}
+.recharge .bank-own .each-border .border-pad{padding:20px 15px;position: relative;}
+.recharge .bank-own .each-border p{color: #fff;text-align: left;font-size: 12px;}
+.recharge .bank-own .each-border p.bank-name{font-size: 14px;}
+.recharge .bank-own .each-border p.card-num{text-align: right;}
+.recharge .bank-own .each-border span{display: inline-block;width:22px;height: 22px;position: absolute;top:20px;right: 15px;}
+.recharge .bank-own .bank-icbc span{background: url(../img/bank/icbc2.png) no-repeat;}
+.recharge .bank-own .bank-add{float:left;width:108px;height:110px;background: url(../img/add.png) no-repeat center bottom;margin-bottom: 15px;}
+.recharge .bank-msg .sub-text{margin-bottom: 20px}
+.recharge .bank-pwd{display: inline-block;border-top:2px solid #919191;border-left:2px solid #919191;border-bottom:2px solid #919191;border-right: 1px solid #919191;margin-left: -4px;}
+.recharge .bank-pwd input{width:27px;height: 28px;border:none;border-right: 1px solid #919191;text-align: center;}
+.recharge p.sub-text a.forget-pwd{margin-left:66px;}
+.recharge p.alert{margin-top:-5px;}
