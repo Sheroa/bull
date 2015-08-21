@@ -26,3 +26,24 @@ fis.match('::packager', {
     allInOne: true
   })
 });
+
+/*指定文件添加md5戳 去除缓存*/
+fis.match('*.{js,css,png,jpg,gif}', {
+  useHash: true
+});
+
+/*启用fis-spriter-csssprites插件*/
+fis.match('::package',{
+  spriter:fis.plugin('csssprites')
+});
+
+/*fis-optimizer-clean-css进行资源压缩 并对图片进行合并*/
+fis.match('*.css',{
+  useSprite:true,
+  optimizer:fis.plugin('clean-css')
+});
+
+/*第三方组件合并处理*/
+fis.match('/lib/**.js', {
+  packTo: '/lib/libs.js'
+});
