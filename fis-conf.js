@@ -10,7 +10,7 @@
 */
 fis.hook('module', {
     mode: 'commonJs',
-    baseUrl: "./modules/",
+    baseUrl: "modules/",
     paths: {
       api: "common/api/",
       jquery: "libs/jquery/jquery-1.11.3.min.js"
@@ -18,8 +18,18 @@ fis.hook('module', {
 });
 
 /*设置模块目录, 打包时自动包裹define*/
-fis.match('./modules/**.js', {
+fis.match('modules/**.js', {
     isMod: true
+});
+
+/*设置打包时自动处理模块化依赖关系*/
+fis.match('::package', {
+    // npm install [-g] fis3-postpackager-loader
+    // 分析 __RESOURCE_MAP__ 结构，来解决资源加载问题
+    postpackager: fis.plugin('loader', {
+        resourceType: 'commonJs',
+        useInlineMap: true // 资源映射表内嵌
+    })
 });
 
 /*基于页面的打包方式-设置零散资源自动打包*/
@@ -46,6 +56,6 @@ fis.match('*.css',{
 });
 
 /*第三方组件合并处理*/
-// fis.match('/lib/**.js', {
-//   packTo: '/lib/libs.js'
+// fis.match('libs/**.js', {
+//   packTo: 'libs/libs.js'
 // });
