@@ -5,3 +5,4 @@
 
  var api = require("api/api");
 
+api.test();

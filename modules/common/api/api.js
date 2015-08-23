@@ -4,5 +4,7 @@
  */
 
 
-alert("test");
+module.exports.test = function(){
+	alert("test1");
+}
 
