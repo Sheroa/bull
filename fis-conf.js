@@ -10,9 +10,10 @@
 */
 fis.hook('module', {
     mode: 'commonJs',
-    baseUrl: "./src/",
+    baseUrl: "./modules/",
     paths: {
-	}
+	  
+    }
 });
 
 /*设置模块目录, 打包时自动包裹define*/
@@ -33,9 +34,9 @@ fis.match('*.{js,css,png,jpg,gif}', {
 });
 
 /*启用fis-spriter-csssprites插件*/
-fis.match('::package',{
-  spriter:fis.plugin('csssprites')
-});
+// fis.match('::package',{
+//   spriter:fis.plugin('csssprites')
+// });
 
 /*fis-optimizer-clean-css进行资源压缩 并对图片进行合并*/
 fis.match('*.css',{
@@ -44,6 +45,6 @@ fis.match('*.css',{
 });
 
 /*第三方组件合并处理*/
-fis.match('/lib/**.js', {
-  packTo: '/lib/libs.js'
-});
+// fis.match('/lib/**.js', {
+//   packTo: '/lib/libs.js'
+// });
