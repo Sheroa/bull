@@ -3,4 +3,5 @@
  * @author :ZY
  */
 
-alert("zy");
+ var api = require("api/api");
+

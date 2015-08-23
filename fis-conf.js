@@ -12,12 +12,13 @@ fis.hook('module', {
     mode: 'commonJs',
     baseUrl: "./modules/",
     paths: {
-	  
+      api: "common/api/",
+      jquery: "libs/jquery/jquery-1.11.3.min.js"
     }
 });
 
 /*设置模块目录, 打包时自动包裹define*/
-fis.match('./src/**.js', {
+fis.match('./modules/**.js', {
     isMod: true
 });
 
