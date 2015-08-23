@@ -27,7 +27,8 @@ p input{height:28px;line-height:28px;padding: 0 5px;border:2px solid #b2b2b2;fon
 .fl{float:left;}
 .fr{float:right;}
 .fr-main{width:874px;float: right;}
-.fr-main .border-box{border-left:4px solid #f27835;background: #fff;text-align: left;overflow: hidden;}
+.border-box{border-left:4px solid #f27835;background: #fff;text-align: left;overflow: hidden;-moz-box-shadow:0px 2px 2px 0px #d3d3d3;-webkit-box-shadow:0px 2px 2px 0px #d3d3d3;box-shadow:0px 2px 2px 0px #d3d3d3;}
+.shadow-box{-moz-box-shadow:0px 1px 1px 0px #d3d3d3;-webkit-box-shadow:0px 1px 1px 0px #d3d3d3;box-shadow:0px 1px 1px 0px #d3d3d3;background: #fff;}
 .assure{display: inline-block;height:28px;width:22px;background: url(../img/assure.png) no-repeat;}
 .sub-link{background:url(../img/arrow.png) no-repeat right center;padding-right:16px;}
 button{cursor: pointer;}
@@ -96,7 +97,7 @@ h4.col-ti a{color:#f27835;text-decoration: underline;font-size: 14px;}
 
 
 /* * * * * * * * * * * * * * * * 侧边栏 * * * * * * * * * * * * * * * */
-.left-tab{width:231px;border-top:3px solid #f27835;-moz-box-shadow:0px 0px 1px 0px;-webkit-box-shadow:0px 0px 1px 0px;box-shadow:0px 0px 1px 0px;background: #fff;margin-left:3px;}
+.left-tab{width:231px;border-top:3px solid #f27835;margin-left:3px;}
 .left-tab p{padding-left: 70px;text-align: left;font-size: 12px;line-height: 44px;}
 .left-tab p:hover{color:#f27835;cursor: pointer;}
 .left-tab p.selected{background:#f27835;color:#fff;}
@@ -123,6 +124,18 @@ h4.col-ti a{color:#f27835;text-decoration: underline;font-size: 14px;}
 /* 左侧广告区 */
 .left-adver{width: 233px;height:162px;margin-top: 40px;background: #f1f1f1;}
 
+
+/* * * * * * * * * * * * * * * * 特点部分 * * * * * * * * * * * * * * * */
+.feature{width:1170px;overflow: hidden;margin:80px 0 65px 0;}
+.feature .each-fea{float:left;margin-right:30px;text-align:center;}
+.feature .each-fea span{display:inline-block;height:56px;width:49px;margin:15px 0;background: url(../img/sy-feature.png) no-repeat;}
+.feature .each-fea span.fea2{width:64px;background-position: -55px 0;}
+.feature .each-fea span.fea3{width:55px;background-position: -120px 0;}
+.feature .each-fea span.fea4{width:43px;background-position: -180px 0;}
+.feature .each-fea span.fea5{width:44px;background-position: -230px 0;}
+.feature .each-fea span.fea6{width:33px;background-position: -280px 0;}
+.feature .each-fea h4{color:#f27835;}
+.feature .each-fea h5{color:#919191;}
 
 /* * * * * * * * * * * * * * * * 横屏版 * * * * * * * * * * * * * * * */
 

@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+.newGuide{padding:65px;}
+.newGuide p{font-size: 14px;text-align: left;margin-bottom: 60px;}
+.newGuide .feature{width:1085px;}
+.newGuide .feature .each-fea{margin-right: 75px;}
+.newGuide .our-product{background: url(../img/our-product.jpg) no-repeat center center;width: 1010px;height:300px;position:relative;margin:55px 0;}
+.newGuide .our-product a{color:#fff;display: inline-block;position: absolute;top: 70px;left:50%;margin-left: -55px;padding:7px;}
+.newGuide .our-product a:hover{text-decoration: none;}
+
+.newGuide .invest-step{background: url(../img/invest-step.jpg) no-repeat center center;width: 1010px;height:135px;position:relative;margin:55px 0;}
+.newGuide .invest-step a{color:#fff;display: inline-block;position: absolute;bottom:0;left: 46px;padding: 7px 42px;}
+.newGuide .invest-step a:hover{text-decoration: none;}

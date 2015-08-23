@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-.brief{width:870px;background: #fff;-moz-box-shadow:0px 0px 1px 0px;-webkit-box-shadow:0px 0px 1px 0px;box-shadow:0px 0px 1px 0px;border-bottom:1px solid #d3d3d3;}
+.brief{width:870px;background: #fff;}
 .brief .top{background: #f27835;width:100%;overflow: hidden;}
 .brief .top span{display: inline-block;}
 .brief .top .text-area{width:155px;vertical-align: top;margin:36px 0;}
@@ -22,11 +22,25 @@
 .brief .bottom .each-part2 input{width:130px;}
 .brief .bottom .each-part2 input.check{height: 13px;width: 13px;vertical-align: middle;}
 .brief .bottom .each-part2 button{width: 86px;margin-left:5px;}
+.brief .bottom .each-part2 .no-login input{width:216px;}
+.brief .bottom .each-part2 .no-login button{width:165px;margin-top: 10px;margin-left: 35px;}
 .brief .bottom .each-part2 .alert{margin-left: 5px;}
 .brief .bottom .each-part2 .sub-text{font-size: 10px;}
 
-.tab-col{margin-top: 20px;}
+.tab-col{margin: 20px 1px;}
 .tab-col .tab{text-align: left;}
-.tab-col .tab span{width: 106px;height: 37px;line-height: 37px;display: inline-block;text-align: center;background: #fff;color:#373737;cursor:pointer;}
-.tab-col .tab span.selected{width: 106px;height: 37px;line-height: 37px;display: inline-block;text-align: center;background:#f27835;color:#fff;}
+.tab-col .tab span{width: 106px;height: 37px;line-height: 37px;display: inline-block;text-align: center;background:#f27835;color:#fff;cursor:pointer;}
+.tab-col .tab span.selected{background: #fff;color:#373737;}
 
+.tab-col .cont{display: none;text-align: left;padding:50px 70px;}
+.tab-col .cont p em{color:#373737;}
+.tab-col .feature .fea-each{width: 295px;display: inline-block;}
+.tab-col .feature .fea-each p{font-size: 12px;padding: 20px 0;border-bottom: 1px solid #f4eded;line-height: 20px;}
+.tab-col .feature .fea-each p em{color:#373737;}
+.tab-col .feature .fea-each p span{display: inline-block;width: 230px;vertical-align: top;}
+.tab-col .feature em.verti-line{background:#f4eded;display: inline-block;margin:50px 65px 0 65px;width:1px;height:300px;}
+
+.tab-col .qa span{display: inline-block;width:225px;vertical-align: top;padding:0 67px;}
+.tab-col .qa span p{font-size: 12px;line-height: 20px;margin-bottom:5px;}
+.tab-col .qa span p.ti{font-size: 16px;line-height: 25px;color:#373737;}
+.tab-col .qa em.cross-line{background:#f4eded;display: inline-block;margin:35px 25px;width:680px;height:1px;float:left;}
