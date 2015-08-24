@@ -1,5 +1,5 @@
 /**
- * @function:首页js
+ * @function:新手指引页js
  * @author :ZY
  */
 
