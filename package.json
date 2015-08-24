@@ -1,0 +1,19 @@
+{
+  "name": "bull",
+  "version": "0.0.1",
+  "description": "小牛钱罐子 - 代码 ---------------------------------------",
+  "main": "fis-conf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zybtbu/bull.git"
+  },
+  "author": "ZY",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zybtbu/bull/issues"
+  },
+  "homepage": "https://github.com/zybtbu/bull"
+}
