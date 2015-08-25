@@ -14,7 +14,7 @@ h5{font-size:14px;}
 h6{font-size:12px;}
 input,textarea,button,select{margin:0;padding:0;}
 address,cite,code,em,th {font-weight:normal; font-style:normal;}
-a{text-decoration:none;outline:none;color:#919191;}
+a{text-decoration:none;outline:none;color:#919191;cursor:pointer;}
 a:hover{text-decoration: underline;}
 img{margin:0;padding:0;border:none;}
 ul,li{list-style: none;}
@@ -28,7 +28,7 @@ p input{height:28px;line-height:28px;padding: 0 5px;border:2px solid #b2b2b2;fon
 .fr{float:right;}
 .fr-main{width:874px;float: right;}
 .border-box{border-left:4px solid #f27835;background: #fff;text-align: left;overflow: hidden;-moz-box-shadow:0px 2px 2px 0px #d3d3d3;-webkit-box-shadow:0px 2px 2px 0px #d3d3d3;box-shadow:0px 2px 2px 0px #d3d3d3;}
-.shadow-box{-moz-box-shadow:0px 1px 1px 0px #d3d3d3;-webkit-box-shadow:0px 1px 1px 0px #d3d3d3;box-shadow:0px 1px 1px 0px #d3d3d3;background: #fff;}
+.shadow-box{-moz-box-shadow:0px 1px 3px 1px #d3d3d3;-webkit-box-shadow:0px 1px 3px 1px #d3d3d3;box-shadow:0px 1px 3px 1px #d3d3d3;background: #fff;}
 .assure{display: inline-block;height:28px;width:22px;background: url(../img/assure.png) no-repeat;}
 .sub-link{background:url(../img/arrow.png) no-repeat right center;padding-right:16px;}
 button{cursor: pointer;}
@@ -46,17 +46,24 @@ h4.col-ti a{color:#f27835;text-decoration: underline;font-size: 14px;}
 
 /* * * * * * * * * * * * * * * * 顶部 * * * * * * * * * * * * * * * */
 .header{width:100%;height: 40px;padding:18px 0;border-bottom:2px solid #dfdfdf;}
+.header .wmain{overflow: visible;}
 .header .fl a{display: inline-block;vertical-align: middle;}
 .header .fl .slogan{margin-left: 40px;}
-.header .fr{height:40px;line-height: 40px;}
+.header .fr{height:40px;line-height: 40px;position: relative;}
 .header .fr a{text-decoration: none;color:#373737;}
-.header .fr a.link{display:inline-block;width: 100px;height:40px;margin-right: 10px;}
+.header .fr a.link{display:inline-block;width: 130px;height:40px;}
 .header .fr a.link:hover{background:#f27835;color:#fff;}
 .header .fr a.selected{background:#f27835;color:#fff;}
 .header .fr .regis-login{margin-left: 15px;}
 .header .fr .regis-login a{color:#f27835;padding:0;margin:0;margin-right:0;}
 .header .fr .regis-login em{color:#f27835;padding:0 4px;}
 .header .fr a.selected .sub-link, .header .fr a:hover .sub-link{background: url(../img/arrow3.png) no-repeat right center;}
+.header .fr ul{display: none;position: absolute;background: #fff;width:130px;}
+.header .fr ul.second{left:135px;}
+.header .fr ul.forth{left:404px;}
+.header .fr ul li{font-size: 12px;line-height: 42px;cursor: pointer;border-bottom: 1px dashed #e2e2e2;}
+.header .fr ul li:hover{color:#f27835;}
+.header .fr ul li.selected{background:#f49a68;color:#fff;border-bottom:1px solid #f49a68;}
 
 /* * * * * * * * * * * * * * * * 登录区 * * * * * * * * * * * * * * * */
 .banner{width:100%;height:484px;background: url(../img/banner.jpg) no-repeat center #f04031;}
@@ -98,23 +105,23 @@ h4.col-ti a{color:#f27835;text-decoration: underline;font-size: 14px;}
 
 /* * * * * * * * * * * * * * * * 侧边栏 * * * * * * * * * * * * * * * */
 .left-tab{width:231px;border-top:3px solid #f27835;margin-left:3px;}
-.left-tab p{padding-left: 70px;text-align: left;font-size: 12px;line-height: 44px;}
-.left-tab p:hover{color:#f27835;cursor: pointer;}
-.left-tab p.selected{background:#f27835;color:#fff;}
-.left-tab p span{padding-left:23px;line-height: 44px;}
-.left-tab p span.profile{background: url(../img/left-profile.png) no-repeat left center;}
-.left-tab p.selected span.profile{background: url(../img/left-profile2.png) no-repeat left center;}
-.left-tab p span.dollar{background: url(../img/left-dollar.png) no-repeat left center;}
-.left-tab p.selected span.dollar{background: url(../img/left-dollar2.png) no-repeat left center;}
-.left-tab p span.invest{background: url(../img/left-invest.png) no-repeat left center;}
-.left-tab p.selected span.invest{background: url(../img/left-invest2.png) no-repeat left center;}
-.left-tab p span.account{background: url(../img/left-account.png) no-repeat left center;}
-.left-tab p.selected span.account{background: url(../img/left-account2.png) no-repeat left center;}
-.left-tab p span.bonus{background: url(../img/left-bonus.png) no-repeat left center;}
-.left-tab p.selected span.bonus{background: url(../img/left-bonus2.png) no-repeat left center;}
-.left-tab p span .sub-column{background: url(../img/arrow2.png) no-repeat center;padding-left: 11px;margin-left: 8px;}
-.left-tab p.selected span .sub-column{background: url(../img/arrow3.png) no-repeat center;}
-.left-tab p span .num{background:#f27835;color:#fff;padding:0 8px;border-radius: 7px;margin-left: 8px;}
+.left-tab a{padding-left: 70px;text-align: left;font-size: 12px;line-height: 44px;display:block;}
+.left-tab a:hover{color:#f27835;text-decoration: none;}
+.left-tab a.selected{background:#f27835;color:#fff;}
+.left-tab a span{padding-left:23px;line-height: 44px;}
+.left-tab a span.profile{background: url(../img/left-profile.png) no-repeat left center;}
+.left-tab a.selected span.profile{background: url(../img/left-profile2.png) no-repeat left center;}
+.left-tab a span.dollar{background: url(../img/left-dollar.png) no-repeat left center;}
+.left-tab a.selected span.dollar{background: url(../img/left-dollar2.png) no-repeat left center;}
+.left-tab a span.invest{background: url(../img/left-invest.png) no-repeat left center;}
+.left-tab a.selected span.invest{background: url(../img/left-invest2.png) no-repeat left center;}
+.left-tab a span.account{background: url(../img/left-account.png) no-repeat left center;}
+.left-tab a.selected span.account{background: url(../img/left-account2.png) no-repeat left center;}
+.left-tab a span.bonus{background: url(../img/left-bonus.png) no-repeat left center;}
+.left-tab a.selected span.bonus{background: url(../img/left-bonus2.png) no-repeat left center;}
+.left-tab a span .sub-column{background: url(../img/arrow2.png) no-repeat center;padding-left: 11px;margin-left: 8px;}
+.left-tab a.selected span .sub-column{background: url(../img/arrow3.png) no-repeat center;}
+.left-tab a span .num{background:#f27835;color:#fff;padding:0 8px;border-radius: 7px;margin-left: 8px;}
 
 .left-tab ul{display: none;}
 .left-tab ul li{font-size: 12px;line-height: 42px;cursor: pointer;}
