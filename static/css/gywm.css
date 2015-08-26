@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+.insurance{margin-bottom:2px;margin-right:1px;}
+.insurance .cont{padding:50px 0;}
+.insurance .cont .text{margin:0 auto;}
+.insurance .cont .text span{display: inline-block;width:325px;text-align: left;margin:0 40px 80px 40px;vertical-align: top;}
+.insurance .cont .text span p{line-height: 24px;}
+.insurance .cont .text span p.phara{font-size: 14px;padding-left:30px;margin-top: 6px;}
+.insurance .cont .text span p.ti1{padding-left:30px;background: url(/static/img/insurance0.png) no-repeat center left;}
+.insurance .cont .text span p.ti2{padding-left:30px;background: url(/static/img/insurance1.png) no-repeat center left}
+.insurance .cont .text span p.ti3{padding-left:30px;background: url(/static/img/insurance2.png) no-repeat center left}
+.insurance .cont .text span p.ti4{padding-left:30px;background: url(/static/img/insurance3.png) no-repeat center left}
+.insurance .cont .text span p.ti5{padding-left:30px;background: url(/static/img/insurance4.png) no-repeat center left}
+.insurance .cont .text span p.ti6{padding-left:30px;background: url(/static/img/insurance5.png) no-repeat center left}
+.insurance .cont .text span p.ti7{padding-left:30px;background: url(/static/img/insurance6.png) no-repeat center left}
+.insurance .cont .text span p.ti8{padding-left:30px;background: url(/static/img/insurance7.png) no-repeat center left}
+
+
+

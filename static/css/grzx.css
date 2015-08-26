@@ -72,3 +72,26 @@
 .popbox-bankrank .ft .cont table tr{line-height: 60px;}
 .popbox-bankrank .ft .cont table tr th{font-size: 14px;border-bottom: 1px solid #dddddd;}
 .popbox-bankrank .ft .cont table tr td{color:#373737;font-size: 14px;}
+
+.system-msg p.msg-btn{text-align: left;}
+.system-msg p.msg-btn a{margin-right: 10px;width: 140px;height:30px;line-height: 30px;display: inline-block;}
+.system-msg p.msg-btn a:hover{text-decoration: none;}
+.system-msg p.more a{width: 100%;height:30px;line-height: 30px;display: inline-block;}
+.system-msg p.more a:hover{text-decoration: none;}
+.system-msg .shadow-box{margin:30px 0;text-align: left;}
+.system-msg .shadow-box .each{border-bottom:1px solid #efefef;}
+.system-msg .shadow-box .each p{line-height: 75px;padding:0 35px;}
+.system-msg .shadow-box .each p.ti{font-size: 14px;overflow: hidden;cursor:pointer;}
+.system-msg .shadow-box .each p.ti a{background: url(/static/img/system-circle1.png) no-repeat center left;padding-left: 100px;float: left;}
+.system-msg .shadow-box .each p.ti span{float:right;}
+.system-msg .shadow-box .each.viewed p.ti a{background: url(/static/img/system-circle3.png) no-repeat center left;}
+.system-msg .shadow-box .each p.ti:hover{background: #f27835;}
+.system-msg .shadow-box .each p.ti:hover a{color:#fff;background: url(/static/img/system-circle2.png) no-repeat center left;}
+.system-msg .shadow-box .each p.ti:hover span{color:#fff;}
+.system-msg .shadow-box .each.selected p.ti{background: #f27835;}
+.system-msg .shadow-box .each.selected p.ti a{color:#fff;background: url(/static/img/system-circle2.png) no-repeat center left;}
+.system-msg .shadow-box .each.selected p.ti span{color:#fff;}
+.system-msg .shadow-box .each p.cont{font-size: 12px;display: none;}
+.system-msg .shadow-box .each.selected p.cont{display:inline-block;}
+
+
