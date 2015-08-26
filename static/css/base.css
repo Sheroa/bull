@@ -32,8 +32,8 @@ p input{height:28px;line-height:28px;padding: 0 5px;border:2px solid #b2b2b2;fon
 .assure{display: inline-block;height:28px;width:22px;background: url(../img/assure.png) no-repeat;}
 .sub-link{background:url(../img/arrow.png) no-repeat right center;padding-right:16px;}
 button{cursor: pointer;}
-.light-btn{background: #f27835;color:#fff;}
-.gray-btn{background: #b5b5b5;color:#fff;}
+.light-btn{background: #f27835;color:#fff;text-align: center;}
+.gray-btn{background: #b5b5b5;color:#fff;text-align: center;}
 .show{display: block !important;}
 .hide{display: none !important;}
 
@@ -125,11 +125,11 @@ a.quit{background: url(../img/quit.png) no-repeat;height: 18px;width:18px;displa
 
 .left-tab ul{display: none;}
 .left-tab ul li{line-height: 42px;}
-
+.left-tab ul li a{text-align: center;line-height: 42px;padding-left: 0;}
 .left-tab ul li a:hover{color:#f27835;}
 .left-tab ul li a.selected{background:#f49a68;color:#fff;}
 
-.left-tab ul li a{text-align: center;line-height: 42px;padding-left: 0;}
+
 
 /* 左侧广告区 */
 .left-adver{width: 233px;height:162px;margin-top: 40px;background: #f1f1f1;}
