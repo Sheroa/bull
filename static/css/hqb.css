@@ -29,16 +29,17 @@
 
 .tab-col{margin: 20px 1px;}
 .tab-col .tab{text-align: left;}
-.tab-col .tab span{width: 106px;height: 37px;line-height: 37px;display: inline-block;text-align: center;background:#f27835;color:#fff;cursor:pointer;}
+.tab-col .tab span{width: 106px;height: 37px;line-height: 37px;display: inline-block;text-align: center;background:#a6a6a6;color:#fff;cursor:pointer;}
+.tab-col .tab span:hover{background: #f27835;}
 .tab-col .tab span.selected{background: #fff;color:#373737;}
 
 .tab-col .cont{display: none;text-align: left;padding:50px 70px;}
 .tab-col .cont p em{color:#373737;}
-.tab-col .feature .fea-each{width: 295px;display: inline-block;}
-.tab-col .feature .fea-each p{font-size: 12px;padding: 20px 0;border-bottom: 1px solid #f4eded;line-height: 20px;}
-.tab-col .feature .fea-each p em{color:#373737;}
-.tab-col .feature .fea-each p span{display: inline-block;width: 230px;vertical-align: top;}
-.tab-col .feature em.verti-line{background:#f4eded;display: inline-block;margin:50px 65px 0 65px;width:1px;height:300px;}
+.tab-col .hqb-feature .fea-each{width: 295px;display: inline-block;}
+.tab-col .hqb-feature .fea-each p{font-size: 12px;padding: 20px 0;border-bottom: 1px solid #f4eded;line-height: 20px;}
+.tab-col .hqb-feature .fea-each p em{color:#373737;}
+.tab-col .hqb-feature .fea-each p span{display: inline-block;width: 230px;vertical-align: top;}
+.tab-col .hqb-feature em.verti-line{background:#f4eded;display: inline-block;margin:50px 65px 0 65px;width:1px;height:300px;}
 
 .tab-col .qa span{display: inline-block;width:225px;vertical-align: top;padding:0 67px;}
 .tab-col .qa span p{font-size: 12px;line-height: 20px;margin-bottom:5px;}
