@@ -52,3 +52,8 @@ fis.match('*.{js,css,png,jpg,gif}', {
 // //   packTo: 'libs/libs.js'
 // // });
 // 
+
+
+fis.match('static/html/(**.html)',{
+  release:'/$1'
+});
