@@ -30,13 +30,21 @@ var sideBar = {
 			$($("a[data-type='fund']")[0]).trigger("click");
 			$($("a[data-type='fund']")[0]).addClass("selected");
 			if(href.indexOf("record")!=-1){
-				$("li[data-type='record']").addClass("selected");
+				$("a[data-type='record']").addClass("selected");
 			}else if(href.indexOf("recharge")!=-1){
 				$("a[data-type='recharge']").addClass("selected");
 			}else if(href.indexOf("withdrawCash")!=-1){
-				$("li[data-type='withdrawCash']").addClass("selected");
+				$("a[data-type='withdrawCash']").addClass("selected");
 			}
 			
+		}else if(href.indexOf('account') != -1){//账号
+			$($("a[data-type='account']")[0]).trigger("click");
+			$($("a[data-type='account']")[0]).addClass("selected");
+			if(href.indexOf("bankCard")!=-1){
+				$("a[data-type='bankCard']").addClass("selected");
+			}else if(href.indexOf("systemMsg")!=-1){
+				$("a[data-type='systemMsg']").addClass("selected");
+			}
 		}
 
 		$("a[data-type='"+type+"']").addClass("selected");
