@@ -32,7 +32,7 @@ var sideBar = {
 			if(href.indexOf("record")!=-1){
 				$("li[data-type='record']").addClass("selected");
 			}else if(href.indexOf("recharge")!=-1){
-				$("li[data-type='recharge']").addClass("selected");
+				$("a[data-type='recharge']").addClass("selected");
 			}else if(href.indexOf("withdrawCash")!=-1){
 				$("li[data-type='withdrawCash']").addClass("selected");
 			}
