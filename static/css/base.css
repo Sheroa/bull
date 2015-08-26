@@ -124,9 +124,12 @@ a.quit{background: url(../img/quit.png) no-repeat;height: 18px;width:18px;displa
 .left-tab a span .num{background:#f27835;color:#fff;padding:0 8px;border-radius: 7px;margin-left: 8px;}
 
 .left-tab ul{display: none;}
-.left-tab ul li{font-size: 12px;line-height: 42px;cursor: pointer;}
+.left-tab ul li{line-height: 42px;}
+
 .left-tab ul li a:hover{color:#f27835;}
 .left-tab ul li a.selected{background:#f49a68;color:#fff;}
+
+.left-tab ul li a{text-align: center;line-height: 42px;padding-left: 0;}
 
 /* 左侧广告区 */
 .left-adver{width: 233px;height:162px;margin-top: 40px;background: #f1f1f1;}
