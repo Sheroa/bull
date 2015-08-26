@@ -125,8 +125,8 @@ a.quit{background: url(../img/quit.png) no-repeat;height: 18px;width:18px;displa
 
 .left-tab ul{display: none;}
 .left-tab ul li{font-size: 12px;line-height: 42px;cursor: pointer;}
-.left-tab ul li:hover{color:#f27835;}
-.left-tab ul li.selected{background:#f49a68;color:#fff;}
+.left-tab ul li a:hover{color:#f27835;}
+.left-tab ul li a.selected{background:#f49a68;color:#fff;}
 
 /* 左侧广告区 */
 .left-adver{width: 233px;height:162px;margin-top: 40px;background: #f1f1f1;}
