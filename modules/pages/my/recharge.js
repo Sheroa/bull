@@ -6,5 +6,5 @@
  var sidebar = require("util/sidebar"),
  	navBar = require("util/navbar");
 
-navBar.setMenuCurClass(index);
-sidebar.init();
+ navBar.init(index);
+ sidebar.init();
