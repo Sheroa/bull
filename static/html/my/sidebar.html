@@ -1,21 +1,21 @@
 <!--个人中心左-侧边栏-->
 <div class="fl">
 	<div class="left-tab shadow-box">
-		<a data-type="personCenter"><span class="profile">个人中心</span></a>
-		<a class="selected" data-type="fund"><span class="dollar">我的资金<em class="sub-column"></em></span></a>
-		<ul class="dollar-sub show">
+		<a data-level="first" data-type="personCenter" href="http://www.xiaoniuapp.com:8081/my/personCenter.html"><span class="profile">个人中心</span></a>
+		<a data-level="first" data-type="fund"><span class="dollar">我的资金<em class="sub-column"></em></span></a>
+		<ul class="dollar-sub">
 			<li><a href="#">交易记录</a></li>
-			<li data-type="recharge"><a href="#" class="selected">充值</a></li>
-			<li data-type="withdrawCash"><a href="#">提现</a></li>
+			<li><a data-type="recharge" href="http://www.xiaoniuapp.com:8081/my/refund/recharge.html">充值</a></li>
+			<li><a data-type="withdrawCash" href="http://www.xiaoniuapp.com:8081/my/refund/withdrawCash.html">提现</a></li>
 		</ul>
-		<a data-type="invest"><span class="invest">我的投资</span></a>
-		<a data-type="account"><span class="account">我的账号<em class="sub-column"></em></span></a>
+		<a data-level="first" data-type="invest"><span class="invest">我的投资</span></a>
+		<a data-level="first" data-type="account"><span class="account">我的账号<em class="sub-column"></em></span></a>
 		<ul class="dollar-sub">
 			<li><a href="#">账户管理</a></li>
-			<li><a href="#">我的银行卡</a></li>
-			<li><a href="#">系统消息</a></li>
+			<li><a data-type='bankCard' href="http://www.xiaoniuapp.com:8081/my/account/bankCard.html">我的银行卡</a></li>
+			<li><a data-type='systemMsg' href="http://www.xiaoniuapp.com:8081/my/account/systemMsg.html">系统消息</a></li>
 		</ul>
-		<a data-type="kickback"><span class="bonus">我的红包<em class="num">2</em></span></a>
+		<a data-level="first" data-type="kickback"><span class="bonus">我的红包<em class="num">2</em></span></a>
 	</div>
 	<div class="left-adver">广告区</div>	
 </div>
