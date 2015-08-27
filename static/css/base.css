@@ -49,7 +49,7 @@ a.quit{background: url(../img/quit.png) no-repeat;height: 18px;width:18px;displa
 .header .wmain{overflow: visible;}
 .header .fl a{display: inline-block;vertical-align: middle;}
 .header .fl .slogan{margin-left: 40px;}
-.header .fr{height:40px;line-height: 40px;position: relative;}
+.header .fr{height:40px;line-height: 40px;position: relative;z-index:1;}
 .header .fr a{text-decoration: none;color:#373737;}
 .header .fr a.link{display:inline-block;width: 130px;height:40px;}
 .header .fr a.link:hover{background:#f27835;color:#fff;}
@@ -58,7 +58,7 @@ a.quit{background: url(../img/quit.png) no-repeat;height: 18px;width:18px;displa
 .header .fr .regis-login a{color:#f27835;padding:0;margin:0;margin-right:0;}
 .header .fr .regis-login em{color:#f27835;padding:0 4px;}
 .header .fr a.selected .sub-link, .header .fr a:hover .sub-link{background: url(../img/arrow3.png) no-repeat right center;}
-.header .fr ul{display: none;position: absolute;background: #fff;width:130px;}
+.header .fr ul{display: none;position: absolute;background: #fff;width:130px;z-index:1;top:-1;}
 .header .fr ul.second{left:135px;}
 .header .fr ul.forth{left:404px;}
 .header .fr ul li{font-size: 12px;line-height: 42px;cursor: pointer;border-bottom: 1px dashed #e2e2e2;}
