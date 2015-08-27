@@ -1,9 +1,11 @@
 @charset "utf-8";
 /* CSS Document */
 .newGuide{padding:65px;}
-.newGuide p{font-size: 14px;text-align: left;margin-bottom: 60px;}
-.newGuide .feature{width:1085px;}
-.newGuide .feature .each-fea{margin-right: 75px;}
+.newGuide p{font-size: 14px;text-align: left;margin-bottom: 60px;padding-left: 30px;}
+.newGuide .feature{width:1075px;padding-left: 30px;}
+.newGuide .feature .each-fea{margin-right: 65px;}
+.newGuide .feature .each-fea span{margin:0;}
+.newGuide .feature .each-fea h4{margin:15px 0;}
 .newGuide .our-product{background: url(../img/our-product.jpg) no-repeat center center;width: 1010px;height:300px;position:relative;margin:55px 0;}
 .newGuide .our-product a{color:#fff;display: inline-block;position: absolute;top: 70px;left:50%;margin-left: -55px;padding:7px;}
 .newGuide .our-product a:hover{text-decoration: none;}
