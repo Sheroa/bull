@@ -3,6 +3,7 @@
  * @author :ZY
  */
 
- var navBar = require("util/navbar");
+ var api = require("api/api"),
+ 	 navBar = require("util/navbar");
 
- navBar.init(index);
+ navBar.setMenuCurClass(index);

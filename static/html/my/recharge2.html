@@ -8,16 +8,14 @@
 	<link rel="stylesheet" href="/static/css/grzx.css" type="text/css">
 </head>
 <body>
-
 	<link rel="import" href="/static/html/common/header.html?__inline">
-
 	<div class="bk-gray">
 		<div class="wmain">
 			
-			<link rel="import" href="../sidebar.html?__inline">
+			<link rel="import" href="./sidebar.html?__inline">
 
 			<div class="fr-main recharge">
-				<h4 class="col-ti"><span class="ti-logo"></span><span class="ti-cont">提现</span></h4>
+				<h4 class="col-ti"><span class="ti-logo"></span><span class="ti-cont">充值</span></h4>
 				<div class="bank-msg">
 					<div class="bank-own">
 						<div class="each-border bank-icbc">
@@ -33,23 +31,15 @@
 					<p class="sub-text">单笔限额20万，单日限额200万。<br>实际请参考您的银行限额设置。</p>
 				</div>
 				<div class="border-box" style="padding:45px 0 45px 20px;">
-					<p class="address"><span class="p-ti">开户行地址</span><em>省份</em>
-					<select name="" id=""><option value="0">北京</option><option value="1">内蒙古自治区</option></select>
-					<em>城市</em>
-					<select name="" id=""><option value="0">海淀区</option></select>
-					<em>支行名称</em>
-					<select name="" id=""><option value="0">北京市海淀支行</option></select>
-					</p>
 					<div class="fl">
 						<p><span class="p-ti">账户余额</span><strong class="num">￥50.00</strong></p>
-						<p><span class="p-ti"><em></em>提现金额</span><input type="text" placeholder="本次可提取50元"></p>
-						<p class="alert"><span class="p-ti"></span>账户余额不足，请重新输入提现金额</p>
+						<p><span class="p-ti"><em></em>充值金额</span><input type="text"></p>
 						<p>
 							<span class="p-ti"><em></em>交易密码</span>
 							<span class="bank-pwd"><input type="text"><input type="text"><input type="text"><input type="text"><input type="text"><input type="text"></span>
 						</p>
 						<p class="sub-text"><span class="p-ti"></span><span>请输入6位字交易密码</span><a href="#" class="forget-pwd">忘记密码</a></p>
-						<p><span class="p-ti"></span><button class="light-btn">提现</button></p>
+						<p><span class="p-ti"></span><button class="light-btn">充值</button></p>
 					</div>
 					<div class="remind-msg">
 						<h4>温馨提示</h4>
@@ -66,9 +56,5 @@
 
 	<link rel="import" href="/static/html/common/footer.html?__inline">
 
-	<script type="text/javascript">
-		var index = 0;
-		require('pages/my/withdraw_cash');
-	</script>
 </body>
 </html>
