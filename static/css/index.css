@@ -1,6 +1,30 @@
 @charset "utf-8";
 /* CSS Document */
 
+/* * * * * * * * * * * * * * * * 登录区 * * * * * * * * * * * * * * * */
+.banner{min-width:1200; height:450px; position:relative; margin:0px auto;}
+.banner .ad_bk{min-width:1200; height:450px; position:relative; margin:0px auto;}
+.banner .ad_bk .imglist{width:100%; height:450px;position:absolute;top:0px;left:0px; z-index:0;background:top center;}
+.banner .ul_btn{position:absolute; bottom:10px; left:45%; padding:2px 15px; background-color:#000;border-radius:11px; z-index:10;filter:alpha(opacity=30);-moz-opacity:0.3;-khtml-opacity: 0.3;opacity: 0.3; }
+.banner .ul_btn li{float:left;height:16px;width:16px;margin:0px 2px; background:url(../img/li_1.png) no-repeat; cursor:pointer;}
+.banner .ul_btn .hover{ background:url(../img/li_2.png) no-repeat; display:block;}
+.banner .ad_bk .ul_btn a {width: 21px;height: 21px;float: left;text-indent: -4000px;position: relative;margin-left: 3px;color: transparent;}
+.banner .wmain{position: absolute;z-index: 1000;top: 0;left: 50%;margin-left: -570px;}
+
+.login-area{width:270px;height: 221px;float:right;margin-top:65px;background: #fff;padding:40px 15px 30px 15px;position: relative;}
+.login-area .textField{width:266px;border-top:2px solid;border-left:2px solid;border-right:2px solid;border-bottom:4px solid #e67334;margin-bottom:18px;padding:0;}
+.login-area .textField span{width:19px;height:17px;margin:0 10px;display: inline-block;vertical-align: middle;background: url(../img/profile.png) no-repeat;}
+.login-area .textField span.pwd{background:url(../img/lock.png) no-repeat;}
+.login-area .textField input{width:210px;height:36px;border:none;vertical-align:middle;line-height:38px;padding: 0 8px;margin:0;}
+.login-area p.remember{overflow: hidden;line-height: 12px;margin-bottom: 8px;font-size:12px;}
+.login-area p.remember input{vertical-align:middle;margin-right:8px;border:1px solid #f27835;}
+.login-area p.remember .fl{color:#373737;}
+.login-area p.remember .fr{color:#b1b1b1;}
+.login-area .btn_login{height:45px;line-height:45px;width:100%;margin-bottom:15px;background:#f27835;color:#fff;border:0;cursor:pointer;}
+.login-area h5 a{text-decoration: underline;color:#b1b1b1;}
+.login-area .assure{position:absolute;top:0;right:5px;}
+
+
 /* 媒体区 */
 .media-report{margin: 60px 0;}
 .media-report ul{}
