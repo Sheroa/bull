@@ -20,32 +20,23 @@
 					<p><span class="p-ti">银行卡号</span><input type="text" placeholder="请输入您本人的借记卡号"></p>
 					<p>
 						<span class="p-ti">选择银行</span>
-						<select name="bank-select" id="">
-							<option value="工商银行">工商银行</option>
-							<option value="中国银行">中国银行</option>
-							<option value="中信银行">中信银行</option>
-							<option value="兴业银行">兴业银行</option>
-							<option value="光大银行">光大银行</option>
-							<option value="民生银行">民生银行</option>
-							<option value="邮政储蓄银行">邮政储蓄银行</option>
-							<option value="农业银行">农业银行</option>
-							<option value="建设银行">建设银行</option>
-							<option value="招商银行">招商银行</option>
-							<option value="交通银行">交通银行</option>
-							<option value="浦发银行">浦发银行</option>
-							<option value="广发银行">广发银行</option>
-							<option value="平安银行">平安银行</option>
-							<option value="华夏银行">华夏银行</option>
+						<select name="bank-select" id="bank-select">
 						</select>
-						<img src="/static/img/bank/ICBC.png" alt="" class="bank-logo">
+						<span>
+							<img src="/static/img/bank/ICBC.png" alt="" class="bank-logo">
+						</span>
 					</p>
-					<p><span class="p-ti"></span><button class="light-btn">下一步</button></p>
-					<p><span class="p-ti"><em></em>银行预留手机号</span><input type="text" placeholder="请输入银行预留手机号"></p>
-					<p><span class="p-ti"></span><a href="#" target="_blank" class="moreInf">查看充值支持银行及限额</a></p>
-					<p><span class="p-ti"><em></em>验证码</span><input type="text" placeholder="请输入短信验证码" class="shortOne"><a href="#" class="light-btn">获取短信验证码</a></p>
+
+					<p><span class="p-ti"></span><button class="light-btn nextBtn">下一步</button></p>
 				</div>
-				<div class="border-box" style="padding:45px 0 45px 20px;">
+				<div class="border-box operator_box" style="padding:45px 0 45px 20px;display:none;">
+
 					<div class="fl">
+						
+						<p data-type="kuaiqian"><span class="p-ti"><em></em>银行预留手机号</span><input type="text" placeholder="请输入银行预留手机号"></p>
+						<p data-type="kuaiqian"><span class="p-ti"></span><a href="#" target="_blank" class="moreInf">查看充值支持银行及限额</a></p>
+						<p data-type="kuaiqian"><span class="p-ti"><em></em>验证码</span><input type="text" placeholder="请输入短信验证码" class="shortOne"><a href="#" class="light-btn">获取短信验证码</a></p>
+
 						<p><span class="p-ti">账户余额</span><strong class="num">￥50.00</strong></p>
 						<p><span class="p-ti"><em></em>充值金额</span><input type="text"></p>
 						<p><span class="p-ti"></span><button class="light-btn">充值</button></p>
@@ -64,9 +55,9 @@
 	</div>
 
 	<link rel="import" href="/static/html/common/footer.html?__inline">
-	<div class="popbox-bankrank">
-<!-- 		<div class="bk"></div> -->
-<!-- 		<div class="ft">
+	<div class="popbox-bankrank" style="display:none">
+		<div class="bk"></div>
+		<div class="ft">
 			<p class="ti">银行充值限额表<a href="#" class="quit"></a></p>
 			<div class="cont">
 				<table>
@@ -168,7 +159,7 @@
 					</tr>
 				</table>
 			</div>
-		</div>	 -->				
+		</div>					
 	</div>
 
 	<script type="text/javascript">

@@ -13,16 +13,9 @@
 
 	<div class="bk-gray">
 		<div class="wmain">
-			<div class="fl">
-				<div class="left-tab shadow-box">
-					<a href="#"><span>公司简介</span></a>
-					<a href="#"><span>媒体报道</span></a>
-					<a href="#" class="selected"><span>安全保障</span></a>
-					<a href="#"><span>合作机构</span></a>
-					<a href="#"><span>联系我们</span></a>
-				</div>
-				<div class="left-adver">广告区</div>	
-			</div>
+			
+			<link rel="import" href="./sidebar.html?__inline">
+
 			<div class="fr-main">
 				<h4 class="col-ti"><span class="ti-logo"></span><span class="ti-cont">安全保障</span></h4>
 				<div class="insurance shadow-box">
@@ -61,6 +54,9 @@
 	</div>
 
 	<link rel="import" href="/static/html/common/footer.html?__inline">
-	
+		<script type="text/javascript">
+		var index = 3;
+		require('pages/about/insurance');
+	</script>
 </body>
 </html>
