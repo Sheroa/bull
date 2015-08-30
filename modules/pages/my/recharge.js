@@ -7,7 +7,8 @@ var $       = require("jquery");
 	sidebar = require("util/sidebar"),
  	navbar  = require("util/navbar");
 
-
+//任务执行
+require('ui/dialog/dialog');
 
 var recharge = {
  	//初始化
@@ -16,6 +17,28 @@ var recharge = {
  		this.sidebar();
  		this.bank_list();
  		this.event_handler();
+
+ 		$.Dialogs({
+ 		    "id" : "diglog_wrapper",
+ 		    "overlay" : true,
+ 		    "cls" : "dialog-wrapper popbox-bankrank",
+ 		    "closebtn" : ".submit .btn, .btn1",
+ 		    "auto" : false,
+ 		    "msg" : '<p class="ti">银行充值限额表<a href="#" class="quit"></a></p>'+
+			'<div class="cont">'+
+				'<table>'+
+					'<tr>'+
+						'<th width="110">银行名称</th>'+
+						'<th>单笔限额</th>'+
+						'<th>单日限额</th>'+
+						'<th>单月限额</th>'+
+					'</tr>'+
+				'</table>'+
+			'</div>',
+ 		    "openfun" : function () {
+ 		    	// alert("zy");
+ 		    }
+ 		});
  	},
  	navBar:function(index){
  		navbar.init(index);
@@ -40,7 +63,7 @@ var recharge = {
  					});
  					$("#bank-select").append(_html.join(""));
  				}else{
- 					alert("获取银行卡数据返回错误");
+ 					//alert("获取银行卡数据返回错误");
  				}
  			}
  		});
