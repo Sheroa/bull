@@ -17,37 +17,6 @@ var recharge = {
  		this.sidebar();
  		this.bank_list();
  		this.event_handler();
-
- 		$.Dialogs({
- 		    "id" : "diglog_wrapper",
- 		    "overlay" : true,
- 		    "cls" : "dialog-wrapper popbox-bankrank",
- 		    "closebtn" : ".submit .btn, .btn1",
- 		    "auto" : false,
- 		    "msg" :'<p class="ti">银行充值限额表<a href="#" class="quit"></a></p>'+
-			'<div class="cont">'+
-				'<table>'+
-					'<tr>'+
-						'<th width="110">银行名称</th>'+
-						'<th>单笔限额</th>'+
-						'<th>单日限额</th>'+
-						'<th>单月限额</th>'+
-					'</tr>'+
-					'<tr>'+
-						'<td>工商银行</td>'+
-						'<td>50,000</td>'+
-						'<td>500,000</td>'+
-						'<td>无限额</td>'+
-					'</tr>'+
-				'</table>'+
-				'</div>',
- 		    openfun : function () {
- 		    	 $('.popbox-bankrank .quit').on('click',function(){
- 		    	 	//关闭dialog弹窗
- 		    	 	$('.popbox-bankrank span.close').trigger('click');
- 		    	 })
- 		    }
- 		});
  	},
  	navBar:function(index){
  		navbar.init(index);
@@ -104,6 +73,39 @@ var recharge = {
  			//每一次选中银行，触发一次事件-修改后面图片
  			
  		});
+ 		$(".moreInf").on("click",function(){
+			$.Dialogs({
+			    "id" : "diglog_wrapper",
+			    "overlay" : true,
+			    "cls" : "dialog-wrapper popbox-bankrank",
+			    "closebtn" : ".submit .btn, .btn1",
+			    "auto" : false,
+			    "msg" :'<p class="ti">银行充值限额表<a href="javascript:void(0)" class="quit"></a></p>'+
+			'<div class="cont">'+
+				'<table>'+
+					'<tr>'+
+						'<th width="110">银行名称</th>'+
+						'<th>单笔限额</th>'+
+						'<th>单日限额</th>'+
+						'<th>单月限额</th>'+
+					'</tr>'+
+					'<tr>'+
+						'<td>工商银行</td>'+
+						'<td>50,000</td>'+
+						'<td>500,000</td>'+
+						'<td>无限额</td>'+
+					'</tr>'+
+				'</table>'+
+				'</div>',
+			    openfun : function () {
+			    	 $('.popbox-bankrank .quit').on('click',function(){
+			    	 	//关闭dialog弹窗
+			    	 	debugger;
+			    	 	$('.popbox-bankrank span.close').trigger('click');
+			    	 })
+			    }
+			});
+ 		})
  	},
  	valid_check:function(){
  		
@@ -123,9 +125,9 @@ var recharge = {
  		}	
 
  		//判断是否选择银行
- 		if(!($('#bank-select') && $('#bank-select').find('option:selected').attr('data-code') != '0')){
- 			return '请选择银行';
- 		}
+ 		// if(!($('#bank-select') && $('#bank-select').find('option:selected').attr('data-code') != '0')){
+ 		// 	return '请选择银行';
+ 		// }
  		return false;
  	}
 }
