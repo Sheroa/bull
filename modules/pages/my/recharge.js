@@ -78,7 +78,7 @@ var recharge = {
 			    "id" : "diglog_wrapper",
 			    "overlay" : true,
 			    "cls" : "dialog-wrapper popbox-bankrank",
-			    "closebtn" : ".submit .btn, .btn1",
+			    "closebtn" : ".quit,span.close",
 			    "auto" : false,
 			    "msg" :'<p class="ti">银行充值限额表<a href="javascript:void(0)" class="quit"></a></p>'+
 			'<div class="cont">'+
