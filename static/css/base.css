@@ -42,6 +42,8 @@ h4.col-ti span{float:left;}
 h4.col-ti .ti-logo{padding:7px;background: #f27835;margin-top:5px;margin-right: 15px;}
 h4.col-ti a{color:#f27835;text-decoration: underline;font-size: 14px;}
 a.quit{background: url(../img/quit.png) no-repeat;height: 18px;width:18px;display: inline-block;}
+em.error-msg{font-size: 14px;color:#f15d2d;font-style: normal;margin-left:10px;}
+
 
 
 /* * * * * * * * * * * * * * * * 顶部 * * * * * * * * * * * * * * * */
