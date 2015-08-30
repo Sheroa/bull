@@ -55,6 +55,8 @@ fis.match('::package', {
 // 
 
 
+
+//把所有的html文件放到根目录下面
 fis.match('static/html/(**.html)',{
   release:'/$1'
 });

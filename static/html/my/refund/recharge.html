@@ -15,12 +15,15 @@
 			<div class="fr-main recharge">
 				<div class="border-box">
 					<h4 class="col-ti"><span class="ti-logo"></span><span class="ti-cont">充值</span></h4>
-					<p><span class="p-ti">真实姓名</span><input type="text" placeholder="请输入真实姓名"></p>
-					<p><span class="p-ti">身份证号码</span><input type="text" placeholder="请输入您真实的身份证号码"></p>
-					<p><span class="p-ti">银行卡号</span><input type="text" placeholder="请输入您本人的借记卡号"></p>
+					<p><span class="p-ti">真实姓名</span><input type="text" id="truename" placeholder="请输入真实姓名"></p>
+					<p><span class="p-ti">身份证号码</span><input type="text" id="id_number" placeholder="请输入您真实的身份证号码"></p>
+					<p><span class="p-ti">银行卡号</span><input type="text" id="bank_number" placeholder="请输入您本人的借记卡号"></p>
 					<p>
 						<span class="p-ti">选择银行</span>
 						<select name="bank-select" id="bank-select">
+							<option data-code='0'>
+								请选择银行
+							</option>
 						</select>
 						<span>
 							<img src="/static/img/bank/ICBC.png" alt="" class="bank-logo">

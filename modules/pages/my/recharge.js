@@ -38,7 +38,7 @@ var recharge = {
  					$.each(bank_data,function(index,obj){
  						_html.push('<option data-code='+obj.bank_code+' data-provider='+obj.provider+'>'+obj.bank_name+'</option>');
  					});
- 					$("#bank-select").html(_html.join(""));
+ 					$("#bank-select").append(_html.join(""));
  				}else{
  					alert("获取银行卡数据返回错误");
  				}
@@ -47,9 +47,14 @@ var recharge = {
  	},
  	event_handler:function(){
 
+ 		var self = this;
  		$(".nextBtn").on("click",function(){
  			//先做表单验证
- 			
+ 			var result = self.valid_check();
+ 			if(result){
+ 				console.log(result);
+ 				return false;
+ 			}
  			//判断是连连还是快钱
  			var pay_way = $("select[name='bank-select']").find("option:selected").attr("data-provider");
  			//连连 - 没有手机号 
@@ -67,6 +72,29 @@ var recharge = {
  			//每一次选中银行，触发一次事件-修改后面图片
  			
  		});
+ 	},
+ 	valid_check:function(){
+ 		
+ 		//校验真实姓名
+ 		if(!($('#truename') && $('#truename').val() != '')){
+ 			return '请输入用户名';
+ 		}
+
+ 		//校验身份证号码
+ 		if(!($('#id_number') && $('#id_number').val() != '')){
+ 			return '请输入身份证号码';
+ 		}
+
+ 		//银行卡号
+ 		if(!($('#id_number') && $('#bank_number').val() != '')){
+ 			return '请输入银行卡号';
+ 		}	
+
+ 		//判断是否选择银行
+ 		if(!($('#bank-select') && $('#bank-select').find('option:selected').attr('data-code') != '0')){
+ 			return '请选择银行';
+ 		}
+ 		return false;
  	}
 }
 
