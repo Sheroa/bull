@@ -5,6 +5,7 @@ fis.hook('module', {
     paths: {
       api: "common/api/",
       util: "common/util/",
+      ui:"common/ui/",
       jquery: "libs/jquery/jquery"
     }
 });
@@ -25,16 +26,16 @@ fis.match('::package', {
 });
 
 // /*基于页面的打包方式-设置零散资源自动打包*/
-fis.match('::packager', {
-  postpackager: fis.plugin('loader', {
-    allInOne: true
-  })
-});
+// fis.match('::packager', {
+//   postpackager: fis.plugin('loader', {
+//     allInOne: true
+//   })
+// });
 
 // /*指定文件添加md5戳 去除缓存*/
-fis.match('*.{js,css,png,jpg,gif}', {
-  useHash: true
-});
+// fis.match('*.{js,css,png,jpg,gif}', {
+//   useHash: true
+// });
 
 // /*启用fis-spriter-csssprites插件*/
 // // fis.match('::package',{
