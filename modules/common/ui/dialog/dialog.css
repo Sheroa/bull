@@ -33,7 +33,7 @@
   100% {
     transform: scale(1);} 
 }
-.dialog-wrapper{border:5px solid #b2b2b2;width:624px;position: absolute; z-index: 100000;background: #fff;/*height:550px;border-radius: 10px;box-shadow:0 0 10px rgba(0,0,0,.35)*/}
+.dialog-wrapper{width:624px;position: absolute; z-index: 100000;background: #fff;/*height:550px;border-radius: 10px;box-shadow:0 0 10px rgba(0,0,0,.35)*/}
 .dialog-wrapper span.close {background: url(btn1.png) -21px -32px no-repeat;cursor: pointer;display:none;height: 10px;position: absolute;right: 10px;top: 10px;width: 10px}
 #loginpanel .close,.closeblock span.close,.beizhudialog span.close{display: inline-block}
 .dialog-wrapper a:hover span.close{background-position:-33px  -32px}

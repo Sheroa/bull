@@ -24,7 +24,7 @@ var recharge = {
  		    "cls" : "dialog-wrapper popbox-bankrank",
  		    "closebtn" : ".submit .btn, .btn1",
  		    "auto" : false,
- 		    "msg" : '<p class="ti">银行充值限额表<a href="#" class="quit"></a></p>'+
+ 		    "msg" :'<p class="ti">银行充值限额表<a href="#" class="quit"></a></p>'+
 			'<div class="cont">'+
 				'<table>'+
 					'<tr>'+
@@ -33,10 +33,19 @@ var recharge = {
 						'<th>单日限额</th>'+
 						'<th>单月限额</th>'+
 					'</tr>'+
+					'<tr>'+
+						'<td>工商银行</td>'+
+						'<td>50,000</td>'+
+						'<td>500,000</td>'+
+						'<td>无限额</td>'+
+					'</tr>'+
 				'</table>'+
-			'</div>',
- 		    "openfun" : function () {
- 		    	// alert("zy");
+				'</div>',
+ 		    openfun : function () {
+ 		    	 $('.popbox-bankrank .quit').on('click',function(){
+ 		    	 	//关闭dialog弹窗
+ 		    	 	$('.popbox-bankrank span.close').trigger('click');
+ 		    	 })
  		    }
  		});
  	},
