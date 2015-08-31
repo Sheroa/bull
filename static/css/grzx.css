@@ -62,16 +62,15 @@
 .recharge p.sub-text a.forget-pwd{margin-left:66px;}
 .recharge p.alert{margin-top:-5px;}
 
-.popbox-bankrank{}
-.popbox-bankrank .bk{background: #000000; filter: alpha(opacity=30);opacity: 0.3;position: fixed;left: 0px;top: 0px; width: 100%;height: 100%;overflow: hidden;z-index: 1;}
-.popbox-bankrank .ft{background: #fff;width:455px;height: 545px;position:absolute;z-index:2;left:50%;top:50%;margin-left: -227px;margin-top:-277px;}
-.popbox-bankrank .ft p.ti{height:65px;line-height: 65px;width:430px;background:#f27835;color:#fff;font-size: 18px;text-align: left;padding-left: 25px;position: relative;}
-.popbox-bankrank .ft p.ti a{position:absolute;right:25px;top:22px;}
-.popbox-bankrank .ft .cont{width:100%;height:480px;overflow-y: scroll;}
-.popbox-bankrank .ft .cont table{width:100%;border-collapse:collapse;}
-.popbox-bankrank .ft .cont table tr{line-height: 60px;}
-.popbox-bankrank .ft .cont table tr th{font-size: 14px;border-bottom: 1px solid #dddddd;}
-.popbox-bankrank .ft .cont table tr td{color:#373737;font-size: 14px;}
+.popbox-bankrank{width:445px;}
+.popbox-bankrank .diginfo{background: #fff;width:455px;}
+.popbox-bankrank .diginfo p.ti{height:65px;line-height: 65px;width:430px;background:#f27835;color:#fff;font-size: 18px;text-align: left;padding-left: 25px;position: relative;}
+.popbox-bankrank .diginfo p.ti a{position:absolute;right:25px;top:22px;}
+.popbox-bankrank .diginfo .cont{width:100%;max-height:480px;overflow-y: scroll;}
+.popbox-bankrank .diginfo .cont table{width:100%;border-collapse:collapse;}
+.popbox-bankrank .diginfo .cont table tr{line-height: 60px;}
+.popbox-bankrank .diginfo .cont table tr th{font-size: 14px;border-bottom: 1px solid #dddddd;}
+.popbox-bankrank .diginfo .cont table tr td{color:#373737;font-size: 14px;}
 
 .system-msg p.msg-btn{text-align: left;}
 .system-msg p.msg-btn a{margin-right: 10px;width: 140px;height:30px;line-height: 30px;display: inline-block;}
