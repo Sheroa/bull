@@ -32,3 +32,12 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	var $ = require('jquery');
+	$(".assure").hover(function(){
+		$(this).next().show();
+	},function(){
+		$(this).next().hide();
+	});
+</script>
