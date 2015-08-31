@@ -17,17 +17,19 @@ var navbar = {
 	},
 	head_nav_hover: function() {
 		$("#nav").children('a').hover(function() {
-			if (!(typeof($(this).attr("id")) == "undefined")) {
+			if (!(typeof $(this).attr("id")  == "undefined")) {
 				var thisId = $(this).attr("id");
 				var subList = $("." + thisId);
 				$(subList).show();
 				$(this).addClass("selected");
 			} 
 		}, function() {
-			var thisId = $(this).attr("id");
-			var subList = $("." + thisId);
-			$(subList).hide();
-			$(this).removeClass("selected");
+			if (!(typeof $(this).attr("id")  == "undefined")) {
+				var thisId = $(this).attr("id");
+				var subList = $("." + thisId);
+				$(subList).hide();
+				$(this).removeClass("selected");
+			}
 		})
 		$("#nav").children('ul').hover(function() {
 			var thisClass = $(this).attr("class");
