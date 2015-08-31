@@ -26,8 +26,8 @@
 
 /* * * * * * * * * * * * * * * * 我的资金 * * * * * * * * * * * * * * * */
 /* 我的资金 */
-.recharge{po }
-.recharge .border-box{width:854px;padding:15px 0 20px 20px;margin-bottom: 15px;}
+.recharge{}
+.recharge .border-box{width:854px;padding:15px 0 20px 20px;margin-bottom: 15px;position:relative;}
 .recharge p{overflow: hidden;margin-bottom: 10px;}
 .recharge p span.p-ti{display: inline-block;width: 150px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}
 .recharge p input{width:216px;}
@@ -43,7 +43,7 @@
 .recharge p span em{display: inline-block;vertical-align: middle;background: url(../img/star-decorate.png) no-repeat;width: 10px;height: 8px;}
 .recharge .bank-logo{height:20px;margin-left: 10px;vertical-align: middle;}
 .recharge p strong.num{font-size: 24px;font-weight:normal;color:#f27835;}
-.recharge .remind-msg{float:right;margin-right: 5px;margin-top: 10px;}
+.recharge .remind-msg{position: absolute;top:40px;right:0;}
 .recharge .remind-msg p{font-size: 12px;margin-bottom: 5px;}
 .recharge .remind-msg h4{font-size: 16px;margin-bottom: 8px;}
 
