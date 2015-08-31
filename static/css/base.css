@@ -30,7 +30,7 @@ p input{height:28px;line-height:28px;padding: 0 5px;border:2px solid #b2b2b2;fon
 .border-box{border-left:4px solid #f27835;background: #fff;text-align: left;overflow: hidden;-moz-box-shadow:0px 2px 2px 0px #d3d3d3;-webkit-box-shadow:0px 2px 2px 0px #d3d3d3;box-shadow:0px 2px 2px 0px #d3d3d3;}
 .shadow-box{-moz-box-shadow:0px 1px 1px 1px #d3d3d3;-webkit-box-shadow:0px 1px 1px 1px #d3d3d3;box-shadow:0px 1px 1px 1px #d3d3d3;background: #fff;}
 .assure{display: inline-block;height:28px;width:22px;background: url(../img/assure.png) no-repeat;}
-.assurecont{position:absolute;top:-35px;right:0;}
+.assurecont{position:absolute;top:-35px;right:0;display: none;}
 .assurecont .contword{position: relative;height:28px;width:173px;z-index:100;}
 .assurecont .contword .cont-bk{position: absolute;height:24px;top:0;left:0;background: #373737;filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opacity: 0.8;opacity: 0.8;width:100%;z-index: 101; }
 .assurecont .contword span{position: absolute;height: 4px;width: 12px;top:24px;right: 10px;background: url(/static/img/arrow4.png) no-repeat;z-index: 102;}
