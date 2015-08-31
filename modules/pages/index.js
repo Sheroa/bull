@@ -28,7 +28,8 @@ var index = {
 				navObj:'.a-tab',
 				className:'.front-area',
 				curSel:'selected',
-				selectorIndex:'.a-tab'
+				selectorIndex:'.a-tab',
+				eventName:'mouseenter'
 			});
 		});
 	}
