@@ -178,7 +178,7 @@ em.error-msg{font-size: 12px;color:#f15d2d;font-style: normal;margin-left:10px;}
 .horizon .back-area .text-area2{background-position: 0 -115px;}
 .horizon .back-area .text-area3{background-position: 0 -230px;}
 
-.horizon .front-area{height:98px;width:861px;padding:15px 0 0 100px;position: absolute;z-index:3;bottom:0;right:0;background:#fff;border:1px solid #d3d3d3;}
+.horizon .front-area{height:98px;width:861px;padding:15px 0 0 100px;position: absolute;z-index:3;bottom:0;right:0;background:#fff;border:1px solid #d3d3d3;display: none;}
 .horizon .front-area div{float:left;width:215px;}
 .horizon .front-area div p.num{color:#f27835;font-size:24px;margin:10px 0;}
 .horizon .front-area div p.subti{font-size:12px;}
