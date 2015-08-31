@@ -186,7 +186,7 @@ $.extend(Keeper,{
 				}
 			},
 			countTimer: new Array()
-		}
+	}
 });
 
 module.exports = Keeper;

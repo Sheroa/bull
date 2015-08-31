@@ -4,7 +4,35 @@
  */
 
 var navBar = require("util/navbar"),
-	banner = require("ui/banner");
+	banner = require("ui/banner"),
+	$      = require('jquery');
 
-navBar.init(index);
-banner.init();
+require('util/extend_fn');
+
+var index = {
+	init:function(){
+		this.nav_bar(index);
+		this.banner();
+		this.tab_switch();
+	},
+	nav_bar:function(index){
+		navBar.init(index);
+	},
+	banner:function(){
+		banner.init();
+	},
+	tab_switch:function(){
+		$(".horizon").each(function(){
+			var _this = $(this);
+			_this.tabSwitch({
+				navObj:'.a-tab',
+				className:'.front-area',
+				curSel:'selected',
+				selectorIndex:'.a-tab',
+				eventName:'mouseenter'
+			});
+		});
+	}
+}
+
+index.init();
