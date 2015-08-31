@@ -9,7 +9,7 @@
 .banner .ul_btn li{float:left;height:16px;width:16px;margin:0px 2px; background:url(../img/li_1.png) no-repeat; cursor:pointer;}
 .banner .ul_btn .hover{ background:url(../img/li_2.png) no-repeat; display:block;}
 .banner .ad_bk .ul_btn a {width: 21px;height: 21px;float: left;text-indent: -4000px;position: relative;margin-left: 3px;color: transparent;}
-.banner .wmain{position: absolute;top: 0;left: 50%;margin-left: -570px;}
+.banner .wmain{position: absolute;top: 0;left: 50%;margin-left: -570px;overflow: visible;}
 
 
 /* 媒体区 */
