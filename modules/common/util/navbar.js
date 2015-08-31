@@ -7,10 +7,8 @@ var $ = require('jquery');
 
 var navbar = {
 	init: function(index) {
-
 		this.setMenuCurClass(index);
 		this.head_nav_hover();
-
 	},
 	setMenuCurClass: function(curIndex) {
 		$("#nav").children('a').removeClass('selected').eq(curIndex).addClass("selected");

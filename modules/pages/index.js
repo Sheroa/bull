@@ -9,7 +9,7 @@ var navBar = require("util/navbar"),
 
 require('util/extend_fn');
 
-var index = {
+var index_page = {
 	init:function(){
 		this.nav_bar(index);
 		this.banner();
@@ -35,4 +35,4 @@ var index = {
 	}
 }
 
-index.init();
+index_page.init();
