@@ -1,9 +1,65 @@
 /**
- * Created by mikeliu on 2015-08-23.
+ * @function : 登陆
+ * @author : ZY
  */
 var $ = require("jquery");
 
-var passport = {};
+var passport = {
+    version:0.1,
+    usernameInput: false,    //用户名input
+    passwdInput: false, //密码input
+    pcInput: false, //记录密码input
+    doLogin: function() {
+        // 必须判断一下，避免连续两次点击
+        if (this.eInterval)
+            return;
+
+
+        this.intervalCount = 0;
+
+        this.username = $.trim(this.usernameInput.val());
+        var username = this.username;
+        var password = $.trim(this.passwdInput.val());
+        var captcha = $.trim(this.captchaInput ? this.captchaInput.val() : false);
+
+        var pc = 0;
+        if (this.pcInput && this.pcInput.prop("checked") == true)
+            pc = 1;
+
+        if (username == "") {
+            this.reportMsg('1');
+            this.usernameInput.focus();
+            return false;
+        }
+
+        //如果autopad不为空，则限制只能输入本域的用户
+        if (this.autopad != "") {
+            var dpostfix = email.substr(email.lastIndexOf('@') + 1);
+            if (this.autopad.lastIndexOf(dpostfix) < 0) {
+                this.reportMsg('3', this.autopad);
+                this.usernameInput.focus();
+                this.passwdInput.value = "";
+                return false;
+            }
+        }
+        if (password == "") {
+            this.reportMsg('4');
+            this.passwdInput.value = "";
+            this.passwdInput.focus();
+            return false;
+        }
+        if (this.usePost == 1) {
+            login_status = "";
+            login_error_result = "";
+            login_need_captcha = false;
+
+            return this.doPost();
+        }
+        //显示Passport等待状态框，执行后将破坏 document.forms
+        this.drawPassportWait(this.waitInfo); //？执行后破坏 document.forms 不是很理解这句话
+        return this.loginHandle(username, password, pc, this.sElement, this.loginFailCall.bindFunc(this), this.loginSuccessCall.bindFunc(this));
+    },
+};
 
 /**
  *登陆接口
