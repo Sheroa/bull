@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/zybtbu/bull/issues"
   },
-  "homepage": "https://github.com/zybtbu/bull"
+  "homepage": "https://github.com/zybtbu/bull",
+  "devDependencies": {
+    "fis3": "^3.1.3",
+    "fis3-hook-module": "^1.2.2",
+    "fis3-postpackager-loader": "^1.2.7"
+  }
 }
