@@ -1,10 +1,10 @@
 @charset "utf-8";
 /* CSS Document */
 .header{position:absolute;top:0;left:0;right: 0;z-index:2;}
-.header .fr{font-size: 12px;}
-.header .fr strong{font-size: 24px;color:#f27835;font-weight: 300;margin-right: 3px;}
-.header .fr a{color:#f27835;}
-.header .fr a:hover{text-decoration: underline;}
+.header .fr .log-gister{font-size: 12px;}
+.header .fr .log-gister strong{font-size: 24px;color:#f27835;font-weight: 300;margin-right: 3px;}
+.header .fr .log-gister a{color:#f27835;}
+.header .fr .log-gister a:hover{text-decoration: underline;}
 .login-page{height: 100%;vertical-align: middle;}
 .login-page .wmain{position:relative;height: 100%;z-index:1;overflow: visible;}
 .login-page .ver-middle{position: absolute;top: 48%;margin-top: -161px;left:0;height: 322px;width:100%;background: url(/static/img/banner-login.jpg) no-repeat left center;text-align: right;z-index: 3;}
