@@ -1,9 +1,58 @@
 @charset "utf-8";
 /* CSS Document */
-.header{position:absolute;top:0;left:0;right: 0;z-index:1;}
+.header{position:absolute;top:0;left:0;right: 0;z-index:2;}
+.header .fr .log-gister{font-size: 12px;}
+.header .fr .log-gister strong{font-size: 24px;color:#f27835;font-weight: 300;margin-right: 3px;}
+.header .fr .log-gister a{color:#f27835;}
+.header .fr .log-gister a:hover{text-decoration: underline;}
 .login-page{height: 100%;vertical-align: middle;}
-.login-page .wmain{position:relative;height: 100%;z-index:2;overflow: visible;}
+.login-page .wmain{position:relative;height: 100%;z-index:1;overflow: visible;}
 .login-page .ver-middle{position: absolute;top: 48%;margin-top: -161px;left:0;height: 322px;width:100%;background: url(/static/img/banner-login.jpg) no-repeat left center;text-align: right;z-index: 3;}
 .login-page .cont{width:100%;height:322px;width:100%;background:#fff;margin-top:74px;}
 .login-area{margin-top:1px;margin-right: 2px;padding:50px 25px 40px 25px;}
 .login-area h5{text-align: center;}
+
+.bk-gray{margin-top:74px;}
+.register{padding-top:30px;}
+.register .step{margin:0 auto;}
+.register .step span{display: inline-block;position:relative;z-index:2;}
+.register .step span strong{display: inline-block;height:28px;line-height: 28px;width:28px;border-radius: 14px;color:#fff;font-weight: 300;background: #919191;}
+.register .step span em{position:absolute;font-size: 12px;top:-30px;left: -23px;display: inline-block;width: 75px;color:#919191;}
+.register .step i{display: inline-block;width: 223px;height: 3px;vertical-align:middle;background: #919191;margin:0 -5px;}
+.register .stepOne .step1 strong{background: #f27835;}
+.register .stepOne .step1 em{color: #f27835;}
+.register .stepTwo .step1 strong, .register .stepTwo .step2 strong{background: #f27835;}
+.register .stepTwo .step1 em, .register .stepTwo .step2 em{color: #f27835;}
+.register .stepTwo .line1{background:#f27835;}
+.register .stepThree .step1 strong, .register .stepThree .step2 strong, .register .stepThree .step3 strong{background: #f27835;}
+.register .stepThree .step1 em, .register .stepThree .step2 em, .register .stepThree .step3 em{color: #f27835;}
+.register .stepThree .line1, .register .stepThree .line2{background:#f27835;}
+
+.register .cont{width:795px;height: 400px;margin:50px auto;background: #fff}
+.register .contOne, .register .contThree{padding-top:60px;width:335px;margin:0 auto;text-align: left;}
+.register .contTwo{padding-top:125px;width:335px;margin:0 auto;text-align: left;}
+.register .cont p{margin-bottom: 15px;line-height: 30px;}
+.register .cont p.mark-word{font-size: 12px;text-align: left;line-height: 14px;}
+.register .cont p.mark-word a{color:#f27835;text-decoration: underline;}
+.register .cont p span{display: inline-block;width:83px;font-size: 14px;text-align: right;margin-right: 10px;}
+.register .contOne p input{width:216px;}
+.register .contOne p input.captcha{width:101px;}
+.register .cont p a.light-btn{display: inline-block;height: 32px;}
+.register .cont p.next-step a.light-btn{width: 230px;}
+.register .cont p.error-msg{line-height: 15px;}
+.register .contOne p img{margin-left: 7px;vertical-align: middle;margin-top: -2px;}
+.register .contOne p .refresh{background: #919191;display: inline-block;width: 28px;height: 26px;padding: 3px 2px;vertical-align: top;margin-left: 7px;}
+.register .contOne p .refresh:hover{background: #717171}
+.register .contOne p .refresh span{background: url(/static/img/refresh.png) no-repeat top center;width:100%;padding-top: 14px;color:#fff;font-size: 12px;line-height: 12px;text-align: center;font-family: '\9ED1\4F53';}
+.register .contTwo p.tel-captcha{margin-bottom: 5px;}
+.register .contTwo p.tel-captcha input{width:123px;}
+.register .contTwo p.tel-captcha a{width: 88px;margin-left: 7px;vertical-align: top;}
+.register .contThree p.tel-ok{}
+.register .contThree p.tel-ok strong{color:#f27835;font-size: 18px;font-weight: 300;}
+.register .contThree p.tel-ok em{font-size: 14px;}
+
+.register .contThree p .bank-pwd{display: inline-block;border-top:2px solid #919191;border-left:2px solid #919191;border-bottom:2px solid #919191;border-right: 1px solid #919191;margin-left: -4px;width:228px;}
+.register .contThree p .bank-pwd input{width:27px;height: 28px;border:none;border-right: 1px solid #919191;text-align: center;}
+.register .contThree p.sure-step a{width:104px;}
+.register .contThree p.sure-step .light-btn{margin-left: 23px;}
+.register .contThree p.sure-step .gray-btn{height: 32px;display: inline-block;}
