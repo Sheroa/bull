@@ -20,7 +20,7 @@
 .brief .bottom .each-part2 .p-ti{font-size: 14px;margin-right: 5px;display: inline-block;width:60px;}
 .brief .bottom .each-part2 .num{font-size: 24px;color:#f27835;}
 .brief .bottom .each-part2 input{width:130px;}
-.brief .bottom .each-part2 input.check{height: 13px;width: 13px;vertical-align: middle;}
+.brief .bottom .each-part2 input.check{width:13px;}
 .brief .bottom .each-part2 button{width: 86px;margin-left:5px;}
 .brief .bottom .each-part2 .no-login input{width:216px;}
 .brief .bottom .each-part2 .no-login button{width:165px;margin-top: 10px;margin-left: 35px;}
