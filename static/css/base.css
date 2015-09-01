@@ -42,6 +42,8 @@ button{cursor: pointer;}
 .light-btn:hover{background: #f06a21;}
 .gray-btn{background: #b5b5b5;color:#fff;text-align: center;}
 .gray-btn:hover{background: #a6a6a6;}
+.light-border{background: #fff;border:1px solid #f27835;color:#f27835;font-size: 12px;padding:6px 65px;}
+.light-border:hover{background:#f27835;color:#fff;text-decoration: none;}
 .show{display: block !important;}
 .hide{display: none !important;}
 
@@ -101,7 +103,7 @@ p.error-msg{font-size: 12px;color:#f15d2d;font-style: normal;line-height: 15px;h
 .footer .about .wmain .fl{text-align: left;}
 .footer .about .wmain .fl p{font-size: 12px;margin-bottom: 35px;line-height: 20px;}
 .footer .about .wmain .fl p a{margin-right: 65px;font-size: 14px;}
-.footer .about .wmain .fl p em{color:#f27835;}
+.footer .about .wmain .fl p em{color:#cc5116;}
 .footer .about .wmain .fr{width:136px;}
 .footer .about .wmain .fr a{height:36px;width: 117px;margin-bottom: 10px;}
 .footer .about .wmain .fr a.app1:hover{background-position: 0 -90px}
@@ -210,3 +212,8 @@ p.error-msg{font-size: 12px;color:#f15d2d;font-style: normal;line-height: 15px;h
 
 /* 显示隐藏*/
 .show{display:block;}
+.hide{display: none;}
+
+/* 404 */
+.error404{margin:160px 0;}
+.error404 p{margin-top:30px;}
