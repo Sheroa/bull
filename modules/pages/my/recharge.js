@@ -5,7 +5,10 @@
 
 var $       = require("jquery");
 	sidebar = require("util/sidebar"),
- 	navbar  = require("util/navbar");
+ 	navbar  = require("util/navbar"),
+ 	artTemplate 	= require("artTemplate"),
+ 	cache_data = "",
+ 	K = require("util/Keeper");
 
 //任务执行
 require('ui/dialog/dialog');
@@ -40,6 +43,7 @@ var recharge = {
  						_html.push('<option data-code='+obj.bank_code+' data-provider='+obj.provider+'>'+obj.bank_name+'</option>');
  					});
  					$("#bank-select").append(_html.join(""));
+ 					cache_data = artTemplate.compile(__inline("./recharge/bank_list.tmpl"))(result);
  				}else{
  					//alert("获取银行卡数据返回错误");
  				}
@@ -51,11 +55,14 @@ var recharge = {
  		var self = this;
  		$(".nextBtn").on("click",function(){
  			//先做表单验证
- 			var result = self.valid_check();
+ 			var _this = $(this), 
+ 				result = self.valid_check();
  			if(result){
- 				console.log(result);
+ 				// debugger;
+ 				_this.parents(".border-box").find(".error-msg").html("<span class='p-ti'></span>"+result);
  				return false;
  			}
+ 			_this.parents(".border-box").find(".error-msg").html("<span class='p-ti'></span>");
  			//判断是连连还是快钱
  			var pay_way = $("select[name='bank-select']").find("option:selected").attr("data-provider");
  			//连连 - 没有手机号 
@@ -80,54 +87,47 @@ var recharge = {
 			    "cls" : "dialog-wrapper popbox-bankrank",
 			    "closebtn" : ".quit,span.close",
 			    "auto" : false,
-			    "msg" :'<p class="ti">银行充值限额表<a href="javascript:void(0)" class="quit"></a></p>'+
-			'<div class="cont">'+
-				'<table>'+
-					'<tr>'+
-						'<th width="110">银行名称</th>'+
-						'<th>单笔限额</th>'+
-						'<th>单日限额</th>'+
-						'<th>单月限额</th>'+
-					'</tr>'+
-					'<tr>'+
-						'<td>工商银行</td>'+
-						'<td>50,000</td>'+
-						'<td>500,000</td>'+
-						'<td>无限额</td>'+
-					'</tr>'+
-				'</table>'+
-				'</div>',
+			    "msg" :cache_data,
 			    openfun : function () {
-			    	 $('.popbox-bankrank .quit').on('click',function(){
-			    	 	//关闭dialog弹窗
-			    	 	debugger;
-			    	 	$('.popbox-bankrank span.close').trigger('click');
-			    	 })
 			    }
 			});
  		})
  	},
  	valid_check:function(){
  		
+ 		var true_name = $('#truename'),
+ 			id_number = $('#id_number'),
+ 			bank_number = $('#bank_number'),
+ 			bank_select = $('#bank-select');
+
+
  		//校验真实姓名
- 		if(!($('#truename') && $('#truename').val() != '')){
- 			return '请输入用户名';
+ 		if(!(true_name && true_name.val() != '') || !K.isChinese(true_name.val())){
+ 			return '请输入身份证上的姓名';
  		}
 
  		//校验身份证号码
- 		if(!($('#id_number') && $('#id_number').val() != '')){
- 			return '请输入身份证号码';
+ 		if(!(id_number && id_number.val() != '')){
+ 			return '请输入正确的身份证号码';
+ 		}
+
+ 		if(id_number.val().length != 18){
+ 			return '身份证格式有误请重新输入';
  		}
 
  		//银行卡号
- 		if(!($('#id_number') && $('#bank_number').val() != '')){
- 			return '请输入银行卡号';
- 		}	
+ 		if(!(bank_number && bank_number.val() != '')){
+ 			return '请输入您本人的借记卡卡号';
+ 		}
 
- 		//判断是否选择银行
- 		// if(!($('#bank-select') && $('#bank-select').find('option:selected').attr('data-code') != '0')){
- 		// 	return '请选择银行';
- 		// }
+ 		if(!K.bank_card_check($.trim(bank_number.val()))){
+ 			return '银行卡卡号格式有误，请重新输入';
+ 		}
+
+ 		// 判断是否选择银行
+ 		if(!(bank_select && bank_select.find('option:selected').attr('data-code') != '0')){
+ 			return '请选择银行';
+ 		}
  		return false;
  	}
 }
