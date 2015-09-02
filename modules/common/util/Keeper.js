@@ -266,6 +266,10 @@ $.extend(Keeper,{
 	    else{
 		    return false;
 	    }        
+	},
+	is_phone:function(phoneNum){
+		var PHONE_VALID = /^0?1[3|4|5|8][0-9]\d{8}$/;
+		return PHONE_VALID.test(phoneNum);
 	}
 });
 
