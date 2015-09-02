@@ -184,8 +184,7 @@ p.error-msg{font-size: 12px;color:#f15d2d;font-style: normal;line-height: 15px;h
 .horizon .front-area div p.num{color:#f27835;font-size:24px;margin:10px 0;}
 .horizon .front-area div p.subti{font-size:12px;}
 .horizon .front-area .operate{padding-top:25px;}
-.horizon .front-area .operate button{background: #f27835;color:#fff;width:137px;height:33px;cursor:pointer;}
-.horizon .front-area .operate button:hover{background: #f06a21;}
+.horizon .front-area .operate a.light-btn{width:137px;height:33px;line-height: 33px;cursor:pointer;display: inline-block;}
 .horizon .front-area .operate p{font-size: 12px;margin-top:12px;}
 .horizon .front-area .operate p em{color:#f27835;}
 .horizon .front-area .assure{position: absolute;top:0;right:10px;}
@@ -207,7 +206,7 @@ p.error-msg{font-size: 12px;color:#f15d2d;font-style: normal;line-height: 15px;h
 .fr-main .horizon .front-area div p.num{font-size:18px;margin:5px 0;}
 .fr-main .horizon .front-area div p.subti{font-size:10px;}
 .fr-main .horizon .front-area .operate{padding-top:20px;}
-.fr-main .horizon .front-area .operate button{width:104px;height:26px;font-size: 12px;}
+.fr-main .horizon .front-area .operate a.light-btn{width:104px;height:26px;line-height: 26px;font-size: 12px;}
 .fr-main .horizon .front-area .operate p{font-size: 10px;margin-top:8px;}
 .fr-main .horizon .front-area div.assurecont, .horizon .front-area div.assurecont div{width: 173px;}
 

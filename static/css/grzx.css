@@ -19,7 +19,7 @@
 .person-data .fr .service span.service3{background-position: -40px 0;}
 .person-data .fr .service span.service4{background-position: -60px 0;}
 .person-data .fr p{text-align: center;}
-.person-data .fr p button{width: 110px;height: 26px;margin-top:10px;font-size: 14px;}
+.person-data .fr p a.light-btn, .person-data .fr p a.gray-btn{width: 110px;height: 26px;line-height: 26px;margin-top:10px;font-size: 14px;display: inline-block;}
 
 .good-pro{margin-top: 50px;}
 
@@ -36,10 +36,10 @@
 .recharge p.address em{font-size: 14px;margin-right: 5px;}
 
 .recharge p input.shortOne{width:120px;}
-.recharge p button{width: 230px;}
 .recharge p a{font-size: 12px}
 .recharge p a.moreInf{text-decoration: underline;padding-left: 10px;}
 .recharge p a.light-btn{display:inline-block;width:90px;height: 32px;line-height: 32px;vertical-align: top;text-align: center;margin-left:5px;font-size: 10px;text-decoration: none;}
+.recharge p a.nextBtn{width: 230px;margin-left: 0;}
 .recharge p span em{display: inline-block;vertical-align: middle;background: url(../img/star-decorate.png) no-repeat;width: 10px;height: 8px;}
 .recharge .bank-logo{height:20px;margin-left: 10px;vertical-align: middle;}
 .recharge p strong.num{font-size: 24px;font-weight:normal;color:#f27835;}
