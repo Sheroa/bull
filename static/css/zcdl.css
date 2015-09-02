@@ -12,6 +12,10 @@
 .login-area{margin-top:1px;margin-right: 2px;padding:50px 25px 40px 25px;}
 .login-area h5{text-align: center;}
 
+.login-page .find-pwd{display: inline-block;width:352px;text-align: left;}
+.login-page .find-pwd h3{color:#f27835;}
+
+
 .bk-gray{margin-top:74px;}
 .register{padding-top:30px;}
 .register .step{margin:0 auto;}

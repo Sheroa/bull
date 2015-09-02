@@ -21,9 +21,9 @@
 .brief .bottom .each-part2 .num{font-size: 24px;color:#f27835;}
 .brief .bottom .each-part2 input{width:130px;}
 .brief .bottom .each-part2 input.check{width:13px;}
-.brief .bottom .each-part2 button{width: 86px;margin-left:5px;}
+.brief .bottom .each-part2 a.light-btn{display:inline-block;width: 86px;margin-left:5px;height:32px;line-height: 32px;}
 .brief .bottom .each-part2 .no-login input{width:216px;}
-.brief .bottom .each-part2 .no-login button{width:165px;margin-top: 10px;margin-left: 35px;}
+.brief .bottom .each-part2 .no-login a.light-btn{width:165px;margin-top: 10px;margin-left: 35px;}
 .brief .bottom .each-part2 .alert{margin-left: 5px;}
 .brief .bottom .each-part2 .sub-text{font-size: 10px;}
 
