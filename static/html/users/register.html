@@ -6,6 +6,7 @@
 	<title>小牛钱罐子</title>
 	<link rel="stylesheet" href="/static/css/base.css" type="text/css">
 	<link rel="stylesheet" href="/static/css/zcdl.css" type="text/css">
+	<script src="/libs/mod.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<div class="header">
@@ -14,7 +15,7 @@
 				<a href="#"><img src="/static/img/logo.png" alt="LOGO"></a><img src="/static/img/slogan.png" alt="SLOGAN" class="slogan">
 			</div>
 			<div class="fr">
-				<span class="log-gister"><strong>注册</strong>已有账号？<a href="#">立即登录</a></span>
+				<span class="log-gister"><strong>注册</strong>已有账号？<a href="/users/login.html">立即登录</a></span>
 			</div>
 		</div>
 	</div>
@@ -31,12 +32,13 @@
 			</div>
 			<div class="cont shadow-box">
 				<div class="contOne">
-					<p><span class="p-ti">手机号码</span><input type="text" placeholder="请输入您的手机号码"></p>
-					<p><span class="p-ti">登录密码</span><input type="text" placeholder="请设置您的登录密码"></p>
-					<p><span class="p-ti">推荐人(选填)</span><input type="text" placeholder="请输入您推荐人的手机号码"></p>
-					<p style="margin-bottom:8px;"><span class="p-ti">图片验证</span><input type="text" class="captcha"><img src="/static/img/captcha.jpg" height="30" align="absmiddle" alt=""><a href="#" class="refresh"><span>刷新</span></a></p>
+					<p><span class="p-ti">手机号码</span><input type="text" placeholder="请输入您的手机号码" id="phone_num"></p>
+					<p><span class="p-ti">登录密码</span><input type="text" placeholder="请设置您的登录密码" id="user_pwd"></p>
+					<p><span class="p-ti">推荐人(选填)</span><input type="text" placeholder="请输入您推荐人的手机号码" id="recommand_person"></p>
+
+<!-- 					<p style="margin-bottom:8px;"><span class="p-ti">图片验证</span><input type="text" class="captcha"><img src="/static/img/captcha.jpg" height="30" align="absmiddle" alt=""><a href="#" class="refresh"><span>刷新</span></a></p> -->
 					<p class="error-msg"><span class="p-ti"></span><em>错误提示</em></p>
-					<p class="next-step"><span class="p-ti"></span><a href="#" class="light-btn">下一步</a></p>
+					<p class="next-step"><span class="p-ti"></span><a href="javascript:void(0)" class="light-btn">下一步</a></p>
 				</div>
 				<div class="contTwo hide">
 					<p class="tel-captcha"><span class="p-ti">手机验证码</span><input type="text"><a href="#" class="light-btn">短信验证</a></p>
@@ -66,8 +68,7 @@
 	<link rel="import" href="/static/html/common/footer.html?__inline">
 
 	<script type="text/javascript">
-		var index = 0;
-		require('pages/my/bank_card');
+		require('pages/users/register');
 	</script>
 </body>
 </html>

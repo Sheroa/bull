@@ -15,7 +15,7 @@
 				<a href="#"><img src="/static/img/logo.png" alt="LOGO"></a><img src="/static/img/slogan.png" alt="SLOGAN" class="slogan">
 			</div>
 			<div class="fr">
-				<span class="log-gister"><strong>登录</strong>没有账号？<a href="#">立即注册</a></span>
+				<span class="log-gister"><strong>登录</strong>没有账号？<a href="/users/register.html">立即注册</a></span>
 			</div>
 		</div>
 	</div>
@@ -30,12 +30,12 @@
 						<div class="textField">
 							<span class="pwd"></span><input name="userPsw" id="userPass" type="password" placeholder="登录密码">
 						</div>
-						<p class="error-msg">错误提示</p>
+						<p class="error-msg"></p>
 						<p class="remember">
 							<input name="" value="1" id="" type="checkbox" class="fl"><span class="fl">记住登录</span><a href="#" class="fr">忘记密码?</a>
 						</p>
 						<button class="btn_login" type="submit" onfocus="this.blur()" onclick="logicInit();">立即登录</button>
-						<h5><a href="#" target="_blank">没有账户，立即注册</a></h5>
+						<h5><a href="/users/register.html" target="_blank">没有账户，立即注册</a></h5>
 					</form>
 					<span class="assure"></span>
 					<div class="assurecont">
@@ -51,5 +51,8 @@
 		<div class="cont"></div>
 	</div>
 	<link rel="import" href="/static/html/common/footer.html?__inline">
+	<script type="text/javascript">
+		require('pages/users/login');
+	</script>
 </body>
 </html> 
