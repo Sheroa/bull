@@ -12,9 +12,6 @@
 .login-area{margin-top:1px;margin-right: 2px;padding:50px 25px 40px 25px;}
 .login-area h5{text-align: center;}
 
-.login-page .find-pwd{display: inline-block;width:352px;text-align: left;}
-.login-page .find-pwd h3{color:#f27835;}
-
 
 .bk-gray{margin-top:74px;}
 .register{padding-top:30px;}
@@ -36,8 +33,9 @@
 .register .contOne, .register .contThree{padding-top:60px;width:335px;margin:0 auto;text-align: left;}
 .register .contTwo{padding-top:125px;width:335px;margin:0 auto;text-align: left;}
 .register .cont p{margin-bottom: 15px;line-height: 30px;}
-.register .cont p.mark-word{font-size: 12px;text-align: left;line-height: 14px;}
+.register .cont p.mark-word{font-size: 12px;text-align: left;line-height: 16px;padding-left:93px;}
 .register .cont p.mark-word a{color:#f27835;text-decoration: underline;}
+.register .cont p.mark-word em{color:#f27835;}
 .register .cont p span{display: inline-block;width:83px;font-size: 14px;text-align: right;margin-right: 10px;}
 .register .contOne p input{width:216px;}
 .register .contOne p input.captcha{width:101px;}
@@ -61,3 +59,36 @@
 .register .contThree p.sure-step a{width:104px;}
 .register .contThree p.sure-step .light-btn{margin-left: 23px;}
 .register .contThree p.sure-step .gray-btn{height: 32px;display: inline-block;}
+
+
+
+.login-page .find-pwd{display: inline-block;width:355px;text-align: left;}
+.login-page .find-pwd h3{color:#f27835;margin-bottom: 30px;}
+.find-pwd .find-cont{display: inline-block;width: 230px;padding:32px 0;vertical-align: top;margin-right: 30px;}
+.find-pwd .find-cont p{font-size: 14px;color:#f27835;line-height: 32px;}
+.find-pwd .find-cont p input{width:216px;}
+.find-pwd .find-cont p.captcha{position: relative;}
+.find-pwd .find-cont p.captcha input{width: 142px;}
+.find-pwd .find-cont p.captcha img{margin-left: 7px;margin-top: -2px;}
+.find-pwd .find-cont p.captcha a{position:absolute;right:0;font-size: 12px;text-decoration: underline;color:#f27835;display: inline-block;top:25px;letter-spacing: -2px;}
+.find-pwd .find-cont p.tel-captcha input{width: 125px;}
+.find-pwd .find-cont p.tel-captcha a.light-btn{width: 85px;margin-top: 0;margin-left: 5px;}
+.find-pwd .find-cont p a.light-btn{width:230px;display: inline-block;text-align: center;margin-top: 25px;}
+.find-pwd .find-cont p.mark-word{color:#919191;}
+.find-pwd .find-cont p.mark-word strong{color: #f27835;font-size: 18px;font-weight: 300;}
+.find-pwd .find-cont p.little-wd{font-size: 12px;color:#dc5b46;}
+.find-pwd .find-cont .fcontTwo p a.light-btn{margin-top: 15px;}
+
+.find-pwd .find-step{width:90px;text-align: center;display: inline-block;}
+.find-pwd .find-step span{display: inline-block;}
+.find-pwd .find-step span strong{display: inline-block;height:28px;line-height: 28px;width:28px;border-radius: 16px;font-weight: 300;border: 2px solid #919191;}
+.find-pwd .find-step span em{font-size: 12px;display: inline-block;width: 85px;color:#919191;margin:10px 0 5px 0;}
+.find-pwd .find-step i{display: inline-block;width: 3px;height: 32px;background: #919191;}
+.find-pwd .findOne .step1 strong{border:2px solid #f27835;color:#f27835;}
+.find-pwd .findOne .step1 em{color: #f27835;}
+.find-pwd .findTwo .step1 strong, .find-pwd .findTwo .step2 strong{border:2px solid #f27835;color:#f27835;}
+.find-pwd .findTwo .step1 em, .find-pwd .findTwo .step2 em{color: #f27835;}
+.find-pwd .findTwo .line1{background:#f27835;}
+.find-pwd .findThree .step1 strong, .find-pwd .findThree .step2 strong, .find-pwd .findThree .step3 strong{border:2px solid #f27835;color:#f27835;}
+.find-pwd .findThree .step1 em, .find-pwd .findThree .step2 em, .find-pwd .findThree .step3 em{color: #f27835;}
+.find-pwd .findThree .line1, .find-pwd .findThree .line2{background:#f27835;}
