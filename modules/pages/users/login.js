@@ -4,7 +4,8 @@
  */
 
 var $ = require('jquery'),
-	K = require('util/Keeper');
+	K = require('util/Keeper'),
+	passport = require('util/passport');
 
 var login = {
 	init:function(){
@@ -14,18 +15,29 @@ var login = {
 		var self = this;
 		//登陆 bind - click事件
 		$(".btn_login").on('click',function(){
-			var login_check = self.valid_check();
+			var login_check = self.valid_check(),
+				phone_num = $.trim($("#userName").val()),
+				user_pwd = $.trim($("#userPass").val()),
+				pcInput = $("#pcInput").is(":checked");
 			if(login_check){
 				//显示错误信息
 				$(".error-msg").html(login_check);
 				return false;
 			}
+			$(".error-msg").html("");
+			// debugger;
+			//用户名、密码ok,进入表单验证
+			passport.usernameInput = phone_num;
+			passport.passwdInput = user_pwd;
+			passport.pcInput = pcInput;
+
+			passport.doLogin();
+			
 		});
 	},
 	valid_check:function(){
-		var phone_num = $("#phone_num"),
-			user_pwd  = $("#user_pwd");
-
+		var phone_num = $("#userName"),
+			user_pwd  = $("#userPass");
 
 		//检测手机号码
 		if(!(phone_num && phone_num.val() != '')){
