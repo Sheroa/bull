@@ -272,7 +272,10 @@ $.extend(Keeper,{
 		return PHONE_VALID.test(phoneNum);
 	},
 	pwd_valid_check:function(pwd){
-
+		var PWD_VALID = /[]/;
+	},
+	phone_num_map:function(phoneNum){
+		return phoneNum.replace(/(\d{3})\d{4}(\d{4})/,'$1****$2');
 	}
 });
 

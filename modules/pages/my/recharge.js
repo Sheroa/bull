@@ -76,9 +76,18 @@ var recharge = {
 
  		$("#bank-select").change(function(){
  			
+ 			var _this = $(this),
+ 				bank_alias = _this.children('option:selected').attr('data-code'),
+ 				img = _this.next().find('img');
+
  			$(".operator_box").hide();
+
  			//每一次选中银行，触发一次事件-修改后面图片
- 			
+ 			if(bank_alias == 0){
+ 				img.attr('src','')
+ 			}else{
+ 				img.attr('src','/static/img/bank/'+bank_alias+".png")
+ 			}
  		});
  		$(".moreInf").on("click",function(){
 			$.Dialogs({
