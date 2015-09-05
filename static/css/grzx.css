@@ -41,7 +41,7 @@
 .recharge p a.light-btn{display:inline-block;width:90px;height: 32px;line-height: 32px;vertical-align: top;text-align: center;margin-left:5px;font-size: 10px;text-decoration: none;}
 .recharge p a.nextBtn{width: 230px;margin-left: 0;}
 .recharge p span em{display: inline-block;vertical-align: middle;background: url(../img/star-decorate.png) no-repeat;width: 10px;height: 8px;}
-.recharge .bank-logo{height:20px;margin-left: 10px;vertical-align: middle;}
+.recharge .bank-logo{height:19px;margin-left: 10px;vertical-align: middle;}
 .recharge p strong.num{font-size: 24px;font-weight:normal;color:#f27835;}
 .recharge .remind-msg{position: absolute;top:40px;right:0;}
 .recharge .remind-msg p{font-size: 12px;margin-bottom: 5px;}
