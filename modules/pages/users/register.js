@@ -2,7 +2,8 @@
  * @function : 注册页面js
  * @author  : ZY
  */
- var $ = require('jquery'),
+var $ = require('jquery'),
+ 	data_transport = require('common/core_data'),
  	K = require('util/Keeper');
 
  var register = {
@@ -42,10 +43,12 @@
  			}
 
  			$(this).addClass('disabled');
+ 			$(this).removeClass('light-btn').addClass('gray-btn');
 
  			window.timer = window.setInterval(function(){
  				if(count == 0){
  					_this.removeClass('disabled');
+ 					_this.removeClass('gray-btn').addClass('light-btn');
  					_this.html("手机验证码");
  					window.clearInterval(timer);
  				}else{
@@ -60,26 +63,28 @@
  		//第二步-下一步
  		$(".next_step_two").on("click",function(){
  			var _this = $(this),
- 				error_msg = _this.parents(".contTwo").find(".error-msg em"),
+ 				error_msg = _this.parents(".contTwo").find("#identify_code"),
  				checked = _this.parents(".contTwo").find("input[type='checkbox']");
 
  			//短信验证
  			var verify_code = $("#verify_code");
  			if($.trim(verify_code.val()) == ""){
- 				error_msg.html("请输入手机验证码！");
+ 				error_msg.html("<em>请输入手机验证码！</em>");
  				return false;
  			}
  			error_msg.html("");
 
  			//阅读并同意 
  			if(!checked.is(":checked")){
- 				error_msg.html("没有阅读");
+ 				error_msg.html("<em>没有阅读</em>");
  				return false;
  			}
  			error_msg.html("");
  			
  			//请求注册接口开始进行注册
  			
+
+
  			//将第三步手机编译显示
  			$("#phone_map").text(K.phone_num_map(phone_number));
 
@@ -146,18 +151,21 @@
 
  	},
  	sendMobileCode:function(phone_num){
+ 		$.extend(data_transport,{
+ 			'mobile': phone_num
+ 		});
  		$.ajax({
  			url: '/api/user/sendSmsCodeByRegister',
  			type: 'post',
- 			data: {
- 				'mobile': phone_num
- 			},
+ 			data: data_transport,
  			success:function(result){
- 				console.log(result);
+ 				if(result.code == 0){
+ 					$("#identify_code").html("验证码已发至手机"+phone_num);
+ 				}else{
+ 					$("#identify_code").html("<em>验证码发送失败</em>");
+ 				}
  			}
  		});
- 		
- 		console.log("短信验证码是"+phone_num);
  	}
  }
 

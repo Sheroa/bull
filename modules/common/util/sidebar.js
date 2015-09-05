@@ -52,9 +52,12 @@ var sideBar = {
 	animate_controll:function(){
 		$("a[data-level]").on("click",function(){
 			var _self = $(this);
+			$(".left-tab").find("a[data-level]").removeClass('selected');
+			_self.addClass('selected');
+
 			$(".left-tab ul").each(function(){
 				if(!$(this).is(':hidden')){
-					$(this).show();
+					$(this).hide();
 				}
 			});
 			if(_self.next("ul").is(":hidden")){
