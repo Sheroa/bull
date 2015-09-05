@@ -274,7 +274,8 @@ $.extend(Keeper,{
 		return PHONE_VALID.test(phoneNum);
 	},
 	pwd_valid_check:function(pwd){
-		var PWD_VALID = /[]/;
+		var PWD_VALID = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]+$/;
+		return PWD_VALID.test(pwd);
 	},
 	phone_num_map:function(phoneNum){
 		return phoneNum.replace(/(\d{3})\d{4}(\d{4})/,'$1****$2');

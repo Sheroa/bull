@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>小牛钱罐子</title>
+	<link rel="stylesheet" href="/static/css/base.css" type="text/css">
+	<link rel="stylesheet" href="/static/css/zcdl.css" type="text/css">
+</head>
+<body>
+	<link rel="import" href="/static/html/common/header.html?__inline">
+	<div class="login-page">
+		<div class="wmain">	
+			<div class="ver-middle">
+				<div class="find-pwd">
+					<h3>找回登录密码</h3>
+					<div class="find-cont">
+						<div class="fcontOne">
+							<p>手机号码</p>
+							<p><input type="text" placeholder="请输入您的手机号码" id="phone_num"></p>
+<!-- 							<p>图片验证</p>
+							<p class="captcha"><input type="text"><img src="/static/img/captcha.jpg" height="30" align="absmiddle" alt=""><a href="#">看不清？换一个</a></p> -->
+							<p class="error-msg"><span class="p-ti"></span><em></em></p>
+							<p><a href="javascript:void(0)" class="light-btn next_step_one">下一步</a></p>
+						</div>
+						<div class="fcontTwo hide">
+							<p class="mark-word">您的手机号码是<strong id="phone_map"></strong></p>
+							<p>手机验证码</p>
+							<p class="tel-captcha"><input type="text" id="identify_code"><a href="javascript:void(0)" class="light-btn verify_sms">短信验证</a></p>
+							<p class="little-wd"></p>
+							<p><a href="javascript:void(0)" class="light-btn next_step_two">下一步</a></p>
+						</div>
+						<div class="fcontThree hide">
+							<p>登录密码</p>
+							<p><input type="password" id="old_pwd" placeholder="请重置您的登录密码"></p>
+							<p>确认密码</p>
+							<p><input type="password" id="new_pwd" placeholder="请再次输入您的登录密码"></p>
+							<p class="little-wd"></p>
+							<p><a href="javascript:void(0)" class="light-btn next_step_three">重置成功</a></p>
+						</div>
+					</div>
+					<div class="find-step">
+						<div class="findOne">
+							<span class="step1"><strong>1</strong><em>验证账户</em></span>
+							<i class="line1"></i>
+							<span class="step2"><strong>2</strong><em>填写手机验证码</em></span>
+							<i class="line2"></i>
+							<span class="step3"><strong>3</strong><em>重置登录密码</em></span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="cont"></div>
+	</div>
+	<link rel="import" href="/static/html/common/footer.html?__inline">
+	<script type="text/javascript">
+		require('pages/users/find_pwd');
+	</script>
+</body>
+</html> 

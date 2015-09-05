@@ -4,7 +4,8 @@
  */
 var $ = require('jquery'),
  	data_transport = require('common/core_data'),
- 	K = require('util/Keeper');
+ 	K = require('util/Keeper'),
+ 	passport = require('util/passport');
 
  var register = {
  	init:function(){
@@ -12,7 +13,8 @@ var $ = require('jquery'),
  	},
  	event_handler:function(){
  		var self = this,
- 			phone_number = "";
+ 			phone_number = "",
+ 			login_info = null;
  		//登陆 bind - click事件
  		$(".next_step_one").on('click',function(){
  			var login_check = self.valid_check(),
@@ -82,16 +84,40 @@ var $ = require('jquery'),
  			error_msg.html("");
  			
  			//请求注册接口开始进行注册
+ 			$.extend(data_transport,{
+ 				'account':$.trim($("#phone_num").val()),
+ 				'loginPwd':$.trim($("#user_pwd").val()),
+ 				'smsCode':$.trim(verify_code.val()),
+ 				'referrer':$.trim($("#recommand_person").val())
+ 			});
+ 			$.ajax({
+ 				url: '/api/user/register',
+ 				type: 'post',
+ 				data: data_transport,
+ 				success:function(_rel){
+
+ 					if(_rel.code == 0){
+ 						//注册成功
+	 					login_info = _rel.data.result;
+	 					passport.saveLoginInfo(login_info);
+
+			 			//将第三步手机编译显示
+			 			$("#phone_map").text(K.phone_num_map(phone_number));
+
+			 			//第二步成功  进入第三步
+					 	$(".contTwo").addClass('hide');
+					 	$(".contThree").removeClass("hide");
+					 	$(".stepTwo").removeClass('stepTwo').addClass('stepThree');	
+ 					}else{
+ 						//显示错误信息
+ 						error_msg.html("<em>"+_rel.msg+"</em>");
+ 					}
+ 				}
+ 			});
  			
 
 
- 			//将第三步手机编译显示
- 			$("#phone_map").text(K.phone_num_map(phone_number));
-
- 			//第二步成功  进入第三步
-		 	$(".contTwo").addClass('hide');
-		 	$(".contThree").removeClass("hide");
-		 	$(".stepTwo").removeClass('stepTwo').addClass('stepThree');		
+	
 
  		});
 
@@ -146,6 +172,10 @@ var $ = require('jquery'),
  		//验证注册密码
  		if(!(user_pwd && user_pwd.val() != '')){
  			return "请输入登陆密码";
+ 		}
+
+ 		if(!K.pwd_valid_check($.trim(user_pwd.val()))){
+ 			return "密码过于简单，请设置字母+数字的密码";
  		}
 
 
