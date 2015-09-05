@@ -27,9 +27,10 @@ var login = {
 			$(".error-msg").html("");
 			// debugger;
 			//用户名、密码ok,进入表单验证
-			passport.usernameInput = phone_num;
-			passport.passwdInput = user_pwd;
+			passport.username = phone_num;
+			passport.pwd = user_pwd;
 			passport.pcInput = pcInput;
+			passport.loginMsg = $(".error-msg");
 
 			passport.doLogin();
 			
