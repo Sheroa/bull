@@ -9,6 +9,7 @@ var navbar = {
 	init: function(index) {
 		this.setMenuCurClass(index);
 		this.head_nav_hover();
+		this.head_login_hover();
 	},
 	setMenuCurClass: function(curIndex) {
 		$("#nav").children('a').removeClass('selected').eq(curIndex).addClass("selected");
@@ -40,6 +41,18 @@ var navbar = {
 			$(this).hide();
 			$(aLink).removeClass("selected");
 		})
+	},
+	head_login_hover:function(){
+		$(".regis-login").hover(function(){
+			$(this).find("ul").show();
+		},function(){
+			$(this).find("ul").hide();
+		})
+		$(".regis-login ul").hover(function(){
+			$(this).show(); 
+		},function(){
+			$(this).hide();
+		});
 	}
 }
 
