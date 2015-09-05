@@ -31,12 +31,12 @@ var toolbar={
 					if(_rel.code == 0){
 						var msg_none = _rel.data.result;
 						$("#wdl").addClass('hide');
-						var _html =  '<p class="name-msg"><a href="#" class="name">'+user_info.loginName+'</a><a href="#" class="msg-num">'+msg_none+'</a></p>'+
+						var _html =  '<p class="name-msg"><a href="/my/account/systemMsg.html" class="name">'+user_info.loginName+'</a><a href="/my/account/systemMsg.html" class="msg-num">'+msg_none+'</a></p>'+
 							'<ul>'+
 								'<li class="ti"><a href="#">欢迎您，'+user_info.loginName+'</a></li>'+
 								'<li><a href="#" class="login1">充值</a></li>'+
 								'<li><a href="#" class="login2">提现</a></li>'+
-								'<li><a href="#" class="login3">消息提醒</a><a href="#" class="msg-num">1</a></li>'+
+								'<li><a href="/my/account/systemMsg.html" class="login3">消息提醒</a><a href="/my/account/systemMsg.html" class="msg-num">'+msg_none+'</a></li>'+
 								'<li><a href="javascript:void(0)" id="logout" class="login4">退出登录</a></li>'+
 							'</ul>'
 						$('#ydl').html(_html).removeClass('hide');
