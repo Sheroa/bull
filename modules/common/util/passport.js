@@ -4,6 +4,19 @@
  */
 var $ = require("jquery");
 
+
+require("cookie");
+
+Function.prototype.bindFunc = function(pObject) {
+    if (typeof(pObject) != "object") {
+        return false;
+    }
+    var __method = this;
+    return function() {
+        return __method.apply(pObject, arguments);
+    }
+};
+
 var passport = {
     version:0.1,
     username: false,    //用户名input
@@ -14,7 +27,7 @@ var passport = {
         // if (this.eInterval)
         //     return;
 
-        return this.loginHandle(this.username, this.pwd, pcInput);
+        return this.loginHandle(this.username, this.pwd,this.loginFailCall.bindFunc(this), this.loginSuccessCall.bindFunc(this));
     },
     /**
      *登陆接口
@@ -26,16 +39,14 @@ var passport = {
      * loginInfo.systemVersion  (可选) 系统版本，如8.1
      * loginInfo.deviceToken    (可选) 推送的token
      * loginInfo.resolution     (可选) 设备分辨率，如1242*2208
-     *
-     * @param callbacks  回调
-     * callbacks.onLoginSuccess
-     * callbacks.onLoginError
-     * callbacks.onRequestError
      */
-    loginHandle:function(username, pwd, pc, lfc, lsc){
+    loginHandle:function(username, pwd, lfc, lsc){
+        debugger;
         var loginInfo = {
             'accoun':username,
             'loginPwd':pwd,
+            'appVersion':0.1,
+            'source':'web',
             'deviceId':"",
             'deviceModel':"",
             'systemVersion':"",
@@ -54,94 +65,58 @@ var passport = {
                     //登陆成功
                     $.extend(loginInfo, _ret.data.result);
                     saveLoginInfo(loginInfo);
-
-                    if(typeof  callbacks.onLoginSuccess == "function"){
-                        callbacks.onLoginSuccess(loginInfo);
-                    }
+                    lsc(loginInfo);
 
                 }else{
-                    if(typeof  callbacks.onLoginError == "function"){
-                        callbacks.onLoginError(loginInfo);
-                    }
+                    lfc(loginInfo);
                 }
             },
             error:function(a,b,c){
                 //请求失败
-                if(typeof  callbacks.onRequestError == "function"){
-                    callbacks.onRequestError(a,b,c);
-                }
+                lfc(loginInfo);
             }
         });
-    }
-};
+    },
+    loginFailCall:function(){
 
-/**
- * 将登陆成功之后的信息以cookie形式保存
- * @param userinfo {object}
- */
-passport.saveLoginInfo = function (userinfo) {
+    },
+    //登陆成功后的回调函数
+    loginSuccessCall:function(loginResult){
+        //种入cookie
+        this.saveLoginInfo(loginResult);
 
-    if(!userinfo){
-        return;
-    }
+        //判断是否跳转
+    },
+    /**
+    * 将登陆成功之后的信息以cookie形式保存
+    * @param userinfo {object}
+    */
+    saveLoginInfo:function (userinfo) {
 
-    var options = { path: '/' };
-    if(userinfo.__remober){
-        options.expires=7;
-    }
-
-    for(var key in userinfo){
-        if(userinfo.hasOwnProperty(key)){
-            $.cookie(key, userinfo[key], options);
+        if(!userinfo){
+            return;
         }
-    }
 
-};
-
-
-/**
- * 获取用户登陆后保存的信息
- * @param key {String}
- * @returns {String}
- */
-passport.getUserInfoItem = function(key){
-    return $.cookie(key);
-};
-
-
-/**
- * 用户界面登陆操作
- * @param usernameSelector  用户名录入框选择器
- * @param pwdSelector       密码录入框选择器
- * @param loginBtnSelector  登陆按钮选择器
- * @param rememberSelector  记住登陆状态选择器
- */
-passport.uiLogin = function (usernameSelector, pwdSelector, loginBtnSelector,rememberSelector) {
-
-    var $nameinput = $(usernameSelector);
-    var $pwdinput  = $(pwdSelector);
-    var $loginbtn  = $(loginBtnSelector);
-    var $rememberinput = $(rememberSelector);
-
-    var loginCallbacks = {
-        onLoginSuccess: function(userinfo){
-            alert("登陆成功！")
-        },
-        onLoginError: function(userinfo) {
-            alert("登陆失败");
-        },
-        onRequestError: function(a,b,c) {
-            alert("请求失败！");
+        var options = { path: '/' };
+        if(this.pcInput){
+            options.expires=7;
         }
-    };
 
-    $loginbtn.click(function(){
-        passport.login({
-            accoun: $nameinput.val(),
-            loginPwd: $pwdinput.val(),
-            __remember: $rememberinput.is(":checked")
-        }, loginCallbacks);
-    });
+        for(var key in userinfo){
+            if(userinfo.hasOwnProperty(key)){
+                $.cookie(key, userinfo[key], options);
+            }
+        }
+
+    },
+    /**
+     * 获取用户登陆后保存的信息
+     * @param key {String}
+     * @returns {String}
+     */
+    getUserInfoItem:function(key){
+        return $.cookie(key);
+    }
 };
 
 module.exports = passport;
