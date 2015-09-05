@@ -3,14 +3,16 @@
  * @author  : ZY
  */
 
-var navBar = require("util/navbar"),
+var navBar  = require("util/navbar"),
 	sidebar = require("util/sidebar"),
-	$      = require('jquery');
+	$       = require('jquery'),
+	toolbar = require('util/toolbar_pp');
 
 require('util/extend_fn');
 
 var index_page = {
 	init:function(){
+		toolbar.init();
 		this.nav_bar(index);
 		this.side_bar();
 		this.tab_switch();

@@ -5,6 +5,8 @@
 
 var $ = require('jquery');
 
+require("cookie");
+
 if(!Keeper){
 	var Keeper = {
 
@@ -276,6 +278,54 @@ $.extend(Keeper,{
 	},
 	phone_num_map:function(phoneNum){
 		return phoneNum.replace(/(\d{3})\d{4}(\d{4})/,'$1****$2');
+	},
+	/**
+	 * 取参数
+	 * @param {Object} u
+	 * @param {Object} o
+	 */
+	getParm: function(u, o) {
+		var params, locallink = window.location.toString(),
+			url = u ? u : locallink;
+
+		if ($.type(url) == "object") {
+			params = $.param(url);
+			locallink = o ? o : locallink;
+			if (locallink.indexOf("?") == -1) {
+				locallink += "?";
+			} else {
+				locallink += "&";
+			}
+			return locallink += params;
+		} else if ($.type(url) == "string") {
+			var arr = url.split("?"),
+				parms = arr[1],
+				params = {};
+			if (parms && parms.indexOf("&")) {
+				var parmList = parms.split("&");
+				jQuery.each(parmList, function(key, val) {
+					if (val && val.indexOf("=")) {
+						var parmarr = val.split("=");
+						if ($.type(o) == "string" && o == parmarr[0]) {
+							params = parmarr[1] == null ? '' : parmarr[1];
+							return true;
+						} else {
+							params[parmarr[0]] = parmarr[1];
+						}
+					}
+				});
+			}
+		}
+		return params;
+	},
+	login:function(){
+	    var r;
+	    if( !$.cookie("ppinf") ){
+	        r = false;
+	    }else{
+	        r = JSON.parse($.cookie("ppinf"));
+	    }
+	    return r;
 	}
 });
 
