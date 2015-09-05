@@ -10,6 +10,7 @@ var $ = require('jquery'),
 
 var toolbar={
 	init:function(){
+		var self = this;
 		if(K.login()){
 
 			//修改导航栏
@@ -40,6 +41,7 @@ var toolbar={
 								'<li><a href="javascript:void(0)" id="logout" class="login4">退出登录</a></li>'+
 							'</ul>'
 						$('#ydl').html(_html).removeClass('hide');
+						self.event_handler();
 					}
 				}
 			});
@@ -48,7 +50,7 @@ var toolbar={
 			//跳转到登陆页面
 			K.gotohref("/users/login.html?return_to="+location.href.replace(/^.*?\/\/.*?\//,"/"));	
 		}
-		this.event_handler();
+		
 	},
 	event_handler:function(){
 		$("#logout").on("click",function(){
