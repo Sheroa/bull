@@ -31,7 +31,6 @@ var login = {
 			passport.pwd = user_pwd;
 			passport.pcInput = pcInput;
 			passport.loginMsg = $(".error-msg");
-
 			passport.doLogin();
 			
 		});

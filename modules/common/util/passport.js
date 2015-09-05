@@ -81,7 +81,7 @@ var passport = {
                 if(_ret.code == "0"){
                     //登陆成功
                     //$.extend(loginInfo, _ret.data.result);
-                    lsc(loginInfo);
+                    lsc(_ret.data.result);
 
                 }else{
                     lfc(_ret.msg);

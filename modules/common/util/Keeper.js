@@ -326,6 +326,16 @@ $.extend(Keeper,{
 	        r = JSON.parse($.cookie("ppinf"));
 	    }
 	    return r;
+	},
+	/**
+	 * 自动跳转
+	 */
+	gotohref: function(url, target) {
+	    window.href = url;
+	    $('body').append($("<a>").attr("href", url).bind("click", function() {
+	        window.location = $(this).attr("href");
+	        return;
+	    }).trigger("click"));
 	}
 });
 
