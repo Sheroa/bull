@@ -3,6 +3,7 @@
  * @author : ZY
  */
 var $ = require("jquery"),
+    data_transport = require('common/core_data'),
     K = require("./Keeper");
 
 require("cookie");
@@ -36,6 +37,30 @@ var passport = {
             this.loginRedirectUrl = '/my/personCenter.html';
         }
         return this.loginHandle(this.username, this.pwd,this.loginFailCall.bindFunc(this), this.loginSuccessCall.bindFunc(this));
+    },
+    doLogout:function(){
+
+        var user_info =  JSON.parse($.cookie('ppinf')),
+            user_id = user_info.userId,
+            user_token = user_info.token;
+
+        $.extend(data_transport, {
+            "userId":user_id,
+            "token":user_token
+        });
+
+        $.ajax({
+            url: '/api/user/logout',
+            type: 'post',
+            data: data_transport,
+            success:function(_rel){
+                if(_rel.code == 0){
+                    var options = {path:'/'};
+                    $.cookie("ppinf","",options);
+                }
+                location.reload(true);
+            }
+        });
     },
     /**
      * 自动跳转
@@ -187,7 +212,10 @@ var passport = {
                 });
             }
         return params;
-    }
+    },
+
 };
+
+window.passport = passport;
 
 module.exports = passport;
