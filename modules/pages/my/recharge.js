@@ -8,10 +8,19 @@ var $       = require("jquery");
  	navbar  = require("util/navbar"),
  	artTemplate 	= require("artTemplate"),
  	cache_data = "",
- 	K = require("util/Keeper");
+ 	K = require("util/Keeper"),
+ 	data_transport = require('common/core_data'),
+ 	toolbar = require('util/toolbar_pp');
+
+
+toolbar.init();
 
 //任务执行
 require('ui/dialog/dialog');
+
+var user_info =  JSON.parse($.cookie('ppinf')),
+	user_id = user_info.userId,
+	user_token = user_info.token;
 
 var recharge = {
  	//初始化
@@ -50,6 +59,29 @@ var recharge = {
  			}
  		});
  	},
+ 	get_special_bank:function(bank_num){
+ 		//个人中心-个人信息展示
+ 		$.extend(data_transport, {
+ 			"userId":user_id,
+ 			"token":user_token,
+ 			"bankCardNo":bank_num
+ 		});
+
+ 		$.ajax({
+ 			url: '/api/payment/getBankCardInfo.do',
+ 			type: 'post',
+ 			data: data_transport,
+ 			success:function(_rel){
+ 				if(_rel.code == 0){
+ 					var bank_code = _rel.data.result.cardInfoData.bank_code;
+ 					$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
+ 					$("#bank-select").change();
+ 				}else{
+ 					$("#bank-select").find("option[data-code='0']").attr("selected",true);
+ 				}
+ 			}
+ 		});
+ 	},
  	event_handler:function(){
 
  		var self = this;
@@ -75,7 +107,6 @@ var recharge = {
  		});
 
  		$("#bank-select").change(function(){
- 			
  			var _this = $(this),
  				bank_alias = _this.children('option:selected').attr('data-code'),
  				img = _this.next().find('img');
@@ -100,7 +131,15 @@ var recharge = {
 			    openfun : function () {
 			    }
 			});
- 		})
+ 		});
+
+ 		$("#bank_number").keydown(function(event) {
+ 			var _this = $(this),
+ 				bank_num = $.trim(_this.val());
+			if (event.keyCode == "13") {//keyCode=13是回车键
+				self.get_special_bank(bank_num);
+			}
+ 		});
  	},
  	valid_check:function(){
  		
