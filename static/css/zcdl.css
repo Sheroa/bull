@@ -39,7 +39,7 @@
 .register .cont p span{display: inline-block;width:83px;font-size: 14px;text-align: right;margin-right: 10px;}
 .register .contOne p input{width:216px;}
 .register .contOne p input.captcha{width:101px;}
-.register .cont p a.light-btn{display: inline-block;height: 32px;}
+.register .cont p a.light-btn, .register .cont p a.gray-btn{display: inline-block;height: 32px;}
 .register .cont p.next-step a.light-btn{width: 230px;}
 .register .cont p.error-msg{line-height: 15px;}
 .register .contOne p img{margin-left: 7px;vertical-align: middle;margin-top: -2px;}
