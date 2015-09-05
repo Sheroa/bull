@@ -81,16 +81,18 @@
 .system-msg .shadow-box .each{border-bottom:1px solid #efefef;}
 .system-msg .shadow-box .each p{line-height: 75px;padding:0 35px;}
 .system-msg .shadow-box .each p.ti{font-size: 14px;overflow: hidden;cursor:pointer;}
-.system-msg .shadow-box .each p.ti a{background: url(/static/img/system-circle1.png) no-repeat center left;padding-left: 100px;float: left;}
+.system-msg .shadow-box .each p.ti a{float: left;color:#f27835;}
+.system-msg .shadow-box .each p.ti a:hover{text-decoration: none;}
 .system-msg .shadow-box .each p.ti span{float:right;}
-.system-msg .shadow-box .each.viewed p.ti a{background: url(/static/img/system-circle3.png) no-repeat center left;}
+.system-msg .shadow-box .viewed p.ti a{color:#919191;}
 .system-msg .shadow-box .each p.ti:hover{background: #f27835;}
-.system-msg .shadow-box .each p.ti:hover a{color:#fff;background: url(/static/img/system-circle2.png) no-repeat center left;}
+.system-msg .shadow-box .each p.ti:hover a{color:#fff;}
 .system-msg .shadow-box .each p.ti:hover span{color:#fff;}
-.system-msg .shadow-box .each.selected p.ti{background: #f27835;}
-.system-msg .shadow-box .each.selected p.ti a{color:#fff;background: url(/static/img/system-circle2.png) no-repeat center left;}
-.system-msg .shadow-box .each.selected p.ti span{color:#fff;}
+.system-msg .shadow-box .selected p.ti{background: #f27835;}
+.system-msg .shadow-box .selected p.ti a{color:#fff;}
+.system-msg .shadow-box .selected p.ti span{color:#fff;}
 .system-msg .shadow-box .each p.cont{font-size: 12px;display: none;}
-.system-msg .shadow-box .each.selected p.cont{display:inline-block;}
+.system-msg .shadow-box .selected p.cont{display:inline-block;}
 
+.system-msg .shadow-box .each p.ti a.circle{float: left;color:#f27835;}
 
