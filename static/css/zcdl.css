@@ -1,4 +1,4 @@
-@charset "utf-8";
+:@charset "utf-8";
 /* CSS Document */
 .header{position:absolute;top:0;left:0;right: 0;z-index:2;}
 .header .fr .log-gister{font-size: 12px;}
@@ -33,7 +33,7 @@
 .register .contOne, .register .contThree{padding-top:60px;width:335px;margin:0 auto;text-align: left;}
 .register .contTwo{padding-top:125px;width:335px;margin:0 auto;text-align: left;}
 .register .cont p{margin-bottom: 15px;line-height: 30px;}
-.register .cont p.mark-word{font-size: 12px;text-align: left;line-height: 16px;padding-left:95px;}
+.register .cont p.mark-word{font-size: 12px;text-align: left;line-height: 16px;padding-left:93px;}
 .register .cont p.mark-word a{color:#f27835;text-decoration: underline;}
 .register .cont p.mark-word em{color:#f27835;}
 .register .cont p span{display: inline-block;width:83px;font-size: 14px;text-align: right;margin-right: 10px;}
@@ -48,7 +48,8 @@
 .register .contOne p .refresh span{background: url(/static/img/refresh.png) no-repeat top center;width:100%;padding-top: 14px;color:#fff;font-size: 12px;line-height: 12px;text-align: center;font-family: '\9ED1\4F53';}
 .register .contTwo p.tel-captcha{margin-bottom: 5px;}
 .register .contTwo p.tel-captcha input{width:123px;}
-.register .contTwo p.tel-captcha a{width: 88px;margin-left: 7px;vertical-align: top;}
+.register .contTwo p.tel-captcha a{width: 88px;margin-left: 7px;vertical-align: top;font-size:12px;}
+.register .contTwo p.tel-captcha a.disabled{cursor:no-drop;}
 .register .contThree p.tel-ok{}
 .register .contThree p.tel-ok strong{color:#f27835;font-size: 18px;font-weight: 300;}
 .register .contThree p.tel-ok em{font-size: 14px;}

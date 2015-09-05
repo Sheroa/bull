@@ -7,7 +7,8 @@ fis.hook('module', {
       util: "common/util/",
       ui:"common/ui/",
       jquery: "libs/jquery/jquery",
-      artTemplate:'libs/template/template'
+      artTemplate:'libs/template/template',
+      cookie:'libs/cookie/jquery.cookie'
     }
 });
 
