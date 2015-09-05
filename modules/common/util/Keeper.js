@@ -319,6 +319,7 @@ $.extend(Keeper,{
 		return params;
 	},
 	login:function(){
+		debugger;
 	    var r;
 	    if( !$.cookie("ppinf") ){
 	        r = false;
