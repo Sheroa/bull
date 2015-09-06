@@ -60,6 +60,9 @@ var index_page = {
 					$.extend(render_data,user_info);
 					var _html = artTemplate.compile(__inline("./person_center/profile.tmpl"))(render_data);
 					$("#profile").html(_html);
+				}else if(_rel.code == 999){
+					//用户未登录或登录超时
+					K.gotohref("/users/login.html?return_to="+location.href.replace(/^.*?\/\/.*?\//,"/"));	
 				}
 			}
 		});
