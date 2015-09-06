@@ -95,8 +95,10 @@
 .system-msg .shadow-box .each p.cont{font-size: 12px;display: none;}
 .system-msg .shadow-box .selected p.cont{display:inline-block;}
 
-.system-msg .shadow-box .each p.ti a.circle{display:inline-block;margin-top: 32px;width: 10px;height:10px;border-radius: 5px;background: #919191;}
-.system-msg .shadow-box .each p.ti a.circle2{display:inline-block;margin-top: 32px;width: 10px;height:10px;border-radius: 5px;background: #f27835;}
-.system-msg .shadow-box .selected p.ti a.circle{background: #fff;}
-.system-msg .shadow-box .each p.ti:hover a.circle{background: #fff;}
-.system-msg .shadow-box .each p.ti:hover a.circle2{width:6px;height:6px;border:2px solid #fff;}
+.system-msg .shadow-box .each p.ti a.checkbox{display:inline-block;margin-top: 32px;width: 10px;height:10px;border-radius: 5px;background: #919191;}
+.system-msg .shadow-box .each p.ti a.selected{display:inline-block;margin-top: 32px;width: 10px;height:10px;border-radius: 5px;background: #f27835;}
+
+.system-msg .shadow-box .selected p.ti a.checkbox{background: #fff;}
+.system-msg .shadow-box .selected p.ti a.selected{width:6px;height:6px;border:2px solid #fff;background: #f27835;}
+.system-msg .shadow-box .each p.ti:hover a.checkbox{background: #fff;}
+.system-msg .shadow-box .each p.ti:hover a.selected{width:6px;height:6px;border:2px solid #fff;background: #f27835;}
