@@ -55,6 +55,7 @@ var index_page = {
 			type: 'post',
 			data: data_transport,
 			success:function(_rel){
+				debugger;
 				if(_rel.code == 0){
 					var render_data = _rel.data.result;
 					$.extend(render_data,user_info);
