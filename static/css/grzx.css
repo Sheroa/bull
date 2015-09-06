@@ -81,18 +81,22 @@
 .system-msg .shadow-box .each{border-bottom:1px solid #efefef;}
 .system-msg .shadow-box .each p{line-height: 75px;padding:0 35px;}
 .system-msg .shadow-box .each p.ti{font-size: 14px;overflow: hidden;cursor:pointer;}
-.system-msg .shadow-box .each p.ti a{float: left;color:#f27835;}
+.system-msg .shadow-box .each p.ti a.title{color:#f27835;display: inline-block;width:490px;margin:0 80px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;vertical-align:middle;}
 .system-msg .shadow-box .each p.ti a:hover{text-decoration: none;}
-.system-msg .shadow-box .each p.ti span{float:right;}
-.system-msg .shadow-box .viewed p.ti a{color:#919191;}
+
+.system-msg .shadow-box .each p.ti span{}
+.system-msg .shadow-box .viewed p.ti a.title{color:#919191;}
 .system-msg .shadow-box .each p.ti:hover{background: #f27835;}
 .system-msg .shadow-box .each p.ti:hover a{color:#fff;}
 .system-msg .shadow-box .each p.ti:hover span{color:#fff;}
 .system-msg .shadow-box .selected p.ti{background: #f27835;}
-.system-msg .shadow-box .selected p.ti a{color:#fff;}
+.system-msg .shadow-box .selected p.ti a.title{color:#fff;}
 .system-msg .shadow-box .selected p.ti span{color:#fff;}
 .system-msg .shadow-box .each p.cont{font-size: 12px;display: none;}
 .system-msg .shadow-box .selected p.cont{display:inline-block;}
 
-.system-msg .shadow-box .each p.ti a.circle{float: left;color:#f27835;}
-
+.system-msg .shadow-box .each p.ti a.circle{display:inline-block;margin-top: 32px;width: 10px;height:10px;border-radius: 5px;background: #919191;}
+.system-msg .shadow-box .each p.ti a.circle2{display:inline-block;margin-top: 32px;width: 10px;height:10px;border-radius: 5px;background: #f27835;}
+.system-msg .shadow-box .selected p.ti a.circle{background: #fff;}
+.system-msg .shadow-box .each p.ti:hover a.circle{background: #fff;}
+.system-msg .shadow-box .each p.ti:hover a.circle2{width:6px;height:6px;border:2px solid #fff;}
