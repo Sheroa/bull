@@ -236,3 +236,9 @@ p.error-msg{font-size: 12px;color:#f15d2d;font-style: normal;line-height: 15px;h
 /* 404 */
 .error404{margin:160px 0;}
 .error404 p{margin-top:30px;}
+
+/* 页码 */
+.pages{width: 100%;text-align: center;line-height: 28px;height:28px;}
+.pages a{padding:0 12px;display: inline-block;}
+.pages a:hover{text-decoration: none;background:#f27835;color:#fff;}
+.pages a.selected{background:#f27835;color:#fff;}
