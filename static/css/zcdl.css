@@ -66,6 +66,7 @@
 .login-page .find-pwd h3{color:#f27835;margin-bottom: 30px;}
 .find-pwd .find-cont{display: inline-block;width: 230px;padding:32px 0;vertical-align: top;margin-right: 30px;}
 .find-pwd .find-cont p{font-size: 14px;color:#f27835;line-height: 32px;}
+.find-pwd .find-cont p.error-msg{font-size: 12px;color:#f15d2d;line-height:15px;}
 .find-pwd .find-cont p input{width:216px;}
 .find-pwd .find-cont p.captcha{position: relative;}
 .find-pwd .find-cont p.captcha input{width: 142px;}
