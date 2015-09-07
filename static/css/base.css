@@ -18,11 +18,10 @@ a{text-decoration:none;outline:none;color:#919191;cursor:pointer;}
 a:hover{text-decoration: underline;}
 img{margin:0;padding:0;border:none;}
 ul,li{list-style: none;}
-button{height:32px;font-size: 14px;}
+button{height:32px;}
 p input{height:28px;line-height:28px;padding: 0 5px;border:2px solid #b2b2b2;font-size: 14px;}
 p input.check{height: 13px;width: 13px;vertical-align: middle;}
 .sub-text{font-size: 12px; text-align: left;line-height: 18px;}
-.alert{font-size: 12px;color:#dc5b46;}
 .bk-gray{background: #fafafa;width: 100%;padding: 50px 0;}
 .wmain{width:1140px;margin:0 auto;overflow:hidden;}
 .fl{float:left;}
@@ -30,7 +29,7 @@ p input.check{height: 13px;width: 13px;vertical-align: middle;}
 .fr-main{width:874px;float: right;}
 .border-box{border-left:4px solid #f27835;background: #fff;text-align: left;overflow: hidden;-moz-box-shadow:0px 2px 2px 0px #d3d3d3;-webkit-box-shadow:0px 2px 2px 0px #d3d3d3;box-shadow:0px 2px 2px 0px #d3d3d3;}
 .shadow-box{-moz-box-shadow:0px 1px 1px 1px #d3d3d3;-webkit-box-shadow:0px 1px 1px 1px #d3d3d3;box-shadow:0px 1px 1px 1px #d3d3d3;background: #fff;}
-.assure{display: inline-block;height:28px;width:22px;background: url(../img/assure.png) no-repeat;}
+.assure{display: inline-block;height:28px;width:22px;background: url(/static/img/assure.png) no-repeat;}
 .assurecont{position:absolute;top:-35px;right:0;display: none;}
 .assurecont .contword{position: relative;height:28px;width:173px;z-index:100;}
 .assurecont .contword .cont-bk{position: absolute;height:24px;top:0;left:0;background: #373737;filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opacity: 0.8;opacity: 0.8;width:100%;z-index: 101; }
@@ -242,3 +241,41 @@ p.error-msg{font-size: 12px;color:#dc5b46;font-style: normal;line-height: 15px;h
 .pages a{padding:0 12px;display: inline-block;}
 .pages a:hover{text-decoration: none;background:#f27835;color:#fff;}
 .pages a.selected{background:#f27835;color:#fff;}
+
+
+/* 弹框 */
+.dialog-wrapper{width:624px;position: absolute; z-index: 100000;background: #fff;}
+.popbox-bankrank{width:445px;}
+.popbox-bankrank .diginfo{background: #fff;width:455px;}
+.popbox-bankrank .diginfo p.ti{height:65px;line-height: 65px;width:430px;background:#f27835;color:#fff;font-size: 18px;text-align: left;padding-left: 25px;position: relative;}
+.popbox-bankrank .diginfo p.ti a{position:absolute;right:25px;top:22px;}
+.popbox-bankrank .diginfo .cont{width:100%;max-height:480px;overflow-y: scroll;}
+.popbox-bankrank .diginfo .cont table{width:100%;border-collapse:collapse;}
+.popbox-bankrank .diginfo .cont table tr td{font-size: 14px;line-height: 60px;height: 60px;}
+.popbox-bankrank .diginfo .cont thead tr td{border-bottom: 1px solid #dddddd;}
+.popbox-bankrank .diginfo .cont tbody tr td{color:#373737;}
+.popbox-bankrank .diginfo .cont table tr td.last{padding-right:10px;}
+
+.popbox-bankrank .diginfo .cont2, .popbox-bankrank .diginfo .cont3{overflow: hidden;}
+.popbox-bankrank .diginfo .cont2 p{text-align: left;padding-left: 70px;}
+.popbox-bankrank .diginfo p{overflow: hidden;margin-bottom: 10px;}
+.popbox-bankrank .diginfo p span.p-ti{display: inline-block;width: 56px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}
+.popbox-bankrank .diginfo .cont2 p select{height:32px;line-height:32px;width: 145px;border:2px solid #919191;font-size: 14px;}
+.popbox-bankrank .diginfo .bank-logo{height:19px;margin-left: 10px;vertical-align: middle;}
+.popbox-bankrank .diginfo .cont2 p.moreInf{text-align: left;padding-left: 68px;}
+.popbox-bankrank .diginfo .cont2 p.moreInf a{text-decoration: underline;padding-left: 10px;font-size: 12px;}
+.popbox-bankrank .diginfo .cont2 p a.light-btn, .diginfo .cont2 p a.gray-btn{width:140px;display: inline-block;line-height: 30px;height: 30px;}
+.popbox-bankrank .diginfo .cont2 p a.light-btn{margin-left: 20px;}
+.popbox-bankrank .diginfo .cont2 p input{width:216px;}
+.popbox-bankrank .diginfo .cont3{padding:25px 0 45px 0;}
+.popbox-bankrank .diginfo .cont3 p{text-align: left;padding-left:115px;margin-top: 20px;font-size:14px;}
+.popbox-bankrank .diginfo .cont3 p.sub-text{margin-top: 0;}
+.popbox-bankrank .diginfo .cont3 p.sub-text a{margin-left: 60px;color:#f27835;text-decoration: underline;}
+.popbox-bankrank .diginfo .cont3 p a.light-btn{width:231px;display: inline-block;line-height: 32px;height: 32px;}
+.popbox-bankrank .diginfo .cont3 p.buy-ok{padding-left: 105px;margin-bottom: 40px;}
+.popbox-bankrank .diginfo .cont3 p.buy-ok a{color:#f27835;text-decoration: underline;}
+.popbox-bankrank .diginfo .cont4{padding:30px 20px;}
+.popbox-bankrank .diginfo .cont4 p{font-size: 12px;line-height: 20px;text-align: left;}
+
+.bank-pwd{display: inline-block;border-top:2px solid #919191;border-left:2px solid #919191;border-bottom:2px solid #919191;border-right: 1px solid #919191;margin-left: -4px;}
+.bank-pwd input{width:27px;height: 28px;border:none;border-right: 1px solid #919191;text-align: center;}

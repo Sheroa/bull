@@ -11,6 +11,14 @@
 .banner .ad_bk .ul_btn a {width: 21px;height: 21px;float: left;text-indent: -4000px;position: relative;margin-left: 3px;color: transparent;}
 .banner .wmain{position: absolute;top: 0;left: 50%;margin-left: -570px;overflow: visible;}
 
+/* 登录后 */
+.login-area h4{color:#f27835;padding-bottom: 15px;border-bottom: 1px solid;text-align: left;}
+.login-area h5{color:#919191;padding-top:15px;text-align: left;}
+.login-area a.light-btn{width: 100%;display: inline-block;line-height: 32px;height: 32px;margin-top: 60px;}
+.login-area p{margin-top: 40px;}
+.login-area p.assure2{line-height: 25px;height: 25px;}
+.login-area p.assure2 img{width: 17px;padding-right: 6px;}
+.login-area p.assure2 span{font-size: 12px;color:#49a677;}
 
 /* 媒体区 */
 .media-report{margin: 60px 0;}
@@ -20,3 +28,4 @@
 .media-report ul li span.fr{border-bottom: 1px dashed #dedede;width:840px;height: 73px;}
 .media-report ul li span.fr a:hover{text-decoration: none;color:#f27835;}
 .media-report ul li .img-area{display: inline-block;line-height: 88px;background: #fff;}
+

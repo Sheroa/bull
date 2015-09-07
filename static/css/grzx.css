@@ -17,18 +17,6 @@
 .bank-own .each-border p.card-bound i{float: left;font-style: normal;}
 .bank-own .each-border p.card-bound em{float: right;}
 
-.dialog-wrapper{width:624px;position: absolute; z-index: 100000;background: #fff;}
-.popbox-bankrank{width:445px;}
-.popbox-bankrank .diginfo{background: #fff;width:455px;}
-.popbox-bankrank .diginfo p.ti{height:65px;line-height: 65px;width:430px;background:#f27835;color:#fff;font-size: 18px;text-align: left;padding-left: 25px;position: relative;}
-.popbox-bankrank .diginfo p.ti a{position:absolute;right:25px;top:22px;}
-.popbox-bankrank .diginfo .cont{width:100%;max-height:480px;overflow-y: scroll;}
-.popbox-bankrank .diginfo .cont table{width:100%;border-collapse:collapse;}
-.popbox-bankrank .diginfo .cont table tr td{font-size: 14px;line-height: 60px;height: 60px;}
-.popbox-bankrank .diginfo .cont thead tr td{border-bottom: 1px solid #dddddd;}
-.popbox-bankrank .diginfo .cont tbody tr td{color:#373737;}
-.popbox-bankrank .diginfo .cont table tr td.last{padding-right:10px;}
-
 
 
 /* * * * * * * * * * * * * * * * 个人中心 * * * * * * * * * * * * * * * */
@@ -76,8 +64,6 @@
 
 
 .recharge .bank-msg .sub-text{margin-bottom: 20px}
-.recharge .bank-pwd{display: inline-block;border-top:2px solid #919191;border-left:2px solid #919191;border-bottom:2px solid #919191;border-right: 1px solid #919191;margin-left: -4px;}
-.recharge .bank-pwd input{width:27px;height: 28px;border:none;border-right: 1px solid #919191;text-align: center;}
 .recharge p.sub-text a.forget-pwd{margin-left:66px;}
 .recharge p.alert{margin-top:-5px;}
 
@@ -129,14 +115,3 @@
 .bankcard .shadow-box table thead tr td{border-bottom: 1px solid #dddddd;}
 .bankcard .shadow-box table tbody tr td{color:#373737;}
 
-.diginfo .cont2{overflow: hidden;}
-.diginfo .cont2 p{text-align: left;padding-left: 70px;}
-.diginfo p{overflow: hidden;margin-bottom: 10px;}
-.diginfo p span.p-ti{display: inline-block;width: 56px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}
-.diginfo p input{width:216px;}
-.diginfo .cont2 p select{height:32px;line-height:32px;width: 145px;border:2px solid #919191;font-size: 14px;}
-.diginfo .bank-logo{height:19px;margin-left: 10px;vertical-align: middle;}
-.diginfo p.moreInf{text-align: left;padding-left: 68px;}
-.diginfo p.moreInf a{text-decoration: underline;padding-left: 10px;font-size: 12px;}
-.diginfo p a.light-btn, .diginfo p a.gray-btn{width:140px;display: inline-block;line-height: 30px;height: 30px;}
-.diginfo p a.light-btn{margin-left: 20px;}
