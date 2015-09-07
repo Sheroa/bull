@@ -7,11 +7,13 @@
  	 sidebar = require("util/sidebar"),
  	 navBar = require("util/navbar"),
  	 K = require("util/Keeper"),
+ 	 toolbar = require('util/toolbar_pp'),
  	 api = require("api/api");
 
  navBar.init(index);
  sidebar.init();
-
+ toolbar.init();
+ 
  //dialog
  require('ui/dialog/dialog');
 
