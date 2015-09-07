@@ -7,17 +7,47 @@
  	 sidebar = require("util/sidebar"),
  	 navBar = require("util/navbar"),
  	 K = require("util/Keeper"),
- 	 api = require("api/api");
+ 	 artTemplate 	= require("artTemplate"),
+ 	 toolbar = require('util/toolbar_pp'),
+ 	 api = require("api/api"),
+ 	 bank_list = [];
 
  navBar.init(index);
  sidebar.init();
-
+ toolbar.init();
+ 
  //dialog
  require('ui/dialog/dialog');
 
  var my_card = {
  	init:function(){
- 		this.event_handler();
+
+ 		var _self = this,
+ 			bank_list_api = null;
+
+ 		//页面渲染
+ 		api.call('/api/user/getIdentityInfoByUser.do',{},function(data){
+ 			var bank_card_num = data.result.bankCardNo,
+ 				container     = $(".add-bank");
+ 			if(!bank_card_num){
+ 				//用户没有绑定银行卡
+ 				container.show();
+ 			}else{
+ 				//用户绑定银行卡
+
+ 			}
+ 			_self.event_handler();
+ 		});
+
+
+		//银行列表渲染
+		api.call('/api/payment/queryBankList',{},function(data){
+			bank_list_api = artTemplate.compile(__inline("./bank_card/bank_list.tmpl"))(data);
+			$("#bank_list_view").html(bank_list_api);
+			$.each(data.list,function(index,obj){
+				bank_list.push('<option data-code='+obj.bank_code+' data-provider='+obj.provider+'>'+obj.bank_name+'</option>');
+			});
+		});		
  	},
  	tpl:{
  		bank_list: 	function(){
@@ -43,8 +73,7 @@
  	},
  	event_handler:function(){
  		
- 		var self = this,
- 			bank_list = [];
+ 		var self = this;
 
  		//添加银行卡
  		$(".add-bank").on("click",function(){
@@ -70,7 +99,7 @@
  			    			$("#bank-select").append(bank_list.join(""));
  			    		})
  			    	}else{
-
+ 			    		
  			    		$("#bank-select").append(bank_list.join(""));
 
  			    	}
@@ -98,7 +127,23 @@
  			    		}
 
  			    		error_msg.text("");
- 			    	})
+ 			    	});
+
+ 			    	//银行卡下拉菜单
+ 			    	$("#bank-select").change(function(){
+ 			    		var _this = $(this),
+ 			    			bank_alias = _this.children('option:selected').attr('data-code'),
+ 			    			img = _this.next().find('img');
+
+ 			    		$(".operator_box").hide();
+
+ 			    		//每一次选中银行，触发一次事件-修改后面图片
+ 			    		if(bank_alias == 0){
+ 			    			img.attr('src','/static/img/bank/back-logo.png')
+ 			    		}else{
+ 			    			img.attr('src','/static/img/bank/'+bank_alias+".png")
+ 			    		}
+ 			    	});
  			    }
  			});
  		});
