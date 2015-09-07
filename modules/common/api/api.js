@@ -19,7 +19,11 @@ var api = {
 					callback(_rel.data);
 				}else if(_rel.code == 999){
 					//跳转到登陆页面 
-					K.gotohref("/users/login.html?return_to="+location.href.replace(/^.*?\/\/.*?\//,"/"));
+					var options = {path:'/'};
+					$.cookie("ppinf","",options);
+					if(location.href.indexOf('my') > 0){
+						K.gotohref("/users/login.html?return_to="+location.href.replace(/^.*?\/\/.*?\//,"/"));
+					}
 				}
 			}
 		});

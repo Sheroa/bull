@@ -34,7 +34,13 @@ var passport = {
         if(tmp){
             this.loginRedirectUrl = tmp;
         }else{
-            this.loginRedirectUrl = '/my/personCenter.html';
+
+            if(location.href.indexOf("index.html")>0){
+                this.loginRedirectUrl = '/index.html';
+            }else{
+                this.loginRedirectUrl = '/my/personCenter.html';
+            }
+
         }
         return this.loginHandle(this.username, this.pwd,this.loginFailCall.bindFunc(this), this.loginSuccessCall.bindFunc(this));
     },
