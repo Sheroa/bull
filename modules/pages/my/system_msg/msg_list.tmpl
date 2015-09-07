@@ -1,6 +1,6 @@
-{{each data.list as value index}}
+{{each list as value index}}
 	<div class="each" data-msg-id="{{value.systemMessageId}}">
-		<p class="ti"><a href="javascript:void(0);" class="checkbox selected"></a><a href="javascript:void(0)" class="title">{{value.title}}</a><span>{{value.createTime}}</span></p>
+		<p class="ti"><a href="javascript:void(0);" class="checkbox"></a><a href="javascript:void(0)" class="title">{{value.title}}</a><span>{{value.createTime}}</span></p>
 		<p class="cont">{{value.content}}</p>
 	</div>
 {{/each}}

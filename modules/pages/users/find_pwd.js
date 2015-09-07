@@ -16,13 +16,14 @@ var pwd = {
 	event_handler:function(){
 
 		var self = this,
-			phone_number = "";
+			phone_number = "",
+			smsCode = "";
 
 		$(".next_step_one").on("click",function(){
 
 			var phone_num = $.trim($("#phone_num").val()),
 				_this = $(this),
-				error_msg = _this.parents(".fcontOne").find(".error-msg em");
+				error_msg = _this.parents(".fcontOne").find(".little-wd");
 
 			//检测手机号码
 			if(!(phone_num && phone_num != '')){
@@ -58,7 +59,7 @@ var pwd = {
 				return false;
 			}
 			error_msg.text("");
-
+			smsCode = identify_code;
 			$(".findTwo").removeClass('findTwo').addClass('findThree');
 			$(".fcontTwo").addClass('hide');
 			$(".fcontThree").removeClass('hide');
@@ -120,6 +121,27 @@ var pwd = {
 
 			error_msg.html("");
 
+
+			//调用接口，重置密码
+			$.extend(data_transport,{
+				'mobile':phone_number,
+				'smsCode':smsCode,
+				'newLoginPwd':new_pwd
+			});
+			$.ajax({
+				url: '/api/user/resetLoginPwd',
+				type: 'post',
+				data: data_transport,
+				success:function(result){
+					if(result.code == 0){
+						//跳转到登陆页面
+						K.gotohref("/users/login.html");	
+					}else{
+						error_msg.html(result.msg);
+					}
+				}
+			});
+			
 		})
 	},
 	sendMobileCode:function(phone_num){

@@ -5,6 +5,7 @@
 var $ = require('jquery'),
  	data_transport = require('common/core_data'),
  	K = require('util/Keeper'),
+ 	api = require('api/api'),
  	passport = require('util/passport');
 
  var register = {
@@ -149,12 +150,17 @@ var $ = require('jquery'),
 			error_msg.text("");
 
 			//调用接口
+			api.call('/api/user/setPayPassword.do',{
+				'payPwd':compare_array[0]
+			},function(data){
+				K.gotohref("/my/personCenter.html");
+			});
  		})
 
- 		//第三部-跳过
- 		// $(".step_over").on("click",function(){
- 		// 	location.
- 		// })
+ 		第三部-跳过
+ 		$(".step_over").on("click",function(){
+ 			K.gotohref("/my/personCenter.html");	
+ 		})
  	},
  	valid_check:function(){
  		var user_pwd  = $("#user_pwd"),
