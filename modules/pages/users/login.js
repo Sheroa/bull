@@ -52,8 +52,6 @@ var login = {
 		if(!(user_pwd && user_pwd.val() != '')){
 			return "请输入登陆密码";
 		}
-
-
 	}
 }
 

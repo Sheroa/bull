@@ -117,7 +117,12 @@ window.filter = filter;
 
  		api.call('/api/msg/querSystemMessage.do',filter,function(data){
  			var cache_data = artTemplate.compile(__inline("./system_msg/msg_list.tmpl"))(data);
- 			$("#msg_list").html(cache_data);
+ 			if(!cache_data){
+ 				$("#msg_list").html("<h4 class='notice'>暂无消息！</h4>");
+ 			}else{
+ 				$("#msg_list").html(cache_data);
+ 			}
+ 			
 
  			var pageSize = data.pageSize,
  				totalRecord = data.totalCount,
