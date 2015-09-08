@@ -7,6 +7,8 @@ var $ = require('jquery'),
 	K = require('util/Keeper'),
 	passport = require('util/passport');
 
+// navBar.init(index);
+
 var login = {
 	init:function(){
 		this.event_handler();
