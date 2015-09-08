@@ -49,7 +49,7 @@ var index_page = {
 			buf.push('<span class="user"></span><input name="passport" id="userName" type="text" placeholder="手机号码">');
 			buf.push('</div>');
 			buf.push('<div class="textField">');
-			buf.push('<span class="pwd"></span><input name="userPsw" id="userPass" type="password" placeholder="登录密码">');
+			buf.push('<span class="pwd"></span><input name="userPsw" id="userPass" type="password" placeholder="登录密码"><a class="visible"></a>');
 			buf.push('</div>');
 			buf.push('<p class="error-msg"></p>');
 			buf.push('<p class="remember">');

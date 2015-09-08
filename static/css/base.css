@@ -99,10 +99,12 @@ p.error-msg{font-size: 12px;color:#dc5b46;font-style: normal;line-height: 15px;h
 
 /* * * * * * * * * * * * * * * * 登录区 * * * * * * * * * * * * * * * */
 .login-area{width:270px;height: 221px;float:right;margin-top:65px;background: #fff;padding:30px 15px;position: relative;}
-.login-area .textField{width:266px;border-top:2px solid;border-left:2px solid;border-right:2px solid;border-bottom:4px solid #e67334;margin:9px 0;padding:0;}
+.login-area .textField{width:266px;border-top:2px solid;border-left:2px solid;border-right:2px solid;border-bottom:4px solid #e67334;margin:9px 0;padding:0;position: relative;text-align: left;}
 .login-area .textField span{width:19px;height:17px;margin:0 10px;display: inline-block;vertical-align: middle;background: url(../img/profile.png) no-repeat;}
 .login-area .textField span.pwd{background:url(../img/lock.png) no-repeat;}
+.login-area .textField a.visible{display: inline-block;background: url(/static/img/eye.png) no-repeat;width:23px;height:15px;position:absolute;top:10px;right: 5px;}
 .login-area .textField input{width:210px;height:36px;border:none;vertical-align:middle;line-height:38px;padding: 0 8px;margin:0;}
+.login-area .textField input#userPass{width:180px;}
 .login-area p.remember{overflow: hidden;line-height: 20px;margin-bottom: 5px;font-size:12px;}
 .login-area p.remember input{vertical-align:middle;margin-right:8px;border:1px solid #f27835;line-height: 21px;height: 21px;}
 .login-area p.remember .fl{color:#373737;}
