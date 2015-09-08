@@ -10,10 +10,30 @@
 	<tbody>
 		{{each list as value index}}
 		<tr>
-			<td>{{value.bank_name}}</td>
-			<td>{{value.record_limit_amount}}</td>
-			<td>{{value.day_limit_amount}}</td>
-			<td class="last">{{value.month_limit_amount}}</td>
+			{{if value.bank_name == 0}}
+				<td>无限额</td>
+			{{else}}
+				<td>{{value.bank_name}}</td>
+			{{/if}}
+
+			{{if value.record_limit_amount == 0}}
+				<td >无限额</td>
+			{{else}}
+				<td >{{value.record_limit_amount}}</td>
+			{{/if}}
+
+			{{if value.day_limit_amount == 0}}
+				<td >无限额</td>
+			{{else}}
+				<td >{{value.day_limit_amount}}</td>
+			{{/if}}
+
+			{{if value.month_limit_amount == 0}}
+				<td class="last">无限额</td>
+			{{else}}
+				<td class="last">{{value.month_limit_amount}}</td>
+			{{/if}}
+			
 		</tr>
 		{{/each}}
 	</tbody>

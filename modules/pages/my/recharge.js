@@ -8,6 +8,7 @@ var $       = require("jquery");
  	navbar  = require("util/navbar"),
  	artTemplate 	= require("artTemplate"),
  	cache_data = "",
+ 	api     = require("api/api"),
  	K = require("util/Keeper"),
  	data_transport = require('common/core_data'),
  	toolbar = require('util/toolbar_pp');
@@ -95,15 +96,34 @@ var recharge = {
  				return false;
  			}
  			_this.parents(".border-box").find(".error-msg").html("<span class='p-ti'></span>");
- 			//判断是连连还是快钱
- 			var pay_way = $("select[name='bank-select']").find("option:selected").attr("data-provider");
- 			//连连 - 没有手机号 
- 			if(pay_way == "lian_lian"){
- 				$(".operator_box").find("p[data-type='kuaiqian']").hide();
- 			}else if(pay_way == "kuai_qian"){
- 				$(".operator_box").find("p[data-type='kuaiqian']").show();
- 			}
- 			$(".operator_box").slideDown('400');
+
+
+ 			var true_name = $.trim($('#truename').val()),
+ 				id_number = $.trim($('#id_number').val()),
+ 				bank_number = $.trim($('#bank_number').val());
+
+ 			//发送ajax请求
+ 			api.call('/api/user/improveIdentityInfo.do',{
+ 				'name': true_name,
+ 				'idCardNo':id_number,
+ 				'bankCardNo':bank_number,
+ 				'bankName': $('#bank-select').find('option:selected').attr('data-code'),
+ 				'bankCode':$('#bank-select').find('option:selected').val()
+ 			},function(data){
+ 				//绑定成功
+ 				
+ 				 //判断是连连还是快钱
+ 				 var pay_way = $("select[name='bank-select']").find("option:selected").attr("data-provider");
+ 				 //连连 - 没有手机号 
+ 				 if(pay_way == "lian_lian"){
+ 				 	$(".operator_box").find("p[data-type='kuaiqian']").hide();
+ 				 }else if(pay_way == "kuai_qian"){
+ 				 	$(".operator_box").find("p[data-type='kuaiqian']").show();
+ 				 }
+ 				 $(".operator_box").slideDown('400');
+ 			});
+
+
  		});
 
  		$("#bank-select").change(function(){

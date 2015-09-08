@@ -280,6 +280,22 @@ $.extend(Keeper,{
 	phone_num_map:function(phoneNum){
 		return phoneNum.replace(/(\d{3})\d{4}(\d{4})/,'$1****$2');
 	},
+	name_map:function(name){
+		var len = name.length,
+			tmp = [];
+		for(var i=0;i<len-1;i++){
+			tmp.push("*");
+		}
+		return tmp.join("")+name[len-1];
+	},
+	bank_card_map:function(num){
+		var len = num.length,
+			tmp = [];
+		for(var i=0;i<len-4;i++){
+			tmp.push("*");
+		}
+		return tmp.join("")+num.slice(len-4);
+	},
 	/**
 	 * 取参数
 	 * @param {Object} u
