@@ -26,10 +26,40 @@ var user_info =  JSON.parse($.cookie('ppinf')),
 var recharge = {
  	//初始化
  	init:function(){
+
+ 		var self = this;
+
  		this.navBar(index);
  		this.sidebar();
- 		this.bank_list();
- 		this.event_handler();
+
+ 		//查询银行卡信息
+ 		api.call('/api/user/getIdentityInfoByUser.do',{},function(_rel){
+ 			var bank_card_num = _rel.result.bankCardNo;
+ 			if(bank_card_num){
+
+ 				$("#binded").show();
+
+ 				//用户已经绑定了银行卡，此时应该进入recharge2.html
+ 				$(".bank-icbc .border-pad").html(require('./bank_card_info').show(_rel));
+
+ 				//获取账户余额
+ 				api.call('/api/account/getAbleBalance.do',{},function(_rel){
+ 					//获取余额
+ 				},function(_rel){
+ 					alert(_rel.msg);
+ 				});
+
+ 			}else{
+
+ 				//用户没有绑定银行卡
+ 				$("#binding").show();
+ 				self.bank_list();
+ 				self.event_handler();
+ 			}
+
+ 		});
+
+
  	},
  	navBar:function(index){
  		navbar.init(index);
