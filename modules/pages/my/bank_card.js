@@ -92,8 +92,8 @@
 
  		function bind_func(){
  			var _this = $(this),
- 				user_info = JSON.parse(_this.attr('data-bank-info')),
- 				identify_card = user_info.identityCard;
+ 				user_info = JSON.parse(_this.attr('data-bank-info') || null),
+ 				identify_card = user_info && user_info.identityCard;
 
  			$.Dialogs({
  			    "id" : "diglog_wrapper",
@@ -146,7 +146,7 @@
  			    		//发送ajax请求，修改银行卡
  			    		api.call('/api/user/improveIdentityInfo.do',{
 
- 			    			'name':user_info.userName,
+ 			    			'name': user_info && user_info.userName,
  			    			'idCardNo':identify_card,
  			    			'bankCardNo':bank_card_num,
  			    			'bankName':$("select[name='bank-select']").find("option:selected").val(),
