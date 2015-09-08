@@ -140,6 +140,46 @@ var recharge = {
  				img.attr('src','/static/img/bank/'+bank_alias+".png")
  			}
  		});
+
+
+ 		$(".verify_sms").on("click",function(){
+ 			var count = 60,
+ 				_this = $(this);
+
+ 			//校验
+ 			var phone_num = $.trim($("#phone_num").val()),
+ 				error_msg = $("#append_error_msg");
+
+ 			if(!phone_num){
+ 				error_msg.after("<p class='error-msg'>请输入手机号</p>")
+ 				return false;
+ 			}
+
+ 			error_msg.parents(".operator_box").find('.error-msg').remove();
+
+ 			//防止重复点击
+ 			if($(this).hasClass('disabled')){
+ 				return false;
+ 			}
+
+ 			$(this).addClass('disabled');
+ 			$(this).removeClass('light-btn').addClass('gray-btn');
+
+ 			window.timer = window.setInterval(function(){
+ 				if(count == 0){
+ 					_this.removeClass('disabled');
+ 					_this.removeClass('gray-btn').addClass('light-btn');
+ 					_this.html("手机验证码");
+ 					window.clearInterval(timer);
+ 				}else{
+ 					_this.html(count+"秒后重新获取");
+ 					count--;
+ 				}
+ 			},1000);
+
+ 			self.sendMobileCode(phone_num)
+ 		});
+
  		$(".moreInf").on("click",function(){
 			$.Dialogs({
 			    "id" : "diglog_wrapper",
@@ -197,6 +237,23 @@ var recharge = {
  			return '请选择银行';
  		}
  		return false;
+ 	},
+ 	sendMobileCode:function(phone_num){
+ 		$.extend(data_transport,{
+ 			'mobile': phone_num
+ 		});
+ 		$.ajax({
+ 			url: '/api/user/sendSmsCodeByRegister',
+ 			type: 'post',
+ 			data: data_transport,
+ 			success:function(result){
+ 				if(result.code == 0){
+ 					$("#identify_code").html("验证码已发至手机"+phone_num);
+ 				}else{
+ 					$("#identify_code").html("<em>验证码发送失败</em>");
+ 				}
+ 			}
+ 		});
  	}
 }
 

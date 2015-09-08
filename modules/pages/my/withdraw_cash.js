@@ -6,8 +6,10 @@
  var sidebar = require("util/sidebar"),
  	api = require("api/api"),
  	K = require("util/Keeper"),
+ 	toolbar = require('util/toolbar_pp'),
  	navBar = require("util/navbar");
 
+ toolbar.init();
  navBar.init(index);
  sidebar.init();
 
@@ -26,22 +28,28 @@
  				var obj = data.result,
  					info_pad = container_binded.find(".border-pad"),
  					buf = [];
- 				buf.push('<p class="bank-name">'+data.result.bankCode+'</p>');
+ 				buf.push('<p class="bank-name">'+data.result.bankName+'</p>');
  				buf.push('<p class="card-kind">储蓄卡</p>');
- 				buf.push('<p class="card-owner">户名：'+K.name_map(data.result.userName)+'</p>');
  				if(data.result.bindCard){
  					buf.push('<p class="card-bound"><i>已绑定</i><em>'+K.bank_card_map(data.result.bankCardNo)+'</em></p>');	
  					container_binded.append('<p class="sub-text">单笔限额20万，单日限额200万。<br>实际请参考您的银行限额设置。</p>');
  				}else{
  					buf.push('<p class="card-num">'+K.bank_card_map(data.result.bankCardNo)+'</p>');
- 					container_binded.append('<a href="javascript:void(0);" class="alter">修改</a>');	
+ 					buf.push('<span></span>');
+ 					//container_binded.append('<a href="javascript:void(0);" class="alter">修改</a>');	
  				}
- 					debugger;			
+ 				
  				info_pad.html(buf.join(""));
 
  				container_binded.show();
  			}
  		});
+
+		//账户可用余额查询
+		api.call('/api/account/getAbleBalance.do',{},function(){
+		},function(_rel){
+			alert(_rel.msg);
+		});
  	}
  }
 
