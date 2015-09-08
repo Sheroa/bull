@@ -107,7 +107,9 @@ window.filter = filter;
  				'systemMessageIds': msg_id_quene.join()
  			},function(data){
  				//删除成功，重刷页面
- 				self.msg_list_show();
+ 				 self.msg_list_show();
+ 				 toolbar.init();
+ 				//location.reload();
  			});
  		})
  	},

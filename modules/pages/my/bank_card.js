@@ -66,7 +66,6 @@
  			// buf.push('<p class="error-msg">请选择银行</p>');
  			buf.push('<p><span class="p-ti">银行卡号</span><input type="text" id="bank_number" placeholder="请输入您本人的借记卡号"></p>');
  			buf.push('<p class="error-msg"></p>');
- 			buf.push('<p class="moreInf"><a href="javascript:void(0)">查看充值支持银行及限额</a></p>');
  			buf.push('<p><a href="javascript:void(0);" class="gray-btn cancel_btn">取消</a><a href="javascript:void(0);" class="light-btn confirm_btn">确定</a></p></div>')
  			return buf.join("");
  		}

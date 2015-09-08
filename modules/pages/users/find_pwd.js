@@ -6,8 +6,10 @@
 var $ = require('jquery'),
 	K = require('util/Keeper'),
 	data_transport = require('common/core_data'),
-	passport = require('util/passport');
+	passport = require('util/passport'),
+	navBar = require("util/navbar");
 
+navBar.init(index);
 
 var pwd = {
 	init:function(){
