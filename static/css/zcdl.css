@@ -1,5 +1,6 @@
-:@charset "utf-8";
+@charset "utf-8";
 /* CSS Document */
+
 .header{position:absolute;top:0;left:0;right: 0;z-index:2;}
 .header .fr .log-gister{font-size: 12px;}
 .header .fr .log-gister strong{font-size: 24px;color:#f27835;font-weight: 300;margin-right: 3px;}
@@ -13,7 +14,6 @@
 .login-area h5{text-align: center;}
 
 
-.bk-gray{margin-top:74px;}
 .register{padding-top:30px;}
 .register .step{margin:0 auto;}
 .register .step span{display: inline-block;position:relative;z-index:2;}
@@ -64,7 +64,7 @@
 
 .login-page .find-pwd{display: inline-block;width:355px;text-align: left;}
 .login-page .find-pwd h3{color:#f27835;margin-bottom: 30px;}
-.find-pwd .find-cont{display: inline-block;width: 230px;padding:32px 0;vertical-align: top;margin-right: 30px;}
+.find-pwd .find-cont{display: inline-block;width: 234px;padding: 30px 0;vertical-align: top;margin-right: 25px;}
 .find-pwd .find-cont p{font-size: 14px;color:#f27835;line-height: 32px;}
 .find-pwd .find-cont p.error-msg{font-size: 12px;color:#f15d2d;line-height:15px;}
 .find-pwd .find-cont p input{width:216px;}
@@ -74,6 +74,7 @@
 .find-pwd .find-cont p.captcha a{position:absolute;right:0;font-size: 12px;text-decoration: underline;color:#f27835;display: inline-block;top:25px;letter-spacing: -2px;}
 .find-pwd .find-cont p.tel-captcha input{width: 125px;}
 .find-pwd .find-cont p.tel-captcha a.light-btn{width: 85px;margin-top: 0;margin-left: 5px;}
+.find-pwd .find-cont p.tel-captcha a.gray-btn{width: 90px;margin-left: 3px;font-size: 12px;display: inline-block;}
 .find-pwd .find-cont p a.light-btn{width:230px;display: inline-block;text-align: center;margin-top: 25px;}
 .find-pwd .find-cont p.mark-word{color:#919191;}
 .find-pwd .find-cont p.mark-word strong{color: #f27835;font-size: 18px;font-weight: 300;}
