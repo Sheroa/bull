@@ -70,8 +70,8 @@
  			var buf = [];
  			buf.push('<p class="ti">填写银行卡信息<a href="#" class="quit"></a></p>');
  			buf.push('<div class="cont2">');
- 			buf.push('<p><span class="p-ti">真实姓名</span><input type="text" id="" placeholder="请输入真实姓名"></p>');
- 			buf.push('<p><span class="p-ti">身份证号码</span><input type="text" id="" placeholder="请输入您真实的身份证号码"></p>');
+ 			buf.push('<p><span class="p-ti">真实姓名</span><input type="text" id="true_name" placeholder="请输入真实姓名"></p>');
+ 			buf.push('<p><span class="p-ti">身份证号码</span><input type="text" id="identify_num" placeholder="请输入您真实的身份证号码"></p>');
  			buf.push('<p><span class="p-ti">选择银行</span>');
  			buf.push('<select name="bank-select" id="bank-select">');
  			buf.push('<option data-code="0">');
@@ -126,7 +126,29 @@
 
  			    		var selected_option = $("select[name='bank-select']").find("option:selected").attr("data-code"),
  			    			bank_card_num = $.trim($("#bank_number").val()),
- 			    			error_msg = $(this).parents(".diginfo").find(".error-msg");
+ 			    			error_msg = $(this).parents(".diginfo").find(".error-msg"),
+ 			    			identify_card = $.trim($("#identify_num").val()),
+ 			    			true_name = $.trim($("#true_name").val());
+
+
+
+		    			//校验真实姓名
+		    			if((true_name.length == 0 || !K.isChinese(true_name))){
+		    				error_msg.text("输入您本人的借记卡卡号");
+		    				return false;
+		    			}
+
+		    			//身份证校验
+		    			if(identify_card.length == 0){
+		    				error_msg.text("请输入正确的身份证号码");
+		    				return false;
+		    			}
+
+		    			if(identify_card.length != 18){
+		    				error_msg.text("身份证格式有误请重新输入");
+		    				return false;
+		    			}
+
  			    		if(selected_option == 0){
  			    			error_msg.text("请选择银行");
  			    			return false;
@@ -145,10 +167,11 @@
 
  			    		error_msg.text("");
 
+
  			    		//发送ajax请求，修改银行卡
  			    		api.call('/api/user/improveIdentityInfo.do',{
 
- 			    			'name': user_info && user_info.userName,
+ 			    			'name': true_name,
  			    			'idCardNo':identify_card,
  			    			'bankCardNo':bank_card_num,
  			    			'bankName':$("select[name='bank-select']").find("option:selected").val(),

@@ -16,6 +16,18 @@ var $ = require('jquery'),
  		var self = this,
  			phone_number = "",
  			login_info = null;
+
+ 		//密码
+ 		$(".visible").on("click",function(){
+ 			var _this = $(this),
+ 				input_obj = _this.prev();
+ 			if(input_obj.attr('type') == 'password'){
+ 				input_obj.attr('type','text');
+ 			}else{
+ 				input_obj.attr('type','password')
+ 			}
+ 		});
+
  		//登陆 bind - click事件
  		$(".next_step_one").on('click',function(){
  			var login_check = self.valid_check(),
