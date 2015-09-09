@@ -122,10 +122,10 @@ var recharge = {
  				result = self.valid_check();
  			if(result){
  				// debugger;
- 				_this.parents(".border-box").find(".error-msg").html("<span class='p-ti'></span>"+result);
+ 				_this.parents(".border-box").find(".error-msg").html(result);
  				return false;
  			}
- 			_this.parents(".border-box").find(".error-msg").html("<span class='p-ti'></span>");
+ 			_this.parents(".border-box").find(".error-msg").html();
 
 
  			var true_name = $.trim($('#truename').val()),
