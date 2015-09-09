@@ -190,7 +190,7 @@ var passport = {
      * @returns {String}
      */
     getUserInfoItem:function(key){
-        return $.cookie(key);
+        return $.cookie("ppinf")[key];
     },
     showMsg: function(msg) {
         if (!this.loginMsg)

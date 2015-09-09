@@ -3,7 +3,8 @@
  * @author : ZY
  */
 
-var $ = require('jquery');
+var $ = require('jquery'),
+	passport = require('util/passport');
 
 require("cookie");
 
@@ -353,6 +354,12 @@ $.extend(Keeper,{
 	        window.location = $(this).attr("href");
 	        return;
 	    }).trigger("click"));
+	},
+	/**
+	 * 获取cookie
+	 */
+	get_user_info:function(key){
+		return passport.getUserInfoItem(key);
 	}
 });
 

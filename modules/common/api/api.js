@@ -49,16 +49,24 @@ api.getVersion = function () {
 */
 api.addVersion = function (data) {
 
-	var user_info =  JSON.parse($.cookie('ppinf')),
-		user_id = user_info.userId,
-		user_token = user_info.token;
+	var user_info =  JSON.parse($.cookie('ppinf') || null),
+		user_id = user_info && user_info.userId,
+		user_token = user_info && user_info.token;
 
-	return $.extend({
-		"userId":user_id,
-		"token":user_token,
-		"source": versions.getSource(),
-		"appVersion": this.getVersion()
-	},data);
+	if(!user_info){
+		return $.extend({
+			"source": versions.getSource(),
+			"appVersion": this.getVersion()
+		},data);
+	}else{
+		return $.extend({
+			"userId":user_id,
+			"token":user_token,
+			"source": versions.getSource(),
+			"appVersion": this.getVersion()
+		},data);
+	}
+
 };	
 
 module.exports = api;

@@ -33,7 +33,7 @@ var toolbar={
 
 		}else{
 			//跳转到登陆页面	
-			if(location.href.indexOf('my') > 0){
+			if(location.href.indexOf('my') > 0 ){
 				K.gotohref("/users/login.html?return_to="+location.href.replace(/^.*?\/\/.*?\//,"/"));
 			}	
 		}
