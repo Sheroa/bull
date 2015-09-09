@@ -50,6 +50,17 @@ var pwd = {
 
 		});
 
+		//密码
+		$(".visible").on("click",function(){
+			var _this = $(this),
+				input_obj = _this.prev();
+			if(input_obj.attr('type') == 'password'){
+				input_obj.attr('type','text');
+			}else{
+				input_obj.attr('type','password')
+			}
+		});
+
 		$(".next_step_two").on("click",function(){
 			var _this = $(this),
 				identify_code = $.trim($("#identify_code").val()),
