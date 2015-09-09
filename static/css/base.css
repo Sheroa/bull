@@ -60,7 +60,7 @@ p.error-msg{font-size: 12px;color:#dc5b46;font-style: normal;line-height: 15px;h
 .header{width:100%;height: 40px;padding:18px 0;border-bottom:2px solid #dfdfdf;}
 .header .wmain{overflow: visible;}
 .header .fl a{display: inline-block;vertical-align: top;}
-.header .fl .slogan{margin-left: 40px;}
+.header .fl .slogan{margin-left: 30px;margin-top: 12px;}
 .header .fr{height:40px;line-height: 40px;position: relative;z-index:1;}
 .header .fr a{text-decoration: none;color:#373737;}
 .header .fr a.link{display:inline-block;width: 130px;height:40px;}

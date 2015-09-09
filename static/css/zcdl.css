@@ -14,7 +14,7 @@
 .login-area h5{text-align: center;}
 
 
-.register{padding-top:30px;}
+.register{padding-top:30px;margin-top: 78px;}
 .register .step{margin:0 auto;}
 .register .step span{display: inline-block;position:relative;z-index:2;}
 .register .step span strong{display: inline-block;height:28px;line-height: 28px;width:28px;border-radius: 14px;color:#fff;font-weight: 300;background: #919191;}
