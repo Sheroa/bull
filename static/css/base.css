@@ -266,7 +266,7 @@ p.error-msg{font-size: 12px;color:#dc5b46;font-style: normal;line-height: 15px;h
 .popbox-bankrank .diginfo .cont2, .popbox-bankrank .diginfo .cont3{overflow: hidden;}
 .popbox-bankrank .diginfo .cont2 p{text-align: left;padding-left: 70px;}
 .popbox-bankrank .diginfo p{overflow: hidden;margin-bottom: 10px;}
-.popbox-bankrank .diginfo p span.p-ti{display: inline-block;width: 56px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}
+.popbox-bankrank .diginfo p span.p-ti{display: inline-block;width: 70px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}
 .popbox-bankrank .diginfo .cont2 p select{height:32px;line-height:32px;width: 145px;border:2px solid #919191;font-size: 14px;}
 .popbox-bankrank .diginfo .bank-logo{height:19px;margin-left: 10px;vertical-align: middle;}
 .popbox-bankrank .diginfo .cont2 p.moreInf{text-align: left;padding-left: 68px;}
