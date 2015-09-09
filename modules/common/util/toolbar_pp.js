@@ -21,7 +21,7 @@ var toolbar={
 				$("#wdl").addClass('hide');
 				var _html =  '<p class="name-msg"><a href="/my/account/systemMsg.html" class="name">'+user_info.loginName+'</a><a href="/my/account/systemMsg.html" class="msg-num">'+msg_none+'</a></p>'+
 					'<ul>'+
-						'<li class="ti"><a href="#">欢迎您，'+user_info.loginName+'</a></li>'+
+						'<li class="ti"><a href="/my/personCenter.html">欢迎您，'+user_info.loginName+'</a></li>'+
 						'<li><a href="/my/refund/recharge.html" class="login1">充值</a></li>'+
 						'<li><a href="/my/refund/withdrawCash.html" class="login2">提现</a></li>'+
 						'<li><a href="/my/account/systemMsg.html" class="login3">消息提醒</a><a href="/my/account/systemMsg.html" class="msg-num">'+msg_none+'</a></li>'+
