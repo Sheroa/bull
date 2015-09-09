@@ -46,6 +46,7 @@
 /* 我的资金 */
 .recharge{display: none;}
 .recharge .border-box{width:854px;padding:15px 0 20px 20px;margin-bottom: 15px;position:relative;}
+.recharge .border-box p.error-msg{padding-left: 165px;}
 .recharge p{overflow: hidden;margin-bottom: 10px;}
 .recharge p span.p-ti{display: inline-block;width: 150px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}
 .recharge p input{width:216px;}
@@ -57,7 +58,7 @@
 .recharge p input.shortOne{width:120px;}
 .recharge p a{font-size: 12px}
 .recharge p a.moreInf{text-decoration: underline;padding-left: 10px;}
-.recharge p a.light-btn{display:inline-block;width:90px;height: 32px;line-height: 32px;vertical-align: top;text-align: center;margin-left:5px;font-size: 10px;text-decoration: none;}
+.recharge p a.light-btn, .recharge p a.gray-btn{display:inline-block;width:90px;height: 32px;line-height: 32px;vertical-align: top;text-align: center;margin-left:5px;font-size: 10px;text-decoration: none;}
 .recharge p a.nextBtn{width: 230px;margin-left: 0;}
 .recharge p span em{display: inline-block;vertical-align: middle;background: url(../img/star-decorate.png) no-repeat;width: 10px;height: 8px;}
 .recharge .bank-logo{height:19px;margin-left: 10px;vertical-align: middle;}
