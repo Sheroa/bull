@@ -69,8 +69,10 @@
  		bank_list: 	function(){
  			var buf = [];
  			buf.push('<p class="ti">填写银行卡信息<a href="#" class="quit"></a></p>');
- 			buf.push('<div class="cont2"><p>');
- 			buf.push('<span class="p-ti">选择银行</span>');
+ 			buf.push('<div class="cont2">');
+ 			buf.push('<p><span class="p-ti">真实姓名</span><input type="text" id="" placeholder="请输入真实姓名"></p>');
+ 			buf.push('<p><span class="p-ti">身份证号码</span><input type="text" id="" placeholder="请输入您真实的身份证号码"></p>');
+ 			buf.push('<p><span class="p-ti">选择银行</span>');
  			buf.push('<select name="bank-select" id="bank-select">');
  			buf.push('<option data-code="0">');
  			buf.push('请选择银行');

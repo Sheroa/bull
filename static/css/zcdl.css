@@ -14,7 +14,7 @@
 .login-area h5{text-align: center;}
 
 
-.register{padding-top:30px;}
+.register{padding-top:30px;margin-top: 78px;}
 .register .step{margin:0 auto;}
 .register .step span{display: inline-block;position:relative;z-index:2;}
 .register .step span strong{display: inline-block;height:28px;line-height: 28px;width:28px;border-radius: 14px;color:#fff;font-weight: 300;background: #919191;}
@@ -36,7 +36,7 @@
 .register .cont p.mark-word{font-size: 12px;text-align: left;line-height: 16px;padding-left:93px;}
 .register .cont p.mark-word a{color:#f27835;text-decoration: underline;}
 .register .cont p.mark-word em{color:#f27835;}
-.register .cont p span{display: inline-block;width:83px;font-size: 14px;text-align: right;margin-right: 10px;}
+.register .cont p span.p-ti{display: inline-block;width:83px;font-size: 14px;text-align: right;margin-right: 10px;}
 .register .contOne p input{width:216px;}
 .register .contOne p input.captcha{width:101px;}
 .register .cont p a.light-btn, .register .cont p a.gray-btn{display: inline-block;height: 32px;}
@@ -55,7 +55,7 @@
 .register .contThree p.tel-ok em{font-size: 14px;}
 
 .register .contThree p .bank-pwd{display: inline-block;border-top:2px solid #919191;border-left:2px solid #919191;border-bottom:2px solid #919191;border-right: 1px solid #919191;margin-left: -4px;width:228px;}
-.register .contThree p .bank-pwd input{width:27px;height: 28px;border:none;border-right: 1px solid #919191;text-align: center;}
+.register .contThree p .bank-pwd input{width:27px;height: 32px;border:none;border-right: 1px solid #919191;text-align: center;}
 .register .contThree p.sure-step a{width:104px;}
 .register .contThree p.sure-step .light-btn{margin-left: 23px;}
 .register .contThree p.sure-step .gray-btn{height: 32px;display: inline-block;}

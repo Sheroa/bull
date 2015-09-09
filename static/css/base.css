@@ -21,6 +21,10 @@ ul,li{list-style: none;}
 button{height:32px;}
 p input{height:28px;line-height:28px;padding: 0 5px;border:2px solid #b2b2b2;font-size: 14px;}
 p input.check{height: 13px;width: 13px;vertical-align: middle;}
+p span.pwd-box{width: 215px;position:relative;text-align:left;height: 32px;line-height: 32px;padding: 0 5px;border:2px solid #b2b2b2;font-size: 14px;display: inline-block;}
+p span.pwd-box input{width: 188px !important;height: 32px;border:none;vertical-align: top;line-height: 32px;padding: 0;margin:0;}
+p span.pwd-box input::-ms-reveal{display: none;}
+p span.pwd-box a.visible{display: inline-block;background: url(/static/img/eye.png) no-repeat;width:23px;height:15px;position:absolute;top:10px;right: 5px;}
 .sub-text{font-size: 12px; text-align: left;line-height: 18px;}
 .bk-gray{background: #fafafa;width: 100%;padding: 50px 0;}
 .wmain{width:1140px;margin:0 auto;overflow:hidden;}
@@ -60,7 +64,7 @@ p.error-msg{font-size: 12px;color:#dc5b46;font-style: normal;line-height: 15px;h
 .header{width:100%;height: 40px;padding:18px 0;border-bottom:2px solid #dfdfdf;}
 .header .wmain{overflow: visible;}
 .header .fl a{display: inline-block;vertical-align: top;}
-.header .fl .slogan{margin-left: 40px;}
+.header .fl .slogan{margin-left: 30px;margin-top: 12px;}
 .header .fr{height:40px;line-height: 40px;position: relative;z-index:1;}
 .header .fr a{text-decoration: none;color:#373737;}
 .header .fr a.link{display:inline-block;width: 130px;height:40px;}
@@ -105,6 +109,7 @@ p.error-msg{font-size: 12px;color:#dc5b46;font-style: normal;line-height: 15px;h
 .login-area .textField a.visible{display: inline-block;background: url(/static/img/eye.png) no-repeat;width:23px;height:15px;position:absolute;top:10px;right: 5px;}
 .login-area .textField input{width:210px;height:36px;border:none;vertical-align:middle;line-height:38px;padding: 0 8px;margin:0;}
 .login-area .textField input#userPass{width:180px;}
+.login-area .textField input#userPass::-ms-reveal{display: none;}
 .login-area p.remember{overflow: hidden;line-height: 20px;margin-bottom: 5px;font-size:12px;}
 .login-area p.remember input{vertical-align:middle;margin-right:8px;border:1px solid #f27835;line-height: 21px;height: 21px;}
 .login-area p.remember .fl{color:#373737;}
@@ -261,7 +266,7 @@ p.error-msg{font-size: 12px;color:#dc5b46;font-style: normal;line-height: 15px;h
 .popbox-bankrank .diginfo .cont2, .popbox-bankrank .diginfo .cont3{overflow: hidden;}
 .popbox-bankrank .diginfo .cont2 p{text-align: left;padding-left: 70px;}
 .popbox-bankrank .diginfo p{overflow: hidden;margin-bottom: 10px;}
-.popbox-bankrank .diginfo p span.p-ti{display: inline-block;width: 56px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}
+.popbox-bankrank .diginfo p span.p-ti{display: inline-block;width: 70px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}
 .popbox-bankrank .diginfo .cont2 p select{height:32px;line-height:32px;width: 145px;border:2px solid #919191;font-size: 14px;}
 .popbox-bankrank .diginfo .bank-logo{height:19px;margin-left: 10px;vertical-align: middle;}
 .popbox-bankrank .diginfo .cont2 p.moreInf{text-align: left;padding-left: 68px;}
