@@ -25,7 +25,7 @@ p span.pwd-box{width: 215px;position:relative;text-align:left;height: 32px;line-
 p span.pwd-box input{width: 188px !important;height: 32px;border:none;vertical-align: top;line-height: 32px;padding: 0;margin:0;}
 p span.pwd-box input::-ms-reveal{display: none;}
 p span.pwd-box a.visible{display: inline-block;background: url(/static/img/eye.png) no-repeat;width:23px;height:15px;position:absolute;top:10px;right: 5px;}
-.sub-text{font-size: 12px; text-align: left;line-height: 18px;}
+.sub-text{font-size: 12px !important; text-align: left;line-height: 18px;}
 .bk-gray{background: #fafafa;width: 100%;padding: 50px 0;}
 .wmain{width:1140px;margin:0 auto;overflow:hidden;}
 .fl{float:left;}
