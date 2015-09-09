@@ -8,6 +8,7 @@ var navBar  = require("util/navbar"),
 	$       = require('jquery'),
 	toolbar = require('util/toolbar_pp'),
 	K       = require('util/Keeper'),
+	api     = require("api/api"),
 	data_transport = require('common/core_data'),
 	artTemplate 	= require("artTemplate");
 
@@ -45,28 +46,15 @@ var index_page = {
 	},
 	profile:function(){
 		//个人中心-个人信息展示
-		$.extend(data_transport, {
-			"userId":user_id,
-			"token":user_token
-		});
 
-		$.ajax({
-			url: '/api/account/getUserTreasure.do',
-			type: 'post',
-			data: data_transport,
-			success:function(_rel){
-				if(_rel.code == 0){
-					var render_data = _rel.data.result;
-					$.extend(render_data,user_info);
-					var _html = artTemplate.compile(__inline("./person_center/profile.tmpl"))(render_data);
-					$("#profile").html(_html);
-				}else if(_rel.code == 999){
-					//用户未登录或登录超时
-					K.gotohref("/users/login.html?return_to="+location.href.replace(/^.*?\/\/.*?\//,"/"));	
-				}
-			}
+		api.call('/api/account/getUserTreasure.do',{},function(_rel){
+			var render_data = _rel.result;
+			$.extend(render_data,user_info);
+			var _html = artTemplate.compile(__inline("./person_center/profile.tmpl"))(render_data);
+			$("#profile").html(_html);
+		},function(_rel){
+			alert(_rel.msg);
 		});
-		
 		
 	}
 }

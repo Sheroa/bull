@@ -44,7 +44,7 @@
 
 /* * * * * * * * * * * * * * * * 我的资金 * * * * * * * * * * * * * * * */
 /* 我的资金 */
-.recharge{}
+.recharge{display: none;}
 .recharge .border-box{width:854px;padding:15px 0 20px 20px;margin-bottom: 15px;position:relative;}
 .recharge p{overflow: hidden;margin-bottom: 10px;}
 .recharge p span.p-ti{display: inline-block;width: 150px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}

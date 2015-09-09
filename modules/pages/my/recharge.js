@@ -26,10 +26,40 @@ var user_info =  JSON.parse($.cookie('ppinf')),
 var recharge = {
  	//初始化
  	init:function(){
+
+ 		var self = this;
+
  		this.navBar(index);
  		this.sidebar();
- 		this.bank_list();
- 		this.event_handler();
+
+ 		//查询银行卡信息
+ 		api.call('/api/user/getIdentityInfoByUser.do',{},function(_rel){
+ 			var bank_card_num = _rel.result.bankCardNo;
+ 			if(bank_card_num){
+
+ 				$("#binded").show();
+
+ 				//用户已经绑定了银行卡，此时应该进入recharge2.html
+ 				$(".bank-icbc .border-pad").html(require('./bank_card_info').show(_rel));
+
+ 				//获取账户余额
+ 				api.call('/api/account/getAbleBalance.do',{},function(_rel){
+ 					//获取余额
+ 				},function(_rel){
+ 					alert(_rel.msg);
+ 				});
+
+ 			}else{
+
+ 				//用户没有绑定银行卡
+ 				$("#binding").show();
+ 				self.bank_list();
+ 				self.event_handler();
+ 			}
+
+ 		});
+
+
  	},
  	navBar:function(index){
  		navbar.init(index);
@@ -140,6 +170,46 @@ var recharge = {
  				img.attr('src','/static/img/bank/'+bank_alias+".png")
  			}
  		});
+
+
+ 		$(".verify_sms").on("click",function(){
+ 			var count = 60,
+ 				_this = $(this);
+
+ 			//校验
+ 			var phone_num = $.trim($("#phone_num").val()),
+ 				error_msg = $("#append_error_msg");
+
+ 			if(!phone_num){
+ 				error_msg.after("<p class='error-msg'>请输入手机号</p>")
+ 				return false;
+ 			}
+
+ 			error_msg.parents(".operator_box").find('.error-msg').remove();
+
+ 			//防止重复点击
+ 			if($(this).hasClass('disabled')){
+ 				return false;
+ 			}
+
+ 			$(this).addClass('disabled');
+ 			$(this).removeClass('light-btn').addClass('gray-btn');
+
+ 			window.timer = window.setInterval(function(){
+ 				if(count == 0){
+ 					_this.removeClass('disabled');
+ 					_this.removeClass('gray-btn').addClass('light-btn');
+ 					_this.html("手机验证码");
+ 					window.clearInterval(timer);
+ 				}else{
+ 					_this.html(count+"秒后重新获取");
+ 					count--;
+ 				}
+ 			},1000);
+
+ 			self.sendMobileCode(phone_num)
+ 		});
+
  		$(".moreInf").on("click",function(){
 			$.Dialogs({
 			    "id" : "diglog_wrapper",
@@ -197,6 +267,23 @@ var recharge = {
  			return '请选择银行';
  		}
  		return false;
+ 	},
+ 	sendMobileCode:function(phone_num){
+ 		$.extend(data_transport,{
+ 			'mobile': phone_num
+ 		});
+ 		$.ajax({
+ 			url: '/api/user/sendSmsCodeByRegister',
+ 			type: 'post',
+ 			data: data_transport,
+ 			success:function(result){
+ 				if(result.code == 0){
+ 					$("#identify_code").html("验证码已发至手机"+phone_num);
+ 				}else{
+ 					$("#identify_code").html("<em>验证码发送失败</em>");
+ 				}
+ 			}
+ 		});
  	}
 }
 

@@ -38,7 +38,7 @@
  				var obj = data.result,
  					info_pad = container_binded.find(".border-pad"),
  					buf = [];
- 				buf.push('<p class="bank-name">'+data.result.bankCode+'</p>');
+ 				buf.push('<p class="bank-name">'+data.result.bankName+'</p>');
  				buf.push('<p class="card-kind">储蓄卡</p>');
  				buf.push('<p class="card-owner">户名：'+K.name_map(data.result.userName)+'</p>');
  				if(data.result.bindCard){
@@ -46,7 +46,7 @@
  					container_binded.append('<p class="sub-text">单笔限额20万，单日限额200万。<br>实际请参考您的银行限额设置。</p>');
  				}else{
  					buf.push('<p class="card-num">'+K.bank_card_map(data.result.bankCardNo)+'</p>');
- 					container_binded.append('<a href="javascript:void(0);" class="alter">修改</a>');	
+ 					container_binded.append('<a href="javascript:void(0);" class="alter" data-bank-info='+JSON.stringify(data.result)+'>修改</a>');	
  				}
  								
  				info_pad.html(buf.join(""));
@@ -91,8 +91,9 @@
  		var self = this;
 
  		function bind_func(){
- 			var _this = $(this);
- 				
+ 			var _this = $(this),
+ 				user_info = JSON.parse(_this.attr('data-bank-info') || null),
+ 				identify_card = user_info && user_info.identityCard;
 
  			$.Dialogs({
  			    "id" : "diglog_wrapper",
@@ -141,6 +142,22 @@
  			    		}
 
  			    		error_msg.text("");
+
+ 			    		//发送ajax请求，修改银行卡
+ 			    		api.call('/api/user/improveIdentityInfo.do',{
+
+ 			    			'name': user_info && user_info.userName,
+ 			    			'idCardNo':identify_card,
+ 			    			'bankCardNo':bank_card_num,
+ 			    			'bankName':$("select[name='bank-select']").find("option:selected").val(),
+ 			    			'bankCode':selected_option
+
+ 			    		},function(data){
+ 			    			location.reload(true);
+ 			    		},function(){
+ 			    			//输出错误信息
+ 			    			
+ 			    		});
  			    	});
 
  			    	//银行卡下拉菜单

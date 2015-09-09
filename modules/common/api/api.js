@@ -9,7 +9,7 @@ var $         = require("jquery"),
 
 
 var api = {
-	call: function (requestUrl, data, callback) {
+	call: function (requestUrl, data, callback,fail_callback) {
 		$.ajax({
 			url: requestUrl	,
 			type: 'post',
@@ -24,6 +24,8 @@ var api = {
 					if(location.href.indexOf('my') > 0){
 						K.gotohref("/users/login.html?return_to="+location.href.replace(/^.*?\/\/.*?\//,"/"));
 					}
+				}else{
+					fail_callback && fail_callback(_rel);
 				}
 			}
 		});
