@@ -157,7 +157,7 @@ var $ = require('jquery'),
 			});
  		})
 
- 		第三部-跳过
+ 		//第三部-跳过
  		$(".step_over").on("click",function(){
  			K.gotohref("/my/personCenter.html");	
  		})
