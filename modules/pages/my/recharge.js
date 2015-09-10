@@ -42,12 +42,7 @@ var recharge = {
  				//用户已经绑定了银行卡，此时应该进入recharge2.html
  				$(".bank-icbc .border-pad").html(require('./bank_card_info').show(_rel));
 
- 				//获取账户余额
- 				api.call('/api/account/getAbleBalance.do',{},function(_rel){
- 					//获取余额
- 				},function(_rel){
- 					alert(_rel.msg);
- 				});
+ 				self.event_handler_bind();
 
  			}else{
 
@@ -229,6 +224,14 @@ var recharge = {
 			if (event.keyCode == "13") {//keyCode=13是回车键
 				self.get_special_bank(bank_num);
 			}
+ 		});
+ 	},
+ 	event_handler_bind:function(){
+
+ 		//显示账户余额
+ 		api.call('/api/account/getUserAsset.do',{},function(_rel){
+ 			var ableBalanceAmount = _rel.result.ableBalanceAmount;
+ 			$(".ableBalanceAmount").text('￥'+ableBalanceAmount);
  		});
  	},
  	valid_check:function(){
