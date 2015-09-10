@@ -16,5 +16,25 @@
 .insurance .cont .text span p.ti7{padding-left:30px;background: url(/static/img/insurance6.png) no-repeat center left}
 .insurance .cont .text span p.ti8{padding-left:30px;background: url(/static/img/insurance7.png) no-repeat center left}
 
+.contact{margin-bottom:2px;margin-right:1px;}
+.contact .cont{padding:30px 0;text-align: left;}
+.contact .cont p{font-size: 12px;margin-bottom: 15px;}
+.contact .cont p.ti{font-size: 14px;}
+.contact .cont .company{border-bottom: 1px solid #efefef;padding:0 25px;}
+.contact .cont .others{padding:0 25px;}
+.contact .cont .others p{padding-left: 20px;}
+.contact .cont .others p.ti{background: url(/static/img/orange-dot.png) no-repeat left center;margin-top: 20px;}
 
 
+.partner .shadow-box{padding:50px 0;margin-bottom: 20px;margin-right: 1px;}
+.partner .shadow-box span{display:inline-block;}
+.partner .shadow-box img{margin-right: 45px;width:164px;}
+.partner .shadow-box span.cont-area{width:530px;text-align: left;vertical-align: middle;}
+.partner .shadow-box span.cont-area h5{font-size: 16px;line-height: 30px;}
+.partner .shadow-box span.cont-area p{font-size: 14px;line-height: 25px;}
+
+.introduce{margin-bottom:2px;margin-right:1px;padding:50px 0;}
+.introduce .each{text-align: left;padding:20px 45px;}
+.introduce .each h4.col-ti .ti-cont{font-size: 16px;}
+.introduce .each p{font-size: 14px;}
+.introduce .our-feature span{display: inline-block;width:330px;margin:0 30px;}
