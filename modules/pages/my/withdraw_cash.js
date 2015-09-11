@@ -7,7 +7,8 @@
  	api = require("api/api"),
  	K = require("util/Keeper"),
  	toolbar = require('util/toolbar_pp'),
- 	navBar = require("util/navbar");
+ 	navBar = require("util/navbar"),
+ 	bank_card_num = "";
 
  toolbar.init();
  navBar.init(index);
@@ -30,6 +31,7 @@
  					buf = [];
  				buf.push('<p class="bank-name">'+data.result.bankName+'</p>');
  				buf.push('<p class="card-kind">储蓄卡</p>');
+ 				bank_card_num = data.result.bankCardNo;
  				if(data.result.bindCard){
  					buf.push('<p class="card-bound"><i>已绑定</i><em>'+K.bank_card_map(data.result.bankCardNo)+'</em></p>');	
  					container_binded.append('<p class="sub-text">单笔限额20万，单日限额200万。<br>实际请参考您的银行限额设置。</p>');
@@ -69,13 +71,57 @@
 		$("#province").change(function(){
 			var self    = $(this),
 				city_id = self.children('option:selected').val(),
-				city_name = self.children('option:selected').name();
+				city_name = self.children('option:selected').text();
 			
 			if(city_id == 0){
 				//选中option为请选择城市返回，并且清空
+				$("#city").html("<option value='0'>请选择城市</option>");
+				$("#bank").html("<option value='0'>请选择支行</option>");
+				return false;
 			}
 
+			api.call('/api/payment/findCityList.do',{
+				'provinceId':city_id,
+				'provinceCode':city_name
+			},function(_rel){
+				var list = _rel.list,
+					city_list = [];
+				city_list.push('<option value="0">请选择城市</option>');
+				$.each(list,function(index,val){
+					var str = '<option value="'+val.code+'">'+val.name+'</option>';
+					city_list.push(str);
+				});
 
+				$("#city").html(city_list.join(""));
+			});
+		});
+
+		$("#city").change(function(){
+			var self    = $(this),
+				city_id = self.children('option:selected').val(),
+				city_name = self.children('option:selected').text();
+			
+			if(city_id == 0){
+				//选中option为请选择城市返回，并且清空
+				$("#bank").html("<option value='0'>请选择支行</option>");
+				return false;
+			}
+
+			api.call('/api/payment/findBankBranchList.do',{
+				'cityId':city_id,
+				'cityCode':city_name,
+				'bankCardNo':bank_card_num
+			},function(_rel){
+				var list = _rel.list,
+					city_list = [];
+				city_list.push('<option value="0">请选择支行</option>');
+				$.each(list,function(index,val){
+					var str = '<option value="'+val.branchId+'">'+val.branchName+'</option>';
+					city_list.push(str);
+				});
+
+				$("#bank").html(city_list.join(""));
+			});
 		});
  	}
  }
