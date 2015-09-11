@@ -18,7 +18,7 @@
  		//页面渲染
  		api.call('/api/user/getIdentityInfoByUser.do',{},function(data){
  			var bank_card_num = data.result.bankCardNo,
- 				// container     = $(".add-bank"),
+ 				container     = $(".add-bank"),
  				container_binded = $('#bank_info');
  			if(!bank_card_num){
  				//用户没有绑定银行卡
@@ -46,9 +46,36 @@
  		});
 
 		//账户可用余额查询
-		api.call('/api/account/getAbleBalance.do',{},function(){
+		api.call('/api/account/getUserAsset.do',{},function(_rel){
+			 var ableBalanceAmount = _rel.result.ableBalanceAmount;
+			 $(".ableBalanceAmount").text("￥"+ableBalanceAmount);
 		},function(_rel){
 			alert(_rel.msg);
+		});
+
+		//银卡开户行地址
+		api.call('/api/payment/findProvinceList.do',{},function(_rel){
+			var list = _rel.list,
+				province_list = [];
+			
+			$.each(list, function(index, val) {
+				var str = '<option value="'+val.code+'">'+val.name+'</option>';
+				province_list.push(str);	 
+			});
+
+			$("#province").append(province_list.join(""));
+		});
+
+		$("#province").change(function(){
+			var self    = $(this),
+				city_id = self.children('option:selected').val(),
+				city_name = self.children('option:selected').name();
+			
+			if(city_id == 0){
+				//选中option为请选择城市返回，并且清空
+			}
+
+
 		});
  	}
  }
