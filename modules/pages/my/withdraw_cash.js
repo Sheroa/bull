@@ -123,6 +123,21 @@
 				$("#bank").html(city_list.join(""));
 			});
 		});
+
+		//密码输入框
+		$(".bank-pwd").find("input").each(function(index, el) {
+			var _this = $(el);
+			_this.on("keyup",function(event){
+				var self = $(this);
+
+				if(event.which == 8){
+					self.text("");
+					self.prev().focus();
+				}else{
+					self.next().focus();
+				}
+			});
+		});			
  	}
  }
 
