@@ -3,14 +3,14 @@
 .brief{width:870px;background: #fff;}
 .brief .top{background: #f27835;width:100%;overflow: hidden;}
 .brief .top span{display: inline-block;}
-.brief .top .text-area{width:155px;vertical-align: top;margin:36px 0;}
+.brief .top .text-area{width:155px;vertical-align: top;margin:36px 10px 36px 0;}
 .brief .top .text-area p{color:#fff;}
 .brief .top .text-area p.num{font-size:24px;margin:10px 0;}
 .brief .top .text-area p.subti{font-size:12px;}
 .brief .top .graph{vertical-align: bottom;}
 .brief .top .graph img{}
 
-.brief .bottom{padding:105px 25px;position: relative;}
+.brief .bottom{padding:90px 25px 70px 25px;position: relative;}
 .brief .bottom .each-part1, .brief .bottom .each-part2{display: inline-block;vertical-align: middle;text-align: left;}
 .brief .bottom .each-part2{margin-left: 35px;}
 .brief .bottom .each-part1{width:450px;}
@@ -23,6 +23,7 @@
 .brief .bottom .each-part2 p{margin-bottom: 25px;}
 .brief .bottom .each-part2 .p-ti{font-size: 14px;margin-right: 5px;display: inline-block;width:60px;}
 .brief .bottom .each-part2 .num{font-size: 24px;color:#f27835;}
+.brief .bottom .each-part2 .num2{font-size: 14px;}
 .brief .bottom .each-part2 input{width:130px;}
 .brief .bottom .each-part2 input.check{width:13px;}
 .brief .bottom .each-part2 input{width:216px;}
@@ -31,7 +32,7 @@
 .brief .bottom .each-part2 p.sub-text{margin-bottom:0;padding-left: 70px;}
 .brief .bottom .each-part2 p a.recharge{font-size: 12px;color:#f27835;margin-left: 50px;}
 .assure3{background: url(/static/img/assure.png) no-repeat right center;padding-right:24px;height: 25px;line-height: 19px;position: absolute;top:0;right:10px;font-size: 12px;color:#49a677;}
-
+.brief .bottom .each-part2 p.ttn-btn a.light-btn{margin-top: 0;}
 .tab-col{margin: 20px 1px;}
 .tab-col .tab{text-align: left;}
 .tab-col .tab span{width: 106px;height: 37px;line-height: 37px;display: inline-block;text-align: center;background:#a6a6a6;color:#fff;cursor:pointer;box-shadow: -1px -1px 1px 0px #d3d3d3;}
