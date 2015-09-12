@@ -4,7 +4,7 @@
 /* * * * * * * * * * * * * * * * 基本设置 * * * * * * * * * * * * * * * */
 html,body{height: 100%;width:100%;}
 body{background: #fff;text-align: center;}
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,figure,button{margin:0;padding:0;font-family: '\5FAE\8F6F\96C5\9ED1';color:#919191;font-weight: 200;font-size:16px;border:0;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,figure,button,select{margin:0;padding:0;font-family: '\5FAE\8F6F\96C5\9ED1';color:#919191;font-weight: 200;font-size:16px;border:0;}
 h1,h2,h3,h4,h5,h6{font-family: '\5FAE\8F6F\96C5\9ED1';color:#373737;font-weight: normal;}
 h1{font-size:36px;}
 h2{font-size:30px;}
@@ -251,7 +251,6 @@ p.error-msg{font-size: 12px;color:#dc5b46;font-style: normal;line-height: 15px;h
 
 
 /* 弹框 */
-.dialog-wrapper{width:624px;position: absolute; z-index: 100000;background: #fff;}
 .popbox-bankrank{width:445px;}
 .popbox-bankrank .diginfo{background: #fff;width:455px;}
 .popbox-bankrank .diginfo p.ti{height:65px;line-height: 65px;width:430px;background:#f27835;color:#fff;font-size: 18px;text-align: left;padding-left: 25px;position: relative;}
@@ -275,6 +274,7 @@ p.error-msg{font-size: 12px;color:#dc5b46;font-style: normal;line-height: 15px;h
 .popbox-bankrank .diginfo .cont2 p a.light-btn{margin-left: 20px;}
 .popbox-bankrank .diginfo .cont2 p input{width:216px;}
 .popbox-bankrank .diginfo .cont3{padding:25px 0 45px 0;}
+.popbox-bankrank .diginfo .cont3 input{width:216px;}
 .popbox-bankrank .diginfo .cont3 p{text-align: left;padding-left:115px;margin-top: 20px;font-size:14px;}
 .popbox-bankrank .diginfo .cont3 p.sub-text{margin-top: 0;}
 .popbox-bankrank .diginfo .cont3 p.sub-text a{margin-left: 60px;color:#f27835;text-decoration: underline;}
@@ -284,5 +284,23 @@ p.error-msg{font-size: 12px;color:#dc5b46;font-style: normal;line-height: 15px;h
 .popbox-bankrank .diginfo .cont4{padding:30px 20px;}
 .popbox-bankrank .diginfo .cont4 p{font-size: 12px;line-height: 20px;text-align: left;}
 
-.bank-pwd{display: inline-block;border-top:2px solid #919191;border-left:2px solid #919191;border-bottom:2px solid #919191;border-right: 1px solid #919191;margin-left: -4px;}
-.bank-pwd input{width:27px;height: 28px;border:none;border-right: 1px solid #919191;text-align: center;}
+.popbox-bankrank .diginfo2{background: #fff;width:315px;}
+.popbox-bankrank .diginfo2 p.ti{height:65px;line-height: 65px;width:290px;background:#f27835;color:#fff;font-size: 18px;text-align: left;padding-left: 25px;position: relative;}
+.popbox-bankrank .diginfo2 p.ti a{position:absolute;right:25px;top:22px;}
+
+.bank-pwd{display: inline-block;border-top:2px solid #919191;border-left:2px solid #919191;border-bottom:2px solid #919191;border-right: 1px solid #919191;}
+.bank-pwd input{width:27px !important;height: 28px;border:none;border-right: 1px solid #919191;text-align: center;}
+
+.redbag{background: url(/static/img/redbag.png) no-repeat right bottom #f27835;}
+
+.tab-col{margin: 20px 1px;}
+.tab-col .tab{text-align: left;}
+.tab-col .tab span{width: 106px;height: 37px;line-height: 37px;display: inline-block;text-align: center;background:#a6a6a6;color:#fff;cursor:pointer;box-shadow: -1px -1px 1px 0px #d3d3d3;}
+.tab-col .tab span:hover{background: #f27835;}
+.tab-col .tab span.selected{background: #fff;color:#373737;}
+
+.tab-col .cont{display: none;text-align: left;padding:50px 70px;}
+.tab-col .cont p.ti{line-height: 20px;margin-bottom: 15px;}
+.tab-col .cont p.ti em{color:#373737;}
+.tab-col .cont p.sub-cont{font-size: 12px;line-height: 20px;}
+.tab-col .cont .img-box{width:100%;text-align: center;display: inline-block;margin:35px 0;}
