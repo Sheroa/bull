@@ -56,10 +56,14 @@ var sideBar = {
 			_self.addClass('selected');
 
 			$(".left-tab ul").each(function(){
+				if($(this).attr('data-releative') == _self.attr("data-type")){
+					return true;
+				}
 				if(!$(this).is(':hidden')){
 					$(this).hide();
 				}
 			});
+			
 			if(_self.next("ul").is(":hidden")){
 				_self.next('ul').show();
 			}else{

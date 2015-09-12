@@ -16,7 +16,7 @@
 			
 			<link rel="import" href="../sidebar.html?__inline">
 
-			<div class="fr-main recharge">
+			<div class="fr-main recharge" style="display:block">
 				<h4 class="col-ti"><span class="ti-logo"></span><span class="ti-cont">提现</span></h4>
 				<div class="bank-msg">
 					<div class="bank-own" id="bank_info">
@@ -33,19 +33,19 @@
 				</div>
 				<div class="border-box" style="padding:45px 0 45px 20px;">
 					<p class="address"><span class="p-ti">开户行地址</span><em>省份</em>
-					<select name="" id=""><option value="0">北京</option><option value="1">内蒙古自治区</option></select>
+					<select name="" id="province"><option value="0">请选择省份</option></select>
 					<em>城市</em>
-					<select name="" id=""><option value="0">海淀区</option></select>
+					<select name="" id="city"><option value="0">请选择城市</option></select>
 					<em>支行名称</em>
-					<select name="" id=""><option value="0">北京市海淀支行</option></select>
+					<select name="" id="bank"><option value="0">请选择支行</option></select>
 					</p>
 					<div>
-						<p><span class="p-ti">账户余额</span><strong class="num">￥50.00</strong></p>
+						<p><span class="p-ti">账户余额</span><strong class="num ableBalanceAmount"></strong></p>
 						<p><span class="p-ti"><em></em>提现金额</span><input type="text" placeholder="本次可提取50元"></p>
 						<p class="error-msg"><!-- 账户余额不足，请重新输入提现金额 --></p>
 						<p>
 							<span class="p-ti"><em></em>交易密码</span>
-							<span class="bank-pwd"><input type="text"><input type="text"><input type="text"><input type="text"><input type="text"><input type="text"></span>
+							<span class="bank-pwd"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"></span>
 						</p>
 						<p class="sub-text"><span class="p-ti"></span><span>请输入6位字交易密码</span><a href="#" class="forget-pwd">忘记密码</a></p>
 						<p class="error-msg"><!-- 错误提示 --></p>

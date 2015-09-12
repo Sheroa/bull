@@ -128,11 +128,25 @@ var $ = require('jquery'),
  				}
  			});
  			
-
-
-	
-
  		});
+
+		//密码输入框
+		$(".bank-pwd").each(function(index, el) {
+			$(el).find("input").each(function(index, el) {
+				var _this = $(el);
+				_this.on("keyup",function(event){
+					var self = $(this);
+
+					if(event.which == 8){
+						self.text("");
+						self.prev().focus();
+					}else{
+						self.next().focus();
+					}
+				});
+			});	
+		});
+
 
  		//第三部-设置
  		$(".set_btn").on("click",function(){
@@ -148,7 +162,9 @@ var $ = require('jquery'),
  					pwd_array.push($(v).val());
  				});
  				compare_array.push(pwd_array.join(""));
- 			})
+
+
+ 			});
 
  			if(compare_array[0].length != 6 || compare_array[1].length != 6){
  				error_msg.text("请设置交易密码，保障资金安全");
@@ -172,7 +188,8 @@ var $ = require('jquery'),
  		//第三部-跳过
  		$(".step_over").on("click",function(){
  			K.gotohref("/my/personCenter.html");	
- 		})
+ 		});
+
  	},
  	valid_check:function(){
  		var user_pwd  = $("#user_pwd"),
