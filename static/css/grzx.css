@@ -118,3 +118,28 @@
 .bankcard .shadow-box table thead tr td{border-bottom: 1px solid #dddddd;}
 .bankcard .shadow-box table tbody tr td{color:#373737;}
 
+.myInput{}
+.myInput .border-box{padding:20px 30px;}
+.myInput .border-box .pie-chart{}
+.myInput .border-box .pie-chart .each{width:361px;margin-right: 40px;display:inline-block;}
+.myInput .border-box .pie-chart .each p.ti{padding-bottom: 10px;border-bottom: 1px solid #f27835;font-size: 14px;}
+.myInput .border-box .pie-chart .each p.ti em{font-size: 24px;color:#f27835;}
+
+.myInput .tab-col .cont{padding:0;padding-bottom: 60px;}
+.myInput .tab-col .cont .table-ti{line-height: 40px;padding:20px;overflow: hidden;}
+.myInput .tab-col .cont .table-ti em{font-size: 12px;padding:3px 12px;border-radius: 10px;}
+.myInput .tab-col .cont .table-ti em.selected{color:#fff;background:#f27835;}
+.myInput .tab-col .cont .table-ti em:hover{color:#f27835; }
+.myInput .tab-col .cont .sub-tab{display: none;position: relative;}
+.myInput .tab-col .cont .sub-tab .hqb-msg{position: absolute;top:-55px;right:10px;}
+.myInput .tab-col .cont .sub-tab .hqb-msg em{font-size: 12px;margin-right: 5px;}
+.myInput .tab-col .cont .sub-tab .hqb-msg i{font-size: 24px;color:#f27835;font-style: normal;margin-right: 15px;}
+.myInput .tab-col .cont table{width: 100%;border-collapse:collapse}
+.myInput .tab-col .cont table tr{padding:0 30px;}
+.myInput .tab-col .cont table thead td{border-bottom: 1px solid;}
+.myInput .tab-col .cont table td{font-size: 14px;vertical-align: top;padding:10px;line-height: 25px;}
+.myInput .tab-col .cont table td.left1{padding-left:20px;}
+.myInput .tab-col .cont table td.right1{padding-right:20px;}
+.myInput .tab-col .cont table tbody td{color:#373737;}
+.myInput .tab-col .cont p.btn{text-align: center;margin-top:40px;}
+.myInput .tab-col .cont p.btn a.light-btn{width:140px;margin:0 20px;display: inline-block;line-height:32px;}
