@@ -88,7 +88,7 @@ var invest = {
 			});
 		});
 
-		//购买
+		//赎回
 		$(".redemption").on("click",function(){
 			$.Dialogs({
 			    "id" : "diglog_wrapper",
@@ -98,6 +98,7 @@ var invest = {
 			    "auto" : false,
 			    "msg" :self.tpl.redemption(),
 			    "openfun":function(){
+
 			    	//密码输入框
 			    	$(".bank-pwd").each(function(index, el) {
 			    		$(el).find("input").each(function(index, el) {
@@ -118,6 +119,14 @@ var invest = {
 			});
 		});
 
+		//api调用，获取用户财富模块
+		api.call('/api/account/getUserAsset.do',{},function(_rel){
+			var currentProductAmount = _rel.result.currentProductAmount;
+			if(!currentProductAmount){
+				//显示赎回btn
+				$(".redemption").show();
+			}
+		});
 	}
 }
 
