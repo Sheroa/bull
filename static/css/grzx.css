@@ -124,6 +124,16 @@
 .myInput .border-box .pie-chart .each{width:361px;margin-right: 40px;display:inline-block;}
 .myInput .border-box .pie-chart .each p.ti{padding-bottom: 10px;border-bottom: 1px solid #f27835;font-size: 14px;}
 .myInput .border-box .pie-chart .each p.ti em{font-size: 24px;color:#f27835;}
+.myInput .border-box .pie-chart .each .chart{display: inline-block;margin-top: 20px;height:165px;}
+.myInput .border-box .pie-chart .each .chart span{display: inline-block;width: 170px;margin-left: 20px;vertical-align: top;margin-top: 20px;}
+.myInput .border-box .pie-chart .each .chart span p em{display: inline-block;width:20px;height: 20px;border-radius: 10px;margin-right: 5px;vertical-align: middle;}
+.myInput .border-box .pie-chart .each .chart span p em.bar1{background: #f27835}
+.myInput .border-box .pie-chart .each .chart span p em.bar2{background: #f39c11}
+.myInput .border-box .pie-chart .each .chart span p em.bar3{background: #58d68d}
+.myInput .border-box .pie-chart .each .chart span p em.bar4{background: #6699cc}
+.myInput .border-box .pie-chart .each .chart span p{font-size:14px; line-height: 28px;}
+.myInput .border-box .pie-chart .each .chart span p strong{font-weight: 300;color:#f27835;}
+.myInput .border-box .pie-chart .each .chart span p i{font-style: normal;}
 
 .myInput .tab-col .cont{padding:0;padding-bottom: 60px;}
 .myInput .tab-col .cont .table-ti{line-height: 40px;padding:20px;overflow: hidden;}
