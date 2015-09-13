@@ -127,7 +127,7 @@
 
 .myInput .tab-col .cont{padding:0;padding-bottom: 60px;}
 .myInput .tab-col .cont .table-ti{line-height: 40px;padding:20px;overflow: hidden;}
-.myInput .tab-col .cont .table-ti em{font-size: 12px;padding:3px 12px;border-radius: 10px;}
+.myInput .tab-col .cont .table-ti em{font-size: 12px;padding:3px 12px;border-radius: 10px;cursor:pointer;}
 .myInput .tab-col .cont .table-ti em.selected{color:#fff;background:#f27835;}
 .myInput .tab-col .cont .table-ti em:hover{color:#f27835; }
 .myInput .tab-col .cont .sub-tab{display: none;position: relative;}
