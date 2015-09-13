@@ -10,7 +10,7 @@
 <body>
 
 	<link rel="import" href="/static/html/common/header.html?__inline">
-
+	<script type="text/javascript" src='/modules/common/ui/chart.js'></script>
 	<div class="bk-gray">
 		<div class="wmain">
 
@@ -22,7 +22,7 @@
 					<div class="pie-chart">
 						<div class="each">
 							<p class="ti">总资产：<em>￥100000</em></p>
-							<span class="chart"></span>
+							<span class="chart"><canvas id="myChart" width="400" height="400"></canvas></span>
 						</div>
 						<div class="each">
 							<p class="ti">总资产：<em>￥360000</em></p>
@@ -252,7 +252,7 @@
 
 	<script type="text/javascript">
 		var index = 0;
-		require('pages/my/person_center');
+		require('pages/my/invest');
 	</script>
 
 
