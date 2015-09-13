@@ -37,8 +37,12 @@
   		    }
   		]
 
-  		var ctx = document.getElementById("myChart").getContext("2d");
-  		var myPieChart = new Chart(ctx).Pie(data);
+  		var ctx = document.getElementById("myChart_finance").getContext("2d");
+  		var ctx_1 = document.getElementById("myChart_revenue").getContext("2d");
+  		new Chart(ctx).Pie(data);
+  		new Chart(ctx_1).Pie(data);
+  	},
+  	UI:function(){
 
   	}
   }
