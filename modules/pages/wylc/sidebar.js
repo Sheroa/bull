@@ -24,23 +24,23 @@ var href=window.location.href,
 
  		if(href.indexOf("hqb")!=-1){//个人中心
 
- 			type = "personCenter";
+ 			type = "hqb";
 
- 		}else if(href.indexOf("fund")!=-1){//资金
+ 		}else if(href.indexOf("ttn")!=-1){//资金
 
- 			$($("a[data-type='fund']")[0]).trigger("click");
- 			$($("a[data-type='fund']")[0]).addClass("selected");
- 			if(href.indexOf("record")!=-1){
- 				$("a[data-type='record']").addClass("selected");
- 			}else if(href.indexOf("recharge")!=-1){
- 				$("a[data-type='recharge']").addClass("selected");
- 			}else if(href.indexOf("withdrawCash")!=-1){
- 				$("a[data-type='withdrawCash']").addClass("selected");
+ 			$($("a[data-type='ttn']")[0]).trigger("click");
+ 			$($("a[data-type='ttn']")[0]).addClass("selected");
+ 			if(href.indexOf("90")!=-1){
+ 				$("a[data-type='ttn_90']").addClass("selected");
+ 			}else if(href.indexOf("180")!=-1){
+ 				$("a[data-type='ttn_180']").addClass("selected");
+ 			}else if(href.indexOf("360")!=-1){
+ 				$("a[data-type='ttn_360']").addClass("selected");
  			}
  			
- 		}else if(href.indexOf('account') != -1){//账号
- 			$($("a[data-type='account']")[0]).trigger("click");
- 			$($("a[data-type='account']")[0]).addClass("selected");
+ 		}else if(href.indexOf('float_income') != -1){//账号
+ 			$($("a[data-type='float_income']")[0]).trigger("click");
+ 			$($("a[data-type='float_income']")[0]).addClass("selected");
  			if(href.indexOf("bankCard")!=-1){
  				$("a[data-type='bankCard']").addClass("selected");
  			}else if(href.indexOf("systemMsg")!=-1){
@@ -57,16 +57,20 @@ var href=window.location.href,
  			_self.addClass('selected');
 
  			$(".left-tab ul").each(function(){
+ 				if($(this).attr('data-releative') == _self.attr("data-type")){
+ 					return true;
+ 				}
  				if(!$(this).is(':hidden')){
  					$(this).hide();
  				}
  			});
+ 			
  			if(_self.next("ul").is(":hidden")){
  				_self.next('ul').show();
  			}else{
  				_self.next('ul').hide();
  			}
- 		})
+ 		});
  	}
  }
  module.exports = sideBar;
