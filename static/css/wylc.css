@@ -11,14 +11,19 @@
 .brief .top .graph img{}
 
 .brief .bottom{padding:90px 25px 70px 25px;position: relative;}
-.brief .bottom .each-part1, .brief .bottom .each-part2{display: inline-block;vertical-align: middle;text-align: left;}
+.brief .bottom .each-part1, .brief .bottom .each-part2, .brief .bottom .each-part11, .brief .bottom .each-part12{display: inline-block;vertical-align: top;text-align: left;}
+.brief .bottom .each-part11 p{margin-bottom: 20px;}
 .brief .bottom .each-part2{margin-left: 35px;}
 .brief .bottom .each-part1{width:450px;}
-.brief .bottom .each-part1 p{font-size: 14px;text-align: left;line-height: 30px;margin-bottom: 20px;}
+.brief .bottom .each-part11{width:200px;}
+.brief .bottom .each-part12{width:265px;}
+.brief .bottom .each-part1 p, .brief .bottom .each-part12 p{font-size: 14px;text-align: left;line-height: 30px;margin-bottom: 20px;}
+.brief .bottom .each-part12 p{line-height: 25px;}
 .brief .bottom .each-part1 p img{vertical-align: middle;margin-right: 20px;}
 .brief .bottom .each-part1 p span{color:#f27835;}
-.brief .bottom .each-part1 p strong{font-weight: 300;}
+.brief .bottom .each-part1 p strong, .brief .bottom .each-part12 p strong{font-weight: 300;}
 .brief .bottom .each-part1 p em{display: inline-block;width:325px;vertical-align: top;}
+.brief .bottom .each-part12 p em{display: inline-block;width:188px;vertical-align: top;}
 
 .brief .bottom .each-part2 p{margin-bottom: 25px;}
 .brief .bottom .each-part2 .p-ti{font-size: 14px;margin-right: 5px;display: inline-block;width:60px;}
