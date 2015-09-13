@@ -37,6 +37,8 @@ var sideBar = {
 				$("a[data-type='withdrawCash']").addClass("selected");
 			}
 			
+		}else if(href.indexOf('invest') != -1){//我的投资
+			type = "invest";
 		}else if(href.indexOf('account') != -1){//账号
 			$($("a[data-type='account']")[0]).trigger("click");
 			$($("a[data-type='account']")[0]).addClass("selected");

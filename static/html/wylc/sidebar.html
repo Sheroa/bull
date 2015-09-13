@@ -1,17 +1,39 @@
 <div class="fl">
 	<div class="left-tab shadow-box">
-		<a href="/wylc/hqb.html" class="selected"><span>活期宝</span></a>
-		<a><span>固定收益<em class="sub-column"></em></span></a>
-		<ul class="dollar-sub">
-			<li><a href="/wylc/ttn/90.html" class="selected">天添牛A款90天</a></li>
-			<li><a href="/wylc/ttn/180.html">天添牛A款180天</a></li>
-			<li><a href="/wylc/ttn/360.html">天添牛A款360天</a></li>
+		<a data-level="first" href="/wylc/hqb.html" class="selected" data-type="hqb"><span>活期宝</span></a>
+		<a data-level="first" data-type="ttn"><span>固定收益<em class="sub-column"></em></span></a>
+		<ul class="dollar-sub" data-releative="ttn">
+			<li><a data-type="ttn_90" href="/wylc/ttn/90.html" class="selected">天添牛A款90天</a></li>
+			<li><a data-type="ttn_180" href="/wylc/ttn/180.html">天添牛A款180天</a></li>
+			<li><a data-type="ttn_360" href="/wylc/ttn/360.html">天添牛A款360天</a></li>
 		</ul>
-		<a><span>浮动收益<em class="sub-column"></em></span></a>
-		<ul class="dollar-sub">
-			<li class="selected">惠房宝1期</li>
+		<a data-level="first" data-type="float_income"><span>浮动收益<em class="sub-column"></em></span></a>
+		<ul class="dollar-sub" data-releative="float_income">
+			<li class="selected"><a>惠房宝1期</a></li>
 			<li>指数牛-单向看涨</li>
 		</ul>
 	</div>
 	<div class="left-adver">广告区</div>	
 </div>
+
+<!--个人中心左-侧边栏-->
+<!-- <div class="fl">
+	<div class="left-tab shadow-box">
+		<a data-level="first" data-type="personCenter" href="/my/personCenter.html"><span class="profile">个人中心</span></a>
+		<a data-level="first" data-type="fund"><span class="dollar">我的资金<em class="sub-column"></em></span></a>
+		<ul class="dollar-sub" data-releative="fund">
+			<li><a href="#">交易记录</a></li>
+			<li><a data-type="recharge" href="/my/refund/recharge.html">充值</a></li>
+			<li><a data-type="withdrawCash" href="/my/refund/withdrawCash.html">提现</a></li>
+		</ul>
+		<a data-level="first" data-type="invest" href="/my/myInput.html"><span class="invest">我的投资</span></a>
+		<a data-level="first" data-type="account"><span class="account">我的账号<em class="sub-column"></em></span></a>
+		<ul class="dollar-sub" data-releative="account">
+			<li><a href="#">账户管理</a></li>
+			<li><a data-type='bankCard' href="/my/account/bankCard.html">我的银行卡</a></li>
+			<li><a data-type='systemMsg' href="/my/account/systemMsg.html">系统消息</a></li>
+		</ul>
+		<a data-level="first" data-type="kickback"><span class="bonus">我的红包<em class="num">2</em></span></a>
+	</div>
+	<div class="left-adver">广告区</div>	
+</div>   -->

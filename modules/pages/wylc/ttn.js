@@ -20,16 +20,17 @@ var hqb = {
 		navBar.init(index);
 		toolbar.init();
 		sidebar.init();
-		self.UI();
+		//self.UI();
 		self.event_handler();
 	},
 	tpl:{
 		wdl:function(){
 			var buf=[];
-			buf.push('<p><span class="p-ti">剩余金额</span><span class="num">￥{{#remaMoney}}</span></p>');
-			buf.push('<p><span class="p-ti">购买金额</span>');
-			buf.push('<input type="text" placeholder="100元起购"></p>');
-			buf.push('<p><a href="/users/login.html?return_to=/wylc/hqb.html" class="light-btn">登录购买</a></p>');
+			buf.push('<p><span class="p-ti">计息时间</span><span class="num2">2015年7月23日</span></p>');
+			buf.push('<p><span class="p-ti">结息时间</span><span class="num2">2015年10月20日</span></p>');
+			buf.push('<p><span class="p-ti">购买金额</span><input type="text" placeholder="100元起购"></p>');
+			buf.push('<p><span class="p-ti">预期收益</span><span class="num2">0.00元</span></p>');
+			buf.push('<p class="ttn-btn"><a href="/users/login.html" class="light-btn">登录购买</a></p>');
 			return buf.join("");
 		},
 		ydl:function(){
