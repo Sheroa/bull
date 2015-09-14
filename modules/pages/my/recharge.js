@@ -3,7 +3,7 @@
  * @author:ZY
  */
 
-var $       = require("jquery");
+var $       = require("jquery"),
 	sidebar = require("util/sidebar"),
  	navbar  = require("util/navbar"),
  	artTemplate 	= require("artTemplate"),
