@@ -24,31 +24,6 @@ var invest = {
 		self.UI();
 		self.event_handler();
 
-		var data = [
-		    {
-		        value: 100,
-		        color:"#F7464A",
-		        highlight: "#FF5A5E",
-		        label: "Red"
-		    },
-		    {
-		        value: 50,
-		        color: "#46BFBD",
-		        highlight: "#5AD3D1",
-		        label: "Green"
-		    },
-		    {
-		        value: 50,
-		        color: "#FDB45C",
-		        highlight: "#FFC870",
-		        label: "Yellow"
-		    }
-		]
-
-		//var ctx = document.getElementById("myChart_finance").getContext("2d");
-		var ctx_1 = document.getElementById("myChart_revenue").getContext("2d");
-		//new Chart(ctx).Pie(data);
-		new Chart(ctx_1).Pie(data);
 	},
 	tpl:{
 		redemption:function(){
@@ -98,9 +73,58 @@ var invest = {
 			        label: "浮动投资"
 			    }
 			]
-
 			var ctx = document.getElementById("myChart_finance").getContext("2d");
 			new Chart(ctx).Pie(data);
+			$("#ableBalanceAmount").text('￥'+(ableBalanceAmount/10000).toFixed(2));	
+			//数据
+			var buf = [];
+			buf.push('<p><em class="bar1"></em><i>账户余额：</i><strong>￥'+(ableBalanceAmount/10000).toFixed(2)+'</strong></p>');
+			buf.push('<p><em class="bar1"></em><i>活期宝：</i><strong>￥'+(currentProductAmount/10000).toFixed(2)+'</strong></p>');
+			buf.push('<p><em class="bar1"></em><i>固定收益：</i><strong>￥'+(fixedProductAmount/10000).toFixed(2)+'</strong></p>');
+			buf.push('<p><em class="bar1"></em><i>浮动收益：</i><strong>￥'+(floatProductAmount/10000).toFixed(2)+'</strong></p>');
+
+			$("#finance").html(buf.join(""));
+												
+		});
+
+		api.call('/api/product/getProductProfit.do',{},function(_rel){
+			var totalProfitAmount = _rel.result.totalProfitAmount,  // 累计总收益
+				currentProfitAmount = _rel.result.currentProfitAmount,  // 活期宝收益
+				fixedProfitAmount = _rel.result.fixedProfitAmount,  // 固定理财收益
+				floatProfitAmount = _rel.result.floatProfitAmount;  // 浮动理财收益
+
+				var data = [
+				    {
+				        value: 100,
+				        color: "#f39c11",
+				        highlight: "#f39c11",
+				        label: "活期宝收益"
+				    },
+				    {
+				        value: 50,
+				        color: "#58d68d",
+				        highlight: "#58d68d",
+				        label: "固定理财收益"
+				    },
+				    {
+				        value: 50,
+				        color: "#6699cc",
+				        highlight: "#6699cc",
+				        label: "浮动理财收益"
+				    }
+				]
+
+				var ctx = document.getElementById("myChart_revenue").getContext("2d");
+				new Chart(ctx).Pie(data);
+				$("#totalProfitAmount").text('￥'+(totalProfitAmount/10000).toFixed(2));				
+				//数据
+				var buf = [];
+				buf.push('<p><em class="bar2"></em><i>活期宝：</i><strong>￥'+(currentProfitAmount/10000).toFixed(2)+'</strong></p>');
+				buf.push('<p><em class="bar3"></em><i>固定收益：</i><strong>￥'+(fixedProfitAmount/10000).toFixed(2)+'</strong></p>');
+				buf.push('<p><em class="bar4"></em><i>浮动收益：</i><strong>￥'+(floatProfitAmount/10000).toFixed(2)+'</strong></p>');
+				$("#revenue").html(buf.join(""));
+
+
 		});
 	},
 	event_handler:function(){
