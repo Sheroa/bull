@@ -50,6 +50,7 @@
 .recharge p{overflow: hidden;margin-bottom: 10px;}
 .recharge p span.p-ti{display: inline-block;width: 150px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}
 .recharge p input{width:216px;}
+.recharge p .bank-pwd{margin-left: -4px;}
 .recharge p .bank-pwd input{width:27px;}
 .recharge p select{height:32px;line-height:32px; width:230px;border:2px solid #919191;font-size: 14px;margin-left: -4px;}
 .recharge p.address select{width:auto;margin-right: 15px}
