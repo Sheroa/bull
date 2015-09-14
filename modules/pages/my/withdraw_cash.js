@@ -76,7 +76,7 @@
 			if(city_id == 0){
 				//选中option为请选择城市返回，并且清空
 				$("#city").html("<option value='0'>请选择城市</option>");
-				$("#bank").html("<option value='0'>请选择支行</option>");
+				//$("#bank").html("<option value='0'>请选择支行</option>");
 				return false;
 			}
 
@@ -96,33 +96,33 @@
 			});
 		});
 
-		$("#city").change(function(){
-			var self    = $(this),
-				city_id = self.children('option:selected').val(),
-				city_name = self.children('option:selected').text();
+		// $("#city").change(function(){
+		// 	var self    = $(this),
+		// 		city_id = self.children('option:selected').val(),
+		// 		city_name = self.children('option:selected').text();
 			
-			if(city_id == 0){
-				//选中option为请选择城市返回，并且清空
-				$("#bank").html("<option value='0'>请选择支行</option>");
-				return false;
-			}
+		// 	if(city_id == 0){
+		// 		//选中option为请选择城市返回，并且清空
+		// 		//$("#bank").html("<option value='0'>请选择支行</option>");
+		// 		return false;
+		// 	}
 
-			api.call('/api/payment/findBankBranchList.do',{
-				'cityId':city_id,
-				'cityCode':city_name,
-				'bankCardNo':bank_card_num
-			},function(_rel){
-				var list = _rel.list,
-					city_list = [];
-				city_list.push('<option value="0">请选择支行</option>');
-				$.each(list,function(index,val){
-					var str = '<option value="'+val.branchId+'">'+val.branchName+'</option>';
-					city_list.push(str);
-				});
+		// 	api.call('/api/payment/findBankBranchList.do',{
+		// 		'cityId':city_id,
+		// 		'cityCode':city_name,
+		// 		'bankCardNo':bank_card_num
+		// 	},function(_rel){
+		// 		var list = _rel.list,
+		// 			city_list = [];
+		// 		city_list.push('<option value="0">请选择支行</option>');
+		// 		$.each(list,function(index,val){
+		// 			var str = '<option value="'+val.branchId+'">'+val.branchName+'</option>';
+		// 			city_list.push(str);
+		// 		});
 
-				$("#bank").html(city_list.join(""));
-			});
-		});
+		// 		$("#bank").html(city_list.join(""));
+		// 	});
+		// });
 
 		//密码输入框
 		$(".bank-pwd").find("input").each(function(index, el) {
