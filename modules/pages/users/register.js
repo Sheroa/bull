@@ -15,7 +15,27 @@ var $ = require('jquery'),
  	event_handler:function(){
  		var self = this,
  			phone_number = "",
- 			login_info = null;
+ 			login_info = null,
+ 			flow = false;
+
+ 		$("#phone_num").on("blur",function(){
+ 			var _this = $(this),
+ 				phone_num = _this.val(),
+ 				error_msg = _this.parents(".contOne").find(".error-msg em");
+ 			api.call("/api/user/verifyAccountState",{
+ 				'account':phone_num
+ 			},function(_rel){
+ 				var result = _rel.result;
+ 				if(!result){
+ 					//不能注册
+ 					error_msg.text("您的手机号已注册！");
+ 					return false;
+ 				}
+ 				flow = true;
+ 			},function(_rel){
+ 				flow = true;
+ 			});
+ 		});
 
  		//密码
  		$(".visible").on("click",function(){
@@ -33,6 +53,9 @@ var $ = require('jquery'),
  			var login_check = self.valid_check(),
  				_this = $(this),
  				error_msg = _this.parents(".contOne").find(".error-msg em");
+ 			if(!flow){
+ 				return false;
+ 			}
  			if(login_check){
  				//显示错误信息
  				error_msg.html(login_check);
