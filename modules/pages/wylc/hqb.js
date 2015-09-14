@@ -58,6 +58,12 @@ var hqb = {
 				api.call('/api/account/getUserAsset.do',{},function(_asset){
 					var parse_obj = _rel.result;
 					$.extend(parse_obj,_asset.result);
+					for(var i in parse_obj){
+						console.log();
+						if(typeof parse_obj[i] == "number" && parse_obj[i] >= 10000000){
+							parse_obj[i] = (parse_obj[i]/100000).toFixed(2);
+						}
+					}
 					entrance.html(K.ParseTpl(self.tpl.ydl(),parse_obj));
 
 					self.event_handler_login();
