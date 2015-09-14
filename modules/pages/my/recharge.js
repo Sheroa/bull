@@ -233,6 +233,23 @@ var recharge = {
  			var ableBalanceAmount = _rel.result.ableBalanceAmount;
  			$(".ableBalanceAmount").text('￥'+ableBalanceAmount);
  		});
+
+ 		//密码输入框
+ 		$(".bank-pwd").each(function(index, el) {
+ 			$(el).find("input").each(function(index, el) {
+ 				var _this = $(el);
+ 				_this.on("keyup",function(event){
+ 					var self = $(this);
+
+ 					if(event.which == 8){
+ 						self.text("");
+ 						self.prev().focus();
+ 					}else{
+ 						self.next().focus();
+ 					}
+ 				});
+ 			});	
+ 		});
  	},
  	valid_check:function(){
  		
