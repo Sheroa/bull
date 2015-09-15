@@ -104,7 +104,11 @@ $.extend(Keeper,{
 						HHMMSS = hms(splitStr.HHMMSS ? splitStr.HHMMSS : HHMMSS);
 						break;
 				}
-				var str = Y + rs + M + rs + D + HHMMSS;
+				if(!splitStr){
+					var str = Y + "年" + M + "月" + D + "日";
+				}else{
+					var str = Y + rs + M + rs + D + HHMMSS;
+				}
 				return str;
 			},
 			friendly: function(time) {
@@ -360,6 +364,15 @@ $.extend(Keeper,{
 	 */
 	get_user_info:function(key){
 		return passport.getUserInfoItem(key);
+	},
+	inverse_to_money:function(parse_obj){
+		for(var i in parse_obj){
+			console.log();
+			if(typeof parse_obj[i] == "number" && parse_obj[i] >= 10000000){
+				parse_obj[i] = (parse_obj[i]/10000).toFixed(2);
+			}
+		}
+		return parse_obj;
 	}
 });
 

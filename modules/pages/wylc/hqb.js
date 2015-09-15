@@ -61,7 +61,7 @@ var hqb = {
 					for(var i in parse_obj){
 						console.log();
 						if(typeof parse_obj[i] == "number" && parse_obj[i] >= 10000000){
-							parse_obj[i] = (parse_obj[i]/100000).toFixed(2);
+							parse_obj[i] = (parse_obj[i]/10000).toFixed(2);
 						}
 					}
 					entrance.html(K.ParseTpl(self.tpl.ydl(),parse_obj));

@@ -25,6 +25,7 @@ var index_page = {
 		this.nav_bar(index);
 		this.side_bar();
 		this.tab_switch();
+		this.event_handler();
 	},
 	nav_bar:function(index){
 		navBar.init(index);
@@ -56,6 +57,42 @@ var index_page = {
 			alert(_rel.msg);
 		});
 		
+	},
+	event_handler:function(){
+		api.call('/api/user/getUserBindCardState.do',{},function(_rel){
+			var isSetPayPwd = _rel.result.isSetPayPwd, //设置交易密码
+				isAuthentication = _rel.result.isAuthentication, //实名认证
+				isBindCard = _rel.result.isBindCard,//绑定银行卡
+				url_array = [
+					"/my/account/manage.html", //账户管理
+					"/my/account/bankCard.html",	//银行卡
+					"/my/account/manage.html" //账户管理
+				];
+		
+			//实名认证
+			if(isAuthentication){
+				$(".service").children('span').eq(0).addClass('selected');
+			}
+			//绑定银行卡
+			if(isBindCard){
+				$(".service").children('span').eq(1).addClass('selected');
+			}
+			//设置交易密码
+			if(isSetPayPwd){
+				$(".service").children('span').eq(2).addClass('selected');
+			}
+
+			//给span绑定click事件
+			$(".service span").on("click",function(){
+				var _this = $(this);
+				if(_this.hasClass('selected')){
+					return false;
+				}
+				K.gotohref(url_array[_this.index()]);
+			});
+
+			
+		});
 	}
 }
 
