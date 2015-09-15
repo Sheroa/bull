@@ -47,7 +47,8 @@
 .recharge{display: none;}
 .recharge .border-box{width:854px;padding:15px 0 20px 20px;margin-bottom: 15px;position:relative;}
 .recharge .border-box p.error-msg{padding-left: 165px;}
-.recharge p{overflow: hidden;margin-bottom: 10px;}
+.recharge p{overflow: hidden;margin-bottom: 10px;font-size: 14px;}
+.recharge p i{color:#f27835;font-style:normal}
 .recharge p span.p-ti{display: inline-block;width: 150px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}
 .recharge p input{width:216px;}
 .recharge p .bank-pwd{margin-left: -4px;}
@@ -155,3 +156,14 @@
 .myInput .tab-col .cont table tbody td{color:#373737;}
 .myInput .tab-col .cont p.btn{text-align: center;margin-top:40px;}
 .myInput .tab-col .cont p.btn a.light-btn{width:140px;margin:0 20px;display: inline-block;line-height:32px;}
+
+.disccount{}
+.disccount .shadow-box{margin:1px 1px 3px 1px;}
+.disccount .shadow-box p{font-size: 14px;}
+.disccount .each{border-top:1px solid #d3d3d3;padding:35px;width:800px;text-align: left;}
+.disccount .each .red-bag, .disccount .each .jx-quan, .disccount .each .ty-quan{padding-left:140px;width:660px;min-height: 95px;}
+.disccount .each .red-bag{background: url(/static/img/disccount1.jpg) no-repeat left center;}
+.disccount .each .jx-quan{background: url(/static/img/disccount2.jpg) no-repeat left center;}
+.disccount .each .ty-quan{background: url(/static/img/disccount3.jpg) no-repeat left center;}
+.disccount .each .red-bag .tab{line-height: 30px;}
+.disccount .each .red-bag .tab span{background: url(/static/img/arrow7.png) no-repeat right center;padding-right: 12px;font-size: 12px;margin-right:20px;}

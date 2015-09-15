@@ -4,11 +4,11 @@
 .header{position:absolute;top:0;left:0;right: 0;z-index:2;}
 .header .fr .log-gister{font-size: 12px;}
 .header .fr .log-gister strong{font-size: 24px;color:#f27835;font-weight: 300;margin-right: 3px;}
-.header .fr .log-gister a{color:#f27835;}
+.header .fr .log-gister a{color:#f27835;display: inline;}
 .header .fr .log-gister a:hover{text-decoration: underline;}
 .login-page{height: 100%;vertical-align: middle;}
 .login-page .wmain{position:relative;height: 100%;z-index:1;overflow: visible;}
-.login-page .ver-middle{position: absolute;top: 48%;margin-top: -161px;left:0;height: 322px;width:100%;background: url(/static/img/banner-login.jpg) no-repeat left center;text-align: right;z-index: 3;}
+.login-page .ver-middle{position: absolute;top: 48%;margin-top: -161px;left:10%;height: 322px;width:80%;background: url(/static/img/banner-login.jpg) no-repeat left center;text-align: right;z-index: 3;}
 .login-page .cont{width:100%;height:322px;width:100%;background:#fff;margin-top:74px;}
 .login-area{margin-top:1px;margin-right: 2px;padding:50px 25px 40px 25px;}
 .login-area h5{text-align: center;}
