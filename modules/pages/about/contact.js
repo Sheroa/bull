@@ -5,6 +5,7 @@
 
 var $     		  = require('jquery');  
 	navBar        = require("util/navbar"),
+	toolbar = require('util/toolbar_pp')
  	sidebar_index = require("./sidebar"),
 
 
@@ -14,6 +15,7 @@ var insurance = {
 	
 	//初始化
 	init:function(){
+		toolbar.init();
 		this.sidebar();
 	},
 
