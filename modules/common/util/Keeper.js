@@ -364,6 +364,15 @@ $.extend(Keeper,{
 	 */
 	get_user_info:function(key){
 		return passport.getUserInfoItem(key);
+	},
+	inverse_to_money:function(parse_obj){
+		for(var i in parse_obj){
+			console.log();
+			if(typeof parse_obj[i] == "number" && parse_obj[i] >= 10000000){
+				parse_obj[i] = (parse_obj[i]/10000).toFixed(2);
+			}
+		}
+		return parse_obj;
 	}
 });
 
