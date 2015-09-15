@@ -22,11 +22,11 @@ var href=window.location.href,
  		//删除class_name selected
  		$('a[data-type]').removeClass('selected');
 
- 		if(href.indexOf("hqb")!=-1){//个人中心
+ 		if(href.indexOf("hqb")!=-1){//活期宝
 
  			type = "hqb";
 
- 		}else if(href.indexOf("ttn")!=-1){//资金
+ 		}else if(href.indexOf("ttn")!=-1){//天天牛
 
  			$($("a[data-type='ttn']")[0]).trigger("click");
  			$($("a[data-type='ttn']")[0]).addClass("selected");
@@ -38,13 +38,11 @@ var href=window.location.href,
  				$("a[data-type='ttn_360']").addClass("selected");
  			}
  			
- 		}else if(href.indexOf('float_income') != -1){//账号
- 			$($("a[data-type='float_income']")[0]).trigger("click");
- 			$($("a[data-type='float_income']")[0]).addClass("selected");
- 			if(href.indexOf("bankCard")!=-1){
- 				$("a[data-type='bankCard']").addClass("selected");
- 			}else if(href.indexOf("systemMsg")!=-1){
- 				$("a[data-type='systemMsg']").addClass("selected");
+ 		}else if(href.indexOf('hfb') != -1){//惠芳宝
+ 			$($("a[data-type='hfb']")[0]).trigger("click");
+ 			$($("a[data-type='hfb']")[0]).addClass("selected");
+ 			if(href.indexOf("hfb1")!=-1){
+ 				$("a[data-type='hfb1']").addClass("selected");
  			}
  		}
 
