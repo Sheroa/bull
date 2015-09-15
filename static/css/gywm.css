@@ -49,3 +49,12 @@
 .introduce .our-feature span.our-feature5{background: url(/static/img/introduce/feature5.png) no-repeat left top;}
 .introduce .our-feature span p{line-height: 26px;padding-left: 0}
 .introduce .our-feature span p.ti{font-size: 16px;line-height: 16px;margin-bottom: 10px;}
+
+.media .shadow-box{padding:25px;position:relative;text-align: left;margin-bottom: 15px;}
+.media .shadow-box img{margin-right: 25px;vertical-align: top;margin-top: 15px;}
+.media .shadow-box .text{display: inline-block;width:520px;}
+.media .shadow-box .text h4 a{font-size:16px;text-decoration: underline;}
+.media .shadow-box .text p{font-size: 12px;line-height: 25px;}
+.media .shadow-box .text p.sub-ti span{color:#b0adad;font-size: 12px;margin-right: 50px;}
+.media .shadow-box span.time{position:absolute;top：20px;right:20px;font-size: 12px;}
+.media .light-btn{width:100%;line-height: 32px;display: inline-block;}
