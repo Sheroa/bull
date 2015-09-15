@@ -104,7 +104,11 @@ $.extend(Keeper,{
 						HHMMSS = hms(splitStr.HHMMSS ? splitStr.HHMMSS : HHMMSS);
 						break;
 				}
-				var str = Y + rs + M + rs + D + HHMMSS;
+				if(!splitStr){
+					var str = Y + "年" + M + "月" + D + "日";
+				}else{
+					var str = Y + rs + M + rs + D + HHMMSS;
+				}
 				return str;
 			},
 			friendly: function(time) {

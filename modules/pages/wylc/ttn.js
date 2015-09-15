@@ -20,16 +20,17 @@ var hqb = {
 		navBar.init(index);
 		toolbar.init();
 		sidebar.init();
-		//self.UI();
+		self.UI();
 		self.event_handler();
 	},
 	tpl:{
 		wdl:function(){
 			var buf=[];
-			buf.push('<p><span class="p-ti">计息时间</span><span class="num2">2015年7月23日</span></p>');
-			buf.push('<p><span class="p-ti">结息时间</span><span class="num2">2015年10月20日</span></p>');
-			buf.push('<p><span class="p-ti">购买金额</span><input type="text" placeholder="100元起购"></p>');
-			buf.push('<p><span class="p-ti">预期收益</span><span class="num2">0.00元</span></p>');
+			console.log();
+			buf.push('<p><span class="p-ti">计息时间</span><span class="num2">'+K.getTime.getDateStr(Date.now()+24*60*60*1000)+'</span></p>');
+			buf.push('<p><span class="p-ti">结息时间</span><span class="num2">'+K.getTime.getDateStr(Date.now()+90*24*60*60*1000)+'</span></p>');
+			buf.push('<p><span class="p-ti">购买金额</span><input id="purchase_money" type="number" placeholder="100元起购"></p>');
+			buf.push('<p><span class="p-ti">预期收益</span><span class="num2" id="expected_revenue">0.00元</span></p>');
 			buf.push('<p class="ttn-btn"><a href="/users/login.html" class="light-btn">登录购买</a></p>');
 			return buf.join("");
 		},
@@ -54,26 +55,22 @@ var hqb = {
 		if(K.login()){
 			// entrance.html(self.tpl.ydl());
 
-			api.call('/api/product/current/queryProductInfo',{},function(_rel){
+			// api.call('/api/product/current/queryProductInfo',{},function(_rel){
 
-				api.call('/api/account/getUserAsset.do',{},function(_asset){
-					var parse_obj = _rel.result;
-					$.extend(parse_obj,_asset.result);
-					entrance.html(K.ParseTpl(self.tpl.ydl(),parse_obj));
+			// 	api.call('/api/account/getUserAsset.do',{},function(_asset){
+			// 		var parse_obj = _rel.result;
+			// 		$.extend(parse_obj,_asset.result);
+			// 		entrance.html(K.ParseTpl(self.tpl.ydl(),parse_obj));
 
-					self.event_handler_login();
-				});
+			// 		self.event_handler_login();
+			// 	});
 				
-			});
+			// });
 		}else{
 
-			api.call('/api/product/current/queryProductInfo',{},function(_rel){
-
-				var result_str = K.ParseTpl(self.tpl.wdl(),_rel.result),
-					user_id = $.cookie("ppinf");
-				
-				entrance.html(result_str);
-			});
+			var fid = 'bf5a23ea-3171-47a7-b726-e78a7c74f283';
+			entrance.html(self.tpl.wdl()),
+			self.event_handler_wdl();
 
 		}
 	},
@@ -85,6 +82,13 @@ var hqb = {
 			className:'.cont',
 			curSel:'selected',
 			selectorIndex:'.navObj'
+		});
+
+		//购买金额-计算收益
+		$("#entrance").on("keydown","#purchase_money",function(){
+			var _this = $(this),
+				purchase_money = $.trim(_this.val());
+			$("#expected_revenue").text((purchase_money*0.08*90/360).toFixed(2)+"元");
 		});
 
 	},
@@ -129,6 +133,9 @@ var hqb = {
 			    "msg" :msg
 			});
 		})
+	},
+	event_handler_wdl:function(){
+		
 	}
 }
 
