@@ -164,8 +164,6 @@ var hqb = {
 			$("#expected_revenue").text((purchase_money*flow[ttn_type]*ttn_type/360).toFixed(2)+"元");
 		});
 
-		debugger;
-
 	},
 	event_handler_login:function(){
 
