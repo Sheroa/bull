@@ -178,3 +178,28 @@
 .disccount .each .red-bag .redbag .used{color:#ffa674;font-weight: 900}
 .disccount .each .red-bag .redbag .dated{color:#fff;}
 .disccount .each .red-bag .red-used .num p.sub-title, .disccount .each .red-bag .red-dated .num p.sub-title{letter-spacing:-1px;}
+
+.account-manage{}
+.account-manage .each{border-top:1px solid #d3d3d3;padding:25px;width:820px;text-align: left;}
+.account-manage .each .main-msg{font-size: 14px;line-height: 22px;background: url(/static/img/ok.png) no-repeat left center;padding-left: 45px;}
+.account-manage .each .need-write{background: url(/static/img/ok-no.png) no-repeat left center;}
+.account-manage .each .main-msg .p-ti{margin-right: 40px;}
+.account-manage .each .main-msg .cont{display: inline-block;width: 575px;}
+.account-manage .each .main-msg .cont2{display: inline-block;width: 480px;}
+.account-manage .each .main-msg .cont em, .account-manage .each .main-msg .cont2 em{color:#f27835;}
+.account-manage .each .main-msg .light-btn{display: inline-block;width:84px;line-height: 30px;margin-left: 9px;}
+.account-manage .each .main-msg .light-btn em{background: url(/static/img/arrow8.png) no-repeat right center;padding-right: 12px;width:58px;text-align: center;display: inline-block;}
+.account-manage .each .sub-msg{display: none;padding-left: 145px;margin-top:50px;margin-bottom: 20px;}
+.account-manage .each .sub-msg p{font-size: 14px;margin-bottom: 25px;}
+.account-manage .each .sub-msg p.sub-text, .account-manage .each .sub-msg p.error-msg, .account-manage .each .sub-msg p.btn-line, .account-manage .each .sub-msg p.btn-line2{margin:5px 0 12px 80px;}
+.account-manage .each .sub-msg p .p-ti{display: inline-block;width:80px;}
+.account-manage .each .sub-msg p .light-btn, .account-manage .each .sub-msg p .gray-btn{display: inline-block;width:231px;line-height: 30px;}
+.account-manage .each .sub-msg p.btn-line, .account-manage .each .sub-msg p.btn-line2{margin-top: 20px;}
+.account-manage .each .sub-msg p.btn-line2 .light-btn, .account-manage .each .sub-msg p.btn-line2 .gray-btn{margin-right: 15px;width:113px;}
+.account-manage .each .sub-msg p input{width:227px;}
+.account-manage .each .sub-msg p.captcha input{width: 118px;margin-right: 5px;}
+.account-manage .each .sub-msg p.captcha .light-btn, .account-manage .each .sub-msg p.captcha .gray-btn{width:95px;font-size: 12px;}
+
+.account-manage .selected{}
+.account-manage .selected .main-msg .light-btn em{background: url(/static/img/arrow8-1.png) no-repeat right center;}
+.account-manage .selected .sub-msg{display: block;}

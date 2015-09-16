@@ -57,7 +57,7 @@ h4.col-ti .ti-logo{padding:7px;background: #f27835;margin-top:5px;margin-right: 
 h4.col-ti a{color:#f27835;text-decoration: underline;font-size: 14px;}
 a.quit{background: url(/static/img/quit.png) no-repeat;height: 18px;width:18px;display: inline-block;}
 p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-height: 15px !important;height:15px !important;text-align: left;}
-
+.no-margin{margin-bottom:0 !important;}
 
 
 /* * * * * * * * * * * * * * * * 顶部 * * * * * * * * * * * * * * * */
