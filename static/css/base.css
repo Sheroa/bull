@@ -40,7 +40,7 @@ p span.pwd-box a.visible{display: inline-block;background: url(/static/img/eye.p
 .assurecont .contword span{position: absolute;height: 4px;width: 12px;top:24px;right: 10px;background: url(/static/img/arrow4.png) no-repeat;z-index: 102;}
 .assurecont .contword p{font-size:12px;line-height: 24px;color:#fff;z-index: 102;position: absolute;top:0;left:0;width:100%;text-align: center;}
 
-.sub-link{background:url(../img/arrow.png) no-repeat right center;padding-right:16px;}
+.sub-link{background:url(/static/img/arrow.png) no-repeat right center;padding-right:16px;}
 button{cursor: pointer;}
 .light-btn{background: #f27835;color:#fff;text-align: center;}
 .light-btn:hover{background: #f06a21;text-decoration: none}
@@ -55,7 +55,7 @@ h4.col-ti{overflow: hidden;margin-bottom: 25px;}
 h4.col-ti span{float:left;}
 h4.col-ti .ti-logo{padding:7px;background: #f27835;margin-top:5px;margin-right: 15px;}
 h4.col-ti a{color:#f27835;text-decoration: underline;font-size: 14px;}
-a.quit{background: url(../img/quit.png) no-repeat;height: 18px;width:18px;display: inline-block;}
+a.quit{background: url(/static/img/quit.png) no-repeat;height: 18px;width:18px;display: inline-block;}
 p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-height: 15px !important;height:15px !important;text-align: left;}
 
 
@@ -92,7 +92,7 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 .header .fr .regis-login ul li:hover a.login2{background: url(/static/img/login21.png) no-repeat left center;}
 .header .fr .regis-login ul li:hover a.login3{background: url(/static/img/login31.png) no-repeat left center;}
 .header .fr .regis-login ul li:hover a.login4{background: url(/static/img/login41.png) no-repeat left center;}
-.header .fr a.selected .sub-link, .header .fr a:hover .sub-link{background: url(../img/arrow3.png) no-repeat right center;}
+.header .fr a.selected .sub-link, .header .fr a:hover .sub-link{background: url(/static/img/arrow3.png) no-repeat right center;}
 .header .fr ul{display: none;position: absolute;width:130px;z-index:20;top:39px;-moz-box-shadow:0px 1px 1px 1px #d3d3d3;-webkit-box-shadow:0px 1px 1px 1px #d3d3d3;box-shadow:0px 1px 1px 1px #d3d3d3;background: #fff;}
 .header .fr ul.second{left:135px;}
 .header .fr ul.forth{left:404px;}
@@ -105,8 +105,8 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 /* * * * * * * * * * * * * * * * 登录区 * * * * * * * * * * * * * * * */
 .login-area{width:270px;height: 221px;float:right;margin-top:65px;background: #fff;padding:30px 15px;position: relative;}
 .login-area .textField{width:266px;border-top:2px solid;border-left:2px solid;border-right:2px solid;border-bottom:4px solid #e67334;margin:9px 0;padding:0;position: relative;text-align: left;}
-.login-area .textField span{width:19px;height:17px;margin:0 10px;display: inline-block;vertical-align: middle;background: url(../img/profile.png) no-repeat;}
-.login-area .textField span.pwd{background:url(../img/lock.png) no-repeat;}
+.login-area .textField span{width:19px;height:17px;margin:0 10px;display: inline-block;vertical-align: middle;background: url(/static/img/profile.png) no-repeat;}
+.login-area .textField span.pwd{background:url(/static/img/lock.png) no-repeat;}
 .login-area .textField a.visible{display: inline-block;background: url(/static/img/eye.png) no-repeat;width:23px;height:15px;position:absolute;top:10px;right: 5px;}
 .login-area .textField input{width:210px;height:36px;border:none;vertical-align:middle;line-height:38px;padding: 0 8px;margin:0;}
 .login-area .textField input#userPass{width:180px;}
@@ -152,18 +152,18 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 .left-tab a:hover{color:#f27835;text-decoration: none;}
 .left-tab a.selected{background:#f27835;color:#fff;}
 .left-tab a span{padding-left:23px;line-height: 44px;}
-.left-tab a span.profile{background: url(../img/left-profile.png) no-repeat left center;}
-.left-tab a.selected span.profile{background: url(../img/left-profile2.png) no-repeat left center;}
-.left-tab a span.dollar{background: url(../img/left-dollar.png) no-repeat left center;}
-.left-tab a.selected span.dollar{background: url(../img/left-dollar2.png) no-repeat left center;}
-.left-tab a span.invest{background: url(../img/left-invest.png) no-repeat left center;}
-.left-tab a.selected span.invest{background: url(../img/left-invest2.png) no-repeat left center;}
-.left-tab a span.account{background: url(../img/left-account.png) no-repeat left center;}
-.left-tab a.selected span.account{background: url(../img/left-account2.png) no-repeat left center;}
-.left-tab a span.bonus{background: url(../img/left-bonus.png) no-repeat left center;}
-.left-tab a.selected span.bonus{background: url(../img/left-bonus2.png) no-repeat left center;}
-.left-tab a span .sub-column{background: url(../img/arrow2.png) no-repeat center;padding-left: 11px;margin-left: 8px;}
-.left-tab a.selected span .sub-column{background: url(../img/arrow3.png) no-repeat center;}
+.left-tab a span.profile{background: url(/static/img/left-profile.png) no-repeat left center;}
+.left-tab a.selected span.profile{background: url(/static/img/left-profile2.png) no-repeat left center;}
+.left-tab a span.dollar{background: url(/static/img/left-dollar.png) no-repeat left center;}
+.left-tab a.selected span.dollar{background: url(/static/img/left-dollar2.png) no-repeat left center;}
+.left-tab a span.invest{background: url(/static/img/left-invest.png) no-repeat left center;}
+.left-tab a.selected span.invest{background: url(/static/img/left-invest2.png) no-repeat left center;}
+.left-tab a span.account{background: url(/static/img/left-account.png) no-repeat left center;}
+.left-tab a.selected span.account{background: url(/static/img/left-account2.png) no-repeat left center;}
+.left-tab a span.bonus{background: url(/static/img/left-bonus.png) no-repeat left center;}
+.left-tab a.selected span.bonus{background: url(/static/img/left-bonus2.png) no-repeat left center;}
+.left-tab a span .sub-column{background: url(/static/img/arrow2.png) no-repeat center;padding-left: 11px;margin-left: 8px;}
+.left-tab a.selected span .sub-column{background: url(/static/img/arrow3.png) no-repeat center;}
 .left-tab a span .num{background:#f27835;color:#fff;padding:0 8px;border-radius: 7px;margin-left: 8px;}
 
 .left-tab ul{display: none;}
@@ -181,7 +181,7 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 /* * * * * * * * * * * * * * * * 特点部分 * * * * * * * * * * * * * * * */
 .feature{width:1170px;overflow: hidden;margin:80px 0 65px 0;}
 .feature .each-fea{float:left;margin-right:30px;text-align:center;}
-.feature .each-fea span{display:inline-block;height:56px;width:49px;margin:15px 0;background: url(../img/sy-feature.png) no-repeat;}
+.feature .each-fea span{display:inline-block;height:56px;width:49px;margin:15px 0;background: url(/static/img/sy-feature.png) no-repeat;}
 .feature .each-fea span.fea2{width:64px;background-position: -55px 0;}
 .feature .each-fea span.fea3{width:55px;background-position: -120px 0;}
 .feature .each-fea span.fea4{width:43px;background-position: -180px 0;}
@@ -196,7 +196,7 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 .horizon{width:100%;height:130px;position:relative;z-index:1;margin-bottom:25px;}
 
 .horizon .back-area{height:116px;width:1075px;position: absolute;z-index:2;top:0;left:0;background: #f27835;}
-.horizon .back-area div{height:110px;width:169px;padding:5px 0 0 10px;background:url(../img/horizon.jpg) no-repeat;}
+.horizon .back-area div{height:110px;width:169px;padding:5px 0 0 10px;background:url(/static/img/horizon.jpg) no-repeat;}
 .horizon .back-area div h4, .horizon .back-area div a, .horizon .back-area div h6{color:#fff;text-align: left;}
 .horizon .back-area div h6{line-height: 18px;margin-bottom: 8px;}
 .horizon .back-area div a{text-decoration: underline;}
@@ -219,7 +219,7 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 /* 右侧 */
 .fr-main .horizon{height:100px;}
 .fr-main .horizon .back-area{height: 87px;width: 820px;}
-.fr-main .horizon .back-area div{height:85px;width:135px;background:url(../img/horizon2.jpg) no-repeat;padding:2px 0 0 10px;}
+.fr-main .horizon .back-area div{height:85px;width:135px;background:url(/static/img/horizon2.jpg) no-repeat;padding:2px 0 0 10px;}
 .fr-main .horizon .back-area div h4{font-size: 14px}
 .fr-main .horizon .back-area div h6{font-size: 10px;line-height: 14px;}
 
@@ -293,7 +293,16 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 .bank-pwd{display: inline-block;border-top:2px solid #919191;border-left:2px solid #919191;border-bottom:2px solid #919191;border-right: 1px solid #919191;}
 .bank-pwd input{width:27px !important;height: 28px;border:none;border-right: 1px solid #919191;text-align: center;}
 
-.redbag{background: url(/static/img/redbag.png) no-repeat right bottom #f27835;}
+.redbag{background: url(/static/img/redbag.png) no-repeat right bottom #f27835;position: relative;}
+.redbag{width: 245px;height: 53px;display: inline-block;padding:20px;margin-bottom: 20px;} 
+.redbag div{display:inline-block;}
+.redbag .num{width: 105px;text-align: left;vertical-align: top;}
+.redbag p{color:#fff;font-size: 12px !important;line-height: 18px;}
+.redbag .num p.title{font-size: 24px !important;line-height: 30px;}
+.redbag .text{text-align: right;width: 135px;}
+.redbag .text span{text-align: left;display: inline-block;}
+.redbag .text p{line-height: 15px;}
+.redbag .text p.title{font-size: 14px!important;line-height: 22px;}
 
 .tab-col{margin: 20px 1px;}
 .tab-col .tab{text-align: left;}
