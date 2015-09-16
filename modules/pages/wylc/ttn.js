@@ -38,10 +38,10 @@ var hqb = {
 		ydl:function(){
 			var buf = [];
 			buf.push('<p><span class="p-ti">账户余额</span><span class="num">￥{{#ableBalanceAmount}}</span><a href="/my/refund/recharge.html" class="recharge">[充值]</a></p>');
-			buf.push('<p style="margin-bottom:5px;"><span class="p-ti">购买金额</span><input type="text" placeholder="100元起购"></p>');
+			buf.push('<p style="margin-bottom:5px;"><span class="p-ti">购买金额</span><input id="purchase_money" type="number" placeholder="100元起购"></p>');
 			buf.push('<p class="error-msg"></p>');
 			buf.push('<p><span class="p-ti">使用红包</span><select name="redbag-select" class="redbag-select" id=""><option data-code="0">未选择（2个可用）</option></select><a href="javascript:void(0);" id="red_paper_detail" class="redDetail">详情</a></p>');
-			buf.push('<p><span class="p-ti">预期收益</span><span class="num2">0.00元</span></p>');
+			buf.push('<p><span class="p-ti">预期收益</span><span class="num2" id="expected_revenue">0.00元</span></p>');
 			buf.push('<p class="sub-text" style="padding-left:0"><input type="checkbox" class="check" checked="true"><a href="javascript:void(0);" id="revenue_transport">《收益权转让协议》</a><input type="checkbox" class="check" checked="true" style="margin-left:15px;"><a  href="javascript:void(0);" id="info_consult">《信息咨询与管理协议》</a></p>');
 			buf.push('<p><a class="light-btn">购买</a></p>');
 			return buf.join("");	
@@ -143,6 +143,11 @@ var hqb = {
 	},
 	event_handler:function(){
 
+		var flow = {
+			'90':0.08,
+			'180':0.09,
+			'360':0.10
+		};
 		//活期宝下面的tab切换
 		$(".tab-col").tabSwitch({
 			navObj:'.navObj',
@@ -155,7 +160,8 @@ var hqb = {
 		$("#entrance").on("keydown","#purchase_money",function(){
 			var _this = $(this),
 				purchase_money = $.trim(_this.val());
-			$("#expected_revenue").text((purchase_money*0.08*ttn_type/360).toFixed(2)+"元");
+			
+			$("#expected_revenue").text((purchase_money*flow[ttn_type]*ttn_type/360).toFixed(2)+"元");
 		});
 
 	},

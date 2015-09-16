@@ -1,10 +1,11 @@
 /**
- * @function : 安全保障页面js
+ * @function : 联系我们页面js
  * @author  : ZY
  */
 
 var $     		  = require('jquery');  
 	navBar        = require("util/navbar"),
+	toolbar = require('util/toolbar_pp')
  	sidebar_index = require("./sidebar"),
 
 
@@ -14,6 +15,7 @@ var insurance = {
 	
 	//初始化
 	init:function(){
+		toolbar.init();
 		this.sidebar();
 	},
 
