@@ -19,30 +19,30 @@
 
 				<!-- 未身份认证、未设置交易密码 -->
 				<div class="shadow-box">
-					<div class="each">
+					<div class="each" data-type="phoneIdentity">
 						<p class="main-msg">
 							<span class="p-ti">手机认证</span>
-							<span class="cont">158****7831</span>
+							<span class="cont"></span>
 						</p>
 					</div>
 					<!-- 身份认证未填写 -->
-					<div class="each selected">
+					<div class="each" data-type="verifyIdentity">
 						<p class="main-msg need-write">
 							<span class="p-ti">身份认证</span>
-							<span class="cont">完成身份信息才能投资，实名认证后身份证不允许修改、更换或注销（<em>未填写</em>）</span>
-							<a href="javascript:void(0);" class="light-btn"><em>立即填写</em></a>
+							<span class="cont"><!-- 完成身份信息才能投资，实名认证后身份证不允许修改、更换或注销（<em>未填写</em>） --></span>
+							<!-- <a href="javascript:void(0);" class="light-btn"><em>立即填写</em></a> -->
 						</p>
 						<div class="sub-msg">
-							<p>填写身份证信息：</p>
+<!-- 							<p>填写身份证信息：</p>
 							<p class="no-margin"><span class="p-ti">真实姓名</span><input type="text" placeholder="陈*"></p>
 							<p class="error-msg">请输入汉字</p>
 							<p class="no-margin"><span class="p-ti">身份证号码</span><input type="text" placeholder="4307************6011"></p>
 							<p class="error-msg">身份证格式有误</p>
-							<p class="btn-line2"><a href="javascript:void(0);" class="gray-btn">取消</a><a href="javascript:void(0);" class="light-btn">确认</a></p>
+							<p class="btn-line2"><a href="javascript:void(0);" class="gray-btn">取消</a><a href="javascript:void(0);" class="light-btn">确认</a></p> -->
 						</div>
 					</div>
 					<!-- 身份认证已填写 -->
-					<div class="each selected">
+<!-- 					<div class="each selected">
 						<p class="main-msg need-write">
 							<span class="p-ti">身份认证</span>
 							<span class="cont2">成功充值任意金额方可认证身份证信息（<em>已填写</em>）</span>
@@ -57,14 +57,14 @@
 							<p class="error-msg">身份证格式有误</p>
 							<p class="btn-line2"><a href="javascript:void(0);" class="gray-btn">取消</a><a href="javascript:void(0);" class="light-btn">确认</a></p>
 						</div>
-					</div>
+					</div> -->
 					<!-- 身份认证已认证 -->
-					<div class="each selected">
+<!-- 					<div class="each selected">
 						<p class="main-msg need-write">
 							<span class="p-ti">身份认证</span>
 							<span class="cont2">陈*（430***********6011）身份证不允许修改、更换或注销</span>
 						</p>
-					</div>
+					</div> -->
 					<div class="each selected">
 						<p class="main-msg">
 							<span class="p-ti">登录密码</span>
@@ -135,7 +135,7 @@
 	<link rel="import" href="/static/html/common/footer.html?__inline">
 	<script type="text/javascript">
 		var index = 0;
-		require('pages/my/system_msg');
+		require('pages/my/manage');
 	</script>
 </body>
 </html>
