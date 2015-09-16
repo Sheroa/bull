@@ -42,11 +42,15 @@ var sideBar = {
 		}else if(href.indexOf('account') != -1){//账号
 			$($("a[data-type='account']")[0]).trigger("click");
 			$($("a[data-type='account']")[0]).addClass("selected");
-			if(href.indexOf("bankCard")!=-1){
+			if(href.indexOf("accountMng")!=-1){
+				$("a[data-type='accountMng']").addClass("selected");
+			}else if(href.indexOf("bankCard")!=-1){
 				$("a[data-type='bankCard']").addClass("selected");
 			}else if(href.indexOf("systemMsg")!=-1){
 				$("a[data-type='systemMsg']").addClass("selected");
 			}
+		}else if(href.indexOf('kickback') != -1){
+			type = "kickback";
 		}
 
 		$("a[data-type='"+type+"']").addClass("selected");
