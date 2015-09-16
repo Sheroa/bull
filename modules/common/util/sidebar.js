@@ -49,8 +49,8 @@ var sideBar = {
 			}else if(href.indexOf("systemMsg")!=-1){
 				$("a[data-type='systemMsg']").addClass("selected");
 			}
-		}else if(href.indexOf('kickback') != -1){
-			type = "kickback";
+		}else if(href.indexOf('discount') != -1){
+			type = "discount";
 		}
 
 		$("a[data-type='"+type+"']").addClass("selected");
