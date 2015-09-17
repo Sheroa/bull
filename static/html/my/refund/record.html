@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>小牛钱罐子</title>
+	<link rel="stylesheet" href="/static/css/base.css" type="text/css">
+	<link rel="stylesheet" href="/static/css/grzx.css" type="text/css">
+</head>
+<body>
+
+	<link rel="import" href="/static/html/common/header.html?__inline">
+	<script type="text/javascript" src='/modules/common/ui/chart.js'></script>
+	<div class="bk-gray">
+		<div class="wmain">
+			<link rel="import" href="../sidebar.html?__inline">
+			<div class="fr-main record">
+				<div class="border-box">
+					<h4 class="col-ti"><span class="ti-logo"></span><span class="ti-cont">交易记录</span></h4>
+					<div class="cont">
+						<span class="lf-area">
+							<p>账户余额</p>
+							<p><em>￥100000000</em></p>
+						</span>
+						<span class="rt-area">
+							<p>可用资金</p>
+							<p><em>￥5000000</em></p>
+							<p><a href="javascript:void(0);" class="light-btn">充值</a></p>
+						</span>
+						<span class="rt-area">
+							<p>冻结资金</p>
+							<p><em>￥0</em></p>
+							<p><a href="javascript:void(0);" class="gray-btn">提现</a></p>
+						</span>
+					</div>
+					<span class="assure3">账户资金安全由中国人保承保</span>
+				</div>
+				<div class="shadow-box">
+					<p class="search"><em>查询所有的类型</em><select name="bank-select" id="bank-select"><option data-code="0">全部</option></select><a href="javascript:void(0);" class="light-btn">查询</a></p>
+					<table>
+						<thead>
+							<tr>
+								<td>时间</td>
+								<td>类型</td>
+								<td>金额</td>
+								<td>备注</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>2015年7月14日15：19：52</td>
+								<td>投资</td>
+								<td>-10000</td>
+								<td>购买活期宝</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="pages">
+					<a href="javascript:void(0)">首页</a>
+					<a href="javascript:void(0)">&lt;</a>
+					<a href="javascript:void(0)" class="selected">1</a>
+					<a href="javascript:void(0)">2</a>
+					<a href="javascript:void(0)">3</a>
+					<a href="javascript:void(0)">4</a>
+					<span>…</span>
+					<a href="javascript:void(0)">10</a>
+					<a href="javascript:void(0)">&gt;</a>
+					<a href="javascript:void(0)">末页</a>
+				</p>
+			</div>	
+		</div>
+	</div>
+
+	<link rel="import" href="/static/html/common/footer.html?__inline">
+
+	<script type="text/javascript">
+		var index = 0;
+		require('pages/my/invest');
+	</script>
+
+
+<!-- 	<div id="" class="dialog-wrapper popbox-bankrank" style="top: 226.5px; left: 609px;">
+		<a href="javascript:void(0)" title="关闭窗口"><span class="close"></span></a> -->
+		<!-- 赎回成功 -->
+		<!-- <div class="diginfo"><p class="ti">赎回成功<a href="#" class="quit"></a></p>
+			<div class="cont3">
+				<p class="buy-ok">尊敬的用户，您已成功赎回活期宝*****元， <br>可进入<a href="javascript:void(0);">我的投资-活期宝-已赎回</a>栏目查看详情。<br>多谢您的支持，祝您投资愉快！</p>
+				<p><a href="/my/refund/myInput.html" class="light-btn">查看详情</a></p>
+			</div>
+		</div> -->
+
+	<!-- </div> -->
+</body>
+</html>

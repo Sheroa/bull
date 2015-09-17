@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+/* 网站地图 */
+.map{margin:35px 0;padding:40px 30px;text-align: left;}
+.map p{margin-bottom: 30px;}
+.map p span{font-size: 12px;}
+.map p.ti span{font-size: 14px;color:#f27835;padding-left: 3px;}
+.map p .main-column{display: inline-block;width:75px;margin-right: 80px;}
+.map p span a{display: inline-block;line-height: 30px;width:75px;background: #ece9e9;text-align: center;}
+.map p span a:hover{text-decoration: none;background: #e2dede}
+.map p span.sub-column a{margin-right: 35px;}
+
