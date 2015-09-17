@@ -163,16 +163,20 @@
 .disccount .shadow-box .each p.ti{display: inline-block;width: 550px;margin-bottom: 15px;}
 .disccount .shadow-box .each p .gray-btn{display: inline-block;width:210px;line-height: 32px;}
 .disccount .each{border-top:1px solid #d3d3d3;padding:35px;width:800px;text-align: left;}
-.disccount .each .red-bag, .disccount .each .jx-quan, .disccount .each .ty-quan, .disccount .each .red-bagNo{padding-left:140px;width:660px;min-height: 95px;}
-.disccount .each .red-bag{background: url(/static/img/disccount1.jpg) no-repeat left center;}
+.disccount .each .red-bag, .disccount .each .jx-quan, .disccount .each .ty-quan{padding-left:140px;width:660px;min-height: 95px;}
+.disccount .each .red-bagNo{width:580px;}
+.disccount .each .red-bag{background: url(/static/img/disccount1.jpg) no-repeat left top;}
 .disccount .each .red-bagNo{background: url(/static/img/red-bag-no.jpg) no-repeat center center;height:150px;}
 .disccount .each .jx-quan{background: url(/static/img/disccount2.jpg) no-repeat left center;}
 .disccount .each .ty-quan{background: url(/static/img/disccount3.jpg) no-repeat left center;}
+.disccount .each .red-bag .tab{margin-bottom: 10px;}
 .disccount .each .red-bag .tab span{background: url(/static/img/arrow7.png) no-repeat right center;padding-right: 14px;margin-right:25px;}
-.disccount .each .red-bag .tab-cont{margin-top: 20px;}
-.disccount .each .red-bag .tab span em{color:#f27835;font-size: 12px;padding-left: 5px;padding-bottom: 1px;}
+.disccount .each .red-bag .tab span em{color:#f27835;font-size: 12px;padding-left: 5px;padding-bottom: 1px;cursor:pointer;}
+.disccount .each .red-bag .tab span em i{font-style: normal;}
+.disccount .each .red-bag .tab span.selected{background: url(/static/img/arrow7-1.png) no-repeat right center;}
 .disccount .each .red-bag .tab span.selected em{background:#f27835;color:#fff;border-radius: 6px;}
 .disccount .each .red-bag .redbag{margin-right: 20px;}
+.disccount .each .red-bag .tab-cont{margin-top: 20px;}
 .disccount .each .red-bag .red-used, .disccount .each .red-bag .red-dated{background:url(/static/img/redbag2.png) no-repeat bottom right #a6a6a6;}
 .disccount .each .red-bag .redbag .used, .disccount .each .red-bag .redbag .dated{position: absolute;top:3px;right:5px;font-size: 12px;}
 .disccount .each .red-bag .redbag .used{color:#ffa674;font-weight: 900}
@@ -197,9 +201,9 @@
 .account-manage .each .sub-msg p.btn-line, .account-manage .each .sub-msg p.btn-line2{margin-top: 20px;}
 .account-manage .each .sub-msg p.btn-line2 .light-btn, .account-manage .each .sub-msg p.btn-line2 .gray-btn{margin-right: 15px;width:113px;}
 .account-manage .each .sub-msg p input{width:227px;}
+.account-manage .each .sub-msg p select{height:32px;line-height:32px;border:2px solid #919191;font-size: 14px;}
 .account-manage .each .sub-msg p.captcha input{width: 118px;margin-right: 5px;}
 .account-manage .each .sub-msg p.captcha .light-btn, .account-manage .each .sub-msg p.captcha .gray-btn{width:95px;font-size: 12px;}
 
 .account-manage .selected{}
-.account-manage .selected .main-msg .light-btn em{background: url(/static/img/arrow8-1.png) no-repeat right center;}
-.account-manage .selected .sub-msg{display: block;}
+.account-manage .each .main-msg .light-btn em.selected{background: url(/static/img/arrow8-1.png) no-repeat right center;}
