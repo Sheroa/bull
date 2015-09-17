@@ -128,6 +128,28 @@ var manage = {
 				animate_obj.slideUp();
 			})
 		})
+
+		//修改用户密码
+		$("#modify_pwd").on("click",function(){
+			var _this = $(this),
+				animate_obj = _this.parents(".each").find(".sub-msg");
+
+			if(_this.hasClass('selected')){
+				_this.removeClass('selected');
+				animate_obj.slideUp();
+			}else{
+				_this.addClass('selected');
+				animate_obj.slideDown();
+			}
+
+			//取消btn
+			var cancel_btn = animate_obj.find(".cancel_btn");
+			cancel_btn.on("click",function(){
+				_this.removeClass('selected');
+				animate_obj.slideUp();
+			})
+
+		})
 	}
 }
 
