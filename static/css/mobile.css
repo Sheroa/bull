@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+/* 网站地图 */
+.mobile{width:100%;background:url(/static/img/phone.png) no-repeat right bottom #f27835;height: 532px;}
+.mobile .lf-area{padding-left:175px;padding-top: 105px;width: 360px;margin-right: 185px;}
+.mobile .lf-area p{margin-bottom: 30px;}
+.mobile .lf-area .icon span{display: inline-block;}
+.mobile .lf-area .icon span.erwei{margin-right: 30px;}
+.mobile .lf-area .icon span.app{padding-top:10px;width:117px;}
+.mobile .lf-area .icon span.app img{margin-bottom: 10px;}
