@@ -149,6 +149,59 @@ var manage = {
 				animate_obj.slideUp();
 			})
 
+			var confirm_btn = animate_obj.find(".confirm_btn")
+			confirm_btn.on("click",function(){
+				var _this = $(this);
+				error_msg = animate_obj.find(".error-msg"),
+				old_pwd = $.trim(animate_obj.find(".old_pwd").val()),
+				new_pwd = $.trim(animate_obj.find(".new_pwd").eq(0).val()),
+				new_pwd_array = animate_obj.find(".new_pwd"),
+				compare_array = [];
+
+				$.each(new_pwd_array,function(index,value){
+					var _this = $(this),
+						pwd_item = $.trim(_this.val());
+					compare_array.push(pwd_item);
+				});
+
+				if(!old_pwd){
+					error_msg.html("请输入您的原始密码！");
+					return false;
+				}
+
+				if(!new_pwd){
+					error_msg.html("请重置您的登录密码！");
+					return false;
+				}
+
+				if(!K.pwd_valid_check(new_pwd)){
+					error_msg.html("密码过于简单，请设置字母+数字的密码!");
+					return false;
+				}
+				
+				//确认密码的判断
+				if(compare_array[0] != compare_array[1]){
+					error_msg.html("两次密码不一致，请重新输入!");
+					return false;
+				}
+				error_msg.html("");
+
+				//校验结束，发送ajax请求
+				api.call('/api/user/modifyLoginPwd.do',{
+					'oldLoginPwd':old_pwd,
+					'newLoginPwd':new_pwd
+				},function(_rel){
+					var reuslt = _rel.result;
+					if(reuslt){
+						// error_msg.html("密码修改成功");
+						// $("#modify_pwd").trigger('click');						
+						location.reload(true);
+					}
+				},function(_rel){
+					error_msg.html(_rel.msg);
+				});
+			})
+
 		})
 	}
 }
