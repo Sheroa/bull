@@ -79,9 +79,9 @@ var invest = {
 			//数据
 			var buf = [];
 			buf.push('<p><em class="bar1"></em><i>账户余额：</i><strong>￥'+(ableBalanceAmount/10000).toFixed(2)+'</strong></p>');
-			buf.push('<p><em class="bar1"></em><i>活期宝：</i><strong>￥'+(currentProductAmount/10000).toFixed(2)+'</strong></p>');
-			buf.push('<p><em class="bar1"></em><i>固定收益：</i><strong>￥'+(fixedProductAmount/10000).toFixed(2)+'</strong></p>');
-			buf.push('<p><em class="bar1"></em><i>浮动收益：</i><strong>￥'+(floatProductAmount/10000).toFixed(2)+'</strong></p>');
+			buf.push('<p><em class="bar2"></em><i>活期宝：</i><strong>￥'+(currentProductAmount/10000).toFixed(2)+'</strong></p>');
+			buf.push('<p><em class="bar3"></em><i>固定收益：</i><strong>￥'+(fixedProductAmount/10000).toFixed(2)+'</strong></p>');
+			buf.push('<p><em class="bar4"></em><i>浮动收益：</i><strong>￥'+(floatProductAmount/10000).toFixed(2)+'</strong></p>');
 
 			$("#finance").html(buf.join(""));
 												

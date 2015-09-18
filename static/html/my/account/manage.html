@@ -27,7 +27,7 @@
 					</div>
 					<!-- 身份认证未填写 -->
 					<div class="each" data-type="verifyIdentity">
-						<p class="main-msg need-write">
+						<p class="main-msg">
 							<span class="p-ti">身份认证</span>
 							<span class="cont"><!-- 完成身份信息才能投资，实名认证后身份证不允许修改、更换或注销（<em>未填写</em>） --></span>
 							<!-- <a href="javascript:void(0);" class="light-btn"><em>立即填写</em></a> -->
@@ -69,43 +69,44 @@
 						<p class="main-msg">
 							<span class="p-ti">登录密码</span>
 							<span class="cont">已设置</span>
-							<a href="javascript:void(0);" class="light-btn"><em>修改</em></a>
+							<a href="javascript:void(0);" class="light-btn"><em id="modify_pwd">修改</em></a>
 						</p>
-						<div class="sub-msg show">
+						<div class="sub-msg">
 							<p>修改登录密码：</p>
-							<p><span class="p-ti">原密码</span><span class="pwd-area"><input type="password" placeholder="请输入原登录密码"><a href="javascript:void(0);" class="visible"></a></span></p>
-							<p><span class="p-ti">新密码</span><span class="pwd-area"><input type="password" placeholder="请输入新的登录密码"><a href="javascript:void(0);" class="visible"></a></span></p>
-							<p class="no-margin"><span class="p-ti">确认密码</span><span class="pwd-area"><input type="password" placeholder="请再次输入新的登录密码"><a href="javascript:void(0);" class="visible"></a></span></p>
-							<p class="error-msg">错误信息</p>
-							<p class="btn-line2"><a href="javascript:void(0);" class="gray-btn">取消</a><a href="javascript:void(0);" class="light-btn">确认</a></p>
+
+							<p><span class="p-ti">原密码</span><span class="pwd-area"><input type="password" class="old_pwd" placeholder="请输入原登录密码"><a href="javascript:void(0);" class="visible"></a></span></p>
+							<p><span class="p-ti">新密码</span><span class="pwd-area"><input type="password" class="new_pwd"  placeholder="请输入新的登录密码"><a href="javascript:void(0);" class="visible"></a></span></p>
+							<p class="no-margin"><span class="p-ti">确认密码</span><span class="pwd-area"><input class="new_pwd" type="password" placeholder="请再次输入新的登录密码"><a href="javascript:void(0);" class="visible"></a></span></p>
+							<p class="error-msg"></p>
+							<p class="btn-line2"><a href="javascript:void(0);" class="gray-btn cancel_btn">取消</a><a href="javascript:void(0);" class="light-btn confirm_btn">确认</a></p>
+
 						</div>
 					</div>
 					<!-- 交易密码未设置 -->
-					<div class="each">
+					<div class="each" data-type="verifypwd">
 						<p class="main-msg">
 							<span class="p-ti">交易密码</span>
-							<span class="cont">设置交易密码方可进行充值投资资金提取（<em>未设置</em>）</span>
-							<a href="javascript:void(0);" class="light-btn"><em>立即设置</em></a>
+							<span class="cont"></span>
+							
 						</p>
 						<div class="sub-msg">
-							<p>设置交易密码：</p>
+<!-- 							<p>设置交易密码：</p>
 							<p class="no-margin"><span class="p-ti">交易密码</span><span class="bank-pwd"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"></span></p>
 							<p class="sub-text"><span>请输入6位字交易密码</span></p>
 							<p class="no-margin"><span class="p-ti">确认密码</span><span class="bank-pwd"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"></span></p>
 							<p class="error-msg">两次输入的密码不一致，请重新输入</p>
-							<p class="btn-line"><a href="javascript:void(0);" class="light-btn">确认</a></p>
+							<p class="btn-line"><a href="javascript:void(0);" class="light-btn">确认</a></p> -->
 						</div>
 					</div>
 					<!-- 交易密码已设置 -->
-					<div class="each">
+<!-- 					<div class="each">
 						<p class="main-msg">
 							<span class="p-ti">交易密码</span>
-							<span class="cont2">设置交易密码方可进行充值投资资金提取（<em>未设置</em>）</span>
-							<a href="javascript:void(0);" class="light-btn"><em>修改</em></a>
-							<a href="javascript:void(0);" class="light-btn"><em>找回</em></a>
-						</p>
+							<span class="cont2"></span>
+							
+						</p> -->
 						<!-- 找回交易密码 -->
-						<div class="sub-msg">
+<!-- 						<div class="sub-msg">
 							<p>找回交易密码：</p>
 							<p><span class="p-ti">手机号码</span><span>158****7837</span></p>
 							<p class="captcha"><span class="p-ti">验证码</span><input type="text" placeholder="请输入短信验证码"><a href="javascript:void(0)" class="light-btn">获取验证码</a></p>
@@ -114,8 +115,8 @@
 							<p class="no-margin"><span class="p-ti">确认密码</span><span class="bank-pwd"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"></span></p>
 							<p class="error-msg">两次输入的密码不一致，请重新输入</p>
 							<p class="btn-line"><a href="javascript:void(0);" class="light-btn">确认</a></p>
-						</div>
-						<!-- 修改交易密码 -->
+						</div> -->
+<!-- 						修改交易密码
 						<div class="sub-msg">
 							<p>修改交易密码：</p>
 							<p class="no-margin"><span class="p-ti">原交易密码</span><span class="bank-pwd"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"></span></p>
@@ -126,7 +127,7 @@
 							<p class="error-msg">两次输入的密码不一致，请重新输入</p>
 							<p class="btn-line"><a href="javascript:void(0);" class="light-btn">确认</a></p>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>	
 		</div>
