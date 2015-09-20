@@ -43,6 +43,17 @@ var hqb = {
 			buf.push('<p class="sub-text"><input type="checkbox" checked="checked" class="check"><a class="protocol" href="javascript:void(0)">《活期宝投资协议》</a></p>');
 			buf.push('<p><a class="light-btn purchase">购买</a></p>	');
 			return buf.join("");	
+		},
+		pay_pwd:function(){
+			var buf = [];
+			buf.push('<div class="cont3">');
+			buf.push('<p>请输入交易密码：</p>');
+			buf.push('<p><span class="bank-pwd"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"></span></p>');
+			buf.push('<p class="sub-text"><span>请输入6位字交易密码</span><a href="/users/find_pwd.html" class="forget-pwd">忘记密码</a></p>');
+			buf.push('<p class="error-msg"></p>');
+			buf.push('<p><a href="javascript:void(0);" class="light-btn confirm_purchase">确定</a></p>');
+			buf.push('</div>');
+			return buf.join("");
 		}
 	},
 	UI:function(){
@@ -95,13 +106,15 @@ var hqb = {
 	},
 	event_handler_login:function(){
 
+		var self = this;
+
 		//立即购买按钮
 		$(".purchase").on("click",function(){
 			
 			var _this     = $(this),
 				error_msg = $("#entrance").find(".error-msg"),
 				purchase_money = $.trim($("#purchase_money").val()),
-				ableBalanceAmount = $.trim($(".ableBalanceAmount").val()),
+				ableBalanceAmount = $.trim($(".ableBalanceAmount").text().replace('￥','')),
 				checked = $("#entrance").find("input[type='checkbox']").is(":checked");
 
 			if(!purchase_money){
@@ -109,7 +122,7 @@ var hqb = {
 				return false;
 			}
 
-			if(purchase_money > ableBalanceAmount){
+			if(parseFloat(purchase_money) > parseFloat(ableBalanceAmount)){
 				error_msg.text('余额不足，请充值！');
 				return false;
 			}
@@ -120,6 +133,58 @@ var hqb = {
 			}
 
 			error_msg.text("");
+
+			$.Dialogs({
+			    "id" : "diglog_wrapper",
+			    "overlay" : true,
+			    "cls" : "dialog-wrapper popbox-bankrank",
+			    "closebtn" : ".quit,span.close",
+			    "auto" : false,
+			    "msg" :self.tpl.pay_pwd(),
+			    "openfun":function(){
+			    	//密码输入框
+			    	$(".bank-pwd").each(function(index, el) {
+			    		$(el).find("input").each(function(index, el) {
+			    			var _this = $(el);
+			    			_this.on("keyup",function(event){
+			    				var self = $(this);
+
+			    				if(event.which == 8){
+			    					self.text("");
+			    					self.prev().focus();
+			    				}else{
+			    					self.next().focus();
+			    				}
+			    			});
+			    		});	
+			    	});
+
+
+			    	$(".confirm_purchase").on("click",function(){
+			    		var _this = $(this),
+			    			error_msg = _this.parents("#diglog_wrapper").find(".error-msg");
+
+			    		var pwd_array = []
+			    		$.each($(".bank-pwd").find("input"), function(index, val) {
+			    			 pwd_array.push($(val).val());
+			    		});
+			    		
+			    		if(pwd_array.join("").length < 6){
+			    			error_msg.text("请输入交易密码");
+			    			return false;
+			    		}
+
+			    		error_msg.text("");
+
+			    		api.call('/api/product/current/buyProduct.do',{
+			    			'investAmount':purchase_money,
+			    			'payPassword':pwd_array.join("")
+			    		},function(_rel){
+
+			    		});
+			    	})
+			    }
+			});
 		});
 
 		//投资协议
