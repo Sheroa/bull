@@ -11,6 +11,7 @@ var toolbar = require('util/toolbar_pp'),
 require('util/extend_fn');
 require('ui/dialog/dialog');
 
+var product_id = "";
 
 var hqb = {
 	init:function(){
@@ -39,17 +40,18 @@ var hqb = {
 			buf.push('<p style="margin-bottom:5px;">');
 			buf.push('<span class="p-ti">购买金额</span><input id="purchase_money" type="number" placeholder="100元起购"></p>');
 			buf.push('<p class="error-msg"></p>');
-			buf.push('<p class="sub-text" style="letter-spacing:-1px;">每人累计可购买50000元，您还可以购买50000元</p>');
+			buf.push('<p class="sub-text" style="letter-spacing:-1px;">每人累计可购买50000元，您还可以购买{{#fbuyBalance}}元</p>');
 			buf.push('<p class="sub-text"><input type="checkbox" checked="checked" class="check"><a class="protocol" href="javascript:void(0)">《活期宝投资协议》</a></p>');
 			buf.push('<p><a class="light-btn purchase">购买</a></p>	');
 			return buf.join("");	
 		},
 		pay_pwd:function(){
 			var buf = [];
+			buf.push('<p class="ti">请输入交易密码<a href="#" class="quit"></a></p>');
 			buf.push('<div class="cont3">');
 			buf.push('<p>请输入交易密码：</p>');
 			buf.push('<p><span class="bank-pwd"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"></span></p>');
-			buf.push('<p class="sub-text"><span>请输入6位字交易密码</span><a href="/users/find_pwd.html" class="forget-pwd">忘记密码</a></p>');
+			buf.push('<p class="sub-text"><span>请输入6位字交易密码</span><a href="/my/account/manage.html" class="forget-pwd">忘记密码</a></p>');
 			buf.push('<p class="error-msg"></p>');
 			buf.push('<p><a href="javascript:void(0);" class="light-btn confirm_purchase">确定</a></p>');
 			buf.push('</div>');
@@ -66,13 +68,20 @@ var hqb = {
 
 			api.call('/api/product/current/queryProductInfo',{},function(_rel){
 
+				product_id = _rel.result.productId;
+
 				api.call('/api/account/getUserAsset.do',{},function(_asset){
 					var parse_obj = _rel.result;
 					$.extend(parse_obj,_asset.result);
 					for(var i in parse_obj){
 						console.log();
 						if(typeof parse_obj[i] == "number" && parse_obj[i] >= 10000000){
-							parse_obj[i] = (parse_obj[i]/10000).toFixed(2);
+							if(i == "fbuyBalance"){
+								parse_obj[i] = (parse_obj[i]/10000).toFixed(0);
+							}else{
+								parse_obj[i] = (parse_obj[i]/10000).toFixed(2);	
+							}
+							
 						}
 					}
 					entrance.html(K.ParseTpl(self.tpl.ydl(),parse_obj));
@@ -119,6 +128,16 @@ var hqb = {
 
 			if(!purchase_money){
 				error_msg.text('请填写购买金额！');
+				return false;
+			}
+
+			if(parseFloat(purchase_money) < 100){
+				error_msg.text('购买金额100元起！');
+				return false;
+			}
+
+			if(parseFloat(purchase_money) > 50000){
+				error_msg.text('填写金额超过个人限额！');
 				return false;
 			}
 
@@ -178,9 +197,14 @@ var hqb = {
 
 			    		api.call('/api/product/current/buyProduct.do',{
 			    			'investAmount':purchase_money,
-			    			'payPassword':pwd_array.join("")
+			    			'payPassword':pwd_array.join(""),
+			    			'platform':'web',
+			    			'sellChannel':'local',
+			    			'productId':product_id	
 			    		},function(_rel){
-
+			    			debugger;
+			    		},function(_rel){
+			    			error_msg.text(_rel.msg);
 			    		});
 			    	})
 			    }

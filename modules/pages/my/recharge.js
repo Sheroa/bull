@@ -290,7 +290,7 @@ var recharge = {
 
  		//显示账户余额
  		api.call('/api/account/getUserAsset.do',{},function(_rel){
- 			var ableBalanceAmount = _rel.result.ableBalanceAmount;
+ 			var ableBalanceAmount = (_rel.result.ableBalanceAmount/100000).toFixed(2);
  			$(".ableBalanceAmount").text('￥'+ableBalanceAmount);
  		});
 
