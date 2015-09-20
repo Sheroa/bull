@@ -161,8 +161,10 @@ var pwd = {
 		$.extend(data_transport,{
 			'mobile': phone_num
 		});
+
+		//忘记密码
 		$.ajax({
-			url: '/api/user/sendSmsCodeByRegister',
+			url: '/api/user/sendSmsCodeByResetLoginPwd',
 			type: 'post',
 			data: data_transport,
 			success:function(result){
