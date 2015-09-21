@@ -276,6 +276,10 @@ var recharge = {
  					K.gotohref('/my/personCenter.html');
  				}
  			});
+ 		});
+
+ 		$("#recharge-2").on("click",function(){
+
  		})
 
  		$("#bank_number").keydown(function(event) {
@@ -290,7 +294,7 @@ var recharge = {
 
  		//显示账户余额
  		api.call('/api/account/getUserAsset.do',{},function(_rel){
- 			var ableBalanceAmount = (_rel.result.ableBalanceAmount/100000).toFixed(2);
+ 			var ableBalanceAmount = (_rel.result.ableBalanceAmount/10000).toFixed(2);
  			$(".ableBalanceAmount").text('￥'+ableBalanceAmount);
  		});
 
