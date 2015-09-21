@@ -182,7 +182,12 @@ var hqb = {
 		var self = this;
 
 		$("#red_paper_detail").on("click",function(){
-			alert("fuck");
+			
+			api.call('/api/activity/findRedPacketList.do',{
+
+			},function(_rel){
+
+			});
 			// $.Dialogs({
 			//     "id" : "diglog_wrapper",
 			//     "overlay" : true,

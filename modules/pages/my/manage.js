@@ -580,15 +580,21 @@ var manage = {
 								}
 								error_msg.text("");
 
-								api.call('/api/user/resetPayPwd.do',{
-
-									'newPayPwd':compare_array[0],
+								//
+								api.call('/api/user/verifySmsCodeByResetPayPwd.do',{
 									'smsCode':$.trim(sms_code.val())
+								},function(_rel){
 
-								},function(_rel){
-									debugger;
-								},function(_rel){
-									error_msg.html(_rel.msg);
+									api.call('/api/user/resetPayPwd.do',{
+
+										'newPayPwd':compare_array[0],
+										'smsCode':_rel.result
+
+									},function(_rel){
+										location.reload(true);
+									},function(_rel){
+										error_msg.html(_rel.msg);
+									});
 								});
 						});
 

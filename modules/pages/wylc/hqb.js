@@ -56,6 +56,15 @@ var hqb = {
 			buf.push('<p><a href="javascript:void(0);" class="light-btn confirm_purchase">确定</a></p>');
 			buf.push('</div>');
 			return buf.join("");
+		},
+		success:function(){
+			var buf = [];
+			buf.push('<p class="ti">购买成功<a href="#" class="quit"></a></p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p class="buy-ok">尊敬的用户，您已成功购买活期宝*****元，<br>可进入<a href="javascript:void(0);">个人中心-我的投资</a>栏目查看详情。<br>多谢您的支持，祝您投资愉快！</p>');
+			buf.push('<p><a href="/my/refund/myInput.html" class="light-btn">查看详情</a></p>');
+			buf.push('</div>');
+			return buf.join("");
 		}
 	},
 	UI:function(){
@@ -156,7 +165,7 @@ var hqb = {
 			$.Dialogs({
 			    "id" : "diglog_wrapper",
 			    "overlay" : true,
-			    "cls" : "dialog-wrapper popbox-bankrank",
+			    "cls" : "dialog-wrapper popbox-bankrank outter",
 			    "closebtn" : ".quit,span.close",
 			    "auto" : false,
 			    "msg" :self.tpl.pay_pwd(),
@@ -196,13 +205,21 @@ var hqb = {
 			    		error_msg.text("");
 
 			    		api.call('/api/product/current/buyProduct.do',{
-			    			'investAmount':purchase_money,
+			    			'investAmount':purchase_money*10000,
 			    			'payPassword':pwd_array.join(""),
 			    			'platform':'web',
 			    			'sellChannel':'local',
 			    			'productId':product_id	
 			    		},function(_rel){
-			    			debugger;
+			    			$(".outter .quit").trigger("click");
+			    			$.Dialogs({
+			    			    "id" : "diglog_wrapper",
+			    			    "overlay" : true,
+			    			    "cls" : "dialog-wrapper popbox-bankrank",
+			    			    "closebtn" : ".quit,span.close",
+			    			    "auto" : false,
+			    			    "msg" :self.tpl.success()
+			    			});
 			    		},function(_rel){
 			    			error_msg.text(_rel.msg);
 			    		});

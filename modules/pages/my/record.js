@@ -6,13 +6,14 @@
 var api     = require("api/api"),
 	sidebar = require("util/sidebar"),
 	K       = require('util/Keeper'),
+	artTemplate 	= require("artTemplate"),
 	toolbar = require('util/toolbar_pp'),
 	navBar = require("util/navbar");
 
 window.filter = {
  		'pageIndex':1,
  		'pageSize':10,
- 		'transType':0
+ 		'transType':""
  	};
 
 //获取页码总数
@@ -59,20 +60,45 @@ var record = {
 			$("#withdrawBlockedAmount").text("￥"+(result.withdrawBlockedAmount/10000).toFixed(2));
 		});
 
+		//交易类型
+		api.call('/api/account/findAllTransType.do',{
+
+		},function(_rel){
+			var list = _rel.list;
+			var _html = [];
+			_html.push('<option type="">全部</option>')
+			$.each(list, function(index, val) {
+				 /* iterate through array or object */
+				 _html.push('<option type='+val.transType+'>'+val.transName+'</option>');
+			});
+			$("#record_type").html(_html.join(""));
+		});
+
+		$("#query").on("click",function(){
+				var _this = $(this),
+					tran_type = _this.prev().find("option:selected").attr("type");
+				$.extend(filter, {
+					'transType':tran_type,
+					'pageIndex':1
+				});
+				getlist();
+				
+		});
+
 	},
 	record_list_show:function(){
 
 		var self = this;
 
 		api.call('/api/account/queryUserBalanceLogByPage.do',filter,function(data){
-			// var cache_data = artTemplate.compile(__inline("./system_msg/msg_list.tmpl"))(data);
-			// if(!cache_data){
-			// 	$("#msg_list").html("<h4 class='notice'>暂无消息！</h4>");
-			// }else{
-			// 	$("#msg_list").html(cache_data);
-			// }
-			
 
+			var cache_data = $.trim(artTemplate.compile(__inline("./record/record.tmpl"))(data));
+			if(!cache_data){
+				$("#record_list").html("<h4 class='notice'>暂无数据！</h4>");
+			}else{
+				$("#record_list").html(cache_data);
+			}
+			
 			var pageSize = data.pageSize,
 				totalRecord = data.totalCount,
 				pageNum = getPageNum(pageSize,totalRecord);
