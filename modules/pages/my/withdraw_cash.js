@@ -59,45 +59,45 @@
 
 
 		//银卡开户行地址
-		api.call('/api/payment/findProvinceList.do',{},function(_rel){
-			var list = _rel.list,
-				province_list = [];
+		// api.call('/api/payment/findProvinceList.do',{},function(_rel){
+		// 	var list = _rel.list,
+		// 		province_list = [];
 			
-			$.each(list, function(index, val) {
-				var str = '<option value="'+val.code+'">'+val.name+'</option>';
-				province_list.push(str);	 
-			});
+		// 	$.each(list, function(index, val) {
+		// 		var str = '<option value="'+val.code+'">'+val.name+'</option>';
+		// 		province_list.push(str);	 
+		// 	});
 
-			$("#province").append(province_list.join(""));
-		});
+		// 	$("#province").append(province_list.join(""));
+		// });
 
-		$("#province").change(function(){
-			var self    = $(this),
-				city_id = self.children('option:selected').val(),
-				city_name = self.children('option:selected').text();
+		// $("#province").change(function(){
+		// 	var self    = $(this),
+		// 		city_id = self.children('option:selected').val(),
+		// 		city_name = self.children('option:selected').text();
 			
-			if(city_id == 0){
-				//选中option为请选择城市返回，并且清空
-				$("#city").html("<option value='0'>请选择城市</option>");
-				//$("#bank").html("<option value='0'>请选择支行</option>");
-				return false;
-			}
+		// 	if(city_id == 0){
+		// 		//选中option为请选择城市返回，并且清空
+		// 		$("#city").html("<option value='0'>请选择城市</option>");
+		// 		//$("#bank").html("<option value='0'>请选择支行</option>");
+		// 		return false;
+		// 	}
 
-			api.call('/api/payment/findCityList.do',{
-				'provinceId':city_id,
-				'provinceCode':city_name
-			},function(_rel){
-				var list = _rel.list,
-					city_list = [];
-				city_list.push('<option value="0">请选择城市</option>');
-				$.each(list,function(index,val){
-					var str = '<option value="'+val.code+'">'+val.name+'</option>';
-					city_list.push(str);
-				});
+		// 	api.call('/api/payment/findCityList.do',{
+		// 		'provinceId':city_id,
+		// 		'provinceCode':city_name
+		// 	},function(_rel){
+		// 		var list = _rel.list,
+		// 			city_list = [];
+		// 		city_list.push('<option value="0">请选择城市</option>');
+		// 		$.each(list,function(index,val){
+		// 			var str = '<option value="'+val.code+'">'+val.name+'</option>';
+		// 			city_list.push(str);
+		// 		});
 
-				$("#city").html(city_list.join(""));
-			});
-		});
+		// 		$("#city").html(city_list.join(""));
+		// 	});
+		// });
 
 		// $("#city").change(function(){
 		// 	var self    = $(this),
