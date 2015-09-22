@@ -4,7 +4,8 @@
  */
 
 
-var $ = require('jquery');
+var $ = require('jquery'),
+	api    = require("api/api");
 
 var href=window.location.href,
 	type="";
@@ -16,7 +17,15 @@ var href=window.location.href,
 
  		this.animate_controll();
  		this.default_select();
+ 		this.data_api();
 
+ 	},
+ 	data_api:function(){
+ 		api.call('/api/product/queryProductList',{
+ 			'isFlow':1
+ 		},function(_rel){
+ 			debugger;
+ 		});
  	},
  	default_select:function(){
  		//删除class_name selected

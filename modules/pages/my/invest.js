@@ -49,25 +49,25 @@ var invest = {
 
 			var data = [
 			    {
-			        value: 100,
+			        value: ableBalanceAmount,
 			        color:"#f27835",
 			        highlight: "#f27835",
 			        label: "账户余额"
 			    },
 			    {
-			        value: 100,
+			        value: currentProductAmount,
 			        color: "#f39c11",
 			        highlight: "#f39c11",
 			        label: "活期宝"
 			    },
 			    {
-			        value: 50,
+			        value: fixedProductAmount,
 			        color: "#58d68d",
 			        highlight: "#58d68d",
 			        label: "固定投资"
 			    },
 			    {
-			        value: 50,
+			        value: floatProductAmount,
 			        color: "#6699cc",
 			        highlight: "#6699cc",
 			        label: "浮动投资"

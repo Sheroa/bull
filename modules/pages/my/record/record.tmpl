@@ -1,0 +1,8 @@
+{{each list as value index}}
+	<tr>
+		<td>{{value.transDate}}</td>
+		<td>{{value.transTypeDesc}}</td>
+		<td>{{(value.transAmount/10000).toFixed(2)}}</td>
+		<td>{{value.remark}}</td>
+	</tr>
+{{/each}}

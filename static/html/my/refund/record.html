@@ -20,19 +20,19 @@
 					<div class="cont">
 						<span class="lf-area">
 							<p>账户余额</p>
-							<p><em>￥100000000</em></p>
-							<p><a href="javascript:void(0);" class="light-btn">充值</a></p>
+							<p><em id="toInvestAmount"></em></p>
+							<p><a href="/my/refund/recharge.html" class="light-btn">充值</a></p>
 						</span>
 						<span class="rt-area">
 							<p>提现中资金</p>
-							<p><em>￥5000000</em></p>
-							<p><a href="javascript:void(0);" class="gray-btn">提现</a></p>
+							<p><em id="withdrawBlockedAmount"></em></p>
+							<p><a href="/my/refund/withdrawCash.html" class="gray-btn">提现</a></p>
 						</span>
 					</div>
 					<span class="assure3">账户资金安全由中国人保承保</span>
 				</div>
 				<div class="shadow-box">
-					<p class="search"><em>查询所有的类型</em><select name="bank-select" id="bank-select"><option data-code="0">全部</option></select><a href="javascript:void(0);" class="light-btn">查询</a></p>
+					<p class="search"><em>查询所有的类型</em><select name="recod_type" id="record_type"></select><a href="javascript:void(0);" class="light-btn" id="query">查询</a></p>
 					<table>
 						<thead>
 							<tr>
@@ -42,18 +42,13 @@
 								<td>备注</td>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>2015年7月14日15：19：52</td>
-								<td>投资</td>
-								<td>-10000</td>
-								<td>购买活期宝</td>
-							</tr>
+						<tbody id="record_list">
+
 						</tbody>
 					</table>
 				</div>
 				<p class="pages">
-					<a href="javascript:void(0)">首页</a>
+<!-- 					<a href="javascript:void(0)">首页</a>
 					<a href="javascript:void(0)">&lt;</a>
 					<a href="javascript:void(0)" class="selected">1</a>
 					<a href="javascript:void(0)">2</a>
@@ -62,7 +57,7 @@
 					<span>…</span>
 					<a href="javascript:void(0)">10</a>
 					<a href="javascript:void(0)">&gt;</a>
-					<a href="javascript:void(0)">末页</a>
+					<a href="javascript:void(0)">末页</a> -->
 				</p>
 			</div>	
 		</div>
@@ -70,10 +65,6 @@
 
 	<link rel="import" href="/static/html/common/footer.html?__inline">
 
-	<script type="text/javascript">
-		var index = 0;
-		require('pages/my/invest');
-	</script>
 
 
 <!-- 	<div id="" class="dialog-wrapper popbox-bankrank" style="top: 226.5px; left: 609px;">
@@ -87,5 +78,9 @@
 		</div> -->
 
 	<!-- </div> -->
+	<script type="text/javascript">
+		var index = 0;
+		require('pages/my/record');
+	</script>
 </body>
 </html>

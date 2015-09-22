@@ -102,7 +102,7 @@ var manage = {
 						identify_content.html(K.ParseTpl(self.tpl.identify_step1(),user_info));
 						
 					}else{ //已进行实名认证
-						identify_title.addClass('cont2').text('陈*（430***********6011）身份证不允许修改、更换或注销');
+						identify_title.addClass('cont2').text(K.name_map(user_info.memberName)+'（'+K.bank_card_map(user_info.certNo)+'）身份证不允许修改、更换或注销');
 						identify_btn.find("a").remove();
 						identify_content.remove();
 					}
@@ -412,79 +412,79 @@ var manage = {
 				animate_obj.slideUp(function(){
 					animate_obj.html(self.tpl.modify_pay_pwd());
 					animate_obj.slideDown();
+						//密码输入框
+						$(".bank-pwd").each(function(index, el) {
+							$(el).find("input").each(function(index, el) {
+								var _this = $(el);
+								_this.on("keyup",function(event){
+									var self = $(this);
+
+									if(event.which == 8){
+										self.text("");
+										self.prev().focus();
+									}else{
+										self.next().focus();
+									}
+								});
+							});	
+						});
+
+						//确认btn
+						var confirm_btn = animate_obj.find(".confirm_btn");
+
+						confirm_btn.on("click",function(){
+							var _this = $(this),
+								bank_pwd = animate_obj.find(".bank-pwd"),
+								compare_array = [],
+								old_pwd = "",
+								error_msg = animate_obj.find('.error-msg');
+
+
+					 			$.each(bank_pwd,function(index,value){
+					 				var pwd_item = $(this),
+					 					pwd_array = [];
+					 				$.each(pwd_item.find("input"),function(k,v){
+					 					pwd_array.push($(v).val());
+					 				});
+					 				if(index == 0){
+					 					old_pwd = pwd_array.join("");
+					 				}else{
+					 					compare_array.push(pwd_array.join(""));	
+					 				}
+					 				
+					 			});
+
+					 			if(old_pwd.length != 6){
+					 				error_msg.text("请输入原始密码");
+					 				return false;
+					 			}
+
+					 			if(compare_array[0].length != 6 || compare_array[1].length != 6){
+					 				error_msg.text("请设置交易密码，保障资金安全");
+					 				return false;
+					 			}
+								if(compare_array[0] != compare_array[1]){
+									error_msg.html("两次输入的密码不一致，请重新输入");
+									return false;
+								}
+								error_msg.text("");
+
+								//校验完成-请求接口
+								api.call('/api/user/modifyPayPassword.do',{
+									'oldPayPwd':old_pwd,
+									'newPayPwd':compare_array[0]
+								},function(_rel){
+									var result = _rel.reuslt;
+									if(result){
+										location.reload(true);
+									}
+								},function(_rel){
+									error_msg.html(_rel.msg);
+								});
+						});
 				});
+
 			}
-
-			//密码输入框
-			$(".bank-pwd").each(function(index, el) {
-				$(el).find("input").each(function(index, el) {
-					var _this = $(el);
-					_this.on("keyup",function(event){
-						var self = $(this);
-
-						if(event.which == 8){
-							self.text("");
-							self.prev().focus();
-						}else{
-							self.next().focus();
-						}
-					});
-				});	
-			});
-
-			//确认btn
-			var confirm_btn = animate_obj.find(".confirm_btn");
-
-			confirm_btn.on("click",function(){
-				var _this = $(this),
-					bank_pwd = animate_obj.find(".bank-pwd"),
-					compare_array = [],
-					old_pwd = "",
-					error_msg = animate_obj.find('.error-msg');
-
-
-		 			$.each(bank_pwd,function(index,value){
-		 				var pwd_item = $(this),
-		 					pwd_array = [];
-		 				$.each(pwd_item.find("input"),function(k,v){
-		 					pwd_array.push($(v).val());
-		 				});
-		 				if(index == 0){
-		 					old_pwd = pwd_array.join("");
-		 				}else{
-		 					compare_array.push(pwd_array.join(""));	
-		 				}
-		 				
-		 			});
-
-		 			if(old_pwd.length != 6){
-		 				error_msg.text("请输入原始密码");
-		 				return false;
-		 			}
-
-		 			if(compare_array[0].length != 6 || compare_array[1].length != 6){
-		 				error_msg.text("请设置交易密码，保障资金安全");
-		 				return false;
-		 			}
-					if(compare_array[0] != compare_array[1]){
-						error_msg.html("两次输入的密码不一致，请重新输入");
-						return false;
-					}
-					error_msg.text("");
-
-					//校验完成-请求接口
-					api.call('/api/user/modifyPayPassword.do',{
-						'oldPayPwd':old_pwd,
-						'newPayPwd':compare_array[0]
-					},function(_rel){
-						var result = _rel.reuslt;
-						if(result){
-							location.reload(true);
-						}
-					},function(_rel){
-						error_msg.html(_rel.msg);
-					});
-			});
 
 		});
 
@@ -501,106 +501,116 @@ var manage = {
 					animate_obj.html(self.tpl.find_pay_pwd());
 					animate_obj.find(".phone_num").text(K.phone_num_map(user_info));
 					animate_obj.slideDown();
+
+
+						//密码输入框
+						$(".bank-pwd").each(function(index, el) {
+							$(el).find("input").each(function(index, el) {
+								var _this = $(el);
+								_this.on("keyup",function(event){
+									var self = $(this);
+
+									if(event.which == 8){
+										self.text("");
+										self.prev().focus();
+									}else{
+										self.next().focus();
+									}
+								});
+							});	
+						});
+
+						$(".verify_sms").on("click",function(){
+							var count = 60,
+								_this = $(this);
+
+							//防止重复点击
+							if($(this).hasClass('disabled')){
+								return false;
+							}
+
+							$(this).addClass('disabled');
+							$(this).removeClass('light-btn').addClass('gray-btn');
+
+							window.timer = window.setInterval(function(){
+								if(count == 0){
+									_this.removeClass('disabled');
+									_this.removeClass('gray-btn').addClass('light-btn');
+									_this.html("手机验证码");
+									window.clearInterval(timer);
+								}else{
+									_this.html(count+"秒后重新获取");
+									count--;
+								}
+							},1000);
+
+							self.sendMobileCode(user_info,$(".sms_info"))
+						});
+
+						//确认btn
+						var confirm_btn = animate_obj.find(".confirm_btn");
+						confirm_btn.on("click",function(){
+							var _this = $(this),
+								bank_pwd = animate_obj.find(".bank-pwd"),
+								compare_array = [],
+								sms_code = animate_obj.find(".sms_code"),
+								error_msg = animate_obj.find('.error-msg');
+
+								if($.trim(sms_code.val()).length == 0){
+									error_msg.text("请输入短信验证码");
+									return false;
+								}
+					 			$.each(bank_pwd,function(index,value){
+					 				var pwd_item = $(this),
+					 					pwd_array = [];
+					 				$.each(pwd_item.find("input"),function(k,v){
+					 					pwd_array.push($(v).val());
+					 				});
+					 				compare_array.push(pwd_array.join(""));	
+					 				
+					 			});
+
+					 			if(compare_array[0].length != 6 || compare_array[1].length != 6){
+					 				error_msg.text("请设置交易密码，保障资金安全");
+					 				return false;
+					 			}
+								if(compare_array[0] != compare_array[1]){
+									error_msg.html("两次输入的密码不一致，请重新输入");
+									return false;
+								}
+								error_msg.text("");
+
+								//
+								api.call('/api/user/verifySmsCodeByResetPayPwd.do',{
+									'smsCode':$.trim(sms_code.val())
+								},function(_rel){
+
+									api.call('/api/user/resetPayPwd.do',{
+
+										'newPayPwd':compare_array[0],
+										'smsCode':_rel.result
+
+									},function(_rel){
+										location.reload(true);
+									},function(_rel){
+										error_msg.html(_rel.msg);
+									});
+								});
+						});
+
+						//取消btn
+						var cancel_btn = animate_obj.find(".cancel_btn");
+						cancel_btn.on("click",function(){
+							_this.removeClass('selected');
+							animate_obj.slideUp();
+						})
 				});
+
+
 				
 				
 			}
 
-			//密码输入框
-			$(".bank-pwd").each(function(index, el) {
-				$(el).find("input").each(function(index, el) {
-					var _this = $(el);
-					_this.on("keyup",function(event){
-						var self = $(this);
-
-						if(event.which == 8){
-							self.text("");
-							self.prev().focus();
-						}else{
-							self.next().focus();
-						}
-					});
-				});	
-			});
-
-			$(".verify_sms").on("click",function(){
-				var count = 60,
-					_this = $(this);
-
-				//防止重复点击
-				if($(this).hasClass('disabled')){
-					return false;
-				}
-
-				$(this).addClass('disabled');
-				$(this).removeClass('light-btn').addClass('gray-btn');
-
-				window.timer = window.setInterval(function(){
-					if(count == 0){
-						_this.removeClass('disabled');
-						_this.removeClass('gray-btn').addClass('light-btn');
-						_this.html("手机验证码");
-						window.clearInterval(timer);
-					}else{
-						_this.html(count+"秒后重新获取");
-						count--;
-					}
-				},1000);
-
-				self.sendMobileCode(user_info,$(".sms_info"))
-			});
-
-			//确认btn
-			var confirm_btn = animate_obj.find(".confirm_btn");
-			confirm_btn.on("click",function(){
-				var _this = $(this),
-					bank_pwd = animate_obj.find(".bank-pwd"),
-					compare_array = [],
-					sms_code = animate_obj.find(".sms_code"),
-					error_msg = animate_obj.find('.error-msg');
-
-					if($.trim(sms_code.val()).length == 0){
-						error_msg.text("请输入短信验证码");
-						return false;
-					}
-		 			$.each(bank_pwd,function(index,value){
-		 				var pwd_item = $(this),
-		 					pwd_array = [];
-		 				$.each(pwd_item.find("input"),function(k,v){
-		 					pwd_array.push($(v).val());
-		 				});
-		 				compare_array.push(pwd_array.join(""));	
-		 				
-		 			});
-
-		 			if(compare_array[0].length != 6 || compare_array[1].length != 6){
-		 				error_msg.text("请设置交易密码，保障资金安全");
-		 				return false;
-		 			}
-					if(compare_array[0] != compare_array[1]){
-						error_msg.html("两次输入的密码不一致，请重新输入");
-						return false;
-					}
-					error_msg.text("");
-
-					api.call('/api/user/resetPayPwd.do',{
-
-						'newPayPwd':compare_array[0],
-						'smsCode':$.trim(sms_code.val())
-
-					},function(_rel){
-						debugger;
-					},function(_rel){
-						error_msg.html(_rel.msg);
-					});
-			});
-
-			//取消btn
-			var cancel_btn = animate_obj.find(".cancel_btn");
-			cancel_btn.on("click",function(){
-				_this.removeClass('selected');
-				animate_obj.slideUp();
-			})
 		});
 	},
 	sendMobileCode:function(phone_num,sms_obj){

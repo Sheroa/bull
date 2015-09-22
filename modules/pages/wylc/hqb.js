@@ -11,6 +11,7 @@ var toolbar = require('util/toolbar_pp'),
 require('util/extend_fn');
 require('ui/dialog/dialog');
 
+var product_id = "";
 
 var hqb = {
 	init:function(){
@@ -39,10 +40,31 @@ var hqb = {
 			buf.push('<p style="margin-bottom:5px;">');
 			buf.push('<span class="p-ti">购买金额</span><input id="purchase_money" type="number" placeholder="100元起购"></p>');
 			buf.push('<p class="error-msg"></p>');
-			buf.push('<p class="sub-text" style="letter-spacing:-1px;">每人累计可购买50000元，您还可以购买50000元</p>');
+			buf.push('<p class="sub-text" style="letter-spacing:-1px;">每人累计可购买50000元，您还可以购买{{#fbuyBalance}}元</p>');
 			buf.push('<p class="sub-text"><input type="checkbox" checked="checked" class="check"><a class="protocol" href="javascript:void(0)">《活期宝投资协议》</a></p>');
 			buf.push('<p><a class="light-btn purchase">购买</a></p>	');
 			return buf.join("");	
+		},
+		pay_pwd:function(){
+			var buf = [];
+			buf.push('<p class="ti">请输入交易密码<a href="#" class="quit"></a></p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p>请输入交易密码：</p>');
+			buf.push('<p><span class="bank-pwd"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"></span></p>');
+			buf.push('<p class="sub-text"><span>请输入6位字交易密码</span><a href="/my/account/manage.html" class="forget-pwd">忘记密码</a></p>');
+			buf.push('<p class="error-msg"></p>');
+			buf.push('<p><a href="javascript:void(0);" class="light-btn confirm_purchase">确定</a></p>');
+			buf.push('</div>');
+			return buf.join("");
+		},
+		success:function(){
+			var buf = [];
+			buf.push('<p class="ti">购买成功<a href="#" class="quit"></a></p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p class="buy-ok">尊敬的用户，您已成功购买活期宝*****元，<br>可进入<a href="javascript:void(0);">个人中心-我的投资</a>栏目查看详情。<br>多谢您的支持，祝您投资愉快！</p>');
+			buf.push('<p><a href="/my/refund/myInput.html" class="light-btn">查看详情</a></p>');
+			buf.push('</div>');
+			return buf.join("");
 		}
 	},
 	UI:function(){
@@ -55,13 +77,20 @@ var hqb = {
 
 			api.call('/api/product/current/queryProductInfo',{},function(_rel){
 
+				product_id = _rel.result.productId;
+
 				api.call('/api/account/getUserAsset.do',{},function(_asset){
 					var parse_obj = _rel.result;
 					$.extend(parse_obj,_asset.result);
 					for(var i in parse_obj){
 						console.log();
 						if(typeof parse_obj[i] == "number" && parse_obj[i] >= 10000000){
-							parse_obj[i] = (parse_obj[i]/10000).toFixed(2);
+							if(i == "fbuyBalance"){
+								parse_obj[i] = (parse_obj[i]/10000).toFixed(0);
+							}else{
+								parse_obj[i] = (parse_obj[i]/10000).toFixed(2);	
+							}
+							
 						}
 					}
 					entrance.html(K.ParseTpl(self.tpl.ydl(),parse_obj));
@@ -95,13 +124,15 @@ var hqb = {
 	},
 	event_handler_login:function(){
 
+		var self = this;
+
 		//立即购买按钮
 		$(".purchase").on("click",function(){
 			
 			var _this     = $(this),
 				error_msg = $("#entrance").find(".error-msg"),
 				purchase_money = $.trim($("#purchase_money").val()),
-				ableBalanceAmount = $.trim($(".ableBalanceAmount").val()),
+				ableBalanceAmount = $.trim($(".ableBalanceAmount").text().replace('￥','')),
 				checked = $("#entrance").find("input[type='checkbox']").is(":checked");
 
 			if(!purchase_money){
@@ -109,7 +140,17 @@ var hqb = {
 				return false;
 			}
 
-			if(purchase_money > ableBalanceAmount){
+			if(parseFloat(purchase_money) < 100){
+				error_msg.text('购买金额100元起！');
+				return false;
+			}
+
+			if(parseFloat(purchase_money) > 50000){
+				error_msg.text('填写金额超过个人限额！');
+				return false;
+			}
+
+			if(parseFloat(purchase_money) > parseFloat(ableBalanceAmount)){
 				error_msg.text('余额不足，请充值！');
 				return false;
 			}
@@ -120,6 +161,71 @@ var hqb = {
 			}
 
 			error_msg.text("");
+
+			$.Dialogs({
+			    "id" : "diglog_wrapper",
+			    "overlay" : true,
+			    "cls" : "dialog-wrapper popbox-bankrank outter",
+			    "closebtn" : ".quit,span.close",
+			    "auto" : false,
+			    "msg" :self.tpl.pay_pwd(),
+			    "openfun":function(){
+			    	//密码输入框
+			    	$(".bank-pwd").each(function(index, el) {
+			    		$(el).find("input").each(function(index, el) {
+			    			var _this = $(el);
+			    			_this.on("keyup",function(event){
+			    				var self = $(this);
+
+			    				if(event.which == 8){
+			    					self.text("");
+			    					self.prev().focus();
+			    				}else{
+			    					self.next().focus();
+			    				}
+			    			});
+			    		});	
+			    	});
+
+
+			    	$(".confirm_purchase").on("click",function(){
+			    		var _this = $(this),
+			    			error_msg = _this.parents("#diglog_wrapper").find(".error-msg");
+
+			    		var pwd_array = []
+			    		$.each($(".bank-pwd").find("input"), function(index, val) {
+			    			 pwd_array.push($(val).val());
+			    		});
+			    		
+			    		if(pwd_array.join("").length < 6){
+			    			error_msg.text("请输入交易密码");
+			    			return false;
+			    		}
+
+			    		error_msg.text("");
+
+			    		api.call('/api/product/current/buyProduct.do',{
+			    			'investAmount':purchase_money*10000,
+			    			'payPassword':pwd_array.join(""),
+			    			'platform':'web',
+			    			'sellChannel':'local',
+			    			'productId':product_id	
+			    		},function(_rel){
+			    			$(".outter .quit").trigger("click");
+			    			$.Dialogs({
+			    			    "id" : "diglog_wrapper",
+			    			    "overlay" : true,
+			    			    "cls" : "dialog-wrapper popbox-bankrank",
+			    			    "closebtn" : ".quit,span.close",
+			    			    "auto" : false,
+			    			    "msg" :self.tpl.success()
+			    			});
+			    		},function(_rel){
+			    			error_msg.text(_rel.msg);
+			    		});
+			    	})
+			    }
+			});
 		});
 
 		//投资协议

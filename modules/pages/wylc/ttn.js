@@ -37,13 +37,13 @@ var hqb = {
 		},
 		ydl:function(){
 			var buf = [];
-			buf.push('<p><span class="p-ti">账户余额</span><span class="num">￥{{#ableBalanceAmount}}</span><a href="/my/refund/recharge.html" class="recharge">[充值]</a></p>');
+			buf.push('<p><span class="p-ti">账户余额</span><span class="num ableBalanceAmount">￥{{#ableBalanceAmount}}</span><a href="/my/refund/recharge.html" class="recharge">[充值]</a></p>');
 			buf.push('<p style="margin-bottom:5px;"><span class="p-ti">购买金额</span><input id="purchase_money" type="number" placeholder="100元起购"></p>');
 			buf.push('<p class="error-msg"></p>');
 			buf.push('<p><span class="p-ti">使用红包</span><select name="redbag-select" class="redbag-select" id=""><option data-code="0">未选择（2个可用）</option></select><a href="javascript:void(0);" id="red_paper_detail" class="redDetail">详情</a></p>');
 			buf.push('<p><span class="p-ti">预期收益</span><span class="num2" id="expected_revenue">0.00元</span></p>');
 			buf.push('<p class="sub-text" style="padding-left:0"><input type="checkbox" class="check" checked="true"><a href="javascript:void(0);" id="revenue_transport">《收益权转让协议》</a><input type="checkbox" class="check" checked="true" style="margin-left:15px;"><a  href="javascript:void(0);" id="info_consult">《信息咨询与管理协议》</a></p>');
-			buf.push('<p><a class="light-btn">购买</a></p>');
+			buf.push('<p><a class="light-btn purchase">购买</a></p>');
 			return buf.join("");	
 		},
 		red_paper_detail:function(){
@@ -102,6 +102,18 @@ var hqb = {
 			buf.push('<p>地址：深圳市福田区彩田路2009号瀚森大厦17楼</p>');
 			buf.push('<p>注册号：4403011107262598</p>');
 			buf.push('<p>根据《中华人民共和国合同法》及相关法律法规的规定，双方遵循平等、自愿、互利和诚实信用原则，友好协商，就乙方为甲方提供信用咨询与管理服务达成一致，以兹信守。</p>');
+			buf.push('</div>');
+			return buf.join("");
+		},
+		pay_pwd:function(){
+			var buf = [];
+			buf.push('<p class="ti">请输入交易密码<a href="#" class="quit"></a></p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p>请输入交易密码：</p>');
+			buf.push('<p><span class="bank-pwd"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"><input type="password" maxlength="1"></span></p>');
+			buf.push('<p class="sub-text"><span>请输入6位字交易密码</span><a href="/my/account/manage.html" class="forget-pwd">忘记密码</a></p>');
+			buf.push('<p class="error-msg"></p>');
+			buf.push('<p><a href="javascript:void(0);" class="light-btn confirm_purchase">确定</a></p>');
 			buf.push('</div>');
 			return buf.join("");
 		}
@@ -170,7 +182,12 @@ var hqb = {
 		var self = this;
 
 		$("#red_paper_detail").on("click",function(){
-			alert("fuck");
+			
+			api.call('/api/activity/findRedPacketList.do',{
+
+			},function(_rel){
+
+			});
 			// $.Dialogs({
 			//     "id" : "diglog_wrapper",
 			//     "overlay" : true,
@@ -201,7 +218,101 @@ var hqb = {
 			    "auto" : false,
 			    "msg" :self.tpl.info_consult()
 			});
-		})
+		});
+
+		//立即购买按钮
+		$(".purchase").on("click",function(){
+			
+			var _this     = $(this),
+				error_msg = $("#entrance").find(".error-msg"),
+				purchase_money = $.trim($("#purchase_money").val()),
+				ableBalanceAmount = $.trim($(".ableBalanceAmount").text().replace('￥','')),
+				checked = $("#entrance").find("input[type='checkbox']").eq(0).is(":checked") && $("#entrance").find("input[type='checkbox']").eq(1).is(":checked");
+
+			if(!purchase_money){
+				error_msg.text('请填写购买金额！');
+				return false;
+			}
+
+			if(parseFloat(purchase_money) < 100){
+				error_msg.text('购买金额100元起！');
+				return false;
+			}
+
+			if(parseFloat(purchase_money) > 100000){
+				error_msg.text('填写金额超过个人限额！');
+				return false;
+			}
+
+			if(parseFloat(purchase_money) > parseFloat(ableBalanceAmount)){
+				error_msg.text('余额不足，请充值！');
+				return false;
+			}
+
+			if(!checked){
+				error_msg.text('请勾选服务协议');
+				return false;
+			}
+
+			error_msg.text("");
+
+			$.Dialogs({
+			    "id" : "diglog_wrapper",
+			    "overlay" : true,
+			    "cls" : "dialog-wrapper popbox-bankrank",
+			    "closebtn" : ".quit,span.close",
+			    "auto" : false,
+			    "msg" :self.tpl.pay_pwd(),
+			    "openfun":function(){
+			    	//密码输入框
+			    	$(".bank-pwd").each(function(index, el) {
+			    		$(el).find("input").each(function(index, el) {
+			    			var _this = $(el);
+			    			_this.on("keyup",function(event){
+			    				var self = $(this);
+
+			    				if(event.which == 8){
+			    					self.text("");
+			    					self.prev().focus();
+			    				}else{
+			    					self.next().focus();
+			    				}
+			    			});
+			    		});	
+			    	});
+
+
+			    	$(".confirm_purchase").on("click",function(){
+			    		var _this = $(this),
+			    			error_msg = _this.parents("#diglog_wrapper").find(".error-msg");
+
+			    		var pwd_array = []
+			    		$.each($(".bank-pwd").find("input"), function(index, val) {
+			    			 pwd_array.push($(val).val());
+			    		});
+			    		
+			    		if(pwd_array.join("").length < 6){
+			    			error_msg.text("请输入交易密码");
+			    			return false;
+			    		}
+
+			    		error_msg.text("");
+
+			    		api.call('/api/product/current/buyProduct.do',{
+			    			'investAmount':purchase_money,
+			    			'payPassword':pwd_array.join(""),
+			    			'platform':'web',
+			    			'sellChannel':'local',
+			    			'productId':product_id	
+			    		},function(_rel){
+			    			debugger;
+			    		},function(_rel){
+			    			error_msg.text(_rel.msg);
+			    		});
+			    	})
+			    }
+			});
+		});
 
 	},
 	event_handler_wdl:function(){
