@@ -197,7 +197,7 @@ var hqb = {
 		},function(_rel){
 			var list = _rel.list,
 				red_list = [];
-			red_list.push('<option data-money="0">未选择（'+list.length+'个可用）</option>');
+			red_list.push('<option data-id="">未选择（'+list.length+'个可用）</option>');
 			array.push('<p class="ti">红包详情<a href="#" class="quit"></a></p><div class="cont">');
 			$.each(list, function(index, val) {
 				var buf = [];
@@ -205,7 +205,7 @@ var hqb = {
 				buf.push('<div class="num"><p class="title">￥'+(val.fMoney/10000).toFixed(2)+'</p><p>剩余'+K.getTime.countDown(new Date(val.fExpireDate).getTime()).D+'天</p></div>');
 				buf.push('<div class="text"><span><p class="title">'+val.fName+'</p><p>'+val.fRemark+'</p></span></div></div>');
 				array.push(buf.join(""));
-				red_list.push('<option data-money='+(val.fMoney/10000)+'>返现￥'+(val.fMoney/10000).toFixed(2)+'元</option>');
+				red_list.push('<option data-id='+val.fid+'>返现￥'+(val.fMoney/10000).toFixed(2)+'元</option>');
 			});
 			array.push('</div>');
 			$("#redbag-select").html(red_list.join(""));
@@ -364,7 +364,7 @@ var hqb = {
 			    			'platform':'web',
 			    			'sellChannel':'local',
 			    			'productId':selected_obj.attr("data-id"),
-			    			'redId':'123'	
+			    			'redId':$("#redbag-select").find("option:selected").attr("data-id")	
 			    		},function(_rel){
 			    			debugger;
 			    		},function(_rel){
