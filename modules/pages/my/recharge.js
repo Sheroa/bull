@@ -48,6 +48,15 @@ var recharge = {
 
  				$("#binded").show();
 
+ 				sms_obj.name = _rel.result.userName;
+ 				sms_obj.idCardNo = _rel.result.identityCard;
+ 				sms_obj.bankCardNo = _rel.result.bankCardNo;
+ 				sms_obj.bankCode = _rel.result.bankCode;
+
+ 				$.extend(sms_obj,{
+ 					'mobile':_rel.result.userMobile
+ 				});
+ 				
  				//用户已经绑定了银行卡，此时应该进入recharge2.html
  				$(".bank-icbc .border-pad").html(require('./bank_card_info').show(_rel));
 
@@ -278,10 +287,6 @@ var recharge = {
  			});
  		});
 
- 		$("#recharge-2").on("click",function(){
-
- 		})
-
  		$("#bank_number").keydown(function(event) {
  			var _this = $(this),
  				bank_num = $.trim(_this.val());
@@ -314,6 +319,45 @@ var recharge = {
  				});
  			});	
  		});
+
+ 		//二次充值页面-点击充值Btn
+ 		$("#recharge-2").on("click",function(){
+ 			var _this = $(this),
+ 				actived_div = _this.parents(".border-box"),
+ 				money = $.trim(actived_div.find(".money").val()),
+ 				error_msg = actived_div.find('.error-msg'),
+ 				pwd_array = [];
+ 			$.each(actived_div.find(".bank-pwd").find("input"), function(index, val) {
+ 				 pwd_array.push($(val).val());
+ 			});
+
+ 			//校验操作
+
+ 			//输入金额
+ 			if(!money){
+ 				error_msg.text("请输入购买金额");
+ 				return false;
+ 			}
+ 			//校验密码
+ 			if(pwd_array.join("").length < 6){
+ 				error_msg.text("请输入交易密码");
+ 				return false;
+ 			}
+
+ 			error_msg.text("");
+ 			$.extend(sms_obj,{
+ 				'totalAmount':money*10000,
+ 				'payPwd':pwd_array.join(""),
+ 				'payMethod':'quick_pay',
+ 				'payType':'direct',
+ 				'itemName':'充值金额多少元',
+ 				'returnUrl':'/my/personCenter.html'
+ 			});
+ 			//ajax请求
+ 			api.call('/api/payment/directPay.do',sms_obj,function(_rel){
+ 				K.gotohref('/my/personCenter.html');
+ 			});
+ 		})
  	},
  	valid_check:function(){
  		
