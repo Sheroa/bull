@@ -6,6 +6,7 @@ var toolbar = require('util/toolbar_pp'),
 	K = require('util/Keeper'),
 	api    = require("api/api"),
 	sidebar = require("./sidebar"),
+	artTemplate 	= require("artTemplate"),
 	navBar = require("util/navbar"),
 	ttn_type = parseInt(location.href.replace(/[^?#]*\//,"").split(".")[0],10);
 
@@ -40,7 +41,7 @@ var hqb = {
 			buf.push('<p><span class="p-ti">账户余额</span><span class="num ableBalanceAmount">￥{{#ableBalanceAmount}}</span><a href="/my/refund/recharge.html" class="recharge">[充值]</a></p>');
 			buf.push('<p style="margin-bottom:5px;"><span class="p-ti">购买金额</span><input id="purchase_money" type="number" placeholder="100元起购"></p>');
 			buf.push('<p class="error-msg"></p>');
-			buf.push('<p><span class="p-ti">使用红包</span><select name="redbag-select" class="redbag-select" id=""><option data-code="0">未选择（2个可用）</option></select><a href="javascript:void(0);" id="red_paper_detail" class="redDetail">详情</a></p>');
+			buf.push('<p><span class="p-ti">使用红包</span><select name="redbag-select" class="redbag-select" id="redbag-select"></select><a href="javascript:void(0);" id="red_paper_detail" class="redDetail">详情</a></p>');
 			buf.push('<p><span class="p-ti">预期收益</span><span class="num2" id="expected_revenue">0.00元</span></p>');
 			buf.push('<p class="sub-text" style="padding-left:0"><input type="checkbox" class="check" checked="true"><a href="javascript:void(0);" id="revenue_transport">《收益权转让协议》</a><input type="checkbox" class="check" checked="true" style="margin-left:15px;"><a  href="javascript:void(0);" id="info_consult">《信息咨询与管理协议》</a></p>');
 			buf.push('<p><a class="light-btn purchase">购买</a></p>');
@@ -181,12 +182,71 @@ var hqb = {
 
 		var self = this;
 
+		var selected_obj = "",
+			array = [];
+		$("ul[data-releative='ttn']").find("li").each(function(index, el) {
+			var _this = $(el);
+			if(_this.children("a").hasClass('selected')){
+				selected_obj =  _this.children('a');
+				return false;
+			}
+		});
+		api.call('/api/activity/findRedPacketList.do',{
+			'productId':selected_obj.attr("data-id"),
+			'status':'UNEXCHANGE'
+		},function(_rel){
+			var list = _rel.list,
+				red_list = [];
+			red_list.push('<option data-id="">未选择（'+list.length+'个可用）</option>');
+			array.push('<p class="ti">红包详情<a href="#" class="quit"></a></p><div class="cont">');
+			$.each(list, function(index, val) {
+				var buf = [];
+				buf.push('<div class="redbag">');
+				buf.push('<div class="num"><p class="title">￥'+(val.fMoney/10000).toFixed(2)+'</p><p>剩余'+K.getTime.countDown(new Date(val.fExpireDate).getTime()).D+'天</p></div>');
+				buf.push('<div class="text"><span><p class="title">'+val.fName+'</p><p>'+val.fRemark+'</p></span></div></div>');
+				array.push(buf.join(""));
+				red_list.push('<option data-id='+val.fid+'>返现￥'+(val.fMoney/10000).toFixed(2)+'元</option>');
+			});
+			array.push('</div>');
+			$("#redbag-select").html(red_list.join(""));
+		});
 		$("#red_paper_detail").on("click",function(){
-			
+			var selected_obj = "";
+			$("ul[data-releative='ttn']").find("li").each(function(index, el) {
+				var _this = $(el);
+				if(_this.children("a").hasClass('selected')){
+					selected_obj =  _this.children('a');
+					return false;
+				}
+			});
+
 			api.call('/api/activity/findRedPacketList.do',{
-
+				'productId':selected_obj.attr("data-id"),
+				'status':'UNEXCHANGE'
 			},function(_rel){
-
+				// var array = [],
+				// 	list = _rel.list,
+				// 	red_list = [];
+				// red_list.push('<option data-code="0">未选择（'+list.length+'个可用）</option>');
+				// array.push('<p class="ti">红包详情<a href="#" class="quit"></a></p><div class="cont">');
+				// $.each(list, function(index, val) {
+				// 	var buf = [];
+				// 	buf.push('<div class="redbag">');
+				// 	buf.push('<div class="num"><p class="title">￥'+(val.fMoney/10000).toFixed(2)+'</p><p>剩余'+K.getTime.countDown(new Date(val.fExpireDate).getTime()).D+'天</p></div>');
+				// 	buf.push('<div class="text"><span><p class="title">'+val.fName+'</p><p>'+val.fRemark+'</p></span></div></div>');
+				// 	array.push(buf.join(""));
+				// 	red_list.push('<option>返现￥'+(val.fMoney/10000).toFixed(2)+'元</option>');
+				// });
+				// array.push('</div>');
+				// $("#redbag-select").html(red_list.join(""));
+				$.Dialogs({
+				    "id" : "diglog_wrapper",
+				    "overlay" : true,
+				    "cls" : "dialog-wrapper popbox-bankrank",
+				    "closebtn" : ".quit,span.close",
+				    "auto" : false,
+				    "msg" :array.join("")
+				});
 			});
 			// $.Dialogs({
 			//     "id" : "diglog_wrapper",
@@ -299,11 +359,12 @@ var hqb = {
 			    		error_msg.text("");
 
 			    		api.call('/api/product/current/buyProduct.do',{
-			    			'investAmount':purchase_money,
+			    			'investAmount':purchase_money*10000,
 			    			'payPassword':pwd_array.join(""),
 			    			'platform':'web',
 			    			'sellChannel':'local',
-			    			'productId':product_id	
+			    			'productId':selected_obj.attr("data-id"),
+			    			'redId':$("#redbag-select").find("option:selected").attr("data-id")	
 			    		},function(_rel){
 			    			debugger;
 			    		},function(_rel){

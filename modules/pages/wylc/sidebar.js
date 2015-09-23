@@ -14,17 +14,32 @@ var href=window.location.href,
 
  var sideBar = {
  	init:function(){
-
- 		this.animate_controll();
- 		this.default_select();
+ 		// this.animate_controll();
+ 		// this.default_select();
  		this.data_api();
 
  	},
  	data_api:function(){
+ 		var self = this;
  		api.call('/api/product/queryProductList',{
- 			'isFlow':1
+ 			'isFlow':1,
+ 			'pageIndex':1,
+ 			'pageSize':20
  		},function(_rel){
- 			debugger;
+ 			var list = _rel.list,
+ 				content = [];
+ 			$.each(list, function(index, val) {
+ 				 /* iterate through array or object */
+ 				 if(index <= 2){
+ 				 	content.push('<li><a  data-id = "'+val.fid+'" data-type="ttn_'+val.deadLineValue+'" href="/wylc/ttn/'+val.deadLineValue+'.html" class="selected">'+val.productName+'</a></li>');
+ 				 }
+ 		
+ 			});
+
+ 			$("ul[data-releative='ttn']").html(content.join(""));
+ 			self.animate_controll();
+ 			self.default_select();
+
  		});
  	},
  	default_select:function(){

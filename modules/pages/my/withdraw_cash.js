@@ -10,13 +10,28 @@
  	navBar = require("util/navbar"),
  	bank_card_num = "";
 
+
+ require('ui/dialog/dialog');
  toolbar.init();
  navBar.init(index);
  sidebar.init();
 
+ var temp_user = "";
+
  var width_draw_cash = {
+ 	tpl:{
+ 		success:function(){
+ 			var buf = [];
+ 			buf.push('<p class="ti">银行充值限额表<a href="#" class="quit"></a></p>');
+ 			buf.push('<div class="cont">');
+ 			buf.push('"提现申请已提交，等待系统审核"');
+ 			buf.push('</div>');
+ 			return buf.join("");
+ 		}
+ 	},
  	init:function(){
- 		
+
+ 		var self = this;
 		api.call('/api/account/getWithdrawBankCard.do',{
 
 		},function(_rel){
@@ -24,6 +39,7 @@
 				buf = [],
 				container_binded = $('#bank_info'),
 				info_pad = container_binded.find(".border-pad");
+			temp_user = _rel.result;
 			buf.push('<p class="bank-name">'+userCardData.bank_name+'</p>');
 			buf.push('<p class="card-kind">储蓄卡</p>');
 			buf.push('<p class="card-bound"><i>已绑定</i><em>'+K.bank_card_map(userCardData.user_card_no)+'</em></p>');	
@@ -43,7 +59,7 @@
 				 if(limitTimes > 0){
 				 	$("#tip").html('<span class="p-ti">提现费用</span>本月还能免费提现<i>'+limitTimes+'</i>次');
 				 }else{
-				 	if(ableBalanceAmount < 20000){
+				 	if(ableBalanceAmount < 2){
 				 		$("#tip").html('<span class="p-ti">提现费用</span><i>账户余额不足支付2元手续费</i>');
 				 	}else if(fee > 0){
 				 		$("#tip").html('<span class="p-ti">提现费用</span>账户余额将扣除'+(fee/10000).toFixed(2)+'元手续费');
@@ -140,7 +156,52 @@
 					self.next().focus();
 				}
 			});
-		});			
+		});	
+
+		//提现		
+		$("#withdraw").on("click",function(){
+			var _this = $(this),
+				actived_div = _this.parents("div"),
+				money = $.trim(actived_div.find(".money").val()),
+				error_msg = actived_div.find('.error-msg'),
+				pwd_array = [];
+			$.each(actived_div.find(".bank-pwd").find("input"), function(index, val) {
+				 pwd_array.push($(val).val());
+			});
+
+			//输入金额
+			if(!money){
+				error_msg.text("请输入购买金额");
+				return false;
+			}
+			//校验密码
+			if(pwd_array.join("").length < 6){
+				error_msg.text("请输入交易密码");
+				return false;
+			}
+
+			error_msg.text("");
+
+			api.call('/api/account/userWithdrawByPayPwd.do',{
+				'name':temp_user.userCardData.user_name,
+				'idCardNo':temp_user.userCardData.identity_card,
+				'amount':money*10000,
+				"payPwd":pwd_array.join("")
+			},function(_rel){
+				$.Dialogs({
+				    "id" : "diglog_wrapper",
+				    "overlay" : true,
+				    "cls" : "dialog-wrapper popbox-bankrank",
+				    "closebtn" : ".quit,span.close",
+				    "auto" : false,
+				    "msg" :self.tpl.success(),
+				    openfun : function () {
+				    }
+				});
+			}),function(_rel){
+				error_msg.text(_rel.msg);
+			};
+		})
  	}
  }
 
