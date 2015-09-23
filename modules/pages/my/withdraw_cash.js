@@ -22,7 +22,7 @@
  	tpl:{
  		success:function(){
  			var buf = [];
- 			buf.push('<p class="ti">提现状态<a href="#" class="quit"></a></p>');
+ 			buf.push('<p class="ti">提现状态</p>');
  			buf.push('<div class="cont3">');
  			buf.push('<p class="buy-ok">提现申请已提交，等待系统审核</p>');
  			buf.push('<p><a href="/my/refund/record.html" class="light-btn">查看交易记录</a></p>')
@@ -52,6 +52,7 @@
 			api.call('/api/account/getUserAsset.do',{},function(_data){
 				 var ableBalanceAmount = (_data.result.ableBalanceAmount/10000).toFixed(2);
 				 $(".ableBalanceAmount").text("￥"+ableBalanceAmount);
+				 $(".money").attr("placeholder","本次可提取"+ableBalanceAmount+"元");
 
 				 var userOutFee = _rel.result.userOutFee,
 				 	limitTimes = userOutFee.limitTimes,
@@ -197,6 +198,10 @@
 				    "auto" : false,
 				    "msg" :self.tpl.success(),
 				    openfun : function () {
+				    	window.timer = setTimeout(function(){
+				    		K.gotohref("/my/refund/record.html");
+				    		clearTimeout(timer);
+				    	},3000);
 				    }
 				});
 			}),function(_rel){

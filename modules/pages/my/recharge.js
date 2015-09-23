@@ -31,6 +31,16 @@ var user_info =  JSON.parse($.cookie('ppinf')),
 	};
 
 var recharge = {
+	tpl:{
+		success:function(){
+			var buf = [];
+			buf.push('<p class="ti">充值状态</p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p class="buy-ok">充值成功</p>');
+			buf.push('</div>');
+			return buf.join("");
+		}
+	},
  	//初始化
  	init:function(){
 
@@ -282,7 +292,20 @@ var recharge = {
  				var result = _rel.result;
  				if(result){
  					//充值成功
- 					K.gotohref('/my/personCenter.html');
+ 					$.Dialogs({
+ 					    "id" : "diglog_wrapper",
+ 					    "overlay" : true,
+ 					    "cls" : "dialog-wrapper popbox-bankrank2",
+ 					    "closebtn" : ".quit,span.close",
+ 					    "auto" : false,
+ 					    "msg" :self.tpl.success(),
+ 					    openfun : function () {
+ 					    	window.timer = setTimeout(function(){
+ 					    		K.gotohref("/my/refund/record.html");
+ 					    		clearTimeout(timer);
+ 					    	},3000);
+ 					    }
+ 					});
  				}
  			});
  		});
@@ -296,7 +319,7 @@ var recharge = {
  		});
  	},
  	event_handler_bind:function(){
-
+ 		var self = this;
  		//显示账户余额
  		api.call('/api/account/getUserAsset.do',{},function(_rel){
  			var ableBalanceAmount = (_rel.result.ableBalanceAmount/10000).toFixed(2);
@@ -355,7 +378,23 @@ var recharge = {
  			});
  			//ajax请求
  			api.call('/api/payment/directPay.do',sms_obj,function(_rel){
- 				K.gotohref('/my/personCenter.html');
+ 				// K.gotohref('/my/personCenter.html');
+ 				$.Dialogs({
+ 				    "id" : "diglog_wrapper",
+ 				    "overlay" : true,
+ 				    "cls" : "dialog-wrapper popbox-bankrank2",
+ 				    "closebtn" : ".quit,span.close",
+ 				    "auto" : false,
+ 				    "msg" :self.tpl.success(),
+ 				    openfun : function () {
+ 				    	window.timer = setTimeout(function(){
+ 				    		K.gotohref("/my/refund/record.html");
+ 				    		clearTimeout(timer);
+ 				    	},3000);
+ 				    }
+ 				});
+ 			},function(_rel){
+ 				error_msg.text(_rel.msg);
  			});
  		})
  	},
