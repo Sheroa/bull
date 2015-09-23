@@ -30,7 +30,7 @@ var banner = {
 					 $(this).css("opacity", 1);
 				 });
 				 var url=$(".imglist[idx="+nextIdx+"]").attr('data-url');
-				 $(".imglist[idx="+nextIdx+"]").attr("data", "show").css("opacity", 0).css('background-image','url('+url+')').show().animate({opacity:1}, 1000);
+				 $(".imglist[idx="+nextIdx+"]").attr("data", "show").css("opacity", 0).css('background','url('+url+') no-repeat center #f25b2e').show().animate({opacity:1}, 1000);
 		    	 $(".ul_btn a").removeClass("ws_selbull");
 		    	 $(".ul_btn li").removeClass("hover");
 		    	 $(".ul_btn a[idx="+nextIdx+"]").addClass("ws_selbull");
@@ -58,7 +58,7 @@ var banner = {
 					 $(this).css("opacity", 1);
 				 });
 				 var url=$(".imglist[idx="+curIdx+"]").attr('data-url');
-				 $(".imglist[idx="+curIdx+"]").attr("data", "show").css('background-image','url('+url+')').css("opacity", 0).show().animate({opacity:1}, 1000);
+				 $(".imglist[idx="+curIdx+"]").attr("data", "show").css('background','url('+url+') no-repeat center #f25b2e').css("opacity", 0).show().animate({opacity:1}, 1000);
 		      }
 		});
 		$(".ul_btn").css("margin-left", -1*$(".ul_btn").width()/2+"px");
