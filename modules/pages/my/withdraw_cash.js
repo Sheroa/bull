@@ -22,9 +22,10 @@
  	tpl:{
  		success:function(){
  			var buf = [];
- 			buf.push('<p class="ti">银行充值限额表<a href="#" class="quit"></a></p>');
- 			buf.push('<div class="cont">');
- 			buf.push('"提现申请已提交，等待系统审核"');
+ 			buf.push('<p class="ti">提现状态<a href="#" class="quit"></a></p>');
+ 			buf.push('<div class="cont3">');
+ 			buf.push('<p class="buy-ok">提现申请已提交，等待系统审核</p>');
+ 			buf.push('<p><a href="/my/refund/record.html" class="light-btn">查看交易记录</a></p>')
  			buf.push('</div>');
  			return buf.join("");
  		}
@@ -191,7 +192,7 @@
 				$.Dialogs({
 				    "id" : "diglog_wrapper",
 				    "overlay" : true,
-				    "cls" : "dialog-wrapper popbox-bankrank",
+				    "cls" : "dialog-wrapper popbox-bankrank2",
 				    "closebtn" : ".quit,span.close",
 				    "auto" : false,
 				    "msg" :self.tpl.success(),

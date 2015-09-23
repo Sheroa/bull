@@ -253,8 +253,8 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 
 
 /* 弹框 */
-.popbox-bankrank{width:445px;}
-.popbox-bankrank .diginfo{background: #fff;width:455px;}
+.popbox-bankrank{width:455px;}
+.popbox-bankrank .diginfo{background: #fff;width:100%;}
 .popbox-bankrank .diginfo p.ti{height:65px;line-height: 65px;width:430px;background:#f27835;color:#fff;font-size: 18px;text-align: left;padding-left: 25px;position: relative;}
 .popbox-bankrank .diginfo p.ti a{position:absolute;right:25px;top:22px;}
 .popbox-bankrank .diginfo .cont{width:100%;max-height:480px;overflow-y: scroll;}
@@ -287,9 +287,14 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 .popbox-bankrank .diginfo .cont4{padding:30px 20px;}
 .popbox-bankrank .diginfo .cont4 p{font-size: 12px;line-height: 20px;text-align: left;}
 
-.popbox-bankrank .diginfo2{background: #fff;width:315px;}
-.popbox-bankrank .diginfo2 p.ti{height:65px;line-height: 65px;width:290px;background:#f27835;color:#fff;font-size: 18px;text-align: left;padding-left: 25px;position: relative;}
-.popbox-bankrank .diginfo2 p.ti a{position:absolute;right:25px;top:22px;}
+.popbox-bankrank2{width:315px;}
+.popbox-bankrank2 .diginfo{background: #fff;width: 100%;}
+.popbox-bankrank2 .diginfo p.ti{height:65px;line-height: 65px;width:290px;background:#f27835;color:#fff;font-size: 18px;text-align: left;padding-left: 25px;position: relative;}
+.popbox-bankrank2 .diginfo p.ti a{position:absolute;right:25px;top:22px;}
+.popbox-bankrank2 .diginfo .cont3{padding:60px 0;}
+.popbox-bankrank2 .diginfo .cont3 p.buy-ok{font-size: 14px;}
+.popbox-bankrank2 .diginfo .cont3 p.buy-ok a{color:#f27835;text-decoration: underline;}
+.popbox-bankrank2 .diginfo .cont3 p a.light-btn{width:201px;display: inline-block;line-height: 32px;height: 32px;margin-top: 20px;}
 
 .bank-pwd{display: inline-block;border-top:2px solid #919191;border-left:2px solid #919191;border-bottom:2px solid #919191;border-right: 1px solid #919191;}
 .bank-pwd input{width:27px !important;height: 28px;border:none;border-right: 1px solid #919191;text-align: center;}

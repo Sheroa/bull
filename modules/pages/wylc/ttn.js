@@ -88,6 +88,7 @@ var hqb = {
 			buf.push('<p>身份证号码：430511197005153531</p>');
 			buf.push('<p>鉴于：</p>');
 			buf.push('<p>1、乙方作为深圳市小牛稳盈三号投资企业(有限合伙)（下称“合伙企业”）的有限合伙人，基于 《深圳市小牛稳盈三号投资企业(有限合伙)合伙协议书》,完成了相对应的合伙企业出资份额的认购。</p>');
+			buf.push('<p style="text-align:right;">2015-06-10</p>');
 			buf.push('</div>');
 			return buf.join("");
 		},
@@ -103,6 +104,7 @@ var hqb = {
 			buf.push('<p>地址：深圳市福田区彩田路2009号瀚森大厦17楼</p>');
 			buf.push('<p>注册号：4403011107262598</p>');
 			buf.push('<p>根据《中华人民共和国合同法》及相关法律法规的规定，双方遵循平等、自愿、互利和诚实信用原则，友好协商，就乙方为甲方提供信用咨询与管理服务达成一致，以兹信守。</p>');
+			buf.push('<p style="text-align:right;">2015-06-10</p>');
 			buf.push('</div>');
 			return buf.join("");
 		},
@@ -242,7 +244,7 @@ var hqb = {
 				$.Dialogs({
 				    "id" : "diglog_wrapper",
 				    "overlay" : true,
-				    "cls" : "dialog-wrapper popbox-bankrank",
+				    "cls" : "dialog-wrapper popbox-bankrank2",
 				    "closebtn" : ".quit,span.close",
 				    "auto" : false,
 				    "msg" :array.join("")
