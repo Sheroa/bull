@@ -1,3 +1,4 @@
+
 @charset "utf-8";
 /* CSS Document */
 .brief{width:870px;background: #fff;}
@@ -51,4 +52,4 @@
 .tab-col .qa span p.ti{font-size: 16px;line-height: 25px;color:#373737;}
 .tab-col .qa em.cross-line{background:#f4eded;display: inline-block;margin:35px 25px;width:680px;height:1px;float:left;}
 
-.popbox-bankrank .diginfo2 .cont{padding:20px 15px;width:285px;}
+.popbox-bankrank2 .diginfo .cont{padding:20px 15px;width:285px;}

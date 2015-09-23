@@ -30,7 +30,9 @@
 .person-data .fund-img span{float: left;margin-right: 25px;}
 .person-data .fund-img span h4{color:#f27835;margin-top: 16px}
 .person-data .fr .service{line-height: 15px;height: 15px;margin-bottom:55px;}
-.person-data .fr .service span{background: url(/static/img/service1.png) no-repeat;display: inline-block;width:17px;height: 15px;margin-right: 15px;}
+.person-data .fr .service span{background: url(/static/img/service1.png) no-repeat;display: inline-block;width:17px;height: 15px;margin-right: 15px;position: relative;cursor:pointer;z-index:1;}
+.person-data .fr .service span em{position:absolute;top:-20px;left:-38px;width: 90px;font-size: 12px;text-align:center;display: none;z-index:2;}
+.person-data .fr .service span:hover em{display: inline-block;}
 .person-data .fr .service span.selected{background: url(/static/img/service2.png) no-repeat;display: inline-block;width:17px;height: 15px;margin-right: 15px;}
 .person-data .fr .service span.service4{margin-right: 0;}
 .person-data .fr .service span.service2{background-position: -20px 0;}
