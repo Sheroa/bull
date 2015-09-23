@@ -75,7 +75,7 @@ var invest = {
 			]
 			var ctx = document.getElementById("myChart_finance").getContext("2d");
 			new Chart(ctx).Pie(data);
-			$("#ableBalanceAmount").text('￥'+(ableBalanceAmount/10000).toFixed(2));	
+			$("#totalAmount").text('￥'+(_rel.result.totalAmount/10000).toFixed(2));	
 			//数据
 			var buf = [];
 			buf.push('<p><em class="bar1"></em><i>账户余额：</i><strong>￥'+(ableBalanceAmount/10000).toFixed(2)+'</strong></p>');
