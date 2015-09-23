@@ -49,25 +49,25 @@ var invest = {
 
 			var data = [
 			    {
-			        value: ableBalanceAmount,
+			        value: ableBalanceAmount/10000,
 			        color:"#f27835",
 			        highlight: "#f27835",
 			        label: "账户余额"
 			    },
 			    {
-			        value: currentProductAmount,
+			        value: currentProductAmount/10000,
 			        color: "#f39c11",
 			        highlight: "#f39c11",
 			        label: "活期宝"
 			    },
 			    {
-			        value: fixedProductAmount,
+			        value: fixedProductAmount/10000,
 			        color: "#58d68d",
 			        highlight: "#58d68d",
 			        label: "固定投资"
 			    },
 			    {
-			        value: floatProductAmount,
+			        value: floatProductAmount/10000,
 			        color: "#6699cc",
 			        highlight: "#6699cc",
 			        label: "浮动投资"
@@ -75,7 +75,7 @@ var invest = {
 			]
 			var ctx = document.getElementById("myChart_finance").getContext("2d");
 			new Chart(ctx).Pie(data);
-			$("#ableBalanceAmount").text('￥'+(ableBalanceAmount/10000).toFixed(2));	
+			$("#totalAmount").text('￥'+(_rel.result.totalAmount/10000).toFixed(2));	
 			//数据
 			var buf = [];
 			buf.push('<p><em class="bar1"></em><i>账户余额：</i><strong>￥'+(ableBalanceAmount/10000).toFixed(2)+'</strong></p>');
