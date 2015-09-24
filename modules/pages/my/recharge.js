@@ -36,7 +36,7 @@ var recharge = {
 			var buf = [];
 			buf.push('<p class="ti">充值状态</p>');
 			buf.push('<div class="cont3">');
-			buf.push('<p class="buy-ok">充值成功</p>');
+			buf.push('<p class="buy-ok">充值成功,3秒后跳转至交易记录。<br><a href="/my/refund/record.html">点击直接跳转</a></p>');
 			buf.push('</div>');
 			return buf.join("");
 		}
