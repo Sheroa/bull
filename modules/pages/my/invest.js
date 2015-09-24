@@ -19,8 +19,7 @@ window.pro_state = "queryInvestRecords";
 window.pro_stated = 2;
 window.filter = {
 	'pageIndex': 1,
-	'pageSize': 10,
-	'transType': ""
+	'pageSize': 3
 };
 window.first_tab_index = 0;
 
@@ -186,61 +185,62 @@ var invest = {
 		}
 		api.call(request_url, filter, function(data) {
 
+			//list
+			var list = data.list;
+			if(list.length == 0){
+				$("#content").html("暂无数据");
+				return false;
+			}
+
 			if(first_tab_index == 0){
 				//为活期宝列表
 				var tmpl_index = request_url_array.indexOf(request_url); //0或1
-				if(){
-
+				if(tmpl_index==0){
+					var cache_data = $.trim(artTemplate.compile(__inline("./invest/invest1.tmpl"))(data));
+				}else{
+					var cache_data = $.trim(artTemplate.compile(__inline("./invest/invest2.tmpl"))(data));
 				}
 			}else if(first_tab_index == 1){
 				//为天天牛列表
 				var tmpl_index_ttn = [2,3].indexOf(filter.state); //0或1
-				if(){
-					
+				if(tmpl_index==0){
+					var cache_data = $.trim(artTemplate.compile(__inline("./invest/invest3.tmpl"))(data));			
+				}else{
+					var cache_data = $.trim(artTemplate.compile(__inline("./invest/invest4.tmpl"))(data));
 				}
 			}
-			// if (pro_type == 'current') {
-			// 	var cache_data = pro_state == 'queryInvestRecords' ? $.trim(artTemplate.compile(__inline("./invest/invest1.tmpl"))(data)) : $.trim(artTemplate.compile(__inline("./invest/invest2.tmpl"))(data));
-			// } else if (pro_type == 'dayAdd') {
-			// 	var cache_data = pro_stated == 2 ? $.trim(artTemplate.compile(__inline("./invest/invest2.tmpl"))(data)) : $.trim(artTemplate.compile(__inline("./invest/invest3.tmpl"))(data));
-			// }
-			// if (!cache_data) {
-			// 	$("#invest_list").html("<h4 class='notice'>暂无数据！</h4>");
-			// } else if (pro_type == 'hfb') {
-			// 	$("#invest_list").html("<h4 class='notice'>暂无数据！</h4>");
-			// } else {
-			// 	$("#invest_list").html(cache_data);
-			// }
-			// var pageSize = data.pageSize,
-			// 	totalRecord = data.totalCount,
-			// 	pageNum = getPageNum(pageSize, totalRecord);
+			$("#content").html(cache_data);
 
-			// if (pageNum > 1) { //页码大于1，才显示
-			// 	var _html = [];
-			// 	if (filter.pageIndex > 1) {
-			// 		_html.push('<a href="javascript:filter.pageIndex--;getlist();"><</a> ');
-			// 	}
-			// 	var se = pageUtil(filter.pageIndex, pageNum);
-			// 	if (se[0] > 1) {
-			// 		_html.push(' <a href="javascript:filter.pageIndex=1;getlist();">1</a> ...');
-			// 	}
-			// 	for (var i = se[0]; i <= se[1]; i++) {
-			// 		if (filter.pageIndex == i) {
-			// 			_html.push(' <a href="javascript:void(0);" class="selected">' + i + '</a> ');
-			// 		} else {
-			// 			_html.push(' <a href="javascript:filter.pageIndex=' + i + ';getlist();">' + i + '</a> ');
-			// 		}
-			// 	}
-			// 	if (se[1] < pageNum) {
-			// 		_html.push(' ... <a href="javascript:filter.pageIndex=' + pageNum + ';getlist();">' + pageNum + '</a> ');
-			// 	}
+			var pageSize = data.pageSize,
+			totalRecord = data.totalCount,
+			pageNum = getPageNum(pageSize, totalRecord);
 
-			// 	if (filter.pageIndex < pageNum) {
-			// 		_html.push(' <a href="javascript:filter.pageIndex++;getlist();">></a> ');
-			// 	}
+			if (pageNum > 1) { //页码大于1，才显示
+				var _html = [];
+				if (filter.pageIndex > 1) {
+					_html.push('<a href="javascript:filter.pageIndex--;getlist();"><</a> ');
+				}
+				var se = pageUtil(filter.pageIndex, pageNum);
+				if (se[0] > 1) {
+					_html.push(' <a href="javascript:filter.pageIndex=1;getlist();">1</a> ...');
+				}
+				for (var i = se[0]; i <= se[1]; i++) {
+					if (filter.pageIndex == i) {
+						_html.push(' <a href="javascript:void(0);" class="selected">' + i + '</a> ');
+					} else {
+						_html.push(' <a href="javascript:filter.pageIndex=' + i + ';getlist();">' + i + '</a> ');
+					}
+				}
+				if (se[1] < pageNum) {
+					_html.push(' ... <a href="javascript:filter.pageIndex=' + pageNum + ';getlist();">' + pageNum + '</a> ');
+				}
 
-			// 	$(".pages").html(_html.join(""));
-			// }
+				if (filter.pageIndex < pageNum) {
+					_html.push(' <a href="javascript:filter.pageIndex++;getlist();">></a> ');
+				}
+
+				$(".pages").html(_html.join(""));
+			}
 		});
 	},
 	event_handler: function() {

@@ -1,0 +1,27 @@
+<table>
+	<thead>
+		<tr>
+			<td class="left1">产品名称</td>
+			<td>起息时间</td>
+			<td>结息时间</td>
+			<td>投资期限</td>
+			<td>投资本金</td>
+			<td>总收益</td>
+			<td class="right1">状态</td>
+		</tr>
+	</thead>
+	<tbody>
+	{{each list as value index}}
+		<tr>
+			<td>{{value.productName}}</td>
+			<td>{{value.fStartTime}}</td>
+			<td>{{value.fEndTime}}</td>
+			<td>{{value.fStartTime-value.fEndTime}}</td>
+			<td>{{value.fInvestAmt}}</td>
+			<td>{{value.fProfit}}</td>
+			<td>已转入余额</td>
+		</tr>
+	{{/each}}
+	</tbody>
+</table>
+<div class="pages"></div>

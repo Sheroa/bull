@@ -1,0 +1,21 @@
+<table>
+	<thead>
+		<tr>
+			<td class="left1">产品名称</td>
+			<td>赎回时间</td>
+			<td>赎回金额</td>
+			<td class="right1">状态</td>
+		</tr>
+	</thead>
+	<tbody>
+	{{each list as value index}}
+		<tr>
+			<td>活期宝</td>
+			<td>{{value.fRequestTime}}</td>
+			<td>{{value.fMoneyAmount}}</td>
+			<td>{{value.fStatus}}</td>
+		</tr>
+	{{/each}}
+	</tbody>
+</table>
+<div class="pages"></div>
