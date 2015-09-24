@@ -22,6 +22,7 @@ window.filter = {
 	'pageSize': 10,
 	'transType': ""
 };
+window.first_tab_index = 0;
 
 //获取页码总数
 function getPageNum(pageSize,totalRecord){
@@ -57,7 +58,7 @@ var invest = {
 		sidebar.init();
 		self.UI();
 		self.event_handler();
-
+		getlist();
 	},
 	tpl: {
 		redemption: function() {
@@ -154,96 +155,171 @@ var invest = {
 	},
 	invest_list_show: function() {
 		var self = this;
-		var invest_host = '/api/product/' + pro_type + '/' + pro_state+'.do';
-		if (pro_type == "dayAdd") {
-			$.extend(filter, {
-				'state': pro_stated,
-				'proType': 1
+		var request_url_array = ['/api/product/current/queryInvestRecords.do',
+									'/api/product/current/queryRedeemRecords.do'],
+			request_url = "";
+		if(first_tab_index == 0){
+			$(".table-ti").eq(0).find("em").each(function(){
+				var _this = $(this);
+				if(_this.hasClass('selected')){
+					request_url = request_url_array[_this.index()];
+					return false;
+				}
 			});
+		}else if(first_tab_index == 1){
+			$(".table-ti").eq(1).find("em").each(function(){
+				var _this = $(this);
+				if(_this.hasClass('selected')){
+					request_url = "/api/product/dayAdd/queryInvestRecords.do";
+					var state_array = [2,3];
+					$.extend(filter, {
+						'state':state_array[_this.index()],
+						'proType':1
+					});
+					
+					return false;
+				}
+			});
+		}else{
+			$("#content").html("暂无数据");
+			return false;
 		}
-		api.call(invest_host, filter, function(data) {
-			if (pro_type == 'current') {
-				var cache_data = pro_state == 'queryInvestRecords' ? $.trim(artTemplate.compile(__inline("./invest/invest1.tmpl"))(data)) : $.trim(artTemplate.compile(__inline("./invest/invest2.tmpl"))(data));
-			} else if (pro_type == 'dayAdd') {
-				var cache_data = pro_stated == 2 ? $.trim(artTemplate.compile(__inline("./invest/invest2.tmpl"))(data)) : $.trim(artTemplate.compile(__inline("./invest/invest3.tmpl"))(data));
-			}
-			if (!cache_data) {
-				$("#invest_list").html("<h4 class='notice'>暂无数据！</h4>");
-			} else if (pro_type == 'hfb') {
-				$("#invest_list").html("<h4 class='notice'>暂无数据！</h4>");
-			} else {
-				$("#invest_list").html(cache_data);
-			}
-			var pageSize = data.pageSize,
-				totalRecord = data.totalCount,
-				pageNum = getPageNum(pageSize, totalRecord);
+		api.call(request_url, filter, function(data) {
 
-			if (pageNum > 1) { //页码大于1，才显示
-				var _html = [];
-				if (filter.pageIndex > 1) {
-					_html.push('<a href="javascript:filter.pageIndex--;getlist();"><</a> ');
-				}
-				var se = pageUtil(filter.pageIndex, pageNum);
-				if (se[0] > 1) {
-					_html.push(' <a href="javascript:filter.pageIndex=1;getlist();">1</a> ...');
-				}
-				for (var i = se[0]; i <= se[1]; i++) {
-					if (filter.pageIndex == i) {
-						_html.push(' <a href="javascript:void(0);" class="selected">' + i + '</a> ');
-					} else {
-						_html.push(' <a href="javascript:filter.pageIndex=' + i + ';getlist();">' + i + '</a> ');
-					}
-				}
-				if (se[1] < pageNum) {
-					_html.push(' ... <a href="javascript:filter.pageIndex=' + pageNum + ';getlist();">' + pageNum + '</a> ');
-				}
+			if(first_tab_index == 0){
+				//为活期宝列表
+				var tmpl_index = request_url_array.indexOf(request_url); //0或1
+				if(){
 
-				if (filter.pageIndex < pageNum) {
-					_html.push(' <a href="javascript:filter.pageIndex++;getlist();">></a> ');
 				}
-
-				$(".pages").html(_html.join(""));
+			}else if(first_tab_index == 1){
+				//为天天牛列表
+				var tmpl_index_ttn = [2,3].indexOf(filter.state); //0或1
+				if(){
+					
+				}
 			}
+			// if (pro_type == 'current') {
+			// 	var cache_data = pro_state == 'queryInvestRecords' ? $.trim(artTemplate.compile(__inline("./invest/invest1.tmpl"))(data)) : $.trim(artTemplate.compile(__inline("./invest/invest2.tmpl"))(data));
+			// } else if (pro_type == 'dayAdd') {
+			// 	var cache_data = pro_stated == 2 ? $.trim(artTemplate.compile(__inline("./invest/invest2.tmpl"))(data)) : $.trim(artTemplate.compile(__inline("./invest/invest3.tmpl"))(data));
+			// }
+			// if (!cache_data) {
+			// 	$("#invest_list").html("<h4 class='notice'>暂无数据！</h4>");
+			// } else if (pro_type == 'hfb') {
+			// 	$("#invest_list").html("<h4 class='notice'>暂无数据！</h4>");
+			// } else {
+			// 	$("#invest_list").html(cache_data);
+			// }
+			// var pageSize = data.pageSize,
+			// 	totalRecord = data.totalCount,
+			// 	pageNum = getPageNum(pageSize, totalRecord);
+
+			// if (pageNum > 1) { //页码大于1，才显示
+			// 	var _html = [];
+			// 	if (filter.pageIndex > 1) {
+			// 		_html.push('<a href="javascript:filter.pageIndex--;getlist();"><</a> ');
+			// 	}
+			// 	var se = pageUtil(filter.pageIndex, pageNum);
+			// 	if (se[0] > 1) {
+			// 		_html.push(' <a href="javascript:filter.pageIndex=1;getlist();">1</a> ...');
+			// 	}
+			// 	for (var i = se[0]; i <= se[1]; i++) {
+			// 		if (filter.pageIndex == i) {
+			// 			_html.push(' <a href="javascript:void(0);" class="selected">' + i + '</a> ');
+			// 		} else {
+			// 			_html.push(' <a href="javascript:filter.pageIndex=' + i + ';getlist();">' + i + '</a> ');
+			// 		}
+			// 	}
+			// 	if (se[1] < pageNum) {
+			// 		_html.push(' ... <a href="javascript:filter.pageIndex=' + pageNum + ';getlist();">' + pageNum + '</a> ');
+			// 	}
+
+			// 	if (filter.pageIndex < pageNum) {
+			// 		_html.push(' <a href="javascript:filter.pageIndex++;getlist();">></a> ');
+			// 	}
+
+			// 	$(".pages").html(_html.join(""));
+			// }
 		});
 	},
 	event_handler: function() {
 
 		var self = this;
 
+		// //一级tab切换
+		// $('.navObj', '.tab').bind('click', function() {
+		// 	$('.selected', '.tab').removeClass('selected');
+		// 	$(this).addClass('selected');
+		// 	window.pro_type = $('.selected', '.tab').data('type');
+		// 	addSecondTab();
+		// 	self.invest_list_show();
+		// });
+		// //二级tab切换
+		// function addSecondTab(){
+		// 	var navList = [];
+		// 	if (pro_type == "hfb"){
+		// 		navList.push('<em class="selected">募集中产品</em><em>持有中产品</em><em>已回款产品</em>');
+		// 	}else{
+		// 		if(pro_type == "current"){
+		// 			navList.push('<em class="selected" data-state="queryInvestRecords">持有中产品</em><em data-state="queryRedeemRecords">赎回记录</em>');
+		// 		}else{
+		// 			navList.push('<em class="selected" data-state="queryInvestRecords" data-stated="2">持有中产品</em><em data-state="queryInvestRecords" data-stated="3">已回款产品</em>');
+		// 		}
+		// 		$('.table-ti', '.myInput').html(navList.join(''));
+		// 		$('em', '.table-ti').bind('click', function() {
+		// 			$('.selected', '.table-ti').removeClass('selected');
+		// 			$(this).addClass('selected');
+		// 			window.pro_state = $('.selected', '.table-ti').data('state');
+		// 			if(pro_type == "dayAdd"){
+		// 			window.pro_stated = $('.selected', '.table-ti').data('stated');}
+		// 			self.invest_list_show();
+		// 		})
+		// 	}
+		// }
+
 		//一级tab切换
-		$('.navObj', '.tab').bind('click', function() {
-			$('.selected', '.tab').removeClass('selected');
-			$(this).addClass('selected');
-			window.pro_type = $('.selected', '.tab').data('type');
-			if (pro_type == 'hfb') {
-				return
-			} else {
-				addSecondTab();
-				self.invest_list_show();
-			}
-		});
-		//二级tab切换
-		function addSecondTab(){
-			var navList = [];
-			if (pro_type == "hfb"){
-				navList.push('<em class="selected">募集中产品</em><em>持有中产品</em><em>已回款产品</em>');
-			}else{
-				if(pro_type == "current"){
-					navList.push('<em class="selected" data-state="queryInvestRecords">持有中产品</em><em data-state="queryRedeemRecords">赎回记录</em>');
-				}else{
-					navList.push('<em class="selected" data-state="queryInvestRecords" data-stated="2">持有中产品</em><em data-state="queryInvestRecords" data-stated="3">已回款产品</em>');
+		$(".tab-col").tabSwitch({
+			navObj:'.navObj',
+			className:'.cont',
+			curSel:'selected',
+			selectorIndex:'.navObj'
+		},function(){
+			var navObj_array = $(".navObj");
+			navObj_array.each(function(index, el) {
+				var _this = $(el); //确定一级切换index
+				if(_this.hasClass('selected')){
+					window.first_tab_index = _this.index(".navObj")
+					$(".cont").eq(index).find("em").removeClass('selected');
+					$(".cont").eq(index).find("em").eq(0).addClass('selected');
+					getlist();
+					return false;
 				}
-				$('.table-ti', '.myInput').html(navList.join(''));
-				$('em', '.table-ti').bind('click', function() {
-					$('.selected', '.table-ti').removeClass('selected');
-					$(this).addClass('selected');
-					window.pro_state = $('.selected', '.table-ti').data('state');
-					if(pro_type == "dayAdd"){
-					window.pro_stated = $('.selected', '.table-ti').data('stated');}
-					self.invest_list_show();
-				})
-			}
-		}
+				
+			});
+		});
+
+		$(".table-ti").each(function(index, el) {
+			var _this = $(el);
+			_this.find("em").on("click",function(){
+				_this.find("em").removeClass('selected');
+				$(this).addClass('selected');
+				getlist();
+			})			
+		});
+
+		//二级tab切换
+		$(".tab-col-second").each(function(index, el) {
+			var _this = $(el);
+			_this.tabSwitch({
+				navObj:'.tab'+index+' em',
+				className:'.sub-tab',
+				curSel:'selected',
+				selectorIndex:'.tab'+index+' em'
+			});
+		},function(){
+
+		});
 
 		//赎回
 		$(".redemption").on("click", function() {
