@@ -7,6 +7,8 @@ var navBar = require("util/navbar"),
 	banner = require("ui/banner"),
 	toolbar = require('util/toolbar_pp'),
 	K = require('util/Keeper'),
+	artTemplate 	= require("artTemplate"),
+	api     = require("api/api"),
 	$      = require('jquery');
 
 require('util/extend_fn');
@@ -30,6 +32,15 @@ var index_page = {
 			login_area.html(self.tpl.login_before());
 			require('./users/login');
 		}
+
+		//首页新闻列表
+		api.call('/api/news/queryNewsMedia',{
+			'pageIndex':1,
+			'pageSize':3
+		},function(_rel){
+			$("#media_list").html(artTemplate.compile(__inline("./news/list.tmpl"))(_rel));
+		});
+
 		this.nav_bar(index);
 		this.banner();
 		this.tab_switch();

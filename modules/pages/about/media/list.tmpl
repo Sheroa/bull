@@ -1,0 +1,11 @@
+{{each list as value index}}
+	<div class="shadow-box">
+		<img src="{{value.imgUrl}}" alt="">
+		<div class="text">
+			<h4><a href="{{value.redirectUrl}}" target="_blank">{{value.title}}</a></h4>
+			<p class="sub-ti"><span class="source">{{value.source}}</span><span class="keyword">关键词：{{value.keyword}}</span></p>
+			<p>{{value.summary}}</p>
+		</div>
+		<span class="time">{{value.createTime}}</span>
+	</div>
+{{/each}}

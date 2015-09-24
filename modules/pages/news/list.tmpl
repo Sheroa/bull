@@ -1,0 +1,9 @@
+{{each list as value index}}
+	<li>
+		<span class="img-area fl"><img src="{{value.imgUrl}}" alt="{{value.source}}"></span>
+		<span class="fr">
+		<a href="{{value.redirectUrl}}" class="fl">{{value.title}}</a>
+		<em class="fr">{{value.createTime}}</em>
+		</span>
+	</li>
+{{/each}}
