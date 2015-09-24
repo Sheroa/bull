@@ -242,6 +242,8 @@ var invest = {
 				$(".pages").html(_html.join(""));
 			}
 		});
+
+
 	},
 	event_handler: function() {
 
@@ -321,8 +323,8 @@ var invest = {
 
 		});
 
-		//赎回
-		$(".redemption").on("click", function() {
+		$(document).on("click",".redemption",function(){
+			var _this = $(this);
 			$.Dialogs({
 				"id": "diglog_wrapper",
 				"overlay": true,
@@ -350,7 +352,7 @@ var invest = {
 					});
 				}
 			});
-		});
+		})
 
 		//api调用，获取用户财富模块
 		api.call('/api/account/getUserAsset.do', {}, function(_rel) {
