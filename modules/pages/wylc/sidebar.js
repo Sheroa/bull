@@ -30,9 +30,12 @@ var href=window.location.href,
  				content = [];
  			$.each(list, function(index, val) {
  				 /* iterate through array or object */
- 				 if(index <= 2){
- 				 	content.push('<li><a  data-id = "'+val.fid+'" data-type="ttn_'+val.deadLineValue+'" href="/wylc/ttn/'+val.deadLineValue+'.html" class="selected">'+val.productName+'</a></li>');
- 				 }
+ 				if(val.productName.indexOf('天添牛A款') < 0){
+ 					// 不存在
+ 					return true;
+ 				}
+ 				content.push('<li><a  data-id = "'+val.fid+'" data-type="ttn_'+val.deadLineValue+'" href="/wylc/ttn/'+val.deadLineValue+'.html" class="selected">'+val.productName+'</a></li>');
+
  		
  			});
 

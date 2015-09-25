@@ -8,6 +8,7 @@ var api = require("api/api"),
 	sidebar = require("util/sidebar"),
 	toolbar = require('util/toolbar_pp'),
 	artTemplate= require("artTemplate"),
+	K       = require('util/Keeper'),
 	navBar = require("util/navbar");
 
 
@@ -19,7 +20,7 @@ window.pro_state = "queryInvestRecords";
 window.pro_stated = 2;
 window.filter = {
 	'pageIndex': 1,
-	'pageSize': 3
+	'pageSize': 10
 };
 window.first_tab_index = 0;
 
@@ -64,11 +65,20 @@ var invest = {
 			var buf = [];
 			buf.push('<p class="ti">赎回操作<a href="#" class="quit"></a></p>');
 			buf.push('<div class="cont3">');
-			buf.push('<p style="padding-left:32px;"><span class="p-ti">赎回金额</span><input type="text" placeholder="最高***元"></p>');
+			buf.push('<p style="padding-left:32px;"><span class="p-ti">赎回金额</span><input type="number" id="redemption_money" placeholder="最高***元"></p>');
 			buf.push('<p style="padding-left:32px;"><span class="p-ti">交易密码</span><span class="bank-pwd"><input maxlength="1" type="password"><input maxlength="1" type="password"><input  maxlength="1" type="password"><input maxlength="1" type="password"><input maxlength="1" type="password"><input maxlength="1" type="password"></span></p>');
 			buf.push('<p class="sub-text"><span>请输入6位字交易密码</span><a href="/users/find_pwd.html" class="forget-pwd">忘记密码</a></p>');
-			buf.push('<p class="error-msg">错误信息</p>');
-			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn">确定</a></p>');
+			buf.push('<p class="error-msg"></p>');
+			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn confirm_btn">确定</a></p>');
+			buf.push('</div>');
+			return buf.join("");
+		},
+		success:function(){
+			var buf = [];
+			buf.push('<p class="ti">赎回成功<a href="#" class="quit"></a></p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p class="buy-ok">尊敬的用户，您已成功赎回活期宝{{#money}}元， <br>可进入<a href="/my/invest.html">我的投资-活期宝-已赎回</a>栏目查看详情。<br>多谢您的支持，祝您投资愉快！</p>');
+			buf.push('<p><a href="/my/invest.html" class="light-btn">查看详情</a></p>');
 			buf.push('</div>');
 			return buf.join("");
 		}
@@ -294,6 +304,8 @@ var invest = {
 					window.first_tab_index = _this.index(".navObj")
 					$(".cont").eq(index).find("em").removeClass('selected');
 					$(".cont").eq(index).find("em").eq(0).addClass('selected');
+					//回复值
+					filter.pageIndex = 1;
 					getlist();
 					return false;
 				}
@@ -306,6 +318,7 @@ var invest = {
 			_this.find("em").on("click",function(){
 				_this.find("em").removeClass('selected');
 				$(this).addClass('selected');
+				filter.pageIndex = 1;
 				getlist();
 			})			
 		});
@@ -328,7 +341,7 @@ var invest = {
 			$.Dialogs({
 				"id": "diglog_wrapper",
 				"overlay": true,
-				"cls": "dialog-wrapper popbox-bankrank",
+				"cls": "dialog-wrapper popbox-bankrank outter",
 				"closebtn": ".quit,span.close",
 				"auto": false,
 				"msg": self.tpl.redemption(),
@@ -348,6 +361,53 @@ var invest = {
 									self.next().focus();
 								}
 							});
+						});
+					});
+
+					$(".confirm_btn").on("click",function(){
+						//校验
+						var _this = $(this),
+							animate_obj = _this.parents("div"),
+							error_msg =  animate_obj.find(".error-msg"),
+							redemption_money = $.trim($("#redemption_money").val());
+
+						if(!redemption_money){
+							error_msg.text("请填写赎回金额");
+							return false;
+						}
+
+						var pwd_array = []
+						$.each($(".bank-pwd").find("input"), function(index, val) {
+							 pwd_array.push($(val).val());
+						});
+						
+						if(pwd_array.join("").length < 6){
+							error_msg.text("请输入交易密码");
+							return false;
+						}
+
+						error_msg.text("");
+
+						//调用赎回接口
+						api.call('/api/product/current/applyRedeem.do',{
+							'redeemAmount':redemption_money*10000,
+							'payPassword':pwd_array.join(""),
+							'productId':'123'
+						},function(_rel){
+							var result = _rel.result;
+							if(result){
+								$(".outter .quit").trigger("click");
+								$.Dialogs({
+									"id": "diglog_wrapper",
+									"overlay": true,
+									"cls": "dialog-wrapper popbox-bankrank",
+									"closebtn": ".quit,span.close",
+									"auto": false,
+									"msg": K.ParseTpl(self.tpl.success(),{'money':redemption_money})
+								});
+							}
+						},function(_rel){
+							error_msg.text(_rel.msg);
 						});
 					});
 				}
