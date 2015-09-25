@@ -299,7 +299,7 @@ var recharge = {
  					return false;
  				}
  				error_msg.text("");
- 				api.call('/api/payment/directPayByPwd.do',{
+ 				api.call('/api/payment/directPay.do',{
  					'name':user_info.name,
  					'idCardNo':$.trim($("#id_number").val()),
  					'mobile':user_info.loginName,
@@ -309,8 +309,7 @@ var recharge = {
  					"payMethod":'mobile_wap',
  					'payType':'card_front',
  					'returnUrl':'/my/refund/record.html',
- 					'itemName':'充值金额多少元',
- 					'payPwd':'111111'
+ 					'itemName':'充值金额多少元'
  				},function(_rel){
  					var result = _rel.result,
  						payUrl = result.payUrl,
