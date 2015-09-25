@@ -66,7 +66,7 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 .header .wmain{overflow: visible;}
 .header .fl a{display: inline-block;vertical-align: top;}
 .header .fl .slogan{margin-left: 30px;margin-top: 12px;}
-.header .fr{height:40px;line-height: 40px;position: relative;z-index:1;}
+.header .fr{height:40px;line-height: 40px;position: relative;z-index:10;}
 .header .fr a{text-decoration: none;color:#373737;width: 100%;}
 .header .fr a.link{display:inline-block;width: 130px;height:40px;}
 .header .fr a.link:hover{background:#f27835;color:#fff;}
@@ -124,7 +124,7 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 
 /* * * * * * * * * * * * * * * * 尾部 * * * * * * * * * * * * * * * */
 .footer{background: #f9f7f7;}
-.footer .about .wmain .fr a, .footer .end p.cert a{background: url(/static/img/footer.png) no-repeat;display:inline-block;}
+/*.footer .about .wmain .fr a, .footer .end p.cert a{background: url(/static/img/footer.png) no-repeat;display:inline-block;}*/
 .footer .about{padding-top: 25px;}
 .footer .about .wmain{height: 200px;}
 .footer .about .wmain h4{margin-bottom: 10px;}
@@ -133,10 +133,11 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 .footer .about .wmain .fl p a{margin-right: 65px;font-size: 14px;}
 .footer .about .wmain .fl p em{color:#cc5116;}
 .footer .about .wmain .fr{width:136px;}
-.footer .about .wmain .fr a{height:36px;width: 117px;margin-bottom: 10px;}
-.footer .about .wmain .fr a.app1:hover{background-position: 0 -90px}
-.footer .about .wmain .fr a.app2{background-position: 0 -45px;}
-.footer .about .wmain .fr a.app2:hover{background-position: 0 -135px;}
+a.app1, a.app2{height:36px;width: 117px;margin-bottom: 10px;display: inline-block;}
+a.app1{background: url(/static/img/iphone.jpg) no-repeat;}
+a.app1:hover{background: url(/static/img/iphone2.jpg) no-repeat;}
+a.app2{background: url(/static/img/android.jpg) no-repeat;}
+a.app2:hover{background: url(/static/img/android2.jpg) no-repeat;}
 
 .footer .about .wmain .fr p{font-size: 12px;margin-top: 5px;}
 .footer .end{background: #f2f1f1;padding: 40px;text-align: left;}
