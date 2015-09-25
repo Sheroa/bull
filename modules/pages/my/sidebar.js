@@ -7,9 +7,22 @@ var api     = require("api/api"),
 	$       = require('jquery'),
 	K       = require('util/Keeper');
 
-var sidebar = {
-	init:function(){
+//任务执行
+require('ui/dialog/dialog');
 
+var sidebar = {
+	tpl:{
+		recharge:function(){
+			var buf = [];
+			buf.push('<p class="ti">未充值成功</p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p class="buy-ok">请先充值后提现，马上<a href="/my/refund/recharge.html">充值</a></p>');
+			buf.push('</div>');
+			return buf.join("");
+		}
+	},
+	init:function(){
+		var self  = this;
 		$("a[data-type='withdrawCash']").on("click",function(){
 			api.call('/api/user/getIdentityInfoByUser.do',{
 
@@ -22,7 +35,15 @@ var sidebar = {
 					K.gotohref('/my/refund/withdrawCash.html');
 				}else{
 					//没有绑定银行卡，跳转dialog
-					alert("请跳转到充值页面");
+								
+					$.Dialogs({
+					    "id" : "diglog_wrapper",
+					    "overlay" : true,
+					    "cls" : "dialog-wrapper popbox-bankrank",
+					    "closebtn" : ".quit,span.close",
+					    "auto" : false,
+					    "msg" :self.tpl.recharge()
+					});
 				}
 			});
 		});
