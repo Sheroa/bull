@@ -145,10 +145,11 @@
 .myInput .tab-col .cont .table-ti em.selected{color:#fff;background:#f27835;}
 .myInput .tab-col .cont .table-ti em:hover{color:#f27835; }
 .myInput .tab-col .cont .table-ti em.selected:hover{color:#fff;background:#f27835;}
-.myInput .tab-col .cont .sub-tab{display: none;position: relative;}
-.myInput .tab-col .cont .sub-tab .hqb-msg{position: absolute;top:-55px;right:10px;}
-.myInput .tab-col .cont .sub-tab .hqb-msg em{font-size: 12px;margin-right: 5px;}
-.myInput .tab-col .cont .sub-tab .hqb-msg i{font-size: 24px;color:#f27835;font-style: normal;margin-right: 15px;}
+.myInput .tab-col .cont .sub-tab{display: none;}
+.myInput #content{position: relative;padding-bottom: 20px;}
+.myInput #content .hqb-msg{position: absolute;top:-55px;right:10px;}
+.myInput #content .hqb-msg em{font-size: 12px;margin-right: 5px;}
+.myInput #content .hqb-msg i{font-size: 24px;color:#f27835;font-style: normal;margin-right: 15px;}
 .myInput #content table{width: 100%;border-collapse:collapse}
 .myInput #content table tr{padding:0 30px;}
 .myInput #content table thead td{border-bottom: 1px solid;}
