@@ -14,9 +14,9 @@
 	{{each list as value index}}
 		<tr>
 			<td>{{value.fInterestTime}}</td>
-			<td>{{value.fPrincipal}}</td>
+			<td>{{(value.fPrincipal/10000).toFixed(2)}}</td>
 			<td>{{value.fYields}}</td>
-			<td>{{value.fPrincipalLeft-value.fPrincipal}}</td>
+			<td>{{((value.fPrincipalLeft-value.fPrincipal)/10000).toFixed(2)}}</td>
 			<td>赎回还本付息</td>
 			<td>{{value.fYieldsHint}}</td>
 		</tr>

@@ -12,7 +12,7 @@
 		<tr>
 			<td>活期宝</td>
 			<td>{{value.fRequestTime}}</td>
-			<td>{{value.fMoneyAmount}}</td>
+			<td>{{(value.fMoneyAmount/10000).toFixed(2)}}</td>
 			<td>{{value.fStatus}}</td>
 		</tr>
 	{{/each}}

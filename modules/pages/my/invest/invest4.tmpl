@@ -17,8 +17,8 @@
 			<td>{{value.fStartTime}}</td>
 			<td>{{value.fEndTime}}</td>
 			<td>{{value.deadLineValue}}天</td>
-			<td>{{value.fInvestAmt}}</td>
-			<td>{{value.fProfit}}</td>
+			<td>{{(value.fInvestAmt/10000).toFixed(2)}}</td>
+			<td>{{(value.fProfit/10000).toFixed(2)}}</td>
 			<td>已转入余额</td>
 		</tr>
 	{{/each}}
