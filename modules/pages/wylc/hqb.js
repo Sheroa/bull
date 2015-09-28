@@ -29,7 +29,7 @@ var hqb = {
 			var buf=[];
 			buf.push('<p><span class="p-ti">剩余金额</span><span class="num">￥{{#remaMoney}}</span></p>');
 			buf.push('<p><span class="p-ti">购买金额</span>');
-			buf.push('<input type="number" max=102 placeholder="100元起购"></p>');
+			buf.push('<input type="number" id="purchase_money" placeholder="100元起购"></p>');
 			buf.push('<p><a href="/users/login.html?return_to=/wylc/hqb.html" class="light-btn">登录购买</a></p>');
 			return buf.join("");
 		},
@@ -132,6 +132,8 @@ var hqb = {
 			selectorIndex:'.navObj'
 		});
 
+		//购买金额
+		
 	},
 	event_handler_login:function(){
 
@@ -250,7 +252,15 @@ var hqb = {
 			    "auto" : false,
 			    "msg" :msg
 			});
-		})
+		});
+
+		// $("#purchase_money").on("blur",function(){
+		// 	var _this = $(this),
+		// 		purchase_money = _this.val();
+		// 	if(purchase_money){
+
+		// 	}
+		// });
 	}
 }
 
