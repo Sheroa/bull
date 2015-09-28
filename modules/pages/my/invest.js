@@ -213,7 +213,7 @@ var invest = {
 			}else if(first_tab_index == 1){
 				//为天天牛列表
 				var tmpl_index_ttn = [2,3].indexOf(filter.state); //0或1
-				if(tmpl_index==0){
+				if(tmpl_index_ttn==0){
 					var cache_data = $.trim(artTemplate.compile(__inline("./invest/invest3.tmpl"))(data));			
 				}else{
 					var cache_data = $.trim(artTemplate.compile(__inline("./invest/invest4.tmpl"))(data));
