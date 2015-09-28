@@ -133,17 +133,17 @@ var invest = {
 				floatProfitAmount = _rel.result.floatProfitAmount; // 浮动理财收益
 
 			var data = [{
-				value: 100,
+				value: currentProfitAmount,
 				color: "#f39c11",
 				highlight: "#f39c11",
 				label: "活期宝收益"
 			}, {
-				value: 50,
+				value: fixedProfitAmount,
 				color: "#58d68d",
 				highlight: "#58d68d",
 				label: "固定理财收益"
 			}, {
-				value: 50,
+				value: floatProfitAmount,
 				color: "#6699cc",
 				highlight: "#6699cc",
 				label: "浮动理财收益"
@@ -220,7 +220,18 @@ var invest = {
 				}
 			}
 			$("#content").html(cache_data);
+			if(first_tab_index==0  && tmpl_index == 0){
+				//活期宝产品，持有中
+				api.call('/api/product/current/assetQuery.do',{
 
+				},function(_rel){
+					var result = _rel.result,
+						fMoneyAmount = result.fMoneyAmount,
+						fProfitYesterday = result.fProfitYesterday;
+					$('.hqb-msg').find("i").eq(0).text("￥"+(fMoneyAmount/10000).toFixed(2));
+					$('.hqb-msg').find("i").eq(1).text("￥"+(fProfitYesterday/10000).toFixed(2));
+				});
+			}
 			var pageSize = data.pageSize,
 			totalRecord = data.totalCount,
 			pageNum = getPageNum(pageSize, totalRecord);
