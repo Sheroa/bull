@@ -46,6 +46,14 @@ var login = {
 				input_obj.attr('type','password')
 			}
 		});
+
+		//回车触发
+		$("#userPass").on("keypress",function(event){
+			//回车触发
+			if(event.keyCode == 13){
+				$(".btn_login").trigger('click');
+			}
+		});
 	},
 	valid_check:function(){
 		var phone_num = $("#userName"),
