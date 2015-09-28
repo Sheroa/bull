@@ -29,7 +29,7 @@ var hqb = {
 			var buf=[];
 			buf.push('<p><span class="p-ti">剩余金额</span><span class="num">￥{{#remaMoney}}</span></p>');
 			buf.push('<p><span class="p-ti">购买金额</span>');
-			buf.push('<input type="text" placeholder="100元起购"></p>');
+			buf.push('<input type="number" max=102 placeholder="100元起购"></p>');
 			buf.push('<p><a href="/users/login.html?return_to=/wylc/hqb.html" class="light-btn">登录购买</a></p>');
 			return buf.join("");
 		},
@@ -83,7 +83,6 @@ var hqb = {
 					var parse_obj = _rel.result;
 					$.extend(parse_obj,_asset.result);
 					for(var i in parse_obj){
-						console.log();
 						if(typeof parse_obj[i] == "number" && parse_obj[i] >= 10000000){
 							if(i == "fbuyBalance"){
 								parse_obj[i] = (parse_obj[i]/10000).toFixed(0);
@@ -103,7 +102,19 @@ var hqb = {
 
 			api.call('/api/product/current/queryProductInfo',{},function(_rel){
 
-				var result_str = K.ParseTpl(self.tpl.wdl(),_rel.result),
+				var parse_obj = _rel.result;
+				for(var i in parse_obj){
+					if(typeof parse_obj[i] == "number" && parse_obj[i] >= 10000000){
+						if(i == "fbuyBalance"){
+							parse_obj[i] = (parse_obj[i]/10000).toFixed(0);
+						}else{
+							parse_obj[i] = (parse_obj[i]/10000).toFixed(2);	
+						}
+						
+					}
+				}
+
+				var result_str = K.ParseTpl(self.tpl.wdl(),parse_obj),
 					user_id = $.cookie("ppinf");
 				
 				entrance.html(result_str);

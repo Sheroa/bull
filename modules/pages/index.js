@@ -26,6 +26,15 @@ var index_page = {
 			login_area.addClass('login-after');
 			var str = self.tpl.login_success();
 			login_area.html(str.replace(/\{\{.+\}\}/,K.phone_num_map(phone_num)));
+
+			//首页-活期宝-剩余金额
+			api.call('/api/product/current/assetQuery.do',{
+
+			},function(_rel){
+				var result = _rel.result,
+					fRedeemMoney  = result.fRedeemMoney; //活期宝余额
+				$(".fRedeemMoney").append('<p>剩余金额：<em>'+(fRedeemMoney/10000).toFixed(2)+'</em></p>');
+			});
 		}else{ //用户未登入
 			login_area.removeClass('login-after');
 			//debugger;
