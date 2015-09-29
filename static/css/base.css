@@ -24,7 +24,7 @@ p input.check{height: 13px;width: 13px;vertical-align: middle;}
 p span.pwd-box{width: 215px;position:relative;text-align:left;height: 32px;line-height: 32px;padding: 0 5px;border:2px solid #b2b2b2;font-size: 14px;display: inline-block;}
 p span.pwd-box input{width: 188px !important;height: 32px;border:none;vertical-align: top;line-height: 32px;padding: 0;margin:0;}
 p span.pwd-box input::-ms-reveal{display: none;}
-p span.pwd-box a.visible{display: inline-block;background: url(/static/img/eye.png) no-repeat;width:23px;height:15px;position:absolute;top:10px;right: 5px;}
+p span.pwd-box a.visible{display: inline-block;background: url(/static/img/eye.png) no-repeat;width:23px;height:15px;position:absolute;top:8px;right: 5px;}
 .sub-text{font-size: 12px !important; text-align: left;line-height: 18px;}
 .bk-gray{background: #fafafa;width: 100%;padding: 50px 0;}
 .wmain{width:1140px;margin:0 auto;overflow:hidden;}
@@ -59,6 +59,8 @@ h4.col-ti a{color:#f27835;text-decoration: underline;font-size: 14px;}
 a.quit{background: url(/static/img/quit.png) no-repeat;height: 18px;width:18px;display: inline-block;}
 p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-height: 15px !important;height:15px !important;text-align: left;}
 .no-margin{margin-bottom:0 !important;}
+span.p-ti{color:#373737;}
+
 
 
 /* * * * * * * * * * * * * * * * 顶部 * * * * * * * * * * * * * * * */
@@ -75,12 +77,12 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 .header .fr .regis-login a{color:#f27835;padding:0;margin:0;margin-right:0;display: inline;}
 .header .fr .regis-login em{color:#f27835;padding:0 4px;}
 .header .fr .regis-login p.name-msg{background: url(/static/img/arrow5.png) no-repeat right center;padding-right: 25px;}
-.header .fr .regis-login p .name{color:#f27835;width: 80px;text-align: center;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;display: inline-block;vertical-align: top;}
-.header .fr .regis-login .msg-num{color:#fff;background:#f27835;border-radius: 9px;padding:0 8px;font-size: 12px; vertical-align: top;margin-left: 2px;}
+.header .fr .regis-login p .name{color:#f27835;width: 100px;text-align: center;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;display: inline-block;vertical-align: top;}
+.header .fr .regis-login .msg-num{text-align: center;color:#fff;background:#f27835;border-radius: 9px;padding:0 8px;font-size: 12px; vertical-align: top;margin-left: 2px;}
 .header .fr .regis-login ul{position: absolute;top:39px;right:-5px;width:auto;text-align: left;}
 .header .fr .regis-login ul li{padding:0 15px;width: 145px;overflow: hidden;}
 .header .fr .regis-login ul li a{font-size: 12px;white-space: nowrap;color:#212121;}
-.header .fr .regis-login ul li a.msg-num{float:right;height: 15px;line-height: 15px;margin-top: 14px;width:6px;}
+.header .fr .regis-login ul li a.msg-num{float:right;height: 15px;line-height: 15px;margin-top: 14px;width:8px;text-align: center;}
 .header .fr .regis-login ul li.ti{background:#f27835}
 .header .fr .regis-login ul li.ti a{font-size: 14px;color:#fff;;}
 .header .fr .regis-login ul li a.login1, .header .fr .regis-login ul li a.login2, .header .fr .regis-login ul li a.login3, .header .fr .regis-login ul li a.login4{padding-left:22px;width:97px;display: inline-block;}
@@ -126,7 +128,7 @@ p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-hei
 .footer{background: #f9f7f7;}
 /*.footer .about .wmain .fr a, .footer .end p.cert a{background: url(/static/img/footer.png) no-repeat;display:inline-block;}*/
 .footer .about{padding-top: 25px;}
-.footer .about .wmain{height: 200px;}
+.footer .about .wmain{height: 255px;}
 .footer .about .wmain h4{margin-bottom: 10px;}
 .footer .about .wmain .fl{text-align: left;}
 .footer .about .wmain .fl p{font-size: 12px;margin-bottom: 35px;line-height: 20px;}
@@ -285,7 +287,7 @@ a.app2:hover{background: url(/static/img/android2.jpg) no-repeat;}
 .popbox-bankrank .diginfo .cont3 p a.light-btn{width:231px;display: inline-block;line-height: 32px;height: 32px;}
 .popbox-bankrank .diginfo .cont3 p.buy-ok{padding-left: 105px;margin-bottom: 40px;}
 .popbox-bankrank .diginfo .cont3 p.buy-ok a{color:#f27835;text-decoration: underline;}
-.popbox-bankrank .diginfo .cont4{padding:30px 20px;}
+.popbox-bankrank .diginfo .cont4{padding:30px 20px;height:325px;overflow-y:scroll;}
 .popbox-bankrank .diginfo .cont4 p{font-size: 12px;line-height: 20px;text-align: left;}
 
 .popbox-bankrank2{width:315px;}
