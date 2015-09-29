@@ -80,10 +80,10 @@ var hqb = {
 			var buf = [];
 			buf.push('<p class="ti">收益权转让协议<a href="#" class="quit"></a></p>');
 			buf.push('<div class="cont4">');
-			buf.push('<p>甲方（受让人）：</p>');
+			buf.push('<p id="userName">甲方（受让人）：<em></em></p>');
 			buf.push('<p>证件类型：身份证</p>');
-			buf.push('<p>证件号：</p>');
-			buf.push('<p>联系电话：</p>');
+			buf.push('<p id="identityCard">证件号：<em></em></p>');
+			buf.push('<p id="userMobile">联系电话：<em></em></p>');
 			buf.push('<p>乙方（出让人）：彭钢</p>');
 			buf.push('<p>身份证号码：430511197005153531</p>');
 			buf.push('<p>鉴于：</p>');
@@ -96,10 +96,10 @@ var hqb = {
 			var buf=[];
 			buf.push('<p class="ti">信用咨询与管理服务协议<a href="#" class="quit"></a></p>');
 			buf.push('<div class="cont4">');
-			buf.push('<p>甲方（受让人）：</p>');
+			buf.push('<p id="userName">甲方（受让人）：<em></em></p>');
 			buf.push('<p>证件类型：身份证</p>');
-			buf.push('<p>证件号：</p>');
-			buf.push('<p>联系电话：</p>');
+			buf.push('<p id="identityCard">证件号：<em></em></p>');
+			buf.push('<p id="userMobile">联系电话：<em></em></p>');
 			buf.push('<p>乙方：小牛新财富管理有限公司</p>');
 			buf.push('<p>地址：深圳市福田区彩田路2009号瀚森大厦17楼</p>');
 			buf.push('<p>注册号：4403011107262598</p>');
@@ -269,6 +269,7 @@ var hqb = {
 			// });
 		});
 
+		//收益权转让
 		$("#revenue_transport").on("click",function(){
 			$.Dialogs({
 			    "id" : "diglog_wrapper",
@@ -276,10 +277,25 @@ var hqb = {
 			    "cls" : "dialog-wrapper popbox-bankrank",
 			    "closebtn" : ".quit,span.close",
 			    "auto" : false,
-			    "msg" :self.tpl.revenue_transport()
+			    "msg" :self.tpl.revenue_transport(),
+			    "openfun":function(){
+			    	api.call('/api/user/getIdentityInfoByUser.do',{
+
+			    	},function(_rel){
+			    		var result  = _rel.result,
+			    			userName = result.userName,
+			    			userMobile = result.userMobile,
+			    			identityCard = result.identityCard;
+			    		$("#identityCard").find("em").text(identityCard);
+			    		$("#userMobile").find("em").text(userMobile);
+			    		$("#userName").find("em").text(userName);
+			    	});
+			    }
 			});
 		});
 
+
+		// 信用咨询与管理服务协议
 		$("#info_consult").on("click",function(){
 			$.Dialogs({
 			    "id" : "diglog_wrapper",
@@ -287,7 +303,20 @@ var hqb = {
 			    "cls" : "dialog-wrapper popbox-bankrank",
 			    "closebtn" : ".quit,span.close",
 			    "auto" : false,
-			    "msg" :self.tpl.info_consult()
+			    "msg" :self.tpl.info_consult(),
+			    "openfun":function(){
+			    	api.call('/api/user/getIdentityInfoByUser.do',{
+
+			    	},function(_rel){
+			    		var result  = _rel.result,
+			    			userName = result.userName,
+			    			userMobile = result.userMobile,
+			    			identityCard = result.identityCard;
+			    		$("#identityCard").find("em").text(identityCard);
+			    		$("#userMobile").find("em").text(userMobile);
+			    		$("#userName").find("em").text(userName);
+			    	});
+			    }
 			});
 		});
 

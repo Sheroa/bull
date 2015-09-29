@@ -62,6 +62,15 @@ var index_page = {
 		},function(_rel){
 			alert(_rel.msg);
 		});
+
+		//首页-活期宝-剩余金额
+		api.call('/api/product/current/assetQuery.do',{
+
+		},function(_rel){
+			var result = _rel.result,
+				fRedeemMoney  = result.fRedeemMoney; //活期宝余额
+			$(".fRedeemMoney").append('<p>剩余金额：<em>'+(fRedeemMoney/10000).toFixed(2)+'</em></p>');
+		});
 		
 	},
 	event_handler:function(){

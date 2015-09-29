@@ -1,0 +1,27 @@
+<span class="hqb-msg"><em>活期宝余额</em><i></i><em>昨日收益</em><i></i></span>
+<table>
+	<thead>
+		<tr>
+			<td class="left1">起息时间</td>
+			<td>投资金额</td>
+			<td>当前年化收益</td>
+			<td>收益金额</td>
+			<td>回款方式</td>
+			<td class="right1">备注</td>
+		</tr>
+	</thead>
+	<tbody>
+	{{each list as value index}}
+		<tr>
+			<td>{{value.fInterestTime}}</td>
+			<td>{{(value.fPrincipal/10000).toFixed(2)}}</td>
+			<td>{{value.fYields}}</td>
+			<td>{{((value.fPrincipalLeft-value.fPrincipal)/10000).toFixed(2)}}</td>
+			<td>赎回还本付息</td>
+			<td>{{value.fYieldsHint}}</td>
+		</tr>
+	{{/each}}
+	</tbody>
+</table>
+<div class="pages"></div>
+<p class="btn"><a href="/wylc/hqb.html" class="light-btn purchase">购买</a><a href="javascript:void(0);" class="light-btn redemption">赎回</a></p>

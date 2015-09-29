@@ -94,6 +94,7 @@ var record = {
 
 			var cache_data = $.trim(artTemplate.compile(__inline("./record/record.tmpl"))(data));
 			if(!cache_data){
+				$(".pages").html("");
 				$("#record_list").html("<h4 class='notice'>暂无数据！</h4>");
 			}else{
 				$("#record_list").html(cache_data);

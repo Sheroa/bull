@@ -139,25 +139,26 @@
 .myInput .border-box .pie-chart .each .chart span p strong{font-weight: 300;color:#f27835;}
 .myInput .border-box .pie-chart .each .chart span p i{font-style: normal;}
 
-.myInput .tab-col .cont{padding:0;padding-bottom: 60px;}
+.myInput .tab-col .cont{padding:0;}
 .myInput .tab-col .cont .table-ti{line-height: 40px;padding:20px;overflow: hidden;}
 .myInput .tab-col .cont .table-ti em{font-size: 12px;padding:3px 12px;border-radius: 10px;cursor:pointer;}
 .myInput .tab-col .cont .table-ti em.selected{color:#fff;background:#f27835;}
 .myInput .tab-col .cont .table-ti em:hover{color:#f27835; }
 .myInput .tab-col .cont .table-ti em.selected:hover{color:#fff;background:#f27835;}
-.myInput .tab-col .cont .sub-tab{display: none;position: relative;}
-.myInput .tab-col .cont .sub-tab .hqb-msg{position: absolute;top:-55px;right:10px;}
-.myInput .tab-col .cont .sub-tab .hqb-msg em{font-size: 12px;margin-right: 5px;}
-.myInput .tab-col .cont .sub-tab .hqb-msg i{font-size: 24px;color:#f27835;font-style: normal;margin-right: 15px;}
-.myInput .tab-col .cont table{width: 100%;border-collapse:collapse}
-.myInput .tab-col .cont table tr{padding:0 30px;}
-.myInput .tab-col .cont table thead td{border-bottom: 1px solid;}
-.myInput .tab-col .cont table td{font-size: 14px;vertical-align: top;padding:10px;line-height: 25px;}
-.myInput .tab-col .cont table td.left1{padding-left:20px;}
-.myInput .tab-col .cont table td.right1{padding-right:20px;}
-.myInput .tab-col .cont table tbody td{color:#373737;}
-.myInput .tab-col .cont p.btn{text-align: center;margin-top:40px;}
-.myInput .tab-col .cont p.btn a.light-btn{width:140px;margin:0 20px;display: inline-block;line-height:32px;}
+.myInput .tab-col .cont .sub-tab{display: none;}
+.myInput #content{position: relative;padding-bottom: 20px;}
+.myInput #content .hqb-msg{position: absolute;top:-55px;right:10px;}
+.myInput #content .hqb-msg em{font-size: 12px;margin-right: 5px;}
+.myInput #content .hqb-msg i{font-size: 24px;color:#f27835;font-style: normal;margin-right: 15px;}
+.myInput #content table{width: 100%;border-collapse:collapse}
+.myInput #content table tr{padding:0 30px;}
+.myInput #content table thead td{border-bottom: 1px solid;}
+.myInput #content table td{font-size: 14px;vertical-align: top;padding:10px;line-height: 25px;}
+.myInput #content table td.left1{padding-left:20px;}
+.myInput #content table td.right1{padding-right:20px;}
+.myInput #content table tbody td{color:#373737;}
+.myInput #content p.btn{text-align: center;margin-top:40px;}
+.myInput #content p.btn a.light-btn{width:140px;margin:0 20px;display: inline-block;line-height:32px;}
 
 .disccount{}
 .disccount .shadow-box{margin:1px 1px 3px 1px;}

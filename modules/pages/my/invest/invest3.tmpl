@@ -1,0 +1,27 @@
+<table>
+	<thead>
+		<tr>
+			<td class="left1">产品名称</td>
+			<td>起息时间</td>
+			<td>结息时间</td>
+			<td>投资期限</td>
+			<td>投资本金</td>
+			<td>预期总收益</td>
+			<td class="right1">回款方式</td>
+		</tr>
+	</thead>
+	<tbody>
+	{{each list as value index}}
+		<tr>
+			<td>{{value.productName}}</td>
+			<td>{{value.fStartTime}}</td>
+			<td>{{value.fEndTime}}</td>
+			<td>{{value.deadLineValue}}天</td>
+			<td>{{(value.fInvestAmt/10000).toFixed(2)}}</td>
+			<td>{{(value.fProfit/10000).toFixed(2)}}</td>
+			<td>到期还本付息</td>
+		</tr>
+	{{/each}}
+	</tbody>
+</table>
+<div class="pages"></div>

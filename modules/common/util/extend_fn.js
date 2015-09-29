@@ -6,7 +6,7 @@
 var $ = require('jquery');
 
 $.fn.extend({
-	tabSwitch:function(options){
+	tabSwitch:function(options,callback){
 		var defaults = {
 			navObj:"a",
 			className:".tabContent",
@@ -28,6 +28,7 @@ $.fn.extend({
 
 			_thisObj.find(opts.className).removeClass('show');
 			_thisObj.find(opts.className).eq(index+parseInt(opts.offset)).addClass('show');
+			callback();
 		});
 			
 	}

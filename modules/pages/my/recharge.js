@@ -186,8 +186,13 @@ var recharge = {
  				'bankName': $('#bank-select').find('option:selected').attr('data-code'),
  				'bankCode':$('#bank-select').find('option:selected').val()
  			},function(data){
- 				//绑定成功
- 				
+ 				//绑定成功 请求接口，获取用户账户余额
+ 				api.call('/api/account/getUserAsset.do',{
+
+ 				},function(_rel){
+ 					var ableBalanceAmount = (_rel.result.ableBalanceAmount/10000).toFixed(2);
+					$(".ableBalanceAmount").text("￥"+ableBalanceAmount);
+ 				});
  				 //判断是连连还是快钱
  				 var pay_way = $("select[name='bank-select']").find("option:selected").attr("data-provider");
  				 //连连 - 没有手机号 
@@ -283,31 +288,67 @@ var recharge = {
  		$("#recharge").on("click",function(){
  			var _this = $(this),
  				sms_code = _this.parents("div").find(".shortOne");
- 			$.extend(temp_data,{
- 				'validCode':$.trim(sms_code.val()),
- 				'inRecordNo':order_id
- 			});
-
- 			api.call("/api/payment/firstBindCardPay.do",temp_data,function(_rel){
- 				var result = _rel.result;
- 				if(result){
- 					//充值成功
- 					$.Dialogs({
- 					    "id" : "diglog_wrapper",
- 					    "overlay" : true,
- 					    "cls" : "dialog-wrapper popbox-bankrank2",
- 					    "closebtn" : ".quit,span.close",
- 					    "auto" : false,
- 					    "msg" :self.tpl.success(),
- 					    openfun : function () {
- 					    	window.timer = setTimeout(function(){
- 					    		K.gotohref("/my/refund/record.html");
- 					    		clearTimeout(timer);
- 					    	},3000);
- 					    }
- 					});
+ 			if(!temp_data){
+ 				//连连支付方式
+ 				var animate_obj = _this.parents("div"),
+ 					error_msg = animate_obj.find(".error-msg em"),
+ 					money = $.trim(animate_obj.find(".money").val()),
+ 					user_info = JSON.parse($.cookie("ppinf"));
+ 				if(!money){
+ 					error_msg.text("请输入充值金额");
+ 					return false;
  				}
- 			});
+ 				error_msg.text("");
+ 				api.call('/api/payment/directPay.do',{
+ 					'name':user_info.name,
+ 					'idCardNo':$.trim($("#id_number").val()),
+ 					'mobile':user_info.loginName,
+ 					'totalAmount':money*10000,
+ 					'bankCardNo':$.trim($("#bank_number").val()),
+ 					'bankCode':$("#bank-select").find("option:selected").attr("data-code"),
+ 					"payMethod":'mobile_wap',
+ 					'payType':'card_front',
+ 					'returnUrl':'/my/refund/record.html',
+ 					'itemName':'充值金额多少元'
+ 				},function(_rel){
+ 					var result = _rel.result,
+ 						payUrl = result.payUrl,
+ 						req_data = result.payParaMap.req_data;
+					$("body").append('<form id="pay_now" action="'+payUrl+'" method="'+result.method+'"><input name="req_data" id="req_data"/></form>');
+					$("#req_data").val(req_data);
+					$("#pay_now").submit();
+ 				},function(_rel){
+ 					error_msg.text(_rel.msg);
+ 				});
+ 			}else{
+ 				//快钱支付方式
+ 				$.extend(temp_data,{
+ 					'validCode':$.trim(sms_code.val()),
+ 					'inRecordNo':order_id
+ 				});
+
+ 				api.call("/api/payment/firstBindCardPay.do",temp_data,function(_rel){
+ 					var result = _rel.result;
+ 					if(result){
+ 						//充值成功
+ 						$.Dialogs({
+ 						    "id" : "diglog_wrapper",
+ 						    "overlay" : true,
+ 						    "cls" : "dialog-wrapper popbox-bankrank2",
+ 						    "closebtn" : ".quit,span.close",
+ 						    "auto" : false,
+ 						    "msg" :self.tpl.success(),
+ 						    openfun : function () {
+ 						    	window.timer = setTimeout(function(){
+ 						    		K.gotohref("/my/refund/record.html");
+ 						    		clearTimeout(timer);
+ 						    	},3000);
+ 						    }
+ 						});
+ 					}
+ 				});
+ 			}
+
  		});
 
  		$("#bank_number").keydown(function(event) {

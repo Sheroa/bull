@@ -8,6 +8,7 @@ var api = require("api/api"),
 	sidebar = require("util/sidebar"),
 	toolbar = require('util/toolbar_pp'),
 	artTemplate= require("artTemplate"),
+	K       = require('util/Keeper'),
 	navBar = require("util/navbar");
 
 
@@ -19,9 +20,9 @@ window.pro_state = "queryInvestRecords";
 window.pro_stated = 2;
 window.filter = {
 	'pageIndex': 1,
-	'pageSize': 10,
-	'transType': ""
+	'pageSize': 10
 };
+window.first_tab_index = 0;
 
 //获取页码总数
 function getPageNum(pageSize,totalRecord){
@@ -57,18 +58,27 @@ var invest = {
 		sidebar.init();
 		self.UI();
 		self.event_handler();
-
+		getlist();
 	},
 	tpl: {
 		redemption: function() {
 			var buf = [];
 			buf.push('<p class="ti">赎回操作<a href="#" class="quit"></a></p>');
 			buf.push('<div class="cont3">');
-			buf.push('<p style="padding-left:32px;"><span class="p-ti">赎回金额</span><input type="text" placeholder="最高***元"></p>');
+			buf.push('<p style="padding-left:32px;"><span class="p-ti">赎回金额</span><input type="number" id="redemption_money" placeholder="最高***元"></p>');
 			buf.push('<p style="padding-left:32px;"><span class="p-ti">交易密码</span><span class="bank-pwd"><input maxlength="1" type="password"><input maxlength="1" type="password"><input  maxlength="1" type="password"><input maxlength="1" type="password"><input maxlength="1" type="password"><input maxlength="1" type="password"></span></p>');
 			buf.push('<p class="sub-text"><span>请输入6位字交易密码</span><a href="/users/find_pwd.html" class="forget-pwd">忘记密码</a></p>');
-			buf.push('<p class="error-msg">错误信息</p>');
-			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn">确定</a></p>');
+			buf.push('<p class="error-msg"></p>');
+			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn confirm_btn">确定</a></p>');
+			buf.push('</div>');
+			return buf.join("");
+		},
+		success:function(){
+			var buf = [];
+			buf.push('<p class="ti">赎回成功<a href="#" class="quit"></a></p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p class="buy-ok">尊敬的用户，您已成功赎回活期宝{{#money}}元， <br>可进入<a href="/my/invest.html">我的投资-活期宝-已赎回</a>栏目查看详情。<br>多谢您的支持，祝您投资愉快！</p>');
+			buf.push('<p><a href="/my/invest.html" class="light-btn">查看详情</a></p>');
 			buf.push('</div>');
 			return buf.join("");
 		}
@@ -123,17 +133,17 @@ var invest = {
 				floatProfitAmount = _rel.result.floatProfitAmount; // 浮动理财收益
 
 			var data = [{
-				value: 100,
+				value: currentProfitAmount,
 				color: "#f39c11",
 				highlight: "#f39c11",
 				label: "活期宝收益"
 			}, {
-				value: 50,
+				value: fixedProfitAmount,
 				color: "#58d68d",
 				highlight: "#58d68d",
 				label: "固定理财收益"
 			}, {
-				value: 50,
+				value: floatProfitAmount,
 				color: "#6699cc",
 				highlight: "#6699cc",
 				label: "浮动理财收益"
@@ -154,29 +164,77 @@ var invest = {
 	},
 	invest_list_show: function() {
 		var self = this;
-		var invest_host = '/api/product/' + pro_type + '/' + pro_state+'.do';
-		if (pro_type == "dayAdd") {
-			$.extend(filter, {
-				'state': pro_stated,
-				'proType': 1
+		var request_url_array = ['/api/product/current/queryInvestRecords.do',
+									'/api/product/current/queryRedeemRecords.do'],
+			request_url = "";
+		if(first_tab_index == 0){
+			$(".table-ti").eq(0).find("em").each(function(){
+				var _this = $(this);
+				if(_this.hasClass('selected')){
+					request_url = request_url_array[_this.index()];
+					return false;
+				}
 			});
+		}else if(first_tab_index == 1){
+			$(".table-ti").eq(1).find("em").each(function(){
+				var _this = $(this);
+				if(_this.hasClass('selected')){
+					request_url = "/api/product/dayAdd/queryInvestRecords.do";
+					var state_array = [2,3];
+					$.extend(filter, {
+						'state':state_array[_this.index()],
+						'proType':1
+					});
+					
+					return false;
+				}
+			});
+		}else{
+			$("#content").html("暂无数据");
+			return false;
 		}
-		api.call(invest_host, filter, function(data) {
-			if (pro_type == 'current') {
-				var cache_data = pro_state == 'queryInvestRecords' ? $.trim(artTemplate.compile(__inline("./invest/invest1.tmpl"))(data)) : $.trim(artTemplate.compile(__inline("./invest/invest2.tmpl"))(data));
-			} else if (pro_type == 'dayAdd') {
-				var cache_data = pro_stated == 2 ? $.trim(artTemplate.compile(__inline("./invest/invest2.tmpl"))(data)) : $.trim(artTemplate.compile(__inline("./invest/invest3.tmpl"))(data));
+		api.call(request_url, filter, function(data) {
+
+			//list
+			var list = data.list;
+			if(list.length == 0){
+				$("#content").html("暂无数据");
+				return false;
 			}
-			if (!cache_data) {
-				$("#invest_list").html("<h4 class='notice'>暂无数据！</h4>");
-			} else if (pro_type == 'hfb') {
-				$("#invest_list").html("<h4 class='notice'>暂无数据！</h4>");
-			} else {
-				$("#invest_list").html(cache_data);
+
+			if(first_tab_index == 0){
+				//为活期宝列表
+				var tmpl_index = request_url_array.indexOf(request_url); //0或1
+				if(tmpl_index==0){
+					var cache_data = $.trim(artTemplate.compile(__inline("./invest/invest1.tmpl"))(data));
+				}else{
+					var cache_data = $.trim(artTemplate.compile(__inline("./invest/invest2.tmpl"))(data));
+				}
+			}else if(first_tab_index == 1){
+				//为天天牛列表
+				var tmpl_index_ttn = [2,3].indexOf(filter.state); //0或1
+				if(tmpl_index_ttn==0){
+					var cache_data = $.trim(artTemplate.compile(__inline("./invest/invest3.tmpl"))(data));			
+				}else{
+					var cache_data = $.trim(artTemplate.compile(__inline("./invest/invest4.tmpl"))(data));
+				}
+			}
+			$("#content").html(cache_data);
+			if(first_tab_index==0  && tmpl_index == 0){
+				//活期宝产品，持有中
+				api.call('/api/product/current/assetQuery.do',{
+
+				},function(_rel){
+					var result = _rel.result,
+						fMoneyAmount = result.fMoneyAmount,
+						fProfitYesterday = result.fProfitYesterday;
+					$('.hqb-msg').find("i").eq(0).text("￥"+(fMoneyAmount/10000).toFixed(2));
+					$('.hqb-msg').find("i").eq(1).text("￥"+(fProfitYesterday/10000).toFixed(2));
+				});
 			}
 			var pageSize = data.pageSize,
-				totalRecord = data.totalCount,
-				pageNum = getPageNum(pageSize, totalRecord);
+			totalRecord = data.totalCount,
+			pageNum = getPageNum(pageSize, totalRecord);
 
 			if (pageNum > 1) { //页码大于1，才显示
 				var _html = [];
@@ -205,52 +263,96 @@ var invest = {
 				$(".pages").html(_html.join(""));
 			}
 		});
+
+
 	},
 	event_handler: function() {
 
 		var self = this;
 
-		//一级tab切换
-		$('.navObj', '.tab').bind('click', function() {
-			$('.selected', '.tab').removeClass('selected');
-			$(this).addClass('selected');
-			window.pro_type = $('.selected', '.tab').data('type');
-			if (pro_type == 'hfb') {
-				return
-			} else {
-				addSecondTab();
-				self.invest_list_show();
-			}
-		});
-		//二级tab切换
-		function addSecondTab(){
-			var navList = [];
-			if (pro_type == "hfb"){
-				navList.push('<em class="selected">募集中产品</em><em>持有中产品</em><em>已回款产品</em>');
-			}else{
-				if(pro_type == "current"){
-					navList.push('<em class="selected" data-state="queryInvestRecords">持有中产品</em><em data-state="queryRedeemRecords">赎回记录</em>');
-				}else{
-					navList.push('<em class="selected" data-state="queryInvestRecords" data-stated="2">持有中产品</em><em data-state="queryInvestRecords" data-stated="3">已回款产品</em>');
-				}
-				$('.table-ti', '.myInput').html(navList.join(''));
-				$('em', '.table-ti').bind('click', function() {
-					$('.selected', '.table-ti').removeClass('selected');
-					$(this).addClass('selected');
-					window.pro_state = $('.selected', '.table-ti').data('state');
-					if(pro_type == "dayAdd"){
-					window.pro_stated = $('.selected', '.table-ti').data('stated');}
-					self.invest_list_show();
-				})
-			}
-		}
+		// //一级tab切换
+		// $('.navObj', '.tab').bind('click', function() {
+		// 	$('.selected', '.tab').removeClass('selected');
+		// 	$(this).addClass('selected');
+		// 	window.pro_type = $('.selected', '.tab').data('type');
+		// 	addSecondTab();
+		// 	self.invest_list_show();
+		// });
+		// //二级tab切换
+		// function addSecondTab(){
+		// 	var navList = [];
+		// 	if (pro_type == "hfb"){
+		// 		navList.push('<em class="selected">募集中产品</em><em>持有中产品</em><em>已回款产品</em>');
+		// 	}else{
+		// 		if(pro_type == "current"){
+		// 			navList.push('<em class="selected" data-state="queryInvestRecords">持有中产品</em><em data-state="queryRedeemRecords">赎回记录</em>');
+		// 		}else{
+		// 			navList.push('<em class="selected" data-state="queryInvestRecords" data-stated="2">持有中产品</em><em data-state="queryInvestRecords" data-stated="3">已回款产品</em>');
+		// 		}
+		// 		$('.table-ti', '.myInput').html(navList.join(''));
+		// 		$('em', '.table-ti').bind('click', function() {
+		// 			$('.selected', '.table-ti').removeClass('selected');
+		// 			$(this).addClass('selected');
+		// 			window.pro_state = $('.selected', '.table-ti').data('state');
+		// 			if(pro_type == "dayAdd"){
+		// 			window.pro_stated = $('.selected', '.table-ti').data('stated');}
+		// 			self.invest_list_show();
+		// 		})
+		// 	}
+		// }
 
-		//赎回
-		$(".redemption").on("click", function() {
+		//一级tab切换
+		$(".tab-col").tabSwitch({
+			navObj:'.navObj',
+			className:'.cont',
+			curSel:'selected',
+			selectorIndex:'.navObj'
+		},function(){
+			var navObj_array = $(".navObj");
+			navObj_array.each(function(index, el) {
+				var _this = $(el); //确定一级切换index
+				if(_this.hasClass('selected')){
+					window.first_tab_index = _this.index(".navObj")
+					$(".cont").eq(index).find("em").removeClass('selected');
+					$(".cont").eq(index).find("em").eq(0).addClass('selected');
+					//回复值
+					filter.pageIndex = 1;
+					getlist();
+					return false;
+				}
+				
+			});
+		});
+
+		$(".table-ti").each(function(index, el) {
+			var _this = $(el);
+			_this.find("em").on("click",function(){
+				_this.find("em").removeClass('selected');
+				$(this).addClass('selected');
+				filter.pageIndex = 1;
+				getlist();
+			})			
+		});
+
+		//二级tab切换
+		$(".tab-col-second").each(function(index, el) {
+			var _this = $(el);
+			_this.tabSwitch({
+				navObj:'.tab'+index+' em',
+				className:'.sub-tab',
+				curSel:'selected',
+				selectorIndex:'.tab'+index+' em'
+			});
+		},function(){
+
+		});
+
+		$(document).on("click",".redemption",function(){
+			var _this = $(this);
 			$.Dialogs({
 				"id": "diglog_wrapper",
 				"overlay": true,
-				"cls": "dialog-wrapper popbox-bankrank",
+				"cls": "dialog-wrapper popbox-bankrank outter",
 				"closebtn": ".quit,span.close",
 				"auto": false,
 				"msg": self.tpl.redemption(),
@@ -272,9 +374,56 @@ var invest = {
 							});
 						});
 					});
+
+					$(".confirm_btn").on("click",function(){
+						//校验
+						var _this = $(this),
+							animate_obj = _this.parents("div"),
+							error_msg =  animate_obj.find(".error-msg"),
+							redemption_money = $.trim($("#redemption_money").val());
+
+						if(!redemption_money){
+							error_msg.text("请填写赎回金额");
+							return false;
+						}
+
+						var pwd_array = []
+						$.each($(".bank-pwd").find("input"), function(index, val) {
+							 pwd_array.push($(val).val());
+						});
+						
+						if(pwd_array.join("").length < 6){
+							error_msg.text("请输入交易密码");
+							return false;
+						}
+
+						error_msg.text("");
+
+						//调用赎回接口
+						api.call('/api/product/current/applyRedeem.do',{
+							'redeemAmount':redemption_money*10000,
+							'payPassword':pwd_array.join(""),
+							'productId':'123'
+						},function(_rel){
+							var result = _rel.result;
+							if(result){
+								$(".outter .quit").trigger("click");
+								$.Dialogs({
+									"id": "diglog_wrapper",
+									"overlay": true,
+									"cls": "dialog-wrapper popbox-bankrank",
+									"closebtn": ".quit,span.close",
+									"auto": false,
+									"msg": K.ParseTpl(self.tpl.success(),{'money':redemption_money})
+								});
+							}
+						},function(_rel){
+							error_msg.text(_rel.msg);
+						});
+					});
 				}
 			});
-		});
+		})
 
 		//api调用，获取用户财富模块
 		api.call('/api/account/getUserAsset.do', {}, function(_rel) {
