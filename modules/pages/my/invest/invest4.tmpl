@@ -6,23 +6,22 @@
 			<td>结息时间</td>
 			<td>投资期限</td>
 			<td>投资本金</td>
-			<td>预期年化收益</td>
-			<td>预期总收益</td>
-			<td class="right1">回款方式</td>
+			<td>总收益</td>
+			<td class="right1">状态</td>
 		</tr>
 	</thead>
 	<tbody>
-		{{each list as value index}}
+	{{each list as value index}}
 		<tr>
-			<td>{{value.typeValue}}<br>{{productName}}</td>
+			<td>{{value.productName}}</td>
 			<td>{{value.fStartTime}}</td>
 			<td>{{value.fEndTime}}</td>
-			<td>{{value.deadLineValue}}{{value.deadLineType}}</td>
-			<td>{{value.fInvestAmt}}</td>
-			<td>{{value.fProfit}}</td>
-			<td>{{value.fProfit}}</td>
-			<td>到期还本付息</td>
+			<td>{{value.deadLineValue}}天</td>
+			<td>{{(value.fInvestAmt/10000).toFixed(2)}}</td>
+			<td>{{(value.fProfit/10000).toFixed(2)}}</td>
+			<td>已转入余额</td>
 		</tr>
-		{{/each}}
+	{{/each}}
 	</tbody>
 </table>
+<div class="pages"></div>

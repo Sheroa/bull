@@ -1,4 +1,4 @@
-<span class="hqb-msg"><em>活期宝余额</em><i>{{value.fPrincipalLeft}}</i><em>昨日收益</em><i>￥70</i></span>
+<span class="hqb-msg"><em>活期宝余额</em><i></i><em>昨日收益</em><i></i></span>
 <table>
 	<thead>
 		<tr>
@@ -11,16 +11,17 @@
 		</tr>
 	</thead>
 	<tbody>
-		{{each list as value index}}
+	{{each list as value index}}
 		<tr>
-			<td>{{value.fBizTime}}</td>
-			<td>￥10000000{{value.fPrincipal}}</td>
+			<td>{{value.fInterestTime}}</td>
+			<td>{{(value.fPrincipal/10000).toFixed(2)}}</td>
 			<td>{{value.fYields}}</td>
-			<td>{{value.fProfitDueIn}}</td>
-			<td>{{value.fBizTime}}</td>
+			<td>{{((value.fPrincipalLeft-value.fPrincipal)/10000).toFixed(2)}}</td>
+			<td>赎回还本付息</td>
 			<td>{{value.fYieldsHint}}</td>
 		</tr>
-		{{/each}}
+	{{/each}}
 	</tbody>
 </table>
-<p class="btn"><a href="javascript:void(0);" class="light-btn purchase">购买</a><a href="javascript:void(0);" class="light-btn redemption hide">赎回</a></p>
+<div class="pages"></div>
+<p class="btn"><a href="/wylc/hqb.html" class="light-btn purchase">购买</a><a href="javascript:void(0);" class="light-btn redemption">赎回</a></p>
