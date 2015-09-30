@@ -289,6 +289,10 @@ a.app2:hover{background: url(/static/img/android2.jpg) no-repeat;}
 .popbox-bankrank .diginfo .cont3 p.buy-ok a{color:#f27835;text-decoration: underline;}
 .popbox-bankrank .diginfo .cont4{padding:30px 20px;height:325px;overflow-y:scroll;}
 .popbox-bankrank .diginfo .cont4 p{font-size: 12px;line-height: 20px;text-align: left;}
+.popbox-bankrank .diginfo .cont4 h5{text-align: left;margin:5px 0;}
+.popbox-bankrank .diginfo .cont4 table{border-collapse: collapse;}
+.popbox-bankrank .diginfo .cont4 table tr td, .popbox-bankrank .diginfo .cont4 table tr th{font-size: 14px;border:1px solid #919191;padding:5px 20px;}
+.popbox-bankrank .diginfo .cont4 table tr th{color:#373737;}
 
 .popbox-bankrank2{width:315px;}
 .popbox-bankrank2 .diginfo{background: #fff;width: 100%;}
