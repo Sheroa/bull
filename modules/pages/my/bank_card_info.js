@@ -14,7 +14,7 @@ var info = {
 		buf.push('<p class="bank-name">'+obj.bankName+'</p>');
 		buf.push('<p class="card-kind">储蓄卡</p>');
 		buf.push('<p class="card-num">'+K.bank_card_map(data.result.bankCardNo)+'</p>');
-		buf.push('<span></span>');			
+		buf.push('<img src="/static/img/bank/'+obj.bankCode+'2.png">');			
 		return buf.join("");
 	}
 }

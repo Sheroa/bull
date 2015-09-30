@@ -44,6 +44,7 @@
 			buf.push('<p class="bank-name">'+userCardData.bank_name+'</p>');
 			buf.push('<p class="card-kind">储蓄卡</p>');
 			buf.push('<p class="card-bound"><i>已绑定</i><em>'+K.bank_card_map(userCardData.user_card_no)+'</em></p>');	
+			buf.push('<img src="/static/img/bank/'+userCardData.bank_code+'2.png">');	
 			container_binded.append('<p class="sub-text">单笔限额20万，单日限额200万。<br>实际请参考您的银行限额设置。</p>');
 			info_pad.html(buf.join(""));
 			container_binded.show();

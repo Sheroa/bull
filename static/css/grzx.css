@@ -10,8 +10,7 @@
 .bank-own .each-border p{color: #fff;text-align: left;font-size: 12px;}
 .bank-own .each-border p.bank-name{font-size: 14px;}
 .bank-own .each-border p.card-num{text-align: right;}
-.bank-own .each-border span{display: inline-block;width:22px;height: 22px;position: absolute;top:20px;right: 15px;}
-.bank-own .bank-icbc span{background: url(/static/img/bank/icbc2.png) no-repeat;}
+.bank-own .each-border img{display: inline-block;height: 22px;position: absolute;top:20px;right: 15px;}
 .bank-own .each-border p.card-owner{text-align: right;margin-top: 45px;margin-bottom: 10px;}
 .bank-own .each-border p.card-bound{overflow: hidden;}
 .bank-own .each-border p.card-bound i{float: left;font-style: normal;}
