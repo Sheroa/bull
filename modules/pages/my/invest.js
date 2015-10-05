@@ -91,27 +91,52 @@ var invest = {
 				fixedProductAmount = _rel.result.fixedProductAmount, //固定投资
 				floatProductAmount = _rel.result.floatProductAmount; //浮动投资
 
-			var data = [{
-				value: ableBalanceAmount / 10000,
-				color: "#f27835",
-				highlight: "#f27835",
-				label: "账户余额"
-			}, {
-				value: currentProductAmount / 10000,
-				color: "#f39c11",
-				highlight: "#f39c11",
-				label: "活期宝"
-			}, {
-				value: fixedProductAmount / 10000,
-				color: "#58d68d",
-				highlight: "#58d68d",
-				label: "固定投资"
-			}, {
-				value: floatProductAmount / 10000,
-				color: "#6699cc",
-				highlight: "#6699cc",
-				label: "浮动投资"
-			}]
+			if(ableBalanceAmount == 0 && currentProductAmount == 0 && fixedProductAmount == 0 && floatProductAmount == 0){
+				var data = [{
+					value: ableBalanceAmount / 10000,
+					color: "#f27835",
+					highlight: "#f27835",
+					label: "账户余额"
+				}, {
+					value: currentProductAmount / 10000,
+					color: "#f39c11",
+					highlight: "#f39c11",
+					label: "活期宝"
+				}, {
+					value: fixedProductAmount / 10000,
+					color: "#58d68d",
+					highlight: "#58d68d",
+					label: "固定投资"
+				}, {
+					value: floatProductAmount / 10000,
+					color: "#6699cc",
+					highlight: "#6699cc",
+					label: "浮动投资"
+				}];
+			}else{
+				var data = [{
+					value: ableBalanceAmount / 10000,
+					color: "#f27835",
+					highlight: "#f27835",
+					label: "账户余额"
+				}, {
+					value: currentProductAmount / 10000,
+					color: "#f39c11",
+					highlight: "#f39c11",
+					label: "活期宝"
+				}, {
+					value: fixedProductAmount / 10000,
+					color: "#58d68d",
+					highlight: "#58d68d",
+					label: "固定投资"
+				}, {
+					value: floatProductAmount / 10000,
+					color: "#6699cc",
+					highlight: "#6699cc",
+					label: "浮动投资"
+				}];
+			}
+
 			var ctx = document.getElementById("myChart_finance").getContext("2d");
 			new Chart(ctx).Pie(data);
 			$("#totalAmount").text('￥' + (_rel.result.totalAmount / 10000).toFixed(2));
@@ -132,22 +157,31 @@ var invest = {
 				fixedProfitAmount = _rel.result.fixedProfitAmount, // 固定理财收益
 				floatProfitAmount = _rel.result.floatProfitAmount; // 浮动理财收益
 
-			var data = [{
-				value: currentProfitAmount,
-				color: "#f39c11",
-				highlight: "#f39c11",
-				label: "活期宝收益"
-			}, {
-				value: fixedProfitAmount,
-				color: "#58d68d",
-				highlight: "#58d68d",
-				label: "固定理财收益"
-			}, {
-				value: floatProfitAmount,
-				color: "#6699cc",
-				highlight: "#6699cc",
-				label: "浮动理财收益"
-			}]
+			if(totalProfitAmount == 0){
+				var data = [{
+					value: 1,
+					color: "#f39c11",
+					highlight: "#f39c11",
+					label: "无收益"
+				}];
+			}else{
+				var data = [{
+					value: currentProfitAmount,
+					color: "#f39c11",
+					highlight: "#f39c11",
+					label: "活期宝收益"
+				}, {
+					value: fixedProfitAmount,
+					color: "#58d68d",
+					highlight: "#58d68d",
+					label: "固定理财收益"
+				}, {
+					value: floatProfitAmount,
+					color: "#6699cc",
+					highlight: "#6699cc",
+					label: "浮动理财收益"
+				}];		
+			}
 
 			var ctx = document.getElementById("myChart_revenue").getContext("2d");
 			new Chart(ctx).Pie(data);

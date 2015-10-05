@@ -11,7 +11,7 @@
 	{{each list as value index}}
 		<tr>
 			<td>活期宝</td>
-			<td>{{value.fRequestTime}}</td>
+			<td>{{value.fRequestTime.replace(/\s+\d{2}:\d{2}:\d{2}/,"")}}</td>
 			<td>{{(value.fMoneyAmount/10000).toFixed(2)}}</td>
 			<td>{{value.fStatus}}</td>
 		</tr>

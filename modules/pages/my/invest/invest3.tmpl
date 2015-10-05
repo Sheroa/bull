@@ -14,8 +14,8 @@
 	{{each list as value index}}
 		<tr>
 			<td>{{value.productName}}</td>
-			<td>{{value.fStartTime}}</td>
-			<td>{{value.fEndTime}}</td>
+			<td>{{value.fStartTime.replace(/\s+\d{2}:\d{2}:\d{2}/,"")}}</td>
+			<td>{{value.fEndTime.replace(/\s+\d{2}:\d{2}:\d{2}/,"")}}</td>
 			<td>{{value.deadLineValue}}天</td>
 			<td>{{(value.fInvestAmt/10000).toFixed(2)}}</td>
 			<td>{{(value.fProfit/10000).toFixed(2)}}</td>
