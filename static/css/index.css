@@ -4,12 +4,13 @@
 /* * * * * * * * * * * * * * * * 登录区 * * * * * * * * * * * * * * * */
 .banner{min-width:1200; height:450px; position:relative; margin:0px auto;}
 .banner .ad_bk{min-width:1200; height:450px; position:relative; margin:0px auto;}
+.banner .ad_bk .a-imglist{width:100%;height: 450px;display: inline-block;}
 .banner .ad_bk .imglist{width:100%; height:450px;position:absolute;top:0px;left:0px; z-index:0;background:top center;}
 .banner .ul_btn{position:absolute; bottom:10px; left:45%; padding:2px 15px; background-color:#000;border-radius:11px; z-index:10;filter:alpha(opacity=30);-moz-opacity:0.3;-khtml-opacity: 0.3;opacity: 0.3; }
 .banner .ul_btn li{float:left;height:16px;width:16px;margin:0px 2px; background:url(../img/li_1.png) no-repeat; cursor:pointer;}
 .banner .ul_btn .hover{ background:url(../img/li_2.png) no-repeat; display:block;}
 .banner .ad_bk .ul_btn a {width: 21px;height: 21px;float: left;text-indent: -4000px;position: relative;margin-left: 3px;color: transparent;}
-.banner .wmain{position: absolute;top: 0;left: 50%;margin-left: -570px;overflow: visible;}
+.banner .wmain{position: absolute;top: 0;left: 50%;margin-left: 270px;overflow: visible;width: 300px;}
 
 /* 登录后 */
 .login-after h4{color:#f27835;padding-bottom: 15px;border-bottom: 1px solid;text-align: left;}

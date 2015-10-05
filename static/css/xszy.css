@@ -10,6 +10,10 @@
 .newGuide .our-product{background: url(../img/our-product.jpg) no-repeat center center;width: 1010px;height:300px;position:relative;margin:55px 0;}
 .newGuide .our-product a{color:#fff;display: inline-block;position: absolute;top: 70px;left:50%;margin-left: -55px;padding:7px;}
 .newGuide .our-product a:hover{text-decoration: none;}
+.newGuide .our-product a.pro1{top:255px;padding: 10px 30px;margin-left:-40px;}
+.newGuide .our-product a.pro2{top: 110px;left: 255px;margin:0;padding: 10px 30px;}
+.newGuide .our-product a.pro3{top: 110px;left: 670px;margin:0;padding: 10px 30px;}
+
 
 .newGuide .invest-step{background: url(../img/invest-step.jpg) no-repeat center center;width: 1010px;height:135px;position:relative;margin:55px 0;}
 .newGuide .invest-step a{color:#fff;display: inline-block;position: absolute;bottom:0;left: 46px;padding: 7px 42px;background: #f27835}
