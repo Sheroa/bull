@@ -67,6 +67,15 @@ var manage = {
 			buf.push('<p class="btn-line"><a href="javascript:void(0);" class="light-btn confirm_btn">确认</a></p>');
 			return buf.join("");
 		
+		},
+		modify_success_pay_pwd:function(){
+			var buf = [];
+			buf.push('<p class="ti">修改成功<a href="#" class="quit"></a></p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p>交易密码修改成功</p>');
+			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn confirm">确定</a></p>');
+			buf.push('</div>');
+			return buf.join("");
 		}
 	},
 	event_handler:function(){
@@ -474,9 +483,22 @@ var manage = {
 									'oldPayPwd':old_pwd,
 									'newPayPwd':compare_array[0]
 								},function(_rel){
-									var result = _rel.reuslt;
+									var result = _rel.result;
 									if(result){
-										location.reload(true);
+										$.Dialogs({
+											"id": "diglog_wrapper",
+											"overlay": true,
+											"cls": "dialog-wrapper popbox-bankrank outter",
+											"closebtn": ".quit,span.close",
+											"auto": false,
+											"msg": self.tpl.modify_success_pay_pwd(),
+											"openfun":function(){
+												//确定
+												$(".confirm").on("click",function(){
+													location.reload(true);
+												});
+											}
+										});
 									}
 								},function(_rel){
 									error_msg.html(_rel.msg);
