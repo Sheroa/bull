@@ -1,11 +1,11 @@
-<span class="hqb-msg"><em>活期宝余额</em><i></i><em>昨日收益</em><i></i></span>
+<span class="hqb-msg"><em>活期宝余额</em><i></i><em>昨日收益</em><i></i><em>累计收益</em><i></i></span>
 <table>
 	<thead>
 		<tr>
 			<td class="left1">起息时间</td>
 			<td>投资金额</td>
 			<td>当前年化收益</td>
-			<td>收益金额</td>
+			<!-- <td>收益金额</td> -->
 			<td>回款方式</td>
 			<td class="right1">备注</td>
 		</tr>
@@ -15,8 +15,8 @@
 		<tr>
 			<td>{{value.fInterestTime.replace(/\s+\d{2}:\d{2}:\d{2}/,"")}}</td>
 			<td>{{(value.fPrincipal/10000).toFixed(2)}}</td>
-			<td>{{value.fYields}}</td>
-			<td>{{((value.fPrincipalLeft-value.fPrincipal)/10000).toFixed(2)}}</td>
+			<td>{{value.fYields.toFixed(4).slice(2,4).replace(/^0(.+)/,'$1')+"."+value.fYields.toFixed(4).slice(4,6)+"%"}}</td>
+			<!-- <td>{{((value.fPrincipalLeft-value.fPrincipal)/10000).toFixed(2)}}</td> -->
 			<td>赎回还本付息</td>
 			<td>{{value.fYieldsHint}}</td>
 		</tr>

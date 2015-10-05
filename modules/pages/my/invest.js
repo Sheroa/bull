@@ -65,7 +65,7 @@ var invest = {
 			var buf = [];
 			buf.push('<p class="ti">赎回操作<a href="#" class="quit"></a></p>');
 			buf.push('<div class="cont3">');
-			buf.push('<p style="padding-left:32px;"><span class="p-ti">赎回金额</span><input type="number" id="redemption_money" placeholder="最高***元"></p>');
+			buf.push('<p style="padding-left:32px;"><span class="p-ti">赎回金额</span><input type="number" id="redemption_money" placeholder="最高{{#redemption_money}}元"></p>');
 			buf.push('<p style="padding-left:32px;"><span class="p-ti">交易密码</span><span class="bank-pwd"><input maxlength="1" type="password"><input maxlength="1" type="password"><input  maxlength="1" type="password"><input maxlength="1" type="password"><input maxlength="1" type="password"><input maxlength="1" type="password"></span></p>');
 			buf.push('<p class="sub-text"><span>请输入6位字交易密码</span><a href="/users/find_pwd.html" class="forget-pwd">忘记密码</a></p>');
 			buf.push('<p class="error-msg"></p>');
@@ -261,9 +261,11 @@ var invest = {
 				},function(_rel){
 					var result = _rel.result,
 						fMoneyAmount = result.fMoneyAmount,
-						fProfitYesterday = result.fProfitYesterday;
+						fProfitYesterday = result.fProfitYesterday,
+						fProfit = result.fProfit;
 					$('.hqb-msg').find("i").eq(0).text("￥"+(fMoneyAmount/10000).toFixed(2));
 					$('.hqb-msg').find("i").eq(1).text("￥"+(fProfitYesterday/10000).toFixed(2));
+					$('.hqb-msg').find("i").eq(2).text("￥"+(fProfit/10000).toFixed(2));
 				});
 			}
 			var pageSize = data.pageSize,
@@ -389,7 +391,7 @@ var invest = {
 				"cls": "dialog-wrapper popbox-bankrank outter",
 				"closebtn": ".quit,span.close",
 				"auto": false,
-				"msg": self.tpl.redemption(),
+				"msg": K.ParseTpl(self.tpl.redemption(),{"redemption_money":$(".hqb-msg").find("i").eq(0).text().replace('￥',"")}),
 				"openfun": function() {
 
 					//密码输入框
