@@ -391,6 +391,12 @@ var recharge = {
  				money = $.trim(actived_div.find(".money").val()),
  				error_msg = actived_div.find('.error-msg'),
  				pwd_array = [];
+ 			if(_this.attr("disabled")){
+ 				console.log("false");
+ 				return false;
+ 			}
+ 			_this.attr("disabled",true);
+
  			$.each(actived_div.find(".bank-pwd").find("input"), function(index, val) {
  				 pwd_array.push($(val).val());
  			});
@@ -420,6 +426,8 @@ var recharge = {
  			//ajax请求
  			api.call('/api/payment/directPay.do',sms_obj,function(_rel){
  				// K.gotohref('/my/personCenter.html');
+ 				_this.attr("disabled",false);
+
  				$.Dialogs({
  				    "id" : "diglog_wrapper",
  				    "overlay" : true,
