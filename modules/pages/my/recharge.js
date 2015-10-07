@@ -81,7 +81,7 @@ var recharge = {
  					var identityCard = _rel.result.identityCard,
  						bankCardNo   = _rel.result.bankCardNo,
  						userName     = _rel.result.userName,
- 						bankCode     = _rel.result.bankName;
+ 						bankCode     = _rel.result.bankCode;
 
  					if(identityCard){
  						$("#truename").val(userName);
@@ -183,8 +183,8 @@ var recharge = {
  				'name': true_name,
  				'idCardNo':id_number,
  				'bankCardNo':bank_number,
- 				'bankName': $('#bank-select').find('option:selected').attr('data-code'),
- 				'bankCode':$('#bank-select').find('option:selected').val()
+ 				'bankCode': $('#bank-select').find('option:selected').attr('data-code'),
+ 				'bankName':$('#bank-select').find('option:selected').val()
  			},function(data){
  				//绑定成功 请求接口，获取用户账户余额
  				api.call('/api/account/getUserAsset.do',{
