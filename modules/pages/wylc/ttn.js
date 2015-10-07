@@ -241,7 +241,11 @@ var hqb = {
 
 		var entrance = $("#entrance"),
 			self     = this;
-
+			var flow = {
+				'90':0.08,
+				'180':0.09,
+				'360':0.10
+			};
 		if(K.login()){
 			
 
@@ -262,6 +266,21 @@ var hqb = {
 
 				entrance.html(K.ParseTpl(self.tpl.ydl(),K.inverse_to_money(parse_obj)));
 				self.event_handler_login();
+				$("#purchase_money").on("blur",function(){
+					var _this = $(this),
+						purchase_money = $.trim(_this.val()),
+						highest_money = parseFloat(_this.parents("#entrance").find(".ableBalanceAmount").text().replace(/[^\d]+/,""));
+					
+					if(purchase_money < 100){  //最低100元
+						_this.val(100);
+						purchase_money = 100;
+					}else if(purchase_money > highest_money){
+						_this.val(highest_money);
+						purchase_money = highest_money;
+					}
+
+					$("#expected_revenue").text((purchase_money*flow[ttn_type]*ttn_type/360).toFixed(2)+"元");
+				});
 			});
 
 		}else{
@@ -269,8 +288,24 @@ var hqb = {
 			var fid = 'bf5a23ea-3171-47a7-b726-e78a7c74f283';
 			entrance.html(self.tpl.wdl()),
 			self.event_handler_wdl();
+			$("#purchase_money").on("blur",function(){
+				var _this = $(this),
+					purchase_money = $.trim(_this.val()),
+					highest_money = parseFloat(_this.parents("#entrance").find(".ableBalanceAmount").replace(/[^\d]+/,""));
+				
+				if(purchase_money < 100){  //最低100元
+					_this.val(100);
+					purchase_money = 100;
+				}else if(purchase_money > highest_money){
+					_this.val(highest_money);
+					purchase_money = highest_money;
+				}
 
+				$("#expected_revenue").text((purchase_money*flow[ttn_type]*ttn_type/360).toFixed(2)+"元");
+			});
 		}
+
+
 	},
 	event_handler:function(){
 
@@ -288,12 +323,14 @@ var hqb = {
 		});
 
 		//购买金额-计算收益
-		$("#entrance").on("keydown","#purchase_money",function(){
+		$("#entrance").on("keyup","#purchase_money",function(){
 			var _this = $(this),
 				purchase_money = $.trim(_this.val());
 			
 			$("#expected_revenue").text((purchase_money*flow[ttn_type]*ttn_type/360).toFixed(2)+"元");
 		});
+
+
 
 	},
 	event_handler_login:function(){
