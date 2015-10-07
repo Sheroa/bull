@@ -487,25 +487,20 @@ var recharge = {
 
 
  		api.call('/api/payment/firstPaySendSms.do',sms_obj,function(_rel){
+ 			$("#append_error_msg").parents(".operator_box").find('.error-msg').remove();
  			var order_id = _rel.result;
  			if(order_id){
  				//生成流水单号
  				callback(order_id,sms_obj);
  			}
+ 		},function(_rel){
+ 			$("#append_error_msg").after('<p class="error-msg">'+_rel.msg+'</p>');
+ 			var _this = $(".verify_sms");
+ 			_this.removeClass('disabled');
+ 			_this.removeClass('gray-btn').addClass('light-btn');
+ 			_this.html("手机验证码");
+ 			window.clearInterval(timer);
  		});
-
- 		// $.ajax({
- 		// 	url: '/api/user/sendSmsCodeByRegister',
- 		// 	type: 'post',
- 		// 	data: data_transport,
- 		// 	success:function(result){
- 		// 		if(result.code == 0){
- 		// 			$("#identify_code").html("验证码已发至手机"+phone_num);
- 		// 		}else{
- 		// 			$("#identify_code").html("<em>验证码发送失败</em>");
- 		// 		}
- 		// 	}
- 		// });
  	}
 }
 
