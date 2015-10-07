@@ -18,3 +18,5 @@
 .newGuide .invest-step{background: url(../img/invest-step.jpg) no-repeat center center;width: 1010px;height:135px;position:relative;margin:55px 0;}
 .newGuide .invest-step a{color:#fff;display: inline-block;position: absolute;bottom:0;left: 46px;padding: 7px 42px;background: #f27835}
 .newGuide .invest-step a:hover{text-decoration: none;background: #f06a21}
+.newGuide .invest-step a.touzi{background:transparent;display: inline-block;position: absolute;top: 105px;left: 362px;height: 26px;width: 70px;padding: 0;}
+.newGuide .invest-step a.touzi:hover{background:transparent;}
