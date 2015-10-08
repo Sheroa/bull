@@ -126,12 +126,11 @@ span.p-ti{color:#373737;}
 
 /* * * * * * * * * * * * * * * * 尾部 * * * * * * * * * * * * * * * */
 .footer{background: #f9f7f7;}
-/*.footer .about .wmain .fr a, .footer .end p.cert a{background: url(/static/img/footer.png) no-repeat;display:inline-block;}*/
-.footer .about{padding-top: 25px;}
+.footer .about{padding:30px 0 15px 0;}
 .footer .about .wmain{height: 255px;}
 .footer .about .wmain h4{margin-bottom: 10px;}
 .footer .about .wmain .fl{text-align: left;}
-.footer .about .wmain .fl p{font-size: 12px;margin-bottom: 35px;line-height: 20px;}
+.footer .about .wmain .fl p{font-size: 12px;margin-bottom: 35px;line-height: 25px;}
 .footer .about .wmain .fl p a{margin-right: 65px;font-size: 14px;}
 .footer .about .wmain .fl p em{color:#cc5116;}
 .footer .about .wmain .fr{width:136px;}
@@ -140,14 +139,10 @@ a.app1{background: url(/static/img/iphone.jpg) no-repeat;}
 a.app1:hover{background: url(/static/img/iphone2.jpg) no-repeat;}
 a.app2{background: url(/static/img/android.jpg) no-repeat;}
 a.app2:hover{background: url(/static/img/android2.jpg) no-repeat;}
-
 .footer .about .wmain .fr p{font-size: 12px;margin-top: 5px;}
-.footer .end{background: #f2f1f1;padding: 40px;text-align: left;}
-.footer .end p{font-size: 12px;}
-.footer .end p.cert{margin-top: 18px;}
-.footer .end p.cert a{width:73px;height:27px;background-position: 0 -90px;}
-.footer .end p.cert a{background-position: 0 -180px;}
-.footer .end p.cert a.cert2{background-position: 0 -215px;margin-left: 10px;}
+.footer .about .wmain .fl p.cert{font-size: 12px;margin-bottom: 10px;}
+.footer .about .wmain .fl p.cert a{height:32px;margin-right: 10px;display: inline-block;}
+.footer .about .wmain .fl p.cert a img{height:32px;}
 
 
 /* * * * * * * * * * * * * * * * 侧边栏 * * * * * * * * * * * * * * * */
