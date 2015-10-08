@@ -30,6 +30,7 @@ var discount = {
 				tab_cont = $(".tab-cont");
 			tab_cont.slideUp();
 			if(_this.hasClass('selected')){
+				_this.removeClass('selected');
 				return false;
 			}
 			$(".tab span").removeClass('selected');
