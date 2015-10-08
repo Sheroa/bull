@@ -43,6 +43,8 @@ var href=window.location.href,
  			self.animate_controll();
  			self.default_select();
 
+ 			window.trigger = true;
+
  		});
  	},
  	default_select:function(){

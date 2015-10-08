@@ -339,32 +339,44 @@ var hqb = {
 
 		var selected_obj = "",
 			array = [];
-		$("ul[data-releative='ttn']").find("li").each(function(index, el) {
-			var _this = $(el);
-			if(_this.children("a").hasClass('selected')){
-				selected_obj =  _this.children('a');
-				return false;
+
+		window.red_packet = setInterval(function(){
+			if(window.trigger){
+				$("ul[data-releative='ttn']").find("li").each(function(index, el) {
+					var _this = $(el);
+					if(_this.children("a").hasClass('selected')){
+						selected_obj =  _this.children('a');
+						api.call('/api/activity/findRedPacketList.do',{
+							'productId':selected_obj.attr("data-id"),
+							'status':'UNEXCHANGE'
+						},function(_rel){
+							var list = _rel.list,
+								red_list = [];
+							red_list.push('<option data-id="">未选择（'+list.length+'个可用）</option>');
+							array.push('<p class="ti">红包详情<a href="#" class="quit"></a></p><div class="cont">');
+							$.each(list, function(index, val) {
+								var buf = [];
+								buf.push('<div class="redbag">');
+								buf.push('<div class="num"><p class="title">￥'+(val.fMoney/10000).toFixed(2)+'</p><p>剩余'+K.getTime.countDown(new Date(val.fExpireDate).getTime()).D+'天</p></div>');
+								buf.push('<div class="text"><span><p class="title">'+val.fName+'</p><p>'+val.fRemark+'</p></span></div></div>');
+								array.push(buf.join(""));
+								red_list.push('<option data-id='+val.fid+'>返现￥'+(val.fMoney/10000).toFixed(2)+'元</option>');
+							});
+							if(list.length == 0){
+								//没有红包的情况下
+								array.push("<img src='/static/img/red-bag-no.jpg' style='margin-top:70px'/>");
+							}
+							array.push('</div>');
+							$("#redbag-select").html(red_list.join(""));
+						});
+						return false;
+					}
+				});
+				clearInterval(window.red_packet);
+				window.trigger = false;
 			}
-		});
-		api.call('/api/activity/findRedPacketList.do',{
-			'productId':selected_obj.attr("data-id"),
-			'status':'UNEXCHANGE'
-		},function(_rel){
-			var list = _rel.list,
-				red_list = [];
-			red_list.push('<option data-id="">未选择（'+list.length+'个可用）</option>');
-			array.push('<p class="ti">红包详情<a href="#" class="quit"></a></p><div class="cont">');
-			$.each(list, function(index, val) {
-				var buf = [];
-				buf.push('<div class="redbag">');
-				buf.push('<div class="num"><p class="title">￥'+(val.fMoney/10000).toFixed(2)+'</p><p>剩余'+K.getTime.countDown(new Date(val.fExpireDate).getTime()).D+'天</p></div>');
-				buf.push('<div class="text"><span><p class="title">'+val.fName+'</p><p>'+val.fRemark+'</p></span></div></div>');
-				array.push(buf.join(""));
-				red_list.push('<option data-id='+val.fid+'>返现￥'+(val.fMoney/10000).toFixed(2)+'元</option>');
-			});
-			array.push('</div>');
-			$("#redbag-select").html(red_list.join(""));
-		});
+		},100);
+
 		$("#red_paper_detail").on("click",function(){
 			var selected_obj = "";
 			$("ul[data-releative='ttn']").find("li").each(function(index, el) {
@@ -394,6 +406,7 @@ var hqb = {
 				// });
 				// array.push('</div>');
 				// $("#redbag-select").html(red_list.join(""));
+
 				$.Dialogs({
 				    "id" : "diglog_wrapper",
 				    "overlay" : true,

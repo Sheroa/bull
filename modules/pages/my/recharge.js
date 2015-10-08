@@ -392,11 +392,10 @@ var recharge = {
  				money = $.trim(actived_div.find(".money").val()),
  				error_msg = actived_div.find('.error-msg'),
  				pwd_array = [];
- 			if(_this.attr("disabled")){
- 				console.log("false");
+ 			if(_this.hasClass('gray-btn')){
  				return false;
  			}
- 			_this.attr("disabled",true);
+ 			_this.addClass('gray-btn')
 
  			$.each(actived_div.find(".bank-pwd").find("input"), function(index, val) {
  				 pwd_array.push($(val).val());
@@ -425,9 +424,9 @@ var recharge = {
  				'returnUrl':'/my/personCenter.html'
  			});
  			//ajax请求
- 			api.call('/api/payment/directPay.do',sms_obj,function(_rel){
+ 			api.call('/api/payment/directPayByPwd.do',sms_obj,function(_rel){
  				// K.gotohref('/my/personCenter.html');
- 				_this.attr("disabled",false);
+ 				_this.removeClass('gray-btn');
 
  				$.Dialogs({
  				    "id" : "diglog_wrapper",
@@ -444,6 +443,7 @@ var recharge = {
  				    }
  				});
  			},function(_rel){
+ 				_this.removeClass('gray-btn')
  				error_msg.text(_rel.msg);
  			});
  		})

@@ -51,7 +51,7 @@
 .introduce .our-feature span p.ti{font-size: 16px;line-height: 16px;margin-bottom: 10px;}
 
 .media .shadow-box{padding:25px;position:relative;text-align: left;margin-bottom: 15px;}
-.media .shadow-box img{margin-right: 25px;vertical-align: top;margin-top: 15px;}
+.media .shadow-box img{margin-right: 25px;vertical-align: top;margin-top: 15px;width:193px;}
 .media .shadow-box .text{display: inline-block;width:520px;}
 .media .shadow-box .text h4 a{font-size:16px;text-decoration: underline;}
 .media .shadow-box .text p{font-size: 12px;line-height: 25px;}
