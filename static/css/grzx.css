@@ -210,6 +210,7 @@
 .account-manage .each .sub-msg p .pwd-area input#userPass::-ms-reveal{display: none;}
 
 .account-manage .each .sub-msg p select{height:32px;line-height:32px;border:2px solid #919191;font-size: 14px;min-width:140px;}
+.account-manage .each .sub-msg p span img{height: 19px;margin-left: 5px;vertical-align: middle;}
 .account-manage .each .sub-msg p.captcha input{width: 118px;margin-right: 5px;}
 .account-manage .each .sub-msg p.captcha .light-btn, .account-manage .each .sub-msg p.captcha .gray-btn{width:95px;font-size: 12px;}
 

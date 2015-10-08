@@ -65,11 +65,19 @@ var invest = {
 			var buf = [];
 			buf.push('<p class="ti">赎回操作<a href="#" class="quit"></a></p>');
 			buf.push('<div class="cont3">');
-			buf.push('<p style="padding-left:32px;"><span class="p-ti">赎回金额</span><input type="number" id="redemption_money" placeholder="最高***元"></p>');
+			buf.push('<p style="padding-left:32px;"><span class="p-ti">可赎回余额</span><input type="text" readonly="readonly" id="redemption_money" placeholder="{{#redemption_money}}元"></p>');
+			buf.push('<p style="padding-left:32px;"><span class="p-ti">赎回金额</span><input type="number" id="redemption_money_input" placeholder="最低100元起"></p>');
 			buf.push('<p style="padding-left:32px;"><span class="p-ti">交易密码</span><span class="bank-pwd"><input maxlength="1" type="password"><input maxlength="1" type="password"><input  maxlength="1" type="password"><input maxlength="1" type="password"><input maxlength="1" type="password"><input maxlength="1" type="password"></span></p>');
 			buf.push('<p class="sub-text"><span>请输入6位字交易密码</span><a href="/users/find_pwd.html" class="forget-pwd">忘记密码</a></p>');
 			buf.push('<p class="error-msg"></p>');
 			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn confirm_btn">确定</a></p>');
+			buf.push('<p style="padding-left:32px;color:#f27835;">温馨提示：</p>');
+			buf.push('<p style="padding-left:32px;" class="sub-text">1，若赎回后剩余的可赎回余额低于100元，需将剩余余额一并赎回；</p>');
+			buf.push('<p style="padding-left:32px;" class="sub-text">2，如果赎回后重新购买活期宝，新的投资收益将从5.5%开始计算；</p>');
+			buf.push('<p style="padding-left:32px;" class="sub-text">3，输入赎回金额后，系统将自动匹配您的投资记录，优先赎回收益率相对较低的投资（即最近的投资）</p>');
+
+
+
 			buf.push('</div>');
 			return buf.join("");
 		},
@@ -91,27 +99,37 @@ var invest = {
 				fixedProductAmount = _rel.result.fixedProductAmount, //固定投资
 				floatProductAmount = _rel.result.floatProductAmount; //浮动投资
 
-			var data = [{
-				value: ableBalanceAmount / 10000,
-				color: "#f27835",
-				highlight: "#f27835",
-				label: "账户余额"
-			}, {
-				value: currentProductAmount / 10000,
-				color: "#f39c11",
-				highlight: "#f39c11",
-				label: "活期宝"
-			}, {
-				value: fixedProductAmount / 10000,
-				color: "#58d68d",
-				highlight: "#58d68d",
-				label: "固定投资"
-			}, {
-				value: floatProductAmount / 10000,
-				color: "#6699cc",
-				highlight: "#6699cc",
-				label: "浮动投资"
-			}]
+			if(ableBalanceAmount == 0 && currentProductAmount == 0 && fixedProductAmount == 0 && floatProductAmount == 0){
+				var data = [{
+					value: 1,
+					color: "#f27835",
+					highlight: "#f27835",
+					label: "无资产"
+				}];
+			}else{
+				var data = [{
+					value: ableBalanceAmount / 10000,
+					color: "#f27835",
+					highlight: "#f27835",
+					label: "账户余额"
+				}, {
+					value: currentProductAmount / 10000,
+					color: "#f39c11",
+					highlight: "#f39c11",
+					label: "活期宝"
+				}, {
+					value: fixedProductAmount / 10000,
+					color: "#58d68d",
+					highlight: "#58d68d",
+					label: "固定投资"
+				}, {
+					value: floatProductAmount / 10000,
+					color: "#6699cc",
+					highlight: "#6699cc",
+					label: "浮动投资"
+				}];
+			}
+
 			var ctx = document.getElementById("myChart_finance").getContext("2d");
 			new Chart(ctx).Pie(data);
 			$("#totalAmount").text('￥' + (_rel.result.totalAmount / 10000).toFixed(2));
@@ -132,22 +150,31 @@ var invest = {
 				fixedProfitAmount = _rel.result.fixedProfitAmount, // 固定理财收益
 				floatProfitAmount = _rel.result.floatProfitAmount; // 浮动理财收益
 
-			var data = [{
-				value: currentProfitAmount,
-				color: "#f39c11",
-				highlight: "#f39c11",
-				label: "活期宝收益"
-			}, {
-				value: fixedProfitAmount,
-				color: "#58d68d",
-				highlight: "#58d68d",
-				label: "固定理财收益"
-			}, {
-				value: floatProfitAmount,
-				color: "#6699cc",
-				highlight: "#6699cc",
-				label: "浮动理财收益"
-			}]
+			if(totalProfitAmount == 0){
+				var data = [{
+					value: 1,
+					color: "#f39c11",
+					highlight: "#f39c11",
+					label: "无收益"
+				}];
+			}else{
+				var data = [{
+					value: currentProfitAmount,
+					color: "#f39c11",
+					highlight: "#f39c11",
+					label: "活期宝收益"
+				}, {
+					value: fixedProfitAmount,
+					color: "#58d68d",
+					highlight: "#58d68d",
+					label: "固定理财收益"
+				}, {
+					value: floatProfitAmount,
+					color: "#6699cc",
+					highlight: "#6699cc",
+					label: "浮动理财收益"
+				}];		
+			}
 
 			var ctx = document.getElementById("myChart_revenue").getContext("2d");
 			new Chart(ctx).Pie(data);
@@ -227,9 +254,11 @@ var invest = {
 				},function(_rel){
 					var result = _rel.result,
 						fMoneyAmount = result.fMoneyAmount,
-						fProfitYesterday = result.fProfitYesterday;
+						fProfitYesterday = result.fProfitYesterday,
+						fProfit = result.fProfit;
 					$('.hqb-msg').find("i").eq(0).text("￥"+(fMoneyAmount/10000).toFixed(2));
 					$('.hqb-msg').find("i").eq(1).text("￥"+(fProfitYesterday/10000).toFixed(2));
+					$('.hqb-msg').find("i").eq(2).text("￥"+(fProfit/10000).toFixed(2));
 				});
 			}
 			var pageSize = data.pageSize,
@@ -355,7 +384,7 @@ var invest = {
 				"cls": "dialog-wrapper popbox-bankrank outter",
 				"closebtn": ".quit,span.close",
 				"auto": false,
-				"msg": self.tpl.redemption(),
+				"msg": K.ParseTpl(self.tpl.redemption(),{"redemption_money":$(".hqb-msg").find("i").eq(0).text().replace('￥',"")}),
 				"openfun": function() {
 
 					//密码输入框
@@ -380,7 +409,7 @@ var invest = {
 						var _this = $(this),
 							animate_obj = _this.parents("div"),
 							error_msg =  animate_obj.find(".error-msg"),
-							redemption_money = $.trim($("#redemption_money").val());
+							redemption_money = $.trim($("#redemption_money_input").val());
 
 						if(!redemption_money){
 							error_msg.text("请填写赎回金额");
@@ -420,6 +449,18 @@ var invest = {
 						},function(_rel){
 							error_msg.text(_rel.msg);
 						});
+					});
+
+					//赎回金额
+					$("#redemption_money_input").on("blur",function(){
+						var _this = $(this),
+							redemption_money = _this.val(),
+							compare_money = parseFloat($("#redemption_money").attr("placeholder").replace("元",""));
+						if(redemption_money<100){
+							_this.val(100);
+						}else if(redemption_money>compare_money){
+							_this.val(compare_money);
+						}
 					});
 				}
 			});

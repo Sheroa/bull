@@ -205,9 +205,9 @@
 				    	},3000);
 				    }
 				});
-			}),function(_rel){
+			},function(_rel){
 				error_msg.text(_rel.msg);
-			};
+			});
 		})
  	}
  }

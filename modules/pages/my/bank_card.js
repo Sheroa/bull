@@ -69,7 +69,7 @@
  	tpl:{
  		bank_list: 	function(){
  			var buf = [];
- 			buf.push('<p class="ti">填写银行卡信息<a href="#" class="quit"></a></p>');
+ 			buf.push('<p class="ti">修改银行卡信息<a href="#" class="quit"></a></p>');
  			buf.push('<div class="cont2">');
  			buf.push('<p><span class="p-ti">真实姓名</span><input type="text" id="true_name" placeholder="请输入真实姓名"></p>');
  			buf.push('<p><span class="p-ti">身份证号码</span><input type="text" id="identify_num" placeholder="请输入您真实的身份证号码"></p>');
@@ -121,6 +121,19 @@
  			    		$("#bank-select").append(bank_list.join(""));
 
  			    	}
+
+ 			    	api.call("/api/user/getIdentityInfoByUser.do",{},function(_rel){
+ 			    		var user_info = _rel.result,
+ 			    			true_name = user_info.userName,
+ 			    			identify_num = user_info.identityCard,
+ 			    			bankCode = user_info.bankCode,
+ 			    			bank_number = user_info.bankCardNo;
+ 			    		$("#true_name").val(true_name);
+ 			    		$("#identify_num").val(identify_num);
+ 			    		$("#bank_number").val(bank_number);
+ 			    		$("#bank-select").find("option[data-code='"+bankCode+"']").attr('selected',true);
+ 			    		$("#bank-select").change();
+ 			    	});
 
  			    	//确认btn
  			    	$(".confirm_btn").on("click",function(){

@@ -81,7 +81,7 @@ var recharge = {
  					var identityCard = _rel.result.identityCard,
  						bankCardNo   = _rel.result.bankCardNo,
  						userName     = _rel.result.userName,
- 						bankCode     = _rel.result.bankName;
+ 						bankCode     = _rel.result.bankCode;
 
  					if(identityCard){
  						$("#truename").val(userName);
@@ -183,8 +183,8 @@ var recharge = {
  				'name': true_name,
  				'idCardNo':id_number,
  				'bankCardNo':bank_number,
- 				'bankName': $('#bank-select').find('option:selected').attr('data-code'),
- 				'bankCode':$('#bank-select').find('option:selected').val()
+ 				'bankCode': $('#bank-select').find('option:selected').attr('data-code'),
+ 				'bankName':$('#bank-select').find('option:selected').val()
  			},function(data){
  				//绑定成功 请求接口，获取用户账户余额
  				api.call('/api/account/getUserAsset.do',{
@@ -391,6 +391,12 @@ var recharge = {
  				money = $.trim(actived_div.find(".money").val()),
  				error_msg = actived_div.find('.error-msg'),
  				pwd_array = [];
+ 			if(_this.attr("disabled")){
+ 				console.log("false");
+ 				return false;
+ 			}
+ 			_this.attr("disabled",true);
+
  			$.each(actived_div.find(".bank-pwd").find("input"), function(index, val) {
  				 pwd_array.push($(val).val());
  			});
@@ -420,6 +426,8 @@ var recharge = {
  			//ajax请求
  			api.call('/api/payment/directPay.do',sms_obj,function(_rel){
  				// K.gotohref('/my/personCenter.html');
+ 				_this.attr("disabled",false);
+
  				$.Dialogs({
  				    "id" : "diglog_wrapper",
  				    "overlay" : true,
@@ -487,25 +495,20 @@ var recharge = {
 
 
  		api.call('/api/payment/firstPaySendSms.do',sms_obj,function(_rel){
+ 			$("#append_error_msg").parents(".operator_box").find('.error-msg').remove();
  			var order_id = _rel.result;
  			if(order_id){
  				//生成流水单号
  				callback(order_id,sms_obj);
  			}
+ 		},function(_rel){
+ 			$("#append_error_msg").after('<p class="error-msg">'+_rel.msg+'</p>');
+ 			var _this = $(".verify_sms");
+ 			_this.removeClass('disabled');
+ 			_this.removeClass('gray-btn').addClass('light-btn');
+ 			_this.html("手机验证码");
+ 			window.clearInterval(timer);
  		});
-
- 		// $.ajax({
- 		// 	url: '/api/user/sendSmsCodeByRegister',
- 		// 	type: 'post',
- 		// 	data: data_transport,
- 		// 	success:function(result){
- 		// 		if(result.code == 0){
- 		// 			$("#identify_code").html("验证码已发至手机"+phone_num);
- 		// 		}else{
- 		// 			$("#identify_code").html("<em>验证码发送失败</em>");
- 		// 		}
- 		// 	}
- 		// });
  	}
 }
 
