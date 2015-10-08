@@ -5,7 +5,7 @@
 
 var $     		  = require('jquery');  
 	navBar        = require("util/navbar"),
-	toolbar = require('util/toolbar_pp')
+	toolbar = require('util/toolbar_pp'),
  	sidebar_index = require("./sidebar"),
 
 
