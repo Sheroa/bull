@@ -290,7 +290,7 @@ var recharge = {
  				sms_code = _this.parents("div").find(".shortOne");
  			if(!temp_data){
  				//连连支付方式
- 				var animate_obj = _this.parents("div"),
+ 				var animate_obj = _this.parents(".operator_box"),
  					error_msg = animate_obj.find(".error-msg em"),
  					money = $.trim(animate_obj.find(".money").val()),
  					user_info = JSON.parse($.cookie("ppinf"));
@@ -314,6 +314,7 @@ var recharge = {
  					var result = _rel.result,
  						payUrl = result.payUrl,
  						req_data = result.payParaMap.req_data;
+ 					debugger;
 					$("body").append('<form id="pay_now" action="'+payUrl+'" method="'+result.method+'"><input name="req_data" id="req_data"/></form>');
 					$("#req_data").val(req_data);
 					$("#pay_now").submit();
