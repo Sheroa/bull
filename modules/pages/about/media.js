@@ -6,6 +6,7 @@
 var $     		  = require('jquery');  
 	navBar        = require("util/navbar"),
 	artTemplate 	= require("artTemplate"),
+	toolbar = require('util/toolbar_pp'),
 	api     = require("api/api"),
  	sidebar_index = require("./sidebar"),
 
@@ -47,7 +48,7 @@ var insurance = {
 	//初始化
 	init:function(){
 		this.sidebar();
-
+		toolbar.init();
 		//新闻列表
 		api.call('/api/news/queryNewsMedia',filter,function(data){
 			var cache_data = artTemplate.compile(__inline("./media/list.tmpl"))(data);

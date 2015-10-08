@@ -306,7 +306,7 @@ var recharge = {
  					'totalAmount':money*10000,
  					'bankCardNo':$.trim($("#bank_number").val()),
  					'bankCode':$("#bank-select").find("option:selected").attr("data-code"),
- 					"payMethod":'mobile_wap',
+ 					"payMethod":'standard',
  					'payType':'card_front',
  					'returnUrl':'/my/refund/record.html',
  					'itemName':'充值金额多少元'
