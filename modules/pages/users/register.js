@@ -100,6 +100,23 @@ var $ = require('jquery'),
  			self.sendMobileCode(phone_number)
  		});
 
+ 		//用户在第二步页面点击上一步btn
+ 		$(".return").on("click",function(){
+ 			var _this = $(this);
+
+ 			$(".verify_sms").removeClass('disabled');
+ 			$(".verify_sms").removeClass('gray-btn').addClass('light-btn');
+ 			$(".verify_sms").html("短信验证");
+ 			if(window.timer){
+ 				window.clearInterval(window.timer);
+ 			}
+ 			
+ 			
+ 			$(".contTwo").addClass('hide');
+ 			$(".contOne").removeClass("hide");
+ 			$(".stepTwo").removeClass('stepTwo').addClass('stepOne');	
+ 		});
+
  		//第二步-下一步
  		$(".next_step_two").on("click",function(){
  			var _this = $(this),

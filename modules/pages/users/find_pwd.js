@@ -78,6 +78,22 @@ var pwd = {
 			$(".fcontThree").removeClass('hide');
 		});
 
+		//用户在第二步页面点击上一步btn
+		$(".return").on("click",function(){
+			var _this = $(this);
+
+			$(".verify_sms").removeClass('disabled');
+			$(".verify_sms").removeClass('gray-btn').addClass('light-btn');
+			$(".verify_sms").html("手机验证码");
+			if(window.timer){
+				window.clearInterval(window.timer);
+			}
+			
+
+			$(".findTwo").removeClass('findTwo').addClass('findOne');
+			$(".fcontTwo").addClass('hide');
+			$(".fcontOne").removeClass('hide');
+		});
 
 		$(".verify_sms").on("click",function(){
 			var count = 60,

@@ -327,11 +327,15 @@ var recharge = {
  					'validCode':$.trim(sms_code.val()),
  					'inRecordNo':order_id
  				});
-
+ 				if(_this.hasClass('selected')){
+ 					return false;
+ 				}
+ 				_this.addClass('gray-btn');
  				api.call("/api/payment/firstBindCardPay.do",temp_data,function(_rel){
  					var result = _rel.result;
  					if(result){
  						//充值成功
+ 						_this.removeClass('gray-btn');
  						$.Dialogs({
  						    "id" : "diglog_wrapper",
  						    "overlay" : true,
@@ -347,6 +351,9 @@ var recharge = {
  						    }
  						});
  					}
+ 				},function(_rel){
+ 					error_msg.text(_rel.msg);
+ 					_this.removeClass('gray-btn');
  				});
  			}
 
