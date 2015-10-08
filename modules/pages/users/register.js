@@ -266,9 +266,9 @@ var $ = require('jquery'),
 
 			    	},function(_rel){
 			    		var result  = _rel.result,
-			    			userName = result.userName,
-			    			userMobile = result.userMobile,
-			    			identityCard = result.identityCard;
+			    			userName = result.userName || "",
+			    			userMobile = result.userMobile || "",
+			    			identityCard = result.identityCard || "";
 			    		$(".name").text(userName);
 			    		$(".register_phone").text(userMobile);
 			    		$(".identify_num").text(identityCard);

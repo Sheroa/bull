@@ -440,9 +440,9 @@ var hqb = {
 
 			    	},function(_rel){
 			    		var result  = _rel.result,
-			    			userName = result.userName,
-			    			userMobile = result.userMobile,
-			    			identityCard = result.identityCard;
+			    			userName = result.userName || "",
+			    			userMobile = result.userMobile || "",
+			    			identityCard = result.identityCard || "";
 			    		$(".identityCard").find("em").text(identityCard);
 			    		$(".userMobile").find("em").text(userMobile);
 			    		$(".userName").find("em").text(userName);
@@ -467,9 +467,9 @@ var hqb = {
 
 			    	},function(_rel){
 			    		var result  = _rel.result,
-			    			userName = result.userName,
-			    			userMobile = result.userMobile,
-			    			identityCard = result.identityCard;
+			    			userName = result.userName || "",
+			    			userMobile = result.userMobile || "",
+			    			identityCard = result.identityCard || "";
 			    		$(".identityCard").find("em").text(identityCard);
 			    		$(".userMobile").find("em").text(userMobile);
 			    		$(".userName").find("em").text(userName);
