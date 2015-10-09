@@ -73,7 +73,7 @@ span.p-ti{color:#373737;}
 .header .fr a.link{display:inline-block;width: 130px;height:40px;}
 .header .fr a.link:hover{background:#f27835;color:#fff;}
 .header .fr a.selected{background:#f27835;color:#fff;}
-.header .fr .regis-login{margin-left: 15px;display: inline-block;position: relative;}
+.header .fr .regis-login{margin-left: 15px;display: inline-block;position: relative;width:152px;}
 .header .fr .regis-login a{color:#f27835;padding:0;margin:0;margin-right:0;display: inline;}
 .header .fr .regis-login em{color:#f27835;padding:0 4px;}
 .header .fr .regis-login p.name-msg{background: url(/static/img/arrow5.png) no-repeat right center;padding-right: 25px;}
