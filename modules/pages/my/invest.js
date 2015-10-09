@@ -92,6 +92,8 @@ var invest = {
 		}
 	},
 	UI: function() {
+		//Pie.defaults.tooltipTemplate = "<%if (label){%><%=label%>: <%}%>"; 
+		
 		//api调用，获取用户财富模块
 		api.call('/api/account/getUserAsset.do', {}, function(_rel) {
 			var ableBalanceAmount = _rel.result.ableBalanceAmount, //账户余额
@@ -100,6 +102,7 @@ var invest = {
 				floatProductAmount = _rel.result.floatProductAmount; //浮动投资
 
 			if(ableBalanceAmount == 0 && currentProductAmount == 0 && fixedProductAmount == 0 && floatProductAmount == 0){
+				Chart.defaults.global.tooltipTemplate = "<%if (label){%><%=label%><%}%>";
 				var data = [{
 					value: 1,
 					color: "#f27835",
@@ -151,6 +154,7 @@ var invest = {
 				floatProfitAmount = _rel.result.floatProfitAmount; // 浮动理财收益
 
 			if(totalProfitAmount == 0){
+				Chart.defaults.global.tooltipTemplate = "<%if (label){%><%=label%><%}%>";
 				var data = [{
 					value: 1,
 					color: "#f39c11",

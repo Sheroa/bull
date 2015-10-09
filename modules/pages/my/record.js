@@ -129,6 +129,8 @@ var record = {
 				}
 
 				$(".pages").html(_html.join(""));
+			}else{
+				$(".pages").html("");
 			}
 		});
 	}
