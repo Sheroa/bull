@@ -266,20 +266,35 @@ var hqb = {
 
 				entrance.html(K.ParseTpl(self.tpl.ydl(),K.inverse_to_money(parse_obj)));
 				self.event_handler_login();
+				// $("#purchase_money").on("blur",function(){
+				// 	var _this = $(this),
+				// 		purchase_money = $.trim(_this.val()),
+				// 		highest_money = parseFloat(_this.parents("#entrance").find(".ableBalanceAmount").text().replace(/[^\d]+/,""));
+					
+				// 	if(purchase_money < 100){  //最低100元
+				// 		_this.val(100);
+				// 		purchase_money = 100;
+				// 	}else if(purchase_money > highest_money){
+				// 		_this.val(highest_money);
+				// 		purchase_money = highest_money;
+				// 	}
+
+				// 	$("#expected_revenue").text((purchase_money*flow[ttn_type]*ttn_type/360).toFixed(2)+"元");
+				// });
+
 				$("#purchase_money").on("blur",function(){
 					var _this = $(this),
-						purchase_money = $.trim(_this.val()),
-						highest_money = parseFloat(_this.parents("#entrance").find(".ableBalanceAmount").text().replace(/[^\d]+/,""));
-					
-					if(purchase_money < 100){  //最低100元
-						_this.val(100);
-						purchase_money = 100;
-					}else if(purchase_money > highest_money){
-						_this.val(highest_money);
-						purchase_money = highest_money;
+						purchase_money = _this.val(),
+						error_msg = _this.parents("#entrance").find(".error-msg");
+					if(purchase_money < 100){
+						error_msg.text("购买金额100元起！");
+						return false;
+					}else if(purchase_money > 100000){
+						error_msg.text("填写金额超过个人限额！");
+						return false;
 					}
 
-					$("#expected_revenue").text((purchase_money*flow[ttn_type]*ttn_type/360).toFixed(2)+"元");
+					error_msg.text("");
 				});
 			});
 
@@ -288,20 +303,35 @@ var hqb = {
 			var fid = 'bf5a23ea-3171-47a7-b726-e78a7c74f283';
 			entrance.html(self.tpl.wdl()),
 			self.event_handler_wdl();
+			// $("#purchase_money").on("blur",function(){
+			// 	var _this = $(this),
+			// 		purchase_money = $.trim(_this.val()),
+			// 		highest_money = parseFloat(_this.parents("#entrance").find(".ableBalanceAmount").replace(/[^\d]+/,""));
+				
+			// 	if(purchase_money < 100){  //最低100元
+			// 		_this.val(100);
+			// 		purchase_money = 100;
+			// 	}else if(purchase_money > highest_money){
+			// 		_this.val(highest_money);
+			// 		purchase_money = highest_money;
+			// 	}
+
+			// 	$("#expected_revenue").text((purchase_money*flow[ttn_type]*ttn_type/360).toFixed(2)+"元");
+			// });
+
 			$("#purchase_money").on("blur",function(){
 				var _this = $(this),
-					purchase_money = $.trim(_this.val()),
-					highest_money = parseFloat(_this.parents("#entrance").find(".ableBalanceAmount").replace(/[^\d]+/,""));
-				
-				if(purchase_money < 100){  //最低100元
-					_this.val(100);
-					purchase_money = 100;
-				}else if(purchase_money > highest_money){
-					_this.val(highest_money);
-					purchase_money = highest_money;
+					purchase_money = _this.val(),
+					error_msg = _this.parents("#entrance").find(".error-msg");
+				if(purchase_money < 100){
+					error_msg.text("购买金额100元起！");
+					return false;
+				}else if(purchase_money > 100000){
+					error_msg.text("填写金额超过个人限额！");
+					return false;
 				}
 
-				$("#expected_revenue").text((purchase_money*flow[ttn_type]*ttn_type/360).toFixed(2)+"元");
+				error_msg.text("");
 			});
 		}
 
@@ -443,10 +473,10 @@ var hqb = {
 			    			userName = result.userName || "",
 			    			userMobile = result.userMobile || "",
 			    			identityCard = result.identityCard || "";
-			    		$(".identityCard").find("em").text(identityCard);
-			    		$(".userMobile").find("em").text(userMobile);
-			    		$(".userName").find("em").text(userName);
-			    		$(".date_now").find("em").text(K.getTime.getDateStr(Date.now()+24*60*60*1000));
+			    		$(".popbox-bankrank .identityCard").find("em").text(identityCard);
+			    		$(".popbox-bankrank .userMobile").find("em").text(userMobile);
+			    		$(".popbox-bankrank .userName").find("em").text(userName);
+			    		$(".popbox-bankrank .date_now").find("em").text(K.getTime.getDateStr(Date.now()+24*60*60*1000));
 			    	});
 			    }
 			});
@@ -470,10 +500,10 @@ var hqb = {
 			    			userName = result.userName || "",
 			    			userMobile = result.userMobile || "",
 			    			identityCard = result.identityCard || "";
-			    		$(".identityCard").find("em").text(identityCard);
-			    		$(".userMobile").find("em").text(userMobile);
-			    		$(".userName").find("em").text(userName);
-			    		$(".date_now").find("em").text(K.getTime.getDateStr(Date.now()+24*60*60*1000));
+		    			$(".popbox-bankrank .identityCard").find("em").text(identityCard);
+		    			$(".popbox-bankrank .userMobile").find("em").text(userMobile);
+		    			$(".popbox-bankrank .userName").find("em").text(userName);
+		    			$(".popbox-bankrank .date_now").find("em").text(K.getTime.getDateStr(Date.now()+24*60*60*1000));
 			    	});
 			    }
 			});
