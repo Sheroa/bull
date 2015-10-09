@@ -110,6 +110,7 @@ var invest = {
 					label: "无资产"
 				}];
 			}else{
+				Chart.defaults.global.tooltipTemplate =  "<%if (label){%><%=label%>: <%}%><%= value %>";
 				var data = [{
 					value: ableBalanceAmount / 10000,
 					color: "#f27835",
@@ -162,6 +163,7 @@ var invest = {
 					label: "无收益"
 				}];
 			}else{
+				Chart.defaults.global.tooltipTemplate =  "<%if (label){%><%=label%>: <%}%><%= value %>";
 				var data = [{
 					value: currentProfitAmount,
 					color: "#f39c11",
