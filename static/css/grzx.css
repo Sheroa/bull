@@ -48,6 +48,8 @@
 .recharge{display: none;}
 .recharge .border-box{width:854px;padding:15px 0 20px 20px;margin-bottom: 15px;position:relative;}
 .recharge .border-box p.error-msg{padding-left: 165px;}
+.recharge .border-box .recharge-oprate p.error-msg{width:235px;}
+
 .recharge p{overflow: hidden;margin-bottom: 10px;font-size: 14px;}
 .recharge p i{color:#f27835;font-style:normal}
 .recharge p span.p-ti{display: inline-block;width: 150px;text-align: right;margin-right: 12px;padding:1px;font-size: 14px;}
@@ -73,7 +75,8 @@
 .recharge p.alert{margin-top:-5px;}
 
 .recharge .remind-msg{position: absolute;top:40px;right:0;}
-
+.recharge .recharge-oprate{width:400px;}
+.recharge .recharge-oprate p{width:400px;}
 .system-msg p.msg-btn{text-align: left;}
 .system-msg p.msg-btn a{margin-right: 10px;width: 140px;height:30px;line-height: 30px;display: inline-block;}
 .system-msg p.msg-btn a:hover{text-decoration: none;}
