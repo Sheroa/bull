@@ -290,7 +290,7 @@ var recharge = {
  				sms_code = _this.parents("div").find(".shortOne");
  			if(!temp_data){
  				//连连支付方式
- 				var animate_obj = _this.parents("div"),
+ 				var animate_obj = _this.parents(".operator_box"),
  					error_msg = animate_obj.find(".error-msg em"),
  					money = $.trim(animate_obj.find(".money").val()),
  					user_info = JSON.parse($.cookie("ppinf"));
@@ -314,6 +314,7 @@ var recharge = {
  					var result = _rel.result,
  						payUrl = result.payUrl,
  						req_data = result.payParaMap.req_data;
+ 					debugger;
 					$("body").append('<form id="pay_now" action="'+payUrl+'" method="'+result.method+'"><input name="req_data" id="req_data"/></form>');
 					$("#req_data").val(req_data);
 					$("#pay_now").submit();
@@ -326,11 +327,15 @@ var recharge = {
  					'validCode':$.trim(sms_code.val()),
  					'inRecordNo':order_id
  				});
-
+ 				if(_this.hasClass('selected')){
+ 					return false;
+ 				}
+ 				_this.addClass('gray-btn');
  				api.call("/api/payment/firstBindCardPay.do",temp_data,function(_rel){
  					var result = _rel.result;
  					if(result){
  						//充值成功
+ 						_this.removeClass('gray-btn');
  						$.Dialogs({
  						    "id" : "diglog_wrapper",
  						    "overlay" : true,
@@ -346,6 +351,9 @@ var recharge = {
  						    }
  						});
  					}
+ 				},function(_rel){
+ 					error_msg.text(_rel.msg);
+ 					_this.removeClass('gray-btn');
  				});
  			}
 
@@ -391,11 +399,10 @@ var recharge = {
  				money = $.trim(actived_div.find(".money").val()),
  				error_msg = actived_div.find('.error-msg'),
  				pwd_array = [];
- 			if(_this.attr("disabled")){
- 				console.log("false");
+ 			if(_this.hasClass('gray-btn')){
  				return false;
  			}
- 			_this.attr("disabled",true);
+ 			_this.addClass('gray-btn')
 
  			$.each(actived_div.find(".bank-pwd").find("input"), function(index, val) {
  				 pwd_array.push($(val).val());
@@ -424,9 +431,9 @@ var recharge = {
  				'returnUrl':'/my/personCenter.html'
  			});
  			//ajax请求
- 			api.call('/api/payment/directPay.do',sms_obj,function(_rel){
+ 			api.call('/api/payment/directPayByPwd.do',sms_obj,function(_rel){
  				// K.gotohref('/my/personCenter.html');
- 				_this.attr("disabled",false);
+ 				_this.removeClass('gray-btn');
 
  				$.Dialogs({
  				    "id" : "diglog_wrapper",
@@ -443,6 +450,7 @@ var recharge = {
  				    }
  				});
  			},function(_rel){
+ 				_this.removeClass('gray-btn')
  				error_msg.text(_rel.msg);
  			});
  		})
