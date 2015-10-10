@@ -73,7 +73,7 @@ var index_page = {
 			buf.push('</div>');
 			buf.push('<p class="error-msg"></p>');
 			buf.push('<p class="remember">');
-			buf.push('<input name="" value="1" id="" type="checkbox" class="fl"><span class="fl">记住登录</span><a href="/users/find_pwd.html" class="fr">忘记密码?</a></p>');
+			buf.push('<a href="/users/find_pwd.html" class="fr">忘记密码?</a></p>');
 			buf.push('<button class="btn_login" type="submit" onfocus="this.blur()">立即登录</button>');
 			buf.push('<h5><a href="/users/register.html" target="_blank">没有账户，立即注册</a></h5>');
 			buf.push('<span class="assure"></span>');
