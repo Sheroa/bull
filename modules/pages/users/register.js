@@ -32,11 +32,20 @@ var $ = require('jquery'),
  					//不能注册
  					error_msg.text("您的手机号已注册！");
  					return false;
+ 				}else{
+ 					error_msg.text("");
  				}
  				flow = true;
  			},function(_rel){
  				flow = true;
  			});
+ 		});
+
+ 		$("#phone_num").on("focus",function(){
+ 			var _this = $(this),
+ 				error_msg = _this.parents(".contOne").find(".error-msg em");
+
+ 			error_msg.text("");
  		});
 
  		//密码
