@@ -144,7 +144,7 @@ var manage = {
 						identify_content.html(K.ParseTpl(self.tpl.identify_step1(),user_info));
 						
 					}else{ //已进行实名认证
-						identify_title.addClass('cont2').text(K.name_map(user_info.memberName)+'（'+K.bank_card_map(user_info.certNo)+'）身份证不允许修改、更换或注销');
+						identify_title.addClass('cont2').text(K.name_map(user_info.userName)+'（'+K.bank_card_map(user_info.identityCard)+'）身份证不允许修改、更换或注销');
 						identify_btn.find("a").remove();
 						identify_content.remove();
 					}

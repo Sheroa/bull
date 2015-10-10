@@ -167,7 +167,7 @@ var recharge = {
  				_this.parents(".border-box").find(".error-msg").html(result);
  				return false;
  			}
- 			_this.parents(".border-box").find(".error-msg").html();
+ 			_this.parents(".border-box").find(".error-msg").html("");
 
 
  			var true_name = $.trim($('#truename').val()),
@@ -186,6 +186,7 @@ var recharge = {
  				'bankCode': $('#bank-select').find('option:selected').attr('data-code'),
  				'bankName':$('#bank-select').find('option:selected').val()
  			},function(data){
+ 				_this.parents(".border-box").find(".error-msg").html("");
  				//绑定成功 请求接口，获取用户账户余额
  				api.call('/api/account/getUserAsset.do',{
 
@@ -202,6 +203,8 @@ var recharge = {
  				 	$(".operator_box").find("p[data-type='kuaiqian']").show();
  				 }
  				 $(".operator_box").slideDown('400');
+ 			},function(_rel){
+ 				_this.parents(".border-box").find(".error-msg").html(_rel.msg);
  			});
 
 
@@ -327,7 +330,7 @@ var recharge = {
  					'validCode':$.trim(sms_code.val()),
  					'inRecordNo':order_id
  				});
- 				if(_this.hasClass('selected')){
+ 				if(_this.hasClass('gray-btn')){
  					return false;
  				}
  				_this.addClass('gray-btn');

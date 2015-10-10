@@ -394,21 +394,28 @@ var hqb = {
 			    			userName = result.userName || "",
 			    			userMobile = result.userMobile || "",
 			    			identityCard = result.identityCard || "";
-			    		$(".name").text(userName);
-			    		$(".register_phone").text(userMobile);
-			    		$(".identify_num").text(identityCard);
+			    		$(".popbox-bankrank .name").text(userName);
+			    		$(".popbox-bankrank .register_phone").text(userMobile);
+			    		$(".popbox-bankrank .identify_num").text(identityCard);
 			    	});
 			    }
 			});
 		});
 
-		// $("#purchase_money").on("blur",function(){
-		// 	var _this = $(this),
-		// 		purchase_money = _this.val();
-		// 	if(purchase_money){
+		$("#purchase_money").on("blur",function(){
+			var _this = $(this),
+				purchase_money = _this.val(),
+				error_msg = _this.parents("#entrance").find(".error-msg");
+			if(purchase_money < 100){
+				error_msg.text("购买金额100元起！");
+				return false;
+			}else if(purchase_money > 50000){
+				error_msg.text("填写金额超过个人限额！");
+				return false;
+			}
 
-		// 	}
-		// });
+			error_msg.text("");
+		});
 	}
 }
 
