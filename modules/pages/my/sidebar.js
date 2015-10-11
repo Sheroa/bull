@@ -14,7 +14,7 @@ var sidebar = {
 	tpl:{
 		recharge:function(){
 			var buf = [];
-			buf.push('<p class="ti">未充值成功</p>');
+			buf.push('<p class="ti">未充值成功<a href="#" class="quit"></a></p>');
 			buf.push('<div class="cont3">');
 			buf.push('<p class="buy-ok">请先充值后提现，马上<a href="/my/refund/recharge.html">充值</a></p>');
 			buf.push('</div>');
