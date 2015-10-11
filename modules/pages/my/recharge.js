@@ -263,6 +263,12 @@ var recharge = {
  			error_msg.text(""); 			
  		});
 
+ 		$(".shortOne").on("focus",function(){
+ 			var _this = $(this),
+ 				error_msg = _this.parents(".recharge-oprate").find(".error-msg");
+ 			error_msg.text("");  			
+ 		});
+
  		var order_id = "";
  		$(".verify_sms").on("click",function(){
  			var count = 60,
@@ -413,6 +419,11 @@ var recharge = {
 
  				if(!money){
  					error_msg.text("请输入充值金额");
+ 					return false;
+ 				}
+
+ 				if(!$.trim(sms_code.val())){
+ 					error_msg.text("请输入手机验证码");
  					return false;
  				}
 
