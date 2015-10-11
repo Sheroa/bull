@@ -444,10 +444,10 @@ var manage = {
 					error_msg.text("");
 
 					//校验完成-请求接口
-					api.call('api/user/setPayPassword.do',{
+					api.call('/api/user/setPayPassword.do',{
 						'payPwd':compare_array[0]
 					},function(_rel){
-						var result = _rel.reuslt;
+						var result = _rel.result;
 						if(result){
 							location.reload(true);
 						}
