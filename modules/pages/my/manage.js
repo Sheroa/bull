@@ -374,7 +374,7 @@ var manage = {
 				verifypwd_btn.append('<a href="javascript:void(0);" class="light-btn" id="findPayPwd"><em>找回</em></a>');
 			}else{ //用户没有设置交易密码
 				verifypwd_btn.addClass('need-write');
-				verifypwd_title.text('设置交易密码方可进行充值投资资金提取（<em>未设置</em>）');
+				verifypwd_title.html('设置交易密码方可进行充值投资资金提取（<em>未设置</em>）');
 				verifypwd_btn.find("a").remove();
 				verifypwd_btn.append('<a href="javascript:void(0);" class="light-btn" id="immidate_set"><em>立即设置</em></a>');
 			}
