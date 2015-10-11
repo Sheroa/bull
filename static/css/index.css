@@ -29,4 +29,4 @@
 .media-report ul li span.fr{border-bottom: 1px dashed #dedede;width:840px;height: 73px;}
 .media-report ul li span.fr a:hover{text-decoration: none;color:#f27835;}
 .media-report ul li .img-area{display: inline-block;line-height: 88px;background: #fff;}
-.media-report ul li .img-area img{width: 193px;}
+.media-report ul li .img-area img{width: 100px;margin-left:25px;}

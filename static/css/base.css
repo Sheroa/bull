@@ -57,7 +57,7 @@ h4.col-ti span{float:left;}
 h4.col-ti .ti-logo{padding:7px;background: #f27835;margin-top:5px;margin-right: 15px;}
 h4.col-ti a{color:#f27835;text-decoration: underline;font-size: 14px;}
 a.quit{background: url(/static/img/quit.png) no-repeat;height: 18px;width:18px;display: inline-block;}
-p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-height: 15px !important;text-align: left;}
+p.error-msg{font-size: 12px !important;color:#dc5b46;font-style: normal;line-height: 15px !important;min-height: 15px;text-align: left;}
 .no-margin{margin-bottom:0 !important;}
 span.p-ti{color:#373737;}
 
@@ -114,7 +114,7 @@ span.p-ti{color:#373737;}
 .login-area .textField input{width:210px;height:36px;border:none;vertical-align:middle;line-height:38px;padding: 0 8px;margin:0;}
 .login-area .textField input#userPass{width:180px;}
 .login-area .textField input#userPass::-ms-reveal{display: none;}
-.login-area p.remember{overflow: hidden;line-height: 20px;margin-bottom: 5px;font-size:12px;}
+.login-area p.remember{overflow: hidden;line-height: 20px;margin-bottom: 5px;font-size:12px;text-align: right;}
 .login-area p.remember input{vertical-align:middle;margin-right:8px;border:1px solid #f27835;line-height: 21px;height: 21px;}
 .login-area p.remember .fl{color:#373737;}
 .login-area p.remember .fr{color:#b1b1b1;}
@@ -128,9 +128,9 @@ span.p-ti{color:#373737;}
 .footer{background: #f9f7f7;}
 .footer .about{padding:30px 0 15px 0;}
 .footer .about .wmain{height: 255px;}
-.footer .about .wmain h4{margin-bottom: 10px;}
+.footer .about .wmain h4{line-height: 40px;}
 .footer .about .wmain .fl{text-align: left;}
-.footer .about .wmain .fl p{font-size: 12px;margin-bottom: 35px;line-height: 25px;}
+.footer .about .wmain .fl p{font-size: 12px;line-height: 30px;}
 .footer .about .wmain .fl p a{margin-right: 65px;font-size: 14px;}
 .footer .about .wmain .fl p em{color:#cc5116;}
 .footer .about .wmain .fr{width:136px;}
@@ -140,7 +140,7 @@ a.app1:hover{background: url(/static/img/iphone2.jpg) no-repeat;}
 a.app2{background: url(/static/img/android.jpg) no-repeat;}
 a.app2:hover{background: url(/static/img/android2.jpg) no-repeat;}
 .footer .about .wmain .fr p{font-size: 12px;margin-top: 5px;}
-.footer .about .wmain .fl p.cert{font-size: 12px;margin-bottom: 10px;}
+.footer .about .wmain .fl p.cert{font-size: 12px;margin-bottom: 9px;}
 .footer .about .wmain .fl p.cert a{height:32px;margin-right: 10px;display: inline-block;}
 .footer .about .wmain .fl p.cert a img{height:32px;}
 
@@ -283,7 +283,7 @@ a.app2:hover{background: url(/static/img/android2.jpg) no-repeat;}
 .popbox-bankrank .diginfo .cont3 p a.light-btn{width:231px;display: inline-block;line-height: 32px;height: 32px;}
 .popbox-bankrank .diginfo .cont3 p.buy-ok{padding-left: 105px;margin-bottom: 40px;}
 .popbox-bankrank .diginfo .cont3 p.buy-ok a{color:#f27835;text-decoration: underline;}
-.popbox-bankrank .diginfo .cont4{padding:30px 20px;height:325px;overflow-y:scroll;}
+.popbox-bankrank .diginfo .cont4{padding:30px 20px;height:325px;overflow-y:auto;}
 .popbox-bankrank .diginfo .cont4 p{font-size: 12px;line-height: 20px;text-align: left;}
 .popbox-bankrank .diginfo .cont4 h5{text-align: left;margin:5px 0;}
 .popbox-bankrank .diginfo .cont4 h6{text-align: left;margin:3px 0;}
