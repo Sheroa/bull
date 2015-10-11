@@ -335,21 +335,7 @@ var recharge = {
 
  			},function(_rel){
  				if(_rel.result){
- 					// callback();
- 					$.Dialogs({
- 					    "id" : "diglog_wrapper",
- 					    "overlay" : true,
- 					    "cls" : "dialog-wrapper popbox-bankrank2",
- 					    "closebtn" : ".quit,span.close",
- 					    "auto" : false,
- 					    "msg" :self.tpl.setPaypwd(),
- 					    openfun : function () {
- 					    	window.timer_set_pay_pwd = setTimeout(function(){
- 					    		K.gotohref("/my/account/manage.html");
- 					    		clearTimeout(timer_set_pay_pwd);
- 					    	},3000);
- 					    }
- 					});
+ 					callback();
  				}else{
  					$.Dialogs({
  					    "id" : "diglog_wrapper",
