@@ -42,9 +42,9 @@ var recharge = {
 		},
 		setPaypwd:function(){
 			var buf = [];
-			buf.push('<p class="ti">设置密码</p>');
+			buf.push('<p class="ti">设置交易密码</p>');
 			buf.push('<div class="cont3">');
-			buf.push('<p class="buy-ok">请设置交易密码，并3秒后自动跳转到交易密码设置页面。<br><a href="/my/account/manage.html">点击直接跳转</a></p>');
+			buf.push('<p class="buy-ok">请设置交易密码，<br>3秒后自动跳转到交易密码设置页面。<br><a href="/my/account/manage.html">点击直接跳转</a></p>');
 			buf.push('</div>');
 			return buf.join("");
 		}
