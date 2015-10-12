@@ -7,6 +7,7 @@ var $ = require('jquery'),
 	K = require('util/Keeper'),
 	data_transport = require('common/core_data'),
 	passport = require('util/passport'),
+	api     = require("api/api"),
 	navBar = require("util/navbar");
 
 navBar.init(index);
@@ -157,18 +158,11 @@ var pwd = {
 				'smsCode':smsCode,
 				'newLoginPwd':new_pwd
 			});
-			$.ajax({
-				url: '/api/user/resetLoginPwd',
-				type: 'post',
-				data: data_transport,
-				success:function(result){
-					if(result.code == 0){
-						//跳转到登陆页面
-						K.gotohref("/users/login.html");	
-					}else{
-						error_msg.html(result.msg);
-					}
-				}
+
+			api.call('/api/user/resetLoginPwd',data_transport,function(_rel){
+				K.gotohref("/users/login.html");
+			},function(_rel){
+				error_msg.html(_rel.msg);
 			});
 			
 		})
@@ -179,17 +173,11 @@ var pwd = {
 		});
 
 		//忘记密码
-		$.ajax({
-			url: '/api/user/sendSmsCodeByResetLoginPwd',
-			type: 'post',
-			data: data_transport,
-			success:function(result){
-				if(result.code == 0){
-					$("#identify_code").html("验证码已发至手机"+phone_num);
-				}else{
-					$("#identify_code").html("<em>验证码发送失败</em>");
-				}
-			}
+
+		api.call('/api/user/sendSmsCodeByResetLoginPwd',data_transport,function(_rel){
+			$("#identify_code").html("验证码已发至手机"+phone_num);
+		},function(_rel){
+			$("#identify_code").html("<em>验证码发送失败</em>");
 		});
 	}
 }
