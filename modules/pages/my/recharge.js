@@ -117,27 +117,18 @@ var recharge = {
  		sidebar.init();
  	},
  	bank_list:function(callback){
- 		$.ajax({
- 			url:'/api/payment/queryBankList',
- 			method:'post',
- 			data:{
- 				'appVersion':'0.1',
- 				'source':'web'
- 			},
- 			success:function(result){
- 				if(result.code == 0){
- 					var bank_data = result.data.list,
- 						_html = [];
- 					$.each(bank_data,function(index,obj){
- 						_html.push('<option data-code='+obj.bank_code+' data-provider='+obj.provider+'>'+obj.bank_name+'</option>');
- 					});
- 					$("#bank-select").append(_html.join(""));
- 					cache_data = artTemplate.compile(__inline("./recharge/bank_list.tmpl"))(result);
- 					callback();
- 				}else{
- 					//alert("获取银行卡数据返回错误");
- 				}
- 			}
+
+ 		api.call('/api/payment/queryBankList',{
+
+ 		},function(_rel){
+ 			var bank_data = _rel.list,
+ 				_html = [];
+ 			$.each(bank_data,function(index,obj){
+ 				_html.push('<option data-code='+obj.bank_code+' data-provider='+obj.provider+'>'+obj.bank_name+'</option>');
+ 			});
+ 			$("#bank-select").append(_html.join(""));
+ 			cache_data = artTemplate.compile(__inline("./recharge/bank_list.tmpl"))(_rel);
+ 			callback();
  		});
  	},
  	get_special_bank:function(bank_num){
