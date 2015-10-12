@@ -421,12 +421,17 @@ var manage = {
 				$(el).find("input").each(function(index, el) {
 					var _this = $(el);
 					_this.on("keyup",function(event){
-						var self = $(this);
+						var self = $(this),
+							code = event.which;
 
-						if(event.which == 8){
+						if(code == 8){
 							self.text("");
 							self.prev().focus();
 						}else{
+
+							if(code == 16 || code == 17 || code == 18){
+								return fasle;
+							}
 							self.next().focus();
 						}
 					});
@@ -498,12 +503,17 @@ var manage = {
 							$(el).find("input").each(function(index, el) {
 								var _this = $(el);
 								_this.on("keyup",function(event){
-									var self = $(this);
+									var self = $(this),
+										code = event.which;
 
-									if(event.which == 8){
+									if(code == 8){
 										self.text("");
 										self.prev().focus();
 									}else{
+
+										if(code == 16 || code == 17 || code == 18){
+											return fasle;
+										}
 										self.next().focus();
 									}
 								});
@@ -602,12 +612,17 @@ var manage = {
 							$(el).find("input").each(function(index, el) {
 								var _this = $(el);
 								_this.on("keyup",function(event){
-									var self = $(this);
+									var self = $(this),
+										code = event.which;
 
-									if(event.which == 8){
+									if(code == 8){
 										self.text("");
 										self.prev().focus();
 									}else{
+
+										if(code == 16 || code == 17 || code == 18){
+											return fasle;
+										}
 										self.next().focus();
 									}
 								});
