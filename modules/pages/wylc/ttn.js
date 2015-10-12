@@ -355,8 +355,17 @@ var hqb = {
 		//购买金额-计算收益
 		$("#entrance").on("input propertychange","#purchase_money",function(){
 			var _this = $(this),
-				purchase_money = $.trim(_this.val());
+				purchase_money = $.trim(_this.val()),
+				error_msg  =  _this.parents("#entrance").find(".error-msg");
 			
+			//输入金额的限制
+			if(purchase_money > 100000){
+				error_msg.text("填写金额超过个人限额！");
+				return false;
+			}
+
+			error_msg.text("");
+
 			$("#expected_revenue").text((purchase_money*flow[ttn_type]*ttn_type/360).toFixed(2)+"元");
 		});
 
@@ -454,6 +463,12 @@ var hqb = {
 			//     "auto" : false,
 			//     "msg" :msg
 			// });
+		});
+
+		$("#purchase_money").on("focus",function(){
+			var _this = $(this),
+				error_msg = _this.parents("#entrance").find(".error-msg");
+			error_msg.text("");
 		});
 
 		//收益权转让
@@ -614,7 +629,11 @@ var hqb = {
 
 	},
 	event_handler_wdl:function(){
-		
+		$("#purchase_money").on("focus",function(){
+			var _this = $(this),
+				error_msg = _this.parents("#entrance").find(".error-msg");
+			error_msg.text("");
+		});
 	}
 }
 
