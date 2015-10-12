@@ -39,6 +39,14 @@ var recharge = {
 			buf.push('<p class="buy-ok">充值成功,3秒后跳转至交易记录。<br><a href="/my/refund/record.html">点击直接跳转</a></p>');
 			buf.push('</div>');
 			return buf.join("");
+		},
+		setPaypwd:function(){
+			var buf = [];
+			buf.push('<p class="ti">设置交易密码</p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p class="buy-ok">请设置交易密码，<br>3秒后自动跳转到交易密码设置页面。<br><a href="/my/account/manage.html">点击直接跳转</a></p>');
+			buf.push('</div>');
+			return buf.join("");
 		}
 	},
  	//初始化
@@ -151,6 +159,7 @@ var recharge = {
  					$("#bank-select").change();
  				}else{
  					$("#bank-select").find("option[data-code='0']").attr("selected",true);
+ 					$("#bank-select").change();
  				}
  			}
  		});
@@ -161,13 +170,15 @@ var recharge = {
  		$(".nextBtn").on("click",function(){
  			//先做表单验证
  			var _this = $(this), 
- 				result = self.valid_check();
+ 				result = self.valid_check(),
+ 				error_msg = _this.parents(".border-box").find(".error-msg"),
+ 				error_msg = _this.parents(".border-box").next().find(".error-msg")
  			if(result){
  				// debugger;
- 				_this.parents(".border-box").find(".error-msg").html(result);
+ 				error_msg.text(result);
  				return false;
  			}
- 			_this.parents(".border-box").find(".error-msg").html("");
+ 			error_msg.text("");
 
 
  			var true_name = $.trim($('#truename').val()),
@@ -178,35 +189,50 @@ var recharge = {
  			sms_obj.bankCardNo = bank_number;
  			sms_obj.bankCode = 	$("#bank-select").find('option:selected').attr('data-code');
 
- 			//发送ajax请求
- 			api.call('/api/user/improveIdentityInfo.do',{
- 				'name': true_name,
- 				'idCardNo':id_number,
- 				'bankCardNo':bank_number,
- 				'bankCode': $('#bank-select').find('option:selected').attr('data-code'),
- 				'bankName':$('#bank-select').find('option:selected').val()
- 			},function(data){
- 				_this.parents(".border-box").find(".error-msg").html("");
- 				//绑定成功 请求接口，获取用户账户余额
- 				api.call('/api/account/getUserAsset.do',{
-
- 				},function(_rel){
- 					var ableBalanceAmount = (_rel.result.ableBalanceAmount/10000).toFixed(2);
-					$(".ableBalanceAmount").text("￥"+ableBalanceAmount);
- 				});
- 				 //判断是连连还是快钱
- 				 var pay_way = $("select[name='bank-select']").find("option:selected").attr("data-provider");
- 				 //连连 - 没有手机号 
- 				 if(pay_way == "lian_lian"){
- 				 	$(".operator_box").find("p[data-type='kuaiqian']").hide();
- 				 }else if(pay_way == "kuai_qian"){
- 				 	$(".operator_box").find("p[data-type='kuaiqian']").show();
- 				 }
- 				 $(".operator_box").slideDown('400');
+ 			//判断银行卡号和银行是否关联
+ 			api.call('/api/payment/getBankCardInfo.do',{
+ 				'bankCardNo':bank_number
  			},function(_rel){
- 				_this.parents(".border-box").find(".error-msg").html(_rel.msg);
- 			});
+ 				var bank_code_rel = _rel.result.bankCodeData.bank_code;
+ 				if(bank_code_rel != $("#bank-select").find('option:selected').attr('data-code')){
+ 					//银行于银行卡号不配
+ 					error_msg.text("银行卡号与银行名称不符");
+ 				}else{
+		 			//判断连连，还是快钱
+		 			$("#recharge").attr("payType",$("#bank-select").find('option:selected').attr('data-provider'));
 
+		 			//发送ajax请求
+		 			api.call('/api/user/improveIdentityInfo.do',{
+		 				'name': true_name,
+		 				'idCardNo':id_number,
+		 				'bankCardNo':bank_number,
+		 				'bankCode': $('#bank-select').find('option:selected').attr('data-code'),
+		 				'bankName':$('#bank-select').find('option:selected').val()
+		 			},function(data){
+		 				_this.parents(".border-box").find(".error-msg").html("");
+		 				//绑定成功 请求接口，获取用户账户余额
+		 				api.call('/api/account/getUserAsset.do',{
+
+		 				},function(_rel){
+		 					var ableBalanceAmount = (_rel.result.ableBalanceAmount/10000).toFixed(2);
+							$(".ableBalanceAmount").text("￥"+ableBalanceAmount);
+		 				});
+		 				 //判断是连连还是快钱
+		 				 var pay_way = $("select[name='bank-select']").find("option:selected").attr("data-provider");
+		 				 //连连 - 没有手机号 
+		 				 if(pay_way == "lian_lian"){
+		 				 	$(".operator_box").find("p[data-type='kuaiqian']").hide();
+		 				 }else if(pay_way == "kuai_qian"){
+		 				 	$(".operator_box").find("p[data-type='kuaiqian']").show();
+		 				 }
+		 				 $(".operator_box").slideDown('400');
+		 			},function(_rel){
+		 				_this.parents(".border-box").find(".error-msg").html(_rel.msg);
+		 			});
+ 				}
+ 			},function(_rel){
+ 				error_msg.text(_rel.msg);
+ 			});
 
  		});
 
@@ -219,35 +245,56 @@ var recharge = {
 
  			//每一次选中银行，触发一次事件-修改后面图片
  			if(bank_alias == 0){
- 				img.attr('src','')
+ 				img.attr('src','/static/img/bank/back-logo.png')
  			}else{
  				img.attr('src','/static/img/bank/'+bank_alias+".png")
  			}
  		});
 
+ 		$("#phone_num").on("focus",function(){
+ 			var _this = $(this),
+ 				error_msg = _this.parents(".recharge-oprate").find(".error-msg");
+ 			error_msg.text("");
+ 		});
+
+ 		$(".money").on("focus",function(){
+ 			var _this = $(this),
+ 				error_msg = _this.parents(".recharge-oprate").find(".error-msg");
+ 			error_msg.text(""); 			
+ 		});
+
+ 		$(".shortOne").on("focus",function(){
+ 			var _this = $(this),
+ 				error_msg = _this.parents(".recharge-oprate").find(".error-msg");
+ 			error_msg.text("");  			
+ 		});
+
  		var order_id = "";
  		$(".verify_sms").on("click",function(){
  			var count = 60,
- 				_this = $(this);
+ 				_this = $(this),
+ 				error_msg = _this.parents(".recharge-oprate").find(".error-msg");
 
  			//校验
  			var phone_num = $.trim($("#phone_num").val()),
- 				error_msg = $("#append_error_msg"),
  				money = $.trim( _this.parents("div").find(".money").val());
 
  			if(!phone_num){
- 				error_msg.after("<p class='error-msg'>请输入手机号</p>")
+ 				error_msg.text("请输入手机号");
  				return false;
  			}
 
- 			error_msg.parents(".operator_box").find('.error-msg').remove();
+ 			if(!K.is_phone(phone_num)){
+ 				error_msg.text("手机号码格式不正确，请重新输入");
+ 				return false;
+ 			}
 
  			if(!money){
- 				error_msg.after("<p class='error-msg'>请输入充值金额</p>")
+ 				error_msg.text("请输入充值金额");
  				return false;
  			}
 
- 			error_msg.parents(".operator_box").find('.error-msg').remove();
+ 			error_msg.text("");
 
  			//防止重复点击
  			if($(this).hasClass('disabled')){
@@ -288,75 +335,133 @@ var recharge = {
 			});
  		});
 
+ 		//判断用户有无设置交易密码
+ 		function verifyPayPwd(callback){
+ 			api.call('/api/user/verifyPayPwdState.do',{
+
+ 			},function(_rel){
+ 				if(_rel.result){
+ 					callback();
+ 				}else{
+ 					$.Dialogs({
+ 					    "id" : "diglog_wrapper",
+ 					    "overlay" : true,
+ 					    "cls" : "dialog-wrapper popbox-bankrank2",
+ 					    "closebtn" : ".quit,span.close",
+ 					    "auto" : false,
+ 					    "msg" :self.tpl.setPaypwd(),
+ 					    openfun : function () {
+ 					    	window.timer_set_pay_pwd = setTimeout(function(){
+ 					    		K.gotohref("/my/account/manage.html");
+ 					    		clearTimeout(timer_set_pay_pwd);
+ 					    	},3000);
+ 					    }
+ 					});
+ 				}
+ 			});
+ 		}
+
  		$("#recharge").on("click",function(){
  			var _this = $(this),
- 				sms_code = _this.parents("div").find(".shortOne");
- 			if(!temp_data){
- 				//连连支付方式
- 				var animate_obj = _this.parents(".operator_box"),
- 					error_msg = animate_obj.find(".error-msg em"),
- 					money = $.trim(animate_obj.find(".money").val()),
- 					user_info = JSON.parse($.cookie("ppinf"));
+ 				sms_code = _this.parents("div").find(".shortOne"),
+				animate_obj = _this.parents(".operator_box"),
+				error_msg = _this.parents(".recharge-oprate").find(".error-msg"),
+				money = $.trim(animate_obj.find(".money").val()),
+				phone_num = $.trim($("#phone_num").val()),
+				user_info = JSON.parse($.cookie("ppinf")),
+				payType = _this.attr("paytype");
+
+ 			if(payType == "lian_lian"){
+
+ 				//连连
  				if(!money){
  					error_msg.text("请输入充值金额");
  					return false;
  				}
+
  				error_msg.text("");
- 				api.call('/api/payment/directPay.do',{
- 					'name':user_info.name,
- 					'idCardNo':$.trim($("#id_number").val()),
- 					'mobile':user_info.loginName,
- 					'totalAmount':money*10000,
- 					'bankCardNo':$.trim($("#bank_number").val()),
- 					'bankCode':$("#bank-select").find("option:selected").attr("data-code"),
- 					"payMethod":'standard',
- 					'payType':'card_front',
- 					'returnUrl':'/my/refund/record.html',
- 					'itemName':'充值金额多少元'
- 				},function(_rel){
- 					var result = _rel.result,
- 						payUrl = result.payUrl,
- 						req_data = result.payParaMap.req_data;
- 					debugger;
-					$("body").append('<form id="pay_now" action="'+payUrl+'" method="'+result.method+'"><input name="req_data" id="req_data"/></form>');
-					$("#req_data").val(req_data);
-					$("#pay_now").submit();
- 				},function(_rel){
- 					error_msg.text(_rel.msg);
+
+ 				verifyPayPwd(function(){
+	 				api.call('/api/payment/directPay.do',{
+	 					'name':user_info.name,
+	 					'idCardNo':$.trim($("#id_number").val()),
+	 					'mobile':user_info.loginName,
+	 					'totalAmount':money*10000,
+	 					'bankCardNo':$.trim($("#bank_number").val()),
+	 					'bankCode':$("#bank-select").find("option:selected").attr("data-code"),
+	 					"payMethod":'standard',
+	 					'payType':'card_front',
+	 					'returnUrl':'/my/refund/record.html',
+	 					'itemName':'充值金额多少元'
+	 				},function(_rel){
+	 					var result = _rel.result,
+	 						payUrl = result.payUrl,
+	 						req_data = result.payParaMap.req_data;
+						$("body").append('<form id="pay_now" action="'+payUrl+'" method="'+result.method+'"><input name="req_data" id="req_data"/></form>');
+						$("#req_data").val(req_data);
+						$("#pay_now").submit();
+	 				},function(_rel){
+	 					error_msg.parents(".operator_box").find('.error-msg').remove();
+	 				});
  				});
  			}else{
- 				//快钱支付方式
- 				$.extend(temp_data,{
- 					'validCode':$.trim(sms_code.val()),
- 					'inRecordNo':order_id
- 				});
- 				if(_this.hasClass('gray-btn')){
+ 				//快钱
+ 				
+ 				if(!phone_num){
+ 					error_msg.text("请输入手机号");
  					return false;
  				}
- 				_this.addClass('gray-btn');
- 				api.call("/api/payment/firstBindCardPay.do",temp_data,function(_rel){
- 					var result = _rel.result;
- 					if(result){
- 						//充值成功
- 						_this.removeClass('gray-btn');
- 						$.Dialogs({
- 						    "id" : "diglog_wrapper",
- 						    "overlay" : true,
- 						    "cls" : "dialog-wrapper popbox-bankrank2",
- 						    "closebtn" : ".quit,span.close",
- 						    "auto" : false,
- 						    "msg" :self.tpl.success(),
- 						    openfun : function () {
- 						    	window.timer = setTimeout(function(){
- 						    		K.gotohref("/my/refund/record.html");
- 						    		clearTimeout(timer);
- 						    	},3000);
- 						    }
- 						});
+
+ 				if(!K.is_phone(phone_num)){
+ 					error_msg.text("手机号码格式不正确，请重新输入");
+ 					return false;
+ 				}
+
+ 				if(!money){
+ 					error_msg.text("请输入充值金额");
+ 					return false;
+ 				}
+
+ 				if(!$.trim(sms_code.val())){
+ 					error_msg.text("请输入手机验证码");
+ 					return false;
+ 				}
+
+ 				error_msg.text("");
+
+ 				verifyPayPwd(function(){
+ 					$.extend(temp_data,{
+ 						'validCode':$.trim(sms_code.val()),
+ 						'inRecordNo':order_id
+ 					});
+ 					if(_this.hasClass('gray-btn')){
+ 						return false;
  					}
- 				},function(_rel){
- 					error_msg.text(_rel.msg);
- 					_this.removeClass('gray-btn');
+ 					_this.addClass('gray-btn');
+ 					api.call("/api/payment/firstBindCardPay.do",temp_data,function(_rel){
+ 						var result = _rel.result;
+ 						if(result){
+ 							//充值成功
+ 							_this.removeClass('gray-btn');
+ 							$.Dialogs({
+ 							    "id" : "diglog_wrapper",
+ 							    "overlay" : true,
+ 							    "cls" : "dialog-wrapper popbox-bankrank2",
+ 							    "closebtn" : ".quit,span.close",
+ 							    "auto" : false,
+ 							    "msg" :self.tpl.success(),
+ 							    openfun : function () {
+ 							    	window.timer = setTimeout(function(){
+ 							    		K.gotohref("/my/refund/record.html");
+ 							    		clearTimeout(timer);
+ 							    	},3000);
+ 							    }
+ 							});
+ 						}
+ 					},function(_rel){
+ 						error_msg.text(_rel.msg);
+ 						_this.removeClass('gray-btn');
+ 					});
  				});
  			}
 
@@ -368,6 +473,18 @@ var recharge = {
 			if (event.keyCode == "13") {//keyCode=13是回车键
 				self.get_special_bank(bank_num);
 			}
+ 		});
+
+ 		$("#bank_number").on("blur",function(){
+ 			var _this = $(this),
+ 				bank_num = $.trim(_this.val());
+			self.get_special_bank(bank_num);
+ 		});
+
+ 		$("#bank_number").on("focus",function(){
+ 			var _this = $(this),
+ 				error_msg = _this.parents(".border-box").find(".error-msg");
+			error_msg.text("");
  		});
  	},
  	event_handler_bind:function(){
@@ -504,16 +621,19 @@ var recharge = {
  			'itemName':'充值金额多少元'
  		});
 
+ 		var error_msg = $("#binding").find(".operator_box .error_msg");
 
  		api.call('/api/payment/firstPaySendSms.do',sms_obj,function(_rel){
- 			$("#append_error_msg").parents(".operator_box").find('.error-msg').remove();
+ 			error_msg.text("");
+ 			// $("#append_error_msg").parents(".operator_box").find('.error-msg').remove();
  			var order_id = _rel.result;
  			if(order_id){
  				//生成流水单号
  				callback(order_id,sms_obj);
  			}
  		},function(_rel){
- 			$("#append_error_msg").after('<p class="error-msg">'+_rel.msg+'</p>');
+ 			error_msg.text(_rel.msg);
+ 			// $("#append_error_msg").after('<p class="error-msg">'+_rel.msg+'</p>');
  			var _this = $(".verify_sms");
  			_this.removeClass('disabled');
  			_this.removeClass('gray-btn').addClass('light-btn');
