@@ -433,7 +433,9 @@ var manage = {
 								self.val("");
 								return false;
 							}
-							self.next().focus();
+							if(self.val()){
+								self.next().focus();
+							}	
 						}
 					});
 				});	
@@ -516,7 +518,10 @@ var manage = {
 											self.val("");
 											return false;
 										}
-										self.next().focus();
+										if(self.val()){
+											self.next().focus();
+										}
+										
 									}
 								});
 							});	
@@ -626,7 +631,10 @@ var manage = {
 											self.val("");
 											return false;
 										}
-										self.next().focus();
+										if(self.val()){
+											self.next().focus();
+										}
+										
 									}
 								});
 							});	
