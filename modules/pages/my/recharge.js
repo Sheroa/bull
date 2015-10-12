@@ -490,13 +490,22 @@ var recharge = {
  			$(el).find("input").each(function(index, el) {
  				var _this = $(el);
  				_this.on("keyup",function(event){
- 					var self = $(this);
+ 					var self = $(this),
+ 						code = event.which;
 
- 					if(event.which == 8){
+ 					if(code == 8){
  						self.text("");
  						self.prev().focus();
  					}else{
- 						self.next().focus();
+ 						//48-50 
+ 						if(!((code>=48 && code<=57)||(code>=96 && code<=105))){
+ 							self.val("");
+ 							return false;
+ 						}
+ 						if(self.val()){
+ 							self.next().focus();
+ 						}
+ 						
  					}
  				});
  			});	

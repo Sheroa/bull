@@ -147,19 +147,30 @@
 		// });
 
 		//密码输入框
-		$(".bank-pwd").find("input").each(function(index, el) {
-			var _this = $(el);
-			_this.on("keyup",function(event){
-				var self = $(this);
+		$(".bank-pwd").each(function(index, el) {
+			$(el).find("input").each(function(index, el) {
+				var _this = $(el);
+				_this.on("keyup",function(event){
+					var self = $(this),
+						code = event.which;
 
-				if(event.which == 8){
-					self.text("");
-					self.prev().focus();
-				}else{
-					self.next().focus();
-				}
-			});
-		});	
+					if(code == 8){
+						self.text("");
+						self.prev().focus();
+					}else{
+						//48-50 
+						if(!((code>=48 && code<=57)||(code>=96 && code<=105))){
+							self.val("");
+							return false;
+						}
+						if(self.val()){
+							self.next().focus();
+						}
+						
+					}
+				});
+			});	
+		});
 
 		//输入金额不能超过账户余额
 		$(".money").on("input propertychange",function(){
