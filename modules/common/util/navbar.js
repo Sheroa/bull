@@ -20,26 +20,26 @@ var navbar = {
 				var thisId = $(this).attr("id");
 				var subList = $("." + thisId);
 				$(subList).show();
-				$(this).addClass("selected");
+				$(this).addClass("click");
 			} 
 		}, function() {
 			if (!(typeof $(this).attr("id")  == "undefined")) {
 				var thisId = $(this).attr("id");
 				var subList = $("." + thisId);
 				$(subList).hide();
-				$(this).removeClass("selected");
+				$(this).removeClass("click");
 			}
 		})
 		$("#nav").children('ul').hover(function() {
 			var thisClass = $(this).attr("class");
 			var aLink = $("#" + thisClass);
 			$(this).show();
-			$(aLink).addClass("selected");
+			$(aLink).addClass("click");
 		}, function() {
 			var thisClass = $(this).attr("class");
 			var aLink = $("#" + thisClass);
 			$(this).hide();
-			$(aLink).removeClass("selected");
+			$(aLink).removeClass("click");
 		})
 	},
 	head_login_hover:function(){

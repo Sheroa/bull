@@ -38,7 +38,7 @@
 .person-data .fr .service span.service3{background-position: -40px 0;}
 .person-data .fr .service span.service4{background-position: -60px 0;}
 .person-data .fr p{text-align: center;}
-.person-data .fr p a.light-btn, .person-data .fr p a.gray-btn{width: 110px;height: 26px;line-height: 26px;margin-top:10px;font-size: 14px;display: inline-block;}
+.person-data .fr p a.light-btn, .person-data .fr p a.light-btn2, .person-data .fr p a.gray-btn{width: 110px;height: 26px;line-height: 26px;margin-top:10px;font-size: 14px;display: inline-block;}
 
 .good-pro{margin-top: 50px;}
 
@@ -228,7 +228,7 @@
 .record .border-box .cont .rt-area{margin-right: 70px;}
 .record .border-box .cont span p{font-size: 14px;line-height: 26px;margin-bottom: 10px;text-align: left;}
 .record .border-box .cont span p em{font-size: 24px;color:#f27835;}
-.record .border-box .cont span p a.light-btn, .record .border-box .cont span p a.gray-btn{display: inline-block;line-height: 30px;width:140px;}
+.record .border-box .cont span p a.light-btn, .record .border-box .cont span p a.light-btn2, .record .border-box .cont span p a.gray-btn{display: inline-block;line-height: 30px;width:140px;}
 .record .shadow-box{width:780px;margin-top:15px;padding:30px 45px;text-align: left;margin-bottom: 25px;}
 .record .shadow-box p{font-size: 14px;}
 .record .shadow-box p select{height:28px;line-height:28px;border:2px solid #919191;font-size: 14px;margin-left:15px;min-width:140px;}
