@@ -172,14 +172,14 @@ var recharge = {
  			var _this = $(this), 
  				result = self.valid_check(),
  				error_msg = _this.parents(".border-box").find(".error-msg"),
- 				error_msg = _this.parents(".border-box").next().find(".error-msg")
+ 				error_msg_final = _this.parents(".border-box").next().find(".error-msg")
  			if(result){
  				// debugger;
  				error_msg.text(result);
  				return false;
  			}
  			error_msg.text("");
-
+            error_msg_final.text("");
 
  			var true_name = $.trim($('#truename').val()),
  				id_number = $.trim($('#id_number').val()),
