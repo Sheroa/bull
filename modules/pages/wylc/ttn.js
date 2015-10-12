@@ -353,7 +353,7 @@ var hqb = {
 		});
 
 		//购买金额-计算收益
-		$("#entrance").on("keyup","#purchase_money",function(){
+		$("#entrance").on("input propertychange","#purchase_money",function(){
 			var _this = $(this),
 				purchase_money = $.trim(_this.val());
 			
