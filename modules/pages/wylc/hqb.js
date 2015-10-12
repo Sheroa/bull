@@ -225,6 +225,7 @@ var hqb = {
 			    			'productId':product_id	
 			    		},function(_rel){
 			    			$(".outter .quit").trigger("click");
+			    			self.UI();
 			    			$.Dialogs({
 			    			    "id" : "diglog_wrapper",
 			    			    "overlay" : true,
@@ -232,6 +233,7 @@ var hqb = {
 			    			    "closebtn" : ".quit,span.close",
 			    			    "auto" : false,
 			    			    "msg" :K.ParseTpl(self.tpl.success(),{'money':purchase_money})
+
 			    			});
 			    		},function(_rel){
 			    			error_msg.text(_rel.msg);
