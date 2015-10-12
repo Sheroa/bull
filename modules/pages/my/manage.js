@@ -428,9 +428,10 @@ var manage = {
 							self.text("");
 							self.prev().focus();
 						}else{
-
-							if(code == 16 || code == 17 || code == 18){
-								return fasle;
+							//48-50 
+							if(!((code>=48 && code<=57)||(code>=96 && code<=105))){
+								self.val("");
+								return false;
 							}
 							self.next().focus();
 						}
@@ -510,9 +511,10 @@ var manage = {
 										self.text("");
 										self.prev().focus();
 									}else{
-
-										if(code == 16 || code == 17 || code == 18){
-											return fasle;
+										//48-50 
+										if(!((code>=48 && code<=57)||(code>=96 && code<=105))){
+											self.val("");
+											return false;
 										}
 										self.next().focus();
 									}
@@ -619,9 +621,10 @@ var manage = {
 										self.text("");
 										self.prev().focus();
 									}else{
-
-										if(code == 16 || code == 17 || code == 18){
-											return fasle;
+										//48-50 
+										if(!((code>=48 && code<=57)||(code>=96 && code<=105))){
+											self.val("");
+											return false;
 										}
 										self.next().focus();
 									}
