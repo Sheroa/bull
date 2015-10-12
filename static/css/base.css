@@ -45,6 +45,8 @@ p span.pwd-box a.visible{display: inline-block;background: url(/static/img/eye.p
 button{cursor: pointer;}
 .light-btn{background: #f27835;color:#fff;text-align: center;}
 .light-btn:hover{background: #f06a21;text-decoration: none}
+.light-btn2{background: #f49a68;color:#fff;text-align: center;}
+.light-btn2:hover{background: #f19867;text-decoration: none}
 .gray-btn{background: #b5b5b5;color:#fff;text-align: center;}
 .gray-btn:hover{background: #a6a6a6;text-decoration: none}
 .light-border{background: #fff;border:1px solid #f27835;color:#f27835;font-size: 12px;padding:6px 65px;}
