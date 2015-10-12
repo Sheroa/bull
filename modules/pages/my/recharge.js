@@ -138,22 +138,6 @@ var recharge = {
  			"token":user_token,
  			"bankCardNo":bank_num
  		});
-
- 		// $.ajax({
- 		// 	url: '/api/payment/getBankCardInfo.do',
- 		// 	type: 'post',
- 		// 	data: data_transport,
- 		// 	success:function(_rel){
- 		// 		if(_rel.code == 0){
- 		// 			var bank_code = _rel.data.result.cardInfoData.bank_code;
- 		// 			$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
- 		// 			$("#bank-select").change();
- 		// 		}else{
- 		// 			$("#bank-select").find("option[data-code='0']").attr("selected",true);
- 		// 			$("#bank-select").change();
- 		// 		}
- 		// 	}
- 		// });
  		
  		api.call('/api/payment/getBankCardInfo.do',data_transport,function(_rel){
 			if(_rel.code == 0){
