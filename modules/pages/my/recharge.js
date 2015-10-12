@@ -44,7 +44,7 @@ var recharge = {
 			var buf = [];
 			buf.push('<p class="ti">设置交易密码</p>');
 			buf.push('<div class="cont3">');
-			buf.push('<p class="buy-ok">请设置交易密码，<br>3秒后自动跳转到交易密码设置页面。<br><a href="/my/account/manage.html">点击直接跳转</a></p>');
+			buf.push('<p class="buy-ok">为保障资金安全，请先设置交易密码，<br>3秒后自动跳转到交易密码设置页面。<br><a href="/my/account/manage.html">点击直接跳转</a></p>');
 			buf.push('</div>');
 			return buf.join("");
 		}
@@ -148,20 +148,34 @@ var recharge = {
  			"bankCardNo":bank_num
  		});
 
- 		$.ajax({
- 			url: '/api/payment/getBankCardInfo.do',
- 			type: 'post',
- 			data: data_transport,
- 			success:function(_rel){
- 				if(_rel.code == 0){
- 					var bank_code = _rel.data.result.cardInfoData.bank_code;
- 					$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
- 					$("#bank-select").change();
- 				}else{
- 					$("#bank-select").find("option[data-code='0']").attr("selected",true);
- 					$("#bank-select").change();
- 				}
- 			}
+ 		// $.ajax({
+ 		// 	url: '/api/payment/getBankCardInfo.do',
+ 		// 	type: 'post',
+ 		// 	data: data_transport,
+ 		// 	success:function(_rel){
+ 		// 		if(_rel.code == 0){
+ 		// 			var bank_code = _rel.data.result.cardInfoData.bank_code;
+ 		// 			$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
+ 		// 			$("#bank-select").change();
+ 		// 		}else{
+ 		// 			$("#bank-select").find("option[data-code='0']").attr("selected",true);
+ 		// 			$("#bank-select").change();
+ 		// 		}
+ 		// 	}
+ 		// });
+ 		
+ 		api.call('/api/payment/getBankCardInfo.do',data_transport,function(_rel){
+			if(_rel.code == 0){
+				var bank_code = _rel.data.result.cardInfoData.bank_code;
+				$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
+				$("#bank-select").change();
+			}else{
+				$("#bank-select").find("option[data-code='0']").attr("selected",true);
+				$("#bank-select").change();
+			}
+ 		},function(_rel){
+ 			var error_msg = $("#binding").find(".error-msg").eq(0);
+ 			error_msg.text("银行卡卡号格式有误，请重新输入");
  		});
  	},
  	event_handler:function(){
@@ -451,6 +465,7 @@ var recharge = {
  							    "auto" : false,
  							    "msg" :self.tpl.success(),
  							    openfun : function () {
+ 							    	_this.removeClass('gray-btn');
  							    	window.timer = setTimeout(function(){
  							    		K.gotohref("/my/refund/record.html");
  							    		clearTimeout(timer);

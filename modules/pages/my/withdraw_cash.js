@@ -161,6 +161,19 @@
 			});
 		});	
 
+		//输入金额不能超过账户余额
+		$(".money").on("input propertychange",function(){
+			var _this = $(this),
+				ableBalanceAmount = _this.parents("div").find(".ableBalanceAmount").text().replace("￥",""),
+				error_msg = _this.parents("div").find(".error-msg");
+			if(parseFloat(_this.val()) > parseFloat(ableBalanceAmount)){
+				error_msg.text("输入金额超过上限,请重新输入");
+				return false;
+			}
+
+			error_msg.text("");
+		});
+
 		//提现		
 		$("#withdraw").on("click",function(){
 			var _this = $(this),
