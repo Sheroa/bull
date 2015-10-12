@@ -365,8 +365,12 @@ var $ = require('jquery'),
  			return "请输入登陆密码";
  		}
 
- 		if(!K.pwd_valid_check($.trim(user_pwd.val()))){
- 			return "密码过于简单，请设置字母+数字的密码";
+ 		// if(!K.pwd_valid_check($.trim(user_pwd.val()))){
+ 		// 	return "密码过于简单，请设置字母+数字的密码";
+ 		// }
+
+ 		if($.trim(user_pwd.val()).length < 6){
+ 			return "密码长度低于6位，请重新输入";
  		}
 
 
