@@ -2,7 +2,7 @@
 /* CSS Document */
 /* 新手指引 */
 .newGuide{padding:65px;}
-.newGuide p{font-size: 14px;text-align: left;margin-bottom: 60px;padding-left: 30px;}
+.newGuide p{font-size: 14px;text-align: left;margin-bottom: 50px;padding-left: 30px;line-height: 30px;}
 .newGuide .feature{width:1075px;padding-left: 30px;}
 .newGuide .feature .each-fea{margin-right: 65px;}
 .newGuide .feature .each-fea span{margin:0;}

@@ -22,7 +22,7 @@ button{height:32px;}
 p input{height:28px;line-height:28px;padding: 0 5px;border:2px solid #b2b2b2;font-size: 14px;}
 p input.check{height: 13px;width: 13px;vertical-align: middle;}
 p span.pwd-box{width: 215px;position:relative;text-align:left;height: 32px;line-height: 32px;padding: 0 5px;border:2px solid #b2b2b2;font-size: 14px;display: inline-block;}
-p span.pwd-box input{width: 188px !important;height: 32px;border:none;vertical-align: top;line-height: 32px;padding: 0;margin:0;}
+p span.pwd-box input{width: 188px !important;height: 30px;border:none;vertical-align: top;line-height: 30px;padding: 0;margin:0;margin-top:1px;}
 p span.pwd-box input::-ms-reveal{display: none;}
 p span.pwd-box a.visible{display: inline-block;background: url(/static/img/eye.png) no-repeat;width:23px;height:15px;position:absolute;top:8px;right: 5px;}
 .sub-text{font-size: 12px !important; text-align: left;line-height: 18px;}
@@ -74,7 +74,7 @@ span.p-ti{color:#373737;}
 .header .fr a{text-decoration: none;color:#373737;width: 100%;}
 .header .fr a.link{display:inline-block;width: 130px;height:40px;}
 .header .fr a.link:hover{background:#f27835;color:#fff;}
-.header .fr a.selected{background:#f27835;color:#fff;}
+.header .fr a.selected, .header .fr a.click{background:#f27835;color:#fff;}
 .header .fr .regis-login{margin-left: 15px;display: inline-block;position: relative;width:152px;}
 .header .fr .regis-login a{color:#f27835;padding:0;margin:0;margin-right:0;display: inline;}
 .header .fr .regis-login em{color:#f27835;padding:0 4px;}
@@ -97,7 +97,7 @@ span.p-ti{color:#373737;}
 .header .fr .regis-login ul li:hover a.login2{background: url(/static/img/login21.png) no-repeat left center;}
 .header .fr .regis-login ul li:hover a.login3{background: url(/static/img/login31.png) no-repeat left center;}
 .header .fr .regis-login ul li:hover a.login4{background: url(/static/img/login41.png) no-repeat left center;}
-.header .fr a.selected .sub-link, .header .fr a:hover .sub-link{background: url(/static/img/arrow3.png) no-repeat right center;}
+.header .fr a.selected .sub-link, .header .fr a.click .sub-link, .header .fr a:hover .sub-link{background: url(/static/img/arrow3.png) no-repeat right center;}
 .header .fr ul{display: none;position: absolute;width:130px;z-index:20;top:39px;-moz-box-shadow:0px 1px 1px 1px #d3d3d3;-webkit-box-shadow:0px 1px 1px 1px #d3d3d3;box-shadow:0px 1px 1px 1px #d3d3d3;background: #fff;}
 .header .fr ul.second{left:135px;}
 .header .fr ul.forth{left:404px;}
