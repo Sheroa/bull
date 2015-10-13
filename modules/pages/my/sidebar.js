@@ -23,7 +23,7 @@ var sidebar = {
 	},
 	init:function(){
 		var self  = this;
-		$("a[data-type='withdrawCash']").on("click",function(){
+		$(document).on("click","a[data-type='withdrawCash']",function(){
 			api.call('/api/user/getIdentityInfoByUser.do',{
 
 			},function(_rel){

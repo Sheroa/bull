@@ -556,14 +556,26 @@ var recharge = {
 
  			error_msg.text("");
  			_this.addClass('gray-btn');
- 			$.extend(sms_obj,{
- 				'totalAmount':money*10000,
- 				'payPwd':pwd_array.join(""),
- 				'payMethod':'quick_pay',
- 				'payType':'direct',
- 				'itemName':'充值金额多少元',
- 				'returnUrl':'/my/personCenter.html'
- 			});
+ 			if(provider == "lian_lian"){
+ 				$.extend(sms_obj,{
+ 					'totalAmount':money*10000,
+ 					'payPwd':pwd_array.join(""),
+ 					'payMethod':'mobile_wap',
+ 					'payType':'card_front',
+ 					'itemName':'充值金额多少元',
+ 					'returnUrl':'/my/personCenter.html'
+ 				});
+ 			}else{
+ 				$.extend(sms_obj,{
+ 					'totalAmount':money*10000,
+ 					'payPwd':pwd_array.join(""),
+ 					'payMethod':'quick_pay',
+ 					'payType':'direct',
+ 					'itemName':'充值金额多少元',
+ 					'returnUrl':'/my/personCenter.html'
+ 				});
+ 			}
+
  			//ajax请求
  			api.call('/api/payment/directPayByPwd.do',sms_obj,function(_rel){
  				// K.gotohref('/my/personCenter.html');
