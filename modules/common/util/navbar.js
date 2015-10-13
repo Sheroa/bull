@@ -10,6 +10,7 @@ var navbar = {
 		this.setMenuCurClass(index);
 		this.head_nav_hover();
 		this.head_login_hover();
+
 	},
 	setMenuCurClass: function(curIndex) {
 		$("#nav").children('a').removeClass('selected').eq(curIndex).addClass("selected");

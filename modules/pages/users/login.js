@@ -5,6 +5,7 @@
 
 var $ = require('jquery'),
 	K = require('util/Keeper'),
+	api = require('api/api'),
 	passport = require('util/passport');
 
 // navBar.init(index);

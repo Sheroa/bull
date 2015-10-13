@@ -44,7 +44,7 @@ var recharge = {
 			var buf = [];
 			buf.push('<p class="ti">设置交易密码</p>');
 			buf.push('<div class="cont3">');
-			buf.push('<p class="buy-ok">请设置交易密码，<br>3秒后自动跳转到交易密码设置页面。<br><a href="/my/account/manage.html">点击直接跳转</a></p>');
+			buf.push('<p class="buy-ok">为保障资金安全，请先设置交易密码，<br>3秒后自动跳转到交易密码设置页面。<br><a href="/my/account/manage.html">点击直接跳转</a></p>');
 			buf.push('</div>');
 			return buf.join("");
 		}
@@ -77,6 +77,9 @@ var recharge = {
  				
  				//用户已经绑定了银行卡，此时应该进入recharge2.html
  				$(".bank-icbc .border-pad").html(require('./bank_card_info').show(_rel));
+
+ 				//同时在二次充值btn上绑定支付方式
+ 				$("#recharge-2").attr("payType",_rel.result.provider);
 
  				self.event_handler_bind();
 
@@ -117,27 +120,18 @@ var recharge = {
  		sidebar.init();
  	},
  	bank_list:function(callback){
- 		$.ajax({
- 			url:'/api/payment/queryBankList',
- 			method:'post',
- 			data:{
- 				'appVersion':'0.1',
- 				'source':'web'
- 			},
- 			success:function(result){
- 				if(result.code == 0){
- 					var bank_data = result.data.list,
- 						_html = [];
- 					$.each(bank_data,function(index,obj){
- 						_html.push('<option data-code='+obj.bank_code+' data-provider='+obj.provider+'>'+obj.bank_name+'</option>');
- 					});
- 					$("#bank-select").append(_html.join(""));
- 					cache_data = artTemplate.compile(__inline("./recharge/bank_list.tmpl"))(result);
- 					callback();
- 				}else{
- 					//alert("获取银行卡数据返回错误");
- 				}
- 			}
+
+ 		api.call('/api/payment/queryBankList',{
+
+ 		},function(_rel){
+ 			var bank_data = _rel.list,
+ 				_html = [];
+ 			$.each(bank_data,function(index,obj){
+ 				_html.push('<option data-code='+obj.bank_code+' data-provider='+obj.provider+'>'+obj.bank_name+'</option>');
+ 			});
+ 			$("#bank-select").append(_html.join(""));
+ 			cache_data = artTemplate.compile(__inline("./recharge/bank_list.tmpl"))(_rel);
+ 			callback();
  		});
  	},
  	get_special_bank:function(bank_num){
@@ -147,21 +141,19 @@ var recharge = {
  			"token":user_token,
  			"bankCardNo":bank_num
  		});
-
- 		$.ajax({
- 			url: '/api/payment/getBankCardInfo.do',
- 			type: 'post',
- 			data: data_transport,
- 			success:function(_rel){
- 				if(_rel.code == 0){
- 					var bank_code = _rel.data.result.cardInfoData.bank_code;
- 					$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
- 					$("#bank-select").change();
- 				}else{
- 					$("#bank-select").find("option[data-code='0']").attr("selected",true);
- 					$("#bank-select").change();
- 				}
- 			}
+ 		
+ 		api.call('/api/payment/getBankCardInfo.do',data_transport,function(_rel){
+			if(_rel.code == 0){
+				var bank_code = _rel.data.result.cardInfoData.bank_code;
+				$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
+				$("#bank-select").change();
+			}else{
+				$("#bank-select").find("option[data-code='0']").attr("selected",true);
+				$("#bank-select").change();
+			}
+ 		},function(_rel){
+ 			var error_msg = $("#binding").find(".error-msg").eq(0);
+ 			error_msg.text("银行卡卡号格式有误，请重新输入");
  		});
  	},
  	event_handler:function(){
@@ -396,9 +388,19 @@ var recharge = {
 	 				},function(_rel){
 	 					var result = _rel.result,
 	 						payUrl = result.payUrl,
-	 						req_data = result.payParaMap.req_data;
-						$("body").append('<form id="pay_now" action="'+payUrl+'" method="'+result.method+'"><input name="req_data" id="req_data"/></form>');
-						$("#req_data").val(req_data);
+	 						// req_data = result.payParaMap.req_data;
+	 						req_data = result.payParaMap;
+						
+						var buf = [];
+						buf.push('<form id="pay_now" action="'+payUrl+'" method="'+result.method+'">');
+						//<input name="payParaMap" id="req_data"/>
+						$.each(req_data, function(index, val) {
+							 /* iterate through array or object */
+							 buf.push('<input name="'+index+'" value='+val+'>');
+						});
+						buf.push('</form>');
+						$("body").append(buf.join(""));
+						// $("#req_data").val(req_data);
 						$("#pay_now").submit();
 	 				},function(_rel){
 	 					error_msg.parents(".operator_box").find('.error-msg').remove();
@@ -451,6 +453,7 @@ var recharge = {
  							    "auto" : false,
  							    "msg" :self.tpl.success(),
  							    openfun : function () {
+ 							    	_this.removeClass('gray-btn');
  							    	window.timer = setTimeout(function(){
  							    		K.gotohref("/my/refund/record.html");
  							    		clearTimeout(timer);
@@ -500,13 +503,22 @@ var recharge = {
  			$(el).find("input").each(function(index, el) {
  				var _this = $(el);
  				_this.on("keyup",function(event){
- 					var self = $(this);
+ 					var self = $(this),
+ 						code = event.which;
 
- 					if(event.which == 8){
+ 					if(code == 8){
  						self.text("");
  						self.prev().focus();
  					}else{
- 						self.next().focus();
+ 						//48-50 
+ 						if(!((code>=48 && code<=57)||(code>=96 && code<=105))){
+ 							self.val("");
+ 							return false;
+ 						}
+ 						if(self.val()){
+ 							self.next().focus();
+ 						}
+ 						
  					}
  				});
  			});	
@@ -518,11 +530,12 @@ var recharge = {
  				actived_div = _this.parents(".border-box"),
  				money = $.trim(actived_div.find(".money").val()),
  				error_msg = actived_div.find('.error-msg'),
+ 				provider = _this.attr("payType"),
  				pwd_array = [];
  			if(_this.hasClass('gray-btn')){
  				return false;
  			}
- 			_this.addClass('gray-btn')
+ 			
 
  			$.each(actived_div.find(".bank-pwd").find("input"), function(index, val) {
  				 pwd_array.push($(val).val());
@@ -542,14 +555,27 @@ var recharge = {
  			}
 
  			error_msg.text("");
- 			$.extend(sms_obj,{
- 				'totalAmount':money*10000,
- 				'payPwd':pwd_array.join(""),
- 				'payMethod':'quick_pay',
- 				'payType':'direct',
- 				'itemName':'充值金额多少元',
- 				'returnUrl':'/my/personCenter.html'
- 			});
+ 			_this.addClass('gray-btn');
+ 			if(provider == "lian_lian"){
+ 				$.extend(sms_obj,{
+ 					'totalAmount':money*10000,
+ 					'payPwd':pwd_array.join(""),
+ 					'payMethod':'mobile_wap',
+ 					'payType':'card_front',
+ 					'itemName':'充值金额多少元',
+ 					'returnUrl':'/my/personCenter.html'
+ 				});
+ 			}else{
+ 				$.extend(sms_obj,{
+ 					'totalAmount':money*10000,
+ 					'payPwd':pwd_array.join(""),
+ 					'payMethod':'quick_pay',
+ 					'payType':'direct',
+ 					'itemName':'充值金额多少元',
+ 					'returnUrl':'/my/personCenter.html'
+ 				});
+ 			}
+
  			//ajax请求
  			api.call('/api/payment/directPayByPwd.do',sms_obj,function(_rel){
  				// K.gotohref('/my/personCenter.html');

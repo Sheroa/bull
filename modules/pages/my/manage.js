@@ -76,6 +76,15 @@ var manage = {
 			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn confirm">确定</a></p>');
 			buf.push('</div>');
 			return buf.join("");
+		},
+		modify_success_pwd:function(){
+			var buf = [];
+			buf.push('<p class="ti">修改成功<a href="#" class="quit"></a></p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p>登陆密码修改成功</p>');
+			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn confirm">确定</a></p>');
+			buf.push('</div>');
+			return buf.join("");
 		}
 	},
 	event_handler:function(){
@@ -338,7 +347,20 @@ var manage = {
 					if(reuslt){
 						// error_msg.html("密码修改成功");
 						// $("#modify_pwd").trigger('click');						
-						location.reload(true);
+						$.Dialogs({
+							"id": "diglog_wrapper",
+							"overlay": true,
+							"cls": "dialog-wrapper popbox-bankrank outter",
+							"closebtn": ".quit,span.close",
+							"auto": false,
+							"msg": self.tpl.modify_success_pwd(),
+							"openfun":function(){
+								//确定
+								$(".confirm").on("click",function(){
+									location.reload(true);
+								});
+							}
+						});
 					}
 				},function(_rel){
 					error_msg.html(_rel.msg);
@@ -399,13 +421,21 @@ var manage = {
 				$(el).find("input").each(function(index, el) {
 					var _this = $(el);
 					_this.on("keyup",function(event){
-						var self = $(this);
+						var self = $(this),
+							code = event.which;
 
-						if(event.which == 8){
+						if(code == 8){
 							self.text("");
 							self.prev().focus();
 						}else{
-							self.next().focus();
+							//48-50 
+							if(!((code>=48 && code<=57)||(code>=96 && code<=105))){
+								self.val("");
+								return false;
+							}
+							if(self.val()){
+								self.next().focus();
+							}	
 						}
 					});
 				});	
@@ -476,13 +506,22 @@ var manage = {
 							$(el).find("input").each(function(index, el) {
 								var _this = $(el);
 								_this.on("keyup",function(event){
-									var self = $(this);
+									var self = $(this),
+										code = event.which;
 
-									if(event.which == 8){
+									if(code == 8){
 										self.text("");
 										self.prev().focus();
 									}else{
-										self.next().focus();
+										//48-50 
+										if(!((code>=48 && code<=57)||(code>=96 && code<=105))){
+											self.val("");
+											return false;
+										}
+										if(self.val()){
+											self.next().focus();
+										}
+										
 									}
 								});
 							});	
@@ -580,13 +619,22 @@ var manage = {
 							$(el).find("input").each(function(index, el) {
 								var _this = $(el);
 								_this.on("keyup",function(event){
-									var self = $(this);
+									var self = $(this),
+										code = event.which;
 
-									if(event.which == 8){
+									if(code == 8){
 										self.text("");
 										self.prev().focus();
 									}else{
-										self.next().focus();
+										//48-50 
+										if(!((code>=48 && code<=57)||(code>=96 && code<=105))){
+											self.val("");
+											return false;
+										}
+										if(self.val()){
+											self.next().focus();
+										}
+										
 									}
 								});
 							});	
@@ -667,6 +715,8 @@ var manage = {
 									},function(_rel){
 										error_msg.html(_rel.msg);
 									});
+								},function(_rel){
+									error_msg.html(_rel.msg);
 								});
 						});
 

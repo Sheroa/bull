@@ -4,6 +4,7 @@
  */
 var $ = require("jquery"),
     data_transport = require('common/core_data'),
+    api = require('api/api'),
     K = require("./Keeper");
 
 require("cookie");
@@ -55,18 +56,12 @@ var passport = {
             "token":user_token
         });
 
-        $.ajax({
-            url: '/api/user/logout',
-            type: 'post',
-            data: data_transport,
-            success:function(_rel){
-                if(_rel.code == 0){
-                    var options = {path:'/'};
-                    $.cookie("ppinf","",options);
-                }
-                location.reload(true);
-            }
+        require('api/api').call('/api/user/logout',data_transport,function(_rel){
+            var options = {path:'/'};
+            $.cookie("ppinf","",options);
+            location.reload(true);
         });
+        
     },
     /**
      * 自动跳转
@@ -103,25 +98,10 @@ var passport = {
         },
         self = this;
 
-        $.ajax({
-            url:"/api/user/login",
-            type:"POST",
-            data:loginInfo,
-            dataType:"json",
-            success:function(_ret){
-                if(_ret.code == "0"){
-                    //登陆成功
-                    //$.extend(loginInfo, _ret.data.result);
-                    lsc(_ret.data.result);
-
-                }else{
-                    lfc(_ret.msg);
-                }
-            },
-            error:function(a,b,c){
-                //请求失败
-               alert("失败");
-            }
+        api.call('/api/user/login',loginInfo,function(_rel){
+            lsc(_rel.result);
+        },function(_rel){
+            lfc(_rel.msg);
         });
     },
     loginFailCall:function(msg){

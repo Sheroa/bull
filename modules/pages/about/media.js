@@ -49,6 +49,10 @@ var insurance = {
 	init:function(){
 		this.sidebar();
 		toolbar.init();
+		this.media_list_show();
+	},
+
+	media_list_show:function(){
 		//新闻列表
 		api.call('/api/news/queryNewsMedia',filter,function(data){
 			var cache_data = artTemplate.compile(__inline("./media/list.tmpl"))(data);
@@ -99,4 +103,5 @@ var insurance = {
 	}
 }
 
+window.getlist = insurance.media_list_show;
 insurance.init();

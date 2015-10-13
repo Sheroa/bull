@@ -23,14 +23,13 @@ var toolbar={
 					'<ul>'+
 						'<li class="ti"><a href="/my/personCenter.html">欢迎您，'+K.phone_num_map(user_info.loginName)+'</a></li>'+
 						'<li><a href="/my/refund/recharge.html" class="login1">充值</a></li>'+
-						'<li><a href="/my/refund/withdrawCash.html" class="login2">提现</a></li>'+
+						'<li><a href="javascript:void(0)" data-type="withdrawCash" class="login2">提现</a></li>'+
 						'<li><a href="/my/account/systemMsg.html" class="login3">消息提醒</a><a href="/my/account/systemMsg.html" class="msg-num">'+msg_none+'</a></li>'+
 						'<li><a href="javascript:void(0)" id="logout" class="login4">退出登录</a></li>'+
 					'</ul>'
 				$('#ydl').html(_html).removeClass('hide');
 				self.event_handler();
 			});
-
 		}else{
 			//跳转到登陆页面	
 			if(location.href.indexOf('my') > 0 ){

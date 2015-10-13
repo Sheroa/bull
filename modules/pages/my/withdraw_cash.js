@@ -147,19 +147,43 @@
 		// });
 
 		//密码输入框
-		$(".bank-pwd").find("input").each(function(index, el) {
-			var _this = $(el);
-			_this.on("keyup",function(event){
-				var self = $(this);
+		$(".bank-pwd").each(function(index, el) {
+			$(el).find("input").each(function(index, el) {
+				var _this = $(el);
+				_this.on("keyup",function(event){
+					var self = $(this),
+						code = event.which;
 
-				if(event.which == 8){
-					self.text("");
-					self.prev().focus();
-				}else{
-					self.next().focus();
-				}
-			});
-		});	
+					if(code == 8){
+						self.text("");
+						self.prev().focus();
+					}else{
+						//48-50 
+						if(!((code>=48 && code<=57)||(code>=96 && code<=105))){
+							self.val("");
+							return false;
+						}
+						if(self.val()){
+							self.next().focus();
+						}
+						
+					}
+				});
+			});	
+		});
+
+		//输入金额不能超过账户余额
+		$(".money").on("input propertychange",function(){
+			var _this = $(this),
+				ableBalanceAmount = _this.parents("div").find(".ableBalanceAmount").text().replace("￥",""),
+				error_msg = _this.parents("div").find(".error-msg");
+			if(parseFloat(_this.val()) > parseFloat(ableBalanceAmount)){
+				error_msg.text("输入金额超过上限,请重新输入");
+				return false;
+			}
+
+			error_msg.text("");
+		});
 
 		//提现		
 		$("#withdraw").on("click",function(){

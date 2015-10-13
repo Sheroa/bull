@@ -154,29 +154,21 @@ var $ = require('jquery'),
  				'smsCode':$.trim(verify_code.val()),
  				'referrer':$.trim($("#recommand_person").val())
  			});
- 			$.ajax({
- 				url: '/api/user/register',
- 				type: 'post',
- 				data: data_transport,
- 				success:function(_rel){
 
- 					if(_rel.code == 0){
- 						//注册成功
-	 					login_info = _rel.data.result;
-	 					passport.saveLoginInfo(login_info);
+ 			api.call('/api/user/register',data_transport,function(_rel){
+				//注册成功
+				login_info = _rel.result;
+				passport.saveLoginInfo(login_info);
 
-			 			//将第三步手机编译显示
-			 			$("#phone_map").text(K.phone_num_map(phone_number));
+				//将第三步手机编译显示
+				$("#phone_map").text(K.phone_num_map(phone_number));
 
-			 			//第二步成功  进入第三步
-					 	$(".contTwo").addClass('hide');
-					 	$(".contThree").removeClass("hide");
-					 	$(".stepTwo").removeClass('stepTwo').addClass('stepThree');	
- 					}else{
- 						//显示错误信息
- 						error_msg.html("<em>"+_rel.msg+"</em>");
- 					}
- 				}
+				//第二步成功  进入第三步
+				$(".contTwo").addClass('hide');
+				$(".contThree").removeClass("hide");
+				$(".stepTwo").removeClass('stepTwo').addClass('stepThree');	
+ 			},function(_rel){
+ 				error_msg.html("<em>"+_rel.msg+"</em>");
  			});
  			
  		});
@@ -291,18 +283,26 @@ var $ = require('jquery'),
 			$(el).find("input").each(function(index, el) {
 				var _this = $(el);
 				_this.on("keyup",function(event){
-					var self = $(this);
+					var self = $(this),
+						code = event.which;
 
-					if(event.which == 8){
+					if(code == 8){
 						self.text("");
 						self.prev().focus();
 					}else{
-						self.next().focus();
+						//48-50 
+						if(!((code>=48 && code<=57)||(code>=96 && code<=105))){
+							self.val("");
+							return false;
+						}
+						if(self.val()){
+							self.next().focus();
+						}
+						
 					}
 				});
 			});	
 		});
-
 
  		//第三部-设置
  		$(".set_btn").on("click",function(){
@@ -379,17 +379,11 @@ var $ = require('jquery'),
  		$.extend(data_transport,{
  			'mobile': phone_num
  		});
- 		$.ajax({
- 			url: '/api/user/sendSmsCodeByRegister',
- 			type: 'post',
- 			data: data_transport,
- 			success:function(result){
- 				if(result.code == 0){
- 					$("#identify_code").html("验证码已发至手机"+phone_num);
- 				}else{
- 					$("#identify_code").html("<em>验证码发送失败</em>");
- 				}
- 			}
+
+ 		api.call('/api/user/sendSmsCodeByRegister',data_transport,function(_rel){
+ 			$("#identify_code").html("验证码已发至手机"+phone_num);
+ 		},function(_rel){
+ 			$("#identify_code").html("<em>验证码发送失败</em>");
  		});
  	}
  }
