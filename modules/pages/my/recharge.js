@@ -78,6 +78,9 @@ var recharge = {
  				//用户已经绑定了银行卡，此时应该进入recharge2.html
  				$(".bank-icbc .border-pad").html(require('./bank_card_info').show(_rel));
 
+ 				//同时在二次充值btn上绑定支付方式
+ 				$("#recharge-2").attr("payType",_rel.result.provider);
+
  				self.event_handler_bind();
 
  			}else{
@@ -385,9 +388,19 @@ var recharge = {
 	 				},function(_rel){
 	 					var result = _rel.result,
 	 						payUrl = result.payUrl,
-	 						req_data = result.payParaMap.req_data;
-						$("body").append('<form id="pay_now" action="'+payUrl+'" method="'+result.method+'"><input name="req_data" id="req_data"/></form>');
-						$("#req_data").val(req_data);
+	 						// req_data = result.payParaMap.req_data;
+	 						req_data = result.payParaMap;
+						
+						var buf = [];
+						buf.push('<form id="pay_now" action="'+payUrl+'" method="'+result.method+'">');
+						//<input name="payParaMap" id="req_data"/>
+						$.each(req_data, function(index, val) {
+							 /* iterate through array or object */
+							 buf.push('<input name="'+index+'" value="'+val+'"/>');
+						});
+						buf.push('</form>');
+						$("body").append(buf.join(""));
+						// $("#req_data").val(req_data);
 						$("#pay_now").submit();
 	 				},function(_rel){
 	 					error_msg.parents(".operator_box").find('.error-msg').remove();
@@ -517,6 +530,7 @@ var recharge = {
  				actived_div = _this.parents(".border-box"),
  				money = $.trim(actived_div.find(".money").val()),
  				error_msg = actived_div.find('.error-msg'),
+ 				provider = _this.attr("payType"),
  				pwd_array = [];
  			if(_this.hasClass('gray-btn')){
  				return false;
