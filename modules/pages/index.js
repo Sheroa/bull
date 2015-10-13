@@ -35,11 +35,18 @@ var index_page = {
 					fRedeemMoney  = result.fRedeemMoney; //活期宝余额
 				$(".fRedeemMoney").append('<p>剩余金额：<em>'+(fRedeemMoney/10000).toFixed(2)+'</em></p>');
 			});
+			//debugger;
+
 		}else{ //用户未登入
 			login_area.removeClass('login-after');
 			//debugger;
 			login_area.html(self.tpl.login_before());
 			require('./users/login');
+			$(".assure").hover(function(){
+				$(this).next().show();
+			},function(){
+				$(this).next().hide();
+			});
 		}
 
 		//首页新闻列表
