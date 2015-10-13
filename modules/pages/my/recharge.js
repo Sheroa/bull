@@ -521,7 +521,7 @@ var recharge = {
  			if(_this.hasClass('gray-btn')){
  				return false;
  			}
- 			_this.addClass('gray-btn')
+ 			
 
  			$.each(actived_div.find(".bank-pwd").find("input"), function(index, val) {
  				 pwd_array.push($(val).val());
@@ -541,6 +541,7 @@ var recharge = {
  			}
 
  			error_msg.text("");
+ 			_this.addClass('gray-btn');
  			$.extend(sms_obj,{
  				'totalAmount':money*10000,
  				'payPwd':pwd_array.join(""),
