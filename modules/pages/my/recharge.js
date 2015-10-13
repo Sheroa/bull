@@ -396,7 +396,7 @@ var recharge = {
 						//<input name="payParaMap" id="req_data"/>
 						$.each(req_data, function(index, val) {
 							 /* iterate through array or object */
-							 buf.push('<input name="'+index+'" value='+val+'/>');
+							 buf.push('<input name="'+index+'" value='+val+'>');
 						});
 						buf.push('</form>');
 						$("body").append(buf.join(""));
