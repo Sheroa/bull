@@ -135,6 +135,26 @@
  			    		$("#bank-select").change();
  			    	});
 
+		    		//增加身份
+		    		$("#bank_number").on("blur",function(){
+		    			var _this = $(this),
+		    				bank_num = _this.val(),
+		    				error_msg = _this.parents(".cont2").find(".error-msg");
+
+
+		    	 		api.call('/api/payment/getBankCardInfo.do',{
+		    	 			"bankCardNo":bank_num
+		    	 		},function(_rel){
+		    	 			var bank_code = _rel.result.cardInfoData.bank_code;
+		    	 			$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
+		    	 			$("#bank-select").change();
+		    	 		},function(_rel){
+		    	 			$("#bank-select").find("option[data-code='0']").attr("selected",true);
+		    	 			$("#bank-select").change();
+		    	 			error_msg.text("银行卡卡号格式有误，请重新输入");
+		    	 		});
+		    		});
+
  			    	//确认btn
  			    	$(".confirm_btn").on("click",function(){
 
@@ -182,21 +202,36 @@
  			    		error_msg.text("");
 
 
- 			    		//发送ajax请求，修改银行卡
- 			    		api.call('/api/user/improveIdentityInfo.do',{
+    		 			api.call('/api/payment/getBankCardInfo.do',{
+    		 				'bankCardNo':bank_number.val()
+    		 			},function(_rel){
+    		 				var bank_code_rel = _rel.result.bankCodeData.bank_code;
+    		 				if(bank_code_rel != $("#bank-select").find('option:selected').attr('data-code')){
+    		 					//银行于银行卡号不配
+    		 					error_msg.text("银行卡号与银行名称不符");
+    		 				}else{
 
- 			    			'name': true_name,
- 			    			'idCardNo':identify_card,
- 			    			'bankCardNo':bank_card_num,
- 			    			'bankName':$("select[name='bank-select']").find("option:selected").val(),
- 			    			'bankCode':selected_option
+    		 					//发送ajax请求，修改银行卡
+    		 					api.call('/api/user/improveIdentityInfo.do',{
 
- 			    		},function(data){
- 			    			location.reload(true);
- 			    		},function(){
- 			    			//输出错误信息
- 			    			
- 			    		});
+    		 						'name': true_name,
+    		 						'idCardNo':identify_card,
+    		 						'bankCardNo':bank_card_num,
+    		 						'bankName':$("select[name='bank-select']").find("option:selected").val(),
+    		 						'bankCode':selected_option
+
+    		 					},function(data){
+    		 						location.reload(true);
+    		 					},function(){
+    		 						//输出错误信息
+    		 						
+    		 					});
+
+    		 				}
+    		 			},function(_rel){
+    		 				error_msg.text(_rel.msg);
+    		 			});
+
  			    	});
 
  			    	//银行卡下拉菜单
