@@ -290,7 +290,7 @@ var hqb = {
 						error_msg.text("购买金额100元起！");
 						return false;
 					}else if(purchase_money > 100000){
-						error_msg.text("填写金额超过个人限额！");
+						error_msg.text("超过单笔限额100万！");
 						return false;
 					}
 
@@ -327,7 +327,7 @@ var hqb = {
 					error_msg.text("购买金额100元起！");
 					return false;
 				}else if(purchase_money > 100000){
-					error_msg.text("填写金额超过个人限额！");
+					error_msg.text("超过单笔限额100万");
 					return false;
 				}
 
@@ -360,7 +360,7 @@ var hqb = {
 			
 			//输入金额的限制
 			if(purchase_money > 100000){
-				error_msg.text("填写金额超过个人限额！");
+				error_msg.text("超过单笔限额100万");
 				return false;
 			}
 
@@ -544,7 +544,7 @@ var hqb = {
 			}
 
 			if(parseFloat(purchase_money) > 100000){
-				error_msg.text('填写金额超过个人限额！');
+				error_msg.text('超过单笔限额100万');
 				return false;
 			}
 
