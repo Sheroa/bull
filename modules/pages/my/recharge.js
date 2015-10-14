@@ -383,6 +383,11 @@ var recharge = {
 				user_info = JSON.parse($.cookie("ppinf")),
 				payType = _this.attr("paytype");
 
+			if(_this.hasClass('gray-btn')){
+				return false;
+			}
+			
+
  			if(payType == "lian_lian"){
 
  				//连连
@@ -396,7 +401,7 @@ var recharge = {
  				}
 
  				error_msg.text("");
-
+ 				_this.addClass('gray-btn');
 				api.call('/api/payment/directPay.do',{
 					'name':user_info.name,
 					'idCardNo':$.trim($("#id_number").val()),
