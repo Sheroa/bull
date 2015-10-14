@@ -85,6 +85,15 @@ var manage = {
 			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn confirm">确定</a></p>');
 			buf.push('</div>');
 			return buf.join("");
+		},
+		set_success_pay_pwd:function(){
+			var buf = [];
+			buf.push('<p class="ti">设置成功<a href="#" class="quit"></a></p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p>交易密码设置成功</p>');
+			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn confirm">确定</a></p>');
+			buf.push('</div>');
+			return buf.join("");
 		}
 	},
 	event_handler:function(){
@@ -528,7 +537,21 @@ var manage = {
 					},function(_rel){
 						var result = _rel.result;
 						if(result){
-							K.gotohref("/my/account/manage.html");
+							$.Dialogs({
+								"id": "diglog_wrapper",
+								"overlay": true,
+								"cls": "dialog-wrapper popbox-bankrank outter",
+								"closebtn": ".quit,span.close",
+								"auto": false,
+								"msg": self.tpl.set_success_pay_pwd(),
+								"openfun":function(){
+									//确定
+									$(".confirm").on("click",function(){
+										K.gotohref("/my/account/manage.html");
+									});
+								}
+							});
+							// K.gotohref("/my/account/manage.html");
 						}
 					},function(_rel){
 						error_msg.html(_rel.msg);
