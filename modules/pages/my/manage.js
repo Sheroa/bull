@@ -399,7 +399,7 @@ var manage = {
 							"openfun":function(){
 								//确定
 								$(".confirm").on("click",function(){
-									location.reload(true);
+									K.gotohref("/my/account/manage.html");
 								});
 							}
 						});
@@ -528,7 +528,7 @@ var manage = {
 					},function(_rel){
 						var result = _rel.result;
 						if(result){
-							location.reload(true);
+							K.gotohref("/my/account/manage.html");
 						}
 					},function(_rel){
 						error_msg.html(_rel.msg);
@@ -633,7 +633,7 @@ var manage = {
 											"openfun":function(){
 												//确定
 												$(".confirm").on("click",function(){
-													location.reload(true);
+													K.gotohref("/my/account/manage.html");
 												});
 											}
 										});
@@ -760,7 +760,7 @@ var manage = {
 										'smsCode':_rel.result
 
 									},function(_rel){
-										location.reload(true);
+										K.gotohref("/my/account/manage.html");
 									},function(_rel){
 										error_msg.html(_rel.msg);
 									});
