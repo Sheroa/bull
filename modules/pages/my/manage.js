@@ -94,6 +94,15 @@ var manage = {
 			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn confirm">确定</a></p>');
 			buf.push('</div>');
 			return buf.join("");
+		},
+		modify_success_identify:function(){
+			var buf = [];
+			buf.push('<p class="ti">修改成功<a href="#" class="quit"></a></p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p>身份信息修改成功</p>');
+			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn confirm">确定</a></p>');
+			buf.push('</div>');
+			return buf.join("");
 		}
 	},
 	event_handler:function(){
@@ -236,7 +245,7 @@ var manage = {
 
 				//每一次选中银行，触发一次事件-修改后面图片
 				if(bank_alias == 0){
-					img.attr('src','')
+					img.attr('src','/static/img/bank/back-logo.png')
 				}else{
 					img.attr('src','/static/img/bank/'+bank_alias+".png")
 				}
@@ -307,7 +316,7 @@ var manage = {
 				// 	'name':$.trim(true_name.val()),
 				// 	'idCardNo':$.trim(id_number.val())
 				// },function(_rel){
-				// 	console.log("成功");
+				// 	console.log("成功"); 18101358213
 				// })
 				//验证通过-发送ajax				
 				api.call('/api/user/improveIdentityInfo.do',{
@@ -318,7 +327,20 @@ var manage = {
 					'bankCode':$('#bank-select').find('option:selected').attr('data-code')
 				},function(_rel){
 					// location.reload(true);
-					K.gotohref("/my/account/manage.html");
+					$.Dialogs({
+						"id": "diglog_wrapper",
+						"overlay": true,
+						"cls": "dialog-wrapper popbox-bankrank outter",
+						"closebtn": ".quit,span.close",
+						"auto": false,
+						"msg": self.tpl.modify_success_identify(),
+						"openfun":function(){
+							//确定
+							$(".confirm").on("click",function(){
+								K.gotohref("/my/account/manage.html");
+							});
+						}
+					});
 				},function(_rel){
 					error_msg.text(_rel.msg);
 				});
