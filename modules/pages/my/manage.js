@@ -19,11 +19,6 @@ var manage = {
 		navBar.init(index);
 		sidebar.init();
 		this.event_handler();
-
-		if(url.d){
-			$("#modifyPayPwd").trigger("click");
-		}
-
 	},
 	tpl:{
 		identify_step1:function(){
@@ -286,6 +281,7 @@ var manage = {
 				animate_obj.slideUp();
 			})
 		});
+	
 		//修改用户密码
 		$("#modify_pwd").on("click",function(){
 			var _this = $(this),
@@ -405,6 +401,12 @@ var manage = {
 				verifypwd_btn.find("a").remove();
 				verifypwd_btn.append('<a href="javascript:void(0);" class="light-btn" id="immidate_set"><em>立即设置</em></a>');
 			}
+
+			var url = K.getParm();
+			if(url.d){
+				$("#modifyPayPwd").trigger("click");
+			}
+
 		});
 
 		//立刻设置交易密码
