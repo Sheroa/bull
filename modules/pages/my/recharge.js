@@ -355,6 +355,19 @@ var recharge = {
  			});
  		}
 
+ 		$(".money").on("input propertychange",function(){
+ 			var _this = $(this),
+ 				money = _this.val(),
+ 				error_msg = _this.parents(".operator_box").find(".error-msg");
+
+ 			if(money > 1000000){
+ 				error_msg.text("充值金额不能超过100万");
+ 				return false;
+ 			}
+
+ 			error_msg.text("");
+ 		});
+
  		$("#recharge").on("click",function(){
  			var _this = $(this),
  				sms_code = _this.parents("div").find(".shortOne"),
@@ -370,6 +383,10 @@ var recharge = {
  				//连连
  				if(!money){
  					error_msg.text("请输入充值金额");
+ 					return false;
+ 				}
+ 				if(money > 1000000){
+ 					error_msg.text("充值金额不能超过100万");
  					return false;
  				}
 
@@ -423,6 +440,11 @@ var recharge = {
 
  				if(!money){
  					error_msg.text("请输入充值金额");
+ 					return false;
+ 				}
+
+ 				if(money > 1000000){
+ 					error_msg.text("充值金额不能超过100万");
  					return false;
  				}
 
@@ -526,6 +548,19 @@ var recharge = {
  			});	
  		});
 
+ 		$(".money").on("input propertychange",function(){
+ 			var _this = $(this),
+ 				money = _this.val(),
+ 				error_msg = _this.parents(".border-box").find(".error-msg");
+
+ 			if(money > 1000000){
+ 				error_msg.text("充值金额不能超过100万");
+ 				return false;
+ 			}
+
+ 			error_msg.text("");
+ 		});
+
  		//二次充值页面-点击充值Btn
  		$("#recharge-2").on("click",function(){
  			var _this = $(this),
@@ -550,6 +585,12 @@ var recharge = {
  				error_msg.text("请输入购买金额");
  				return false;
  			}
+
+ 			if(money > 1000000){
+ 				error_msg.text("充值金额不能超过100万");
+ 				return false;
+ 			}
+
  			//校验密码
  			if(pwd_array.join("").length < 6){
  				error_msg.text("请输入交易密码");
