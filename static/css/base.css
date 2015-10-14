@@ -111,9 +111,9 @@ span.p-ti{color:#373737;}
 .login-area{width:270px;height: 221px;float:right;margin-top:65px;background: #fff;padding:30px 15px;position: relative;}
 .login-area .textField{width:266px;border-top:2px solid;border-left:2px solid;border-right:2px solid;border-bottom:4px solid #e67334;margin:9px 0;padding:0;position: relative;text-align: left;}
 .login-area .textField span{width:19px;height:17px;margin:0 10px;display: inline-block;vertical-align: middle;background: url(/static/img/profile.png) no-repeat;}
-.login-area .textField span.pwd{background:url(/static/img/lock.png) no-repeat;}
+.login-area .textField span.pwd{background:url(/static/img/lock.png) no-repeat center center;}
 .login-area .textField a.visible{display: inline-block;background: url(/static/img/eye.png) no-repeat;width:23px;height:15px;position:absolute;top:10px;right: 5px;}
-.login-area .textField input{width:210px;height:36px;border:none;vertical-align:middle;line-height:38px;padding: 0 8px;margin:0;}
+.login-area .textField input{width:210px;height:35px;border:none;vertical-align:middle;line-height:37px;padding: 0 8px;margin:0;}
 .login-area .textField input#userPass{width:180px;}
 .login-area .textField input#userPass::-ms-reveal{display: none;}
 .login-area p.remember{overflow: hidden;line-height: 20px;margin-bottom: 5px;font-size:12px;text-align: right;}
@@ -303,8 +303,8 @@ a.app2:hover{background: url(/static/img/android2.jpg) no-repeat;}
 .popbox-bankrank2 .diginfo .cont3 p.buy-ok a{color:#f27835;text-decoration: underline;}
 .popbox-bankrank2 .diginfo .cont3 p a.light-btn{width:201px;display: inline-block;line-height: 32px;height: 32px;margin-top: 20px;}
 
-.bank-pwd{display: inline-block;border-top:2px solid #919191;border-left:2px solid #919191;border-bottom:2px solid #919191;border-right: 1px solid #919191;}
-.bank-pwd input{width:27px !important;height: 28px;border-top:none;border-left:none;border-bottom:none;border-right: 1px solid #919191;text-align: center;}
+.bank-pwd{display: inline-block;border-top:2px solid #919191;border-left:1px solid #919191;border-bottom:2px solid #919191;border-right: 2px solid #919191;}
+.bank-pwd input{width:27px !important;height: 28px;border-top:none;border-right:none;border-bottom:none;border-left: 1px solid #919191;text-align: center;}
 
 .redbag{background: url(/static/img/redbag.png) no-repeat right bottom #f27835;position: relative;}
 .redbag{width: 245px;height: 53px;display: inline-block;padding:20px;margin-bottom: 20px;} 
