@@ -231,8 +231,8 @@ var hqb = {
 			var buf = [];
 			buf.push('<p class="ti">购买成功<a href="#" class="quit"></a></p>');
 			buf.push('<div class="cont3">');
-			buf.push('<p class="buy-ok">尊敬的用户，您已成功购买天添牛{{#ttn_type}}期{{#money}}元，<br>可进入<a href="/my/invest.html">个人中心-我的投资</a>栏目查看详情。<br>多谢您的支持，祝您投资愉快！</p>');
-			buf.push('<p><a href="/my/invest.html" class="light-btn">查看详情</a></p>');
+			buf.push('<p class="buy-ok">尊敬的用户，您已成功购买天添牛{{#ttn_type}}期{{#money}}元，<br>可进入<a href="/my/invest.html?a=1">个人中心-我的投资</a>栏目查看详情。<br>多谢您的支持，祝您投资愉快！</p>');
+			buf.push('<p><a href="/my/invest.html?a=1" class="light-btn">查看详情</a></p>');
 			buf.push('</div>');
 			return buf.join("");
 		}

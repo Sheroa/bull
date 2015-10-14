@@ -325,7 +325,7 @@ $.extend(Keeper,{
 				params = {};
 			if (parms && parms.indexOf("&")) {
 				var parmList = parms.split("&");
-				jQuery.each(parmList, function(key, val) {
+				$.each(parmList, function(key, val) {
 					if (val && val.indexOf("=")) {
 						var parmarr = val.split("=");
 						if ($.type(o) == "string" && o == parmarr[0]) {
