@@ -65,7 +65,7 @@ var invest = {
 			var buf = [];
 			buf.push('<p class="ti">赎回操作<a href="#" class="quit"></a></p>');
 			buf.push('<div class="cont3">');
-			buf.push('<p style="padding-left:32px;"><span class="p-ti">可赎回余额</span><input type="text" readonly="readonly" id="redemption_money" placeholder="{{#redemption_money}}元"></p>');
+			buf.push('<p style="padding-left:32px;"><span class="p-ti">可赎回余额</span><i id="redemption_money">{{#redemption_money}}元</i></p>');
 			buf.push('<p style="padding-left:32px;"><span class="p-ti">赎回金额</span><input type="number" id="redemption_money_input" placeholder="最低100元起"></p>');
 			buf.push('<p style="padding-left:32px;"><span class="p-ti">交易密码</span><span class="bank-pwd"><input maxlength="1" type="password"><input maxlength="1" type="password"><input  maxlength="1" type="password"><input maxlength="1" type="password"><input maxlength="1" type="password"><input maxlength="1" type="password"></span></p>');
 			buf.push('<p class="sub-text"><span>请输入6位字交易密码</span><a href="/users/find_pwd.html" class="forget-pwd">忘记密码</a></p>');

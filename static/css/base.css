@@ -277,6 +277,7 @@ a.app2:hover{background: url(/static/img/android2.jpg) no-repeat;}
 .popbox-bankrank .diginfo .cont2 p input{width:216px;}
 .popbox-bankrank .diginfo .cont3{padding:25px 0 45px 0;}
 .popbox-bankrank .diginfo .cont3 input{width:216px;}
+.popbox-bankrank .diginfo .cont3 p i{font-style: normal;}
 .popbox-bankrank .diginfo .cont3 p{text-align: left;padding-left:115px;margin-top: 20px;font-size:14px;}
 .popbox-bankrank .diginfo .cont3 h6{text-align: left;}
 .popbox-bankrank .diginfo .cont3 p.sub-text{margin-top: 0;}
@@ -303,7 +304,7 @@ a.app2:hover{background: url(/static/img/android2.jpg) no-repeat;}
 .popbox-bankrank2 .diginfo .cont3 p a.light-btn{width:201px;display: inline-block;line-height: 32px;height: 32px;margin-top: 20px;}
 
 .bank-pwd{display: inline-block;border-top:2px solid #919191;border-left:2px solid #919191;border-bottom:2px solid #919191;border-right: 1px solid #919191;}
-.bank-pwd input{width:27px !important;height: 28px;border:none;border-right: 1px solid #919191;text-align: center;}
+.bank-pwd input{width:27px !important;height: 28px;border-top:none;border-left:none;border-bottom:none;border-right: 1px solid #919191;text-align: center;}
 
 .redbag{background: url(/static/img/redbag.png) no-repeat right bottom #f27835;position: relative;}
 .redbag{width: 245px;height: 53px;display: inline-block;padding:20px;margin-bottom: 20px;} 
