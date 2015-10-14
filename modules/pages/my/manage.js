@@ -148,7 +148,7 @@ var manage = {
 						identify_title.addClass('cont2').html('成功充值任意金额方可认证身份证信息（<em>已填写</em>）');
 						identify_btn.find("a").remove();
 						identify_btn.append('<a href="javascript:void(0);" class="light-btn"><em id = "modify" data-code="'+bankCode+'">修改</em></a>');
-						identify_btn.append('<a href="/my/refund/recharge.html" class="light-btn">充值</a>');
+						identify_btn.append('<a href="javascript:void(0)" class="light-btn recharge_btn">充值</a>');
 
 						identify_content.html(K.ParseTpl(self.tpl.identify_step1(),user_info));
 						
@@ -157,6 +157,26 @@ var manage = {
 						identify_btn.find("a").remove();
 						identify_content.remove();
 					}
+
+						//增加身份
+						$("#bank_number").on("blur",function(){
+							var _this = $(this),
+								bank_num = _this.val(),
+								error_msg = _this.parents(".sub-msg").find(".error-msg");
+
+
+					 		api.call('/api/payment/getBankCardInfo.do',{
+					 			"bankCardNo":bank_num
+					 		},function(_rel){
+					 			var bank_code = _rel.result.cardInfoData.bank_code;
+					 			$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
+					 			$("#bank-select").change();
+					 		},function(_rel){
+					 			$("#bank-select").find("option[data-code='0']").attr("selected",true);
+					 			$("#bank-select").change();
+					 			error_msg.text("银行卡卡号格式有误，请重新输入");
+					 		});
+						});
 				})
 			}else{ //没有完成身份信息
 				identify_btn.addClass('need-write');
@@ -164,7 +184,27 @@ var manage = {
 				identify_btn.find("a").remove();
 				identify_btn.append('<a href="javascript:void(0);" class="light-btn"><em id="modify">立即填写</em></a>');
 				identify_content.html(K.ParseTpl(self.tpl.identify_step1(),user_info));
+					//增加身份
+					$("#bank_number").on("blur",function(){
+						var _this = $(this),
+							bank_num = _this.val(),
+							error_msg = _this.parents(".sub-msg").find(".error-msg");
+
+
+				 		api.call('/api/payment/getBankCardInfo.do',{
+				 			"bankCardNo":bank_num
+				 		},function(_rel){
+				 			var bank_code = _rel.result.cardInfoData.bank_code;
+				 			$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
+				 			$("#bank-select").change();
+				 		},function(_rel){
+				 			$("#bank-select").find("option[data-code='0']").attr("selected",true);
+				 			$("#bank-select").change();
+				 			error_msg.text("银行卡卡号格式有误，请重新输入");
+				 		});
+					});
 			}
+
 		});
 
 

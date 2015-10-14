@@ -145,15 +145,12 @@ var recharge = {
  		});
  		
  		api.call('/api/payment/getBankCardInfo.do',data_transport,function(_rel){
-			if(_rel.code == 0){
-				var bank_code = _rel.data.result.cardInfoData.bank_code;
-				$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
-				$("#bank-select").change();
-			}else{
-				$("#bank-select").find("option[data-code='0']").attr("selected",true);
-				$("#bank-select").change();
-			}
+			var bank_code = _rel.result.cardInfoData.bank_code;
+			$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
+			$("#bank-select").change();
  		},function(_rel){
+ 			$("#bank-select").find("option[data-code='0']").attr("selected",true);
+ 			$("#bank-select").change();
  			var error_msg = $("#binding").find(".error-msg").eq(0);
  			error_msg.text("银行卡卡号格式有误，请重新输入");
  		});
