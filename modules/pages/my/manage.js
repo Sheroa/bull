@@ -26,8 +26,8 @@ var manage = {
 			buf.push('<p>填写身份证银行信息：</p>');
 			buf.push('<p><span class="p-ti">真实姓名</span><input id="true_name" type="text" value="{{#userName}}"></p>');
 			buf.push('<p><span class="p-ti">身份证号码</span><input id="id_number" type="text" value="{{#identityCard}}"></p>');
-			buf.push('<p><span class="p-ti">选择银行</span><select name="bank-select" id="bank-select"><option data-code="0">请选择银行</option></select><span><img src="/static/img/bank/back-logo.png" alt="" class="bank-logo"></span></p>');
-			buf.push('<p class="no-margin"><span class="p-ti">银行卡号</span><input type="text" id="bank_number" value="{{#bankCardNo}}" placeholder="请输入您本人的借记卡号"></p>');
+			buf.push('<p><span class="p-ti">银行卡号</span><input type="text" id="bank_number" value="{{#bankCardNo}}" placeholder="请输入您本人的借记卡号"></p>');
+			buf.push('<p class="no-margin"><span class="p-ti">选择银行</span><select name="bank-select" id="bank-select"><option data-code="0">请选择银行</option></select><span><img src="/static/img/bank/back-logo.png" alt="" class="bank-logo"></span></p>');
 			buf.push('<p class="error-msg"></p>');
 			buf.push('<p class="btn-line2"><a href="javascript:void(0);" class="gray-btn cancel_btn">取消</a><a href="javascript:void(0);" class="light-btn confirm_btn">确认</a></p>');
 			return buf.join("");
