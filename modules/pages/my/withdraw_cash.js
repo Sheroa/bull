@@ -53,7 +53,7 @@
 			api.call('/api/account/getUserAsset.do',{},function(_data){
 				 var ableBalanceAmount = (_data.result.ableBalanceAmount/10000).toFixed(2);
 				 $(".ableBalanceAmount").text("￥"+ableBalanceAmount);
-				 $(".money").attr("placeholder","本次可提取"+ableBalanceAmount+"元");
+				 $(".money").attr("placeholder","本次可提取"+(ableBalanceAmount-2)+"元");
 
 				 var userOutFee = _rel.result.userOutFee,
 				 	limitTimes = userOutFee.limitTimes,
