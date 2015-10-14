@@ -10,7 +10,7 @@ var toolbar = require('util/toolbar_pp'),
 
 require('util/extend_fn');
 require('ui/dialog/dialog');
-
+require("ui/radialIndicator");
 
 var hqb = {
 	init:function(){
@@ -20,7 +20,15 @@ var hqb = {
 		navBar.init(index);
 		toolbar.init();
 		sidebar.init();
-		self.event_handler();
+		self.event_handler();	
+		$('#indicatorContainer').radialIndicator({
+	        barColor: '#f27835',
+	        barWidth: 8,
+	        initValue: 100,
+	        radius:60,
+	        roundCorner : true,
+	        percentage: true
+    	});
 	},
 	event_handler:function(){
 

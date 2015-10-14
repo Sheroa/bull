@@ -27,19 +27,24 @@ var index_page = {
 			var str = self.tpl.login_success();
 			login_area.html(str.replace(/\{\{.+\}\}/,K.phone_num_map(phone_num)));
 
-			//首页-活期宝-剩余金额
-			api.call('/api/product/current/assetQuery.do',{
-
-			},function(_rel){
+			//首页-活期宝-剩余金额		
+			api.call('/api/product/current/queryProductInfo',{},function(_rel){
 				var result = _rel.result,
-					fRedeemMoney  = result.fRedeemMoney; //活期宝余额
-				$(".fRedeemMoney").append('<p>剩余金额：<em>'+(fRedeemMoney/10000).toFixed(2)+'</em></p>');
+					remaMoney = result.remaMoney;				
+				$(".fRedeemMoney").append('<p>剩余金额：<em>'+(remaMoney/10000).toFixed(2)+'</em></p>');
 			});
+			//debugger;
+
 		}else{ //用户未登入
 			login_area.removeClass('login-after');
 			//debugger;
 			login_area.html(self.tpl.login_before());
 			require('./users/login');
+			$(".assure").hover(function(){
+				$(this).next().show();
+			},function(){
+				$(this).next().hide();
+			});
 		}
 
 		//首页新闻列表

@@ -52,11 +52,11 @@ var index_page = {
 			var render_data = _rel.result;
 			$.extend(render_data,user_info);
 
-			for(var i in render_data){
-				if(typeof render_data[i] == "number" && render_data[i] >= 10000000){
-					render_data[i] = (render_data[i]/10000).toFixed(2);
-				}
-			}
+			// for(var i in render_data){
+			// 	if(typeof render_data[i] == "number" && render_data[i] >= 10000000){
+			// 		render_data[i] = (render_data[i]/10000).toFixed(2);
+			// 	}
+			// }
 			var _html = artTemplate.compile(__inline("./person_center/profile.tmpl"))(render_data);
 			$("#profile").html(_html);
 		},function(_rel){
