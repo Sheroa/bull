@@ -38,7 +38,7 @@ var hqb = {
 		},
 		ydl:function(){
 			var buf = [];
-			buf.push('<p><span class="p-ti">账户余额</span><span class="num ableBalanceAmount">￥{{#ableBalanceAmount}}</span><a href="/my/refund/recharge.html" class="recharge">[充值]</a></p>');
+			buf.push('<p><span class="p-ti">账户余额</span><span class="num ableBalanceAmount">￥{{#ableBalanceAmount}}</span><a href="javascript:void(0)" class="recharge recharge_btn">[充值]</a></p>');
 			buf.push('<p style="margin-bottom:5px;"><span class="p-ti">购买金额</span><input id="purchase_money" type="number" placeholder="100元起购"></p>');
 			buf.push('<p class="error-msg"></p>');
 			buf.push('<p><span class="p-ti">使用红包</span><select name="redbag-select" class="redbag-select" id="redbag-select"></select><a href="javascript:void(0);" id="red_paper_detail" class="redDetail">详情</a></p>');

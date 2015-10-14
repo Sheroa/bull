@@ -405,6 +405,7 @@ var manage = {
 			var url = K.getParm();
 			if(url.d){
 				$("#modifyPayPwd").trigger("click");
+				$("#immidate_set").trigger("click");
 			}
 
 		});

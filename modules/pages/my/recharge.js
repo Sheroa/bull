@@ -392,39 +392,37 @@ var recharge = {
 
  				error_msg.text("");
 
- 				verifyPayPwd(function(){
-	 				api.call('/api/payment/directPay.do',{
-	 					'name':user_info.name,
-	 					'idCardNo':$.trim($("#id_number").val()),
-	 					'mobile':user_info.loginName,
-	 					'totalAmount':money*10000,
-	 					'bankCardNo':$.trim($("#bank_number").val()),
-	 					'bankCode':$("#bank-select").find("option:selected").attr("data-code"),
-	 					"payMethod":'standard',
-	 					'payType':'card_front',
-	 					'returnUrl':'/my/refund/record.html',
-	 					'itemName':'充值金额多少元'
-	 				},function(_rel){
-	 					var result = _rel.result,
-	 						payUrl = result.payUrl,
-	 						// req_data = result.payParaMap.req_data;
-	 						req_data = result.payParaMap;
-						
-						var buf = [];
-						buf.push('<form id="pay_now" action="'+payUrl+'" method="'+result.method+'">');
-						//<input name="payParaMap" id="req_data"/>
-						$.each(req_data, function(index, val) {
-							 /* iterate through array or object */
-							 buf.push('<input name="'+index+'" value='+val+'>');
-						});
-						buf.push('</form>');
-						$("body").append(buf.join(""));
-						// $("#req_data").val(req_data);
-						$("#pay_now").submit();
-	 				},function(_rel){
-	 					error_msg.parents(".operator_box").find('.error-msg').remove();
-	 				});
- 				});
+				api.call('/api/payment/directPay.do',{
+					'name':user_info.name,
+					'idCardNo':$.trim($("#id_number").val()),
+					'mobile':user_info.loginName,
+					'totalAmount':money*10000,
+					'bankCardNo':$.trim($("#bank_number").val()),
+					'bankCode':$("#bank-select").find("option:selected").attr("data-code"),
+					"payMethod":'standard',
+					'payType':'card_front',
+					'returnUrl':'/my/refund/record.html',
+					'itemName':'充值金额多少元'
+				},function(_rel){
+					var result = _rel.result,
+						payUrl = result.payUrl,
+						// req_data = result.payParaMap.req_data;
+						req_data = result.payParaMap;
+				
+				var buf = [];
+				buf.push('<form id="pay_now" action="'+payUrl+'" method="'+result.method+'">');
+				//<input name="payParaMap" id="req_data"/>
+				$.each(req_data, function(index, val) {
+					 /* iterate through array or object */
+					 buf.push('<input name="'+index+'" value='+val+'>');
+				});
+				buf.push('</form>');
+				$("body").append(buf.join(""));
+				// $("#req_data").val(req_data);
+				$("#pay_now").submit();
+				},function(_rel){
+					error_msg.parents(".operator_box").find('.error-msg').remove();
+				});
  			}else{
  				//快钱
  				
@@ -455,40 +453,38 @@ var recharge = {
 
  				error_msg.text("");
 
- 				verifyPayPwd(function(){
- 					$.extend(temp_data,{
- 						'validCode':$.trim(sms_code.val()),
- 						'inRecordNo':order_id
- 					});
- 					if(_this.hasClass('gray-btn')){
- 						return false;
- 					}
- 					_this.addClass('gray-btn');
- 					api.call("/api/payment/firstBindCardPay.do",temp_data,function(_rel){
- 						var result = _rel.result;
- 						if(result){
- 							//充值成功
- 							_this.removeClass('gray-btn');
- 							$.Dialogs({
- 							    "id" : "diglog_wrapper",
- 							    "overlay" : true,
- 							    "cls" : "dialog-wrapper popbox-bankrank2",
- 							    "closebtn" : ".quit,span.close",
- 							    "auto" : false,
- 							    "msg" :self.tpl.success(),
- 							    openfun : function () {
- 							    	_this.removeClass('gray-btn');
- 							    	window.timer = setTimeout(function(){
- 							    		K.gotohref("/my/refund/record.html");
- 							    		clearTimeout(timer);
- 							    	},3000);
- 							    }
- 							});
- 						}
- 					},function(_rel){
- 						error_msg.text(_rel.msg);
+ 				$.extend(temp_data,{
+ 					'validCode':$.trim(sms_code.val()),
+ 					'inRecordNo':order_id
+ 				});
+ 				if(_this.hasClass('gray-btn')){
+ 					return false;
+ 				}
+ 				_this.addClass('gray-btn');
+ 				api.call("/api/payment/firstBindCardPay.do",temp_data,function(_rel){
+ 					var result = _rel.result;
+ 					if(result){
+ 						//充值成功
  						_this.removeClass('gray-btn');
- 					});
+ 						$.Dialogs({
+ 						    "id" : "diglog_wrapper",
+ 						    "overlay" : true,
+ 						    "cls" : "dialog-wrapper popbox-bankrank2",
+ 						    "closebtn" : ".quit,span.close",
+ 						    "auto" : false,
+ 						    "msg" :self.tpl.success(),
+ 						    openfun : function () {
+ 						    	_this.removeClass('gray-btn');
+ 						    	window.timer = setTimeout(function(){
+ 						    		K.gotohref("/my/refund/record.html");
+ 						    		clearTimeout(timer);
+ 						    	},3000);
+ 						    }
+ 						});
+ 					}
+ 				},function(_rel){
+ 					error_msg.text(_rel.msg);
+ 					_this.removeClass('gray-btn');
  				});
  			}
 

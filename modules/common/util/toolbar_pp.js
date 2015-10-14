@@ -22,7 +22,7 @@ var toolbar={
 				var _html =  '<p class="name-msg"><a href="/my/account/systemMsg.html" class="name">'+K.phone_num_map(user_info.loginName)+'</a><a href="/my/account/systemMsg.html" class="msg-num">'+msg_none+'</a></p>'+
 					'<ul>'+
 						'<li class="ti"><a href="/my/personCenter.html">欢迎您，'+K.phone_num_map(user_info.loginName)+'</a></li>'+
-						'<li><a href="/my/refund/recharge.html" class="login1">充值</a></li>'+
+						'<li><a href="javascript:void(0)" class="login1 recharge_btn">充值</a></li>'+
 						'<li><a href="javascript:void(0)" data-type="withdrawCash" class="login2">提现</a></li>'+
 						'<li><a href="/my/account/systemMsg.html" class="login3">消息提醒</a><a href="/my/account/systemMsg.html" class="msg-num">'+msg_none+'</a></li>'+
 						'<li><a href="javascript:void(0)" id="logout" class="login4">退出登录</a></li>'+
@@ -38,9 +38,46 @@ var toolbar={
 		}
 		
 	},
+	tpl:{
+		setPaypwd:function(){
+			var buf = [];
+			buf.push('<p class="ti">设置交易密码</p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p class="buy-ok">为保障资金安全，请先设置交易密码，<br>3秒后自动跳转到交易密码设置页面。<br><a href="/my/account/manage.html?d=1">点击直接跳转</a></p>');
+			buf.push('</div>');
+			return buf.join("");
+		}
+	},
 	event_handler:function(){
 		$("#logout").on("click",function(){
 			passport.doLogout();
+		});
+
+		//充值设置交易密码
+		var self = this;
+		$(document).on("click",".recharge_btn",function(){
+			api.call('/api/user/verifyPayPwdState.do',{
+
+			},function(_rel){
+				if(_rel.result){
+					K.gotohref("/my/refund/recharge.html");
+				}else{
+					$.Dialogs({
+					    "id" : "diglog_wrapper",
+					    "overlay" : true,
+					    "cls" : "dialog-wrapper popbox-bankrank2",
+					    "closebtn" : ".quit,span.close",
+					    "auto" : false,
+					    "msg" :self.tpl.setPaypwd(),
+					    openfun : function () {
+					    	window.timer_set_pay_pwd = setTimeout(function(){
+					    		K.gotohref("/my/account/manage.html?d=1");
+					    		clearTimeout(timer_set_pay_pwd);
+					    	},3000);
+					    }
+					});
+				}
+			});
 		});
 	}
 }
