@@ -690,7 +690,7 @@ var recharge = {
  			'itemName':'充值金额多少元'
  		});
 
- 		var error_msg = $("#binding").find(".operator_box .error_msg");
+ 		var error_msg = $("#binding").find(".operator_box .error-msg");
 
  		api.call('/api/payment/firstPaySendSms.do',sms_obj,function(_rel){
  			error_msg.text("");
