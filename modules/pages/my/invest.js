@@ -58,7 +58,14 @@ var invest = {
 		sidebar.init();
 		self.UI();
 		self.event_handler();
-		getlist();
+		var url = K.getParm();
+		//getlist();
+		if(url.a){
+			$(".tab").find("span").eq(url.a).trigger("click");
+		}else{
+			$(".tab").find("span").eq(0).trigger("click");
+		}
+		
 	},
 	tpl: {
 		redemption: function() {
@@ -200,6 +207,9 @@ var invest = {
 		var request_url_array = ['/api/product/current/queryInvestRecords.do',
 									'/api/product/current/queryRedeemRecords.do'],
 			request_url = "";
+		// console.log(K.getParm());
+
+		// K.getParm("a")
 		if(first_tab_index == 0){
 			$(".table-ti").eq(0).find("em").each(function(){
 				var _this = $(this);
