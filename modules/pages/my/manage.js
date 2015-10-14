@@ -319,31 +319,44 @@ var manage = {
 				// 	console.log("成功"); 18101358213
 				// })
 				//验证通过-发送ajax				
-				api.call('/api/user/improveIdentityInfo.do',{
-					'name': true_name.val(),
-					'idCardNo':id_number.val(),
-					'bankCardNo':bank_number.val(),
-					'bankName': $('#bank-select').find('option:selected').val(),
-					'bankCode':$('#bank-select').find('option:selected').attr('data-code')
-				},function(_rel){
-					// location.reload(true);
-					$.Dialogs({
-						"id": "diglog_wrapper",
-						"overlay": true,
-						"cls": "dialog-wrapper popbox-bankrank outter",
-						"closebtn": ".quit,span.close",
-						"auto": false,
-						"msg": self.tpl.modify_success_identify(),
-						"openfun":function(){
-							//确定
-							$(".confirm").on("click",function(){
-								K.gotohref("/my/account/manage.html");
-							});
-						}
-					});
-				},function(_rel){
-					error_msg.text(_rel.msg);
-				});
+	 			api.call('/api/payment/getBankCardInfo.do',{
+	 				'bankCardNo':bank_number.val()
+	 			},function(_rel){
+	 				var bank_code_rel = _rel.result.bankCodeData.bank_code;
+	 				if(bank_code_rel != $("#bank-select").find('option:selected').attr('data-code')){
+	 					//银行于银行卡号不配
+	 					error_msg.text("银行卡号与银行名称不符");
+	 				}else{
+			 			api.call('/api/user/improveIdentityInfo.do',{
+			 				'name': true_name.val(),
+			 				'idCardNo':id_number.val(),
+			 				'bankCardNo':bank_number.val(),
+			 				'bankName': $('#bank-select').find('option:selected').val(),
+			 				'bankCode':$('#bank-select').find('option:selected').attr('data-code')
+			 			},function(_rel){
+			 				// location.reload(true);
+			 				$.Dialogs({
+			 					"id": "diglog_wrapper",
+			 					"overlay": true,
+			 					"cls": "dialog-wrapper popbox-bankrank outter",
+			 					"closebtn": ".quit,span.close",
+			 					"auto": false,
+			 					"msg": self.tpl.modify_success_identify(),
+			 					"openfun":function(){
+			 						//确定
+			 						$(".confirm").on("click",function(){
+			 							K.gotohref("/my/account/manage.html");
+			 						});
+			 					}
+			 				});
+			 			},function(_rel){
+			 				error_msg.text(_rel.msg);
+			 			});
+	 				}
+	 			},function(_rel){
+	 				error_msg.text(_rel.msg);
+	 			});
+
 			})
 
 			//取消btn
