@@ -58,6 +58,8 @@ var recharge = {
  		this.navBar(index);
  		this.sidebar();
 
+ 		user_info =  JSON.parse($.cookie('ppinf'));
+
  		//查询银行卡信息
  		api.call('/api/user/getIdentityInfoByUser.do',{},function(_rel){
 
