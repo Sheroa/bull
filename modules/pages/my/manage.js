@@ -19,6 +19,11 @@ var manage = {
 		navBar.init(index);
 		sidebar.init();
 		this.event_handler();
+
+		if(url.d){
+			$("#modifyPayPwd").trigger("click");
+		}
+
 	},
 	tpl:{
 		identify_step1:function(){
