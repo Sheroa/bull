@@ -308,7 +308,8 @@ var manage = {
 					'bankName': $('#bank-select').find('option:selected').val(),
 					'bankCode':$('#bank-select').find('option:selected').attr('data-code')
 				},function(_rel){
-					location.reload(true);
+					// location.reload(true);
+					K.gotohref("/my/account/manage.html");
 				},function(_rel){
 					error_msg.text(_rel.msg);
 				});
