@@ -418,7 +418,7 @@ var hqb = {
 			var _this = $(this),
 				purchase_money = _this.val(),
 				error_msg = _this.parents("#entrance").find(".error-msg"),
-				max_money = error_msg.next().find("i").text();
+				max_money = parseFloat(error_msg.next().find("i").text());
 			if(purchase_money < 100){
 				error_msg.text("购买金额100元起！");
 				return false;
