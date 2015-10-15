@@ -9,6 +9,8 @@ var $ = require('jquery'),
 	api = require('api/api'),
 	passport = require('util/passport');
 
+	require('ui/dialog/dialog');
+
 var toolbar={
 	init:function(){
 		var self = this;
