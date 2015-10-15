@@ -289,7 +289,7 @@ var hqb = {
 					if(purchase_money < 100){
 						error_msg.text("购买金额100元起！");
 						return false;
-					}else if(purchase_money > 100000){
+					}else if(purchase_money > 1000000){
 						error_msg.text("超过单笔限额100万！");
 						return false;
 					}
@@ -326,7 +326,7 @@ var hqb = {
 				if(purchase_money < 100){
 					error_msg.text("购买金额100元起！");
 					return false;
-				}else if(purchase_money > 100000){
+				}else if(purchase_money > 1000000){
 					error_msg.text("超过单笔限额100万");
 					return false;
 				}
@@ -359,7 +359,7 @@ var hqb = {
 				error_msg  =  _this.parents("#entrance").find(".error-msg");
 			
 			//输入金额的限制
-			if(purchase_money > 100000){
+			if(purchase_money > 1000000){
 				error_msg.text("超过单笔限额100万");
 				return false;
 			}
@@ -543,7 +543,7 @@ var hqb = {
 				return false;
 			}
 
-			if(parseFloat(purchase_money) > 100000){
+			if(parseFloat(purchase_money) > 1000000){
 				error_msg.text('超过单笔限额100万');
 				return false;
 			}
