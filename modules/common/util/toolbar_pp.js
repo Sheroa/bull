@@ -46,6 +46,14 @@ var toolbar={
 			buf.push('<p class="buy-ok">为保障资金安全，请先设置交易密码，<br>3秒后自动跳转到交易密码设置页面。<br><a href="/my/account/manage.html?d=1">点击直接跳转</a></p>');
 			buf.push('</div>');
 			return buf.join("");
+		},
+		recharge:function(){
+			var buf = [];
+			buf.push('<p class="ti">未充值成功<a href="#" class="quit"></a></p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p class="buy-ok">请先充值后提现，马上<a href="/my/refund/recharge.html">充值</a></p>');
+			buf.push('</div>');
+			return buf.join("");
 		}
 	},
 	event_handler:function(){
@@ -75,6 +83,31 @@ var toolbar={
 					    		clearTimeout(timer_set_pay_pwd);
 					    	},3000);
 					    }
+					});
+				}
+			});
+		});
+
+		$(document).on("click","a[data-type='withdrawCash']",function(){
+			api.call('/api/user/getIdentityInfoByUser.do',{
+
+			},function(_rel){
+				var result = _rel.result,
+					is_bind_card = result.bindCard;
+
+				if(is_bind_card){
+					//绑定银行卡成功
+					K.gotohref('/my/refund/withdrawCash.html');
+				}else{
+					//没有绑定银行卡，跳转dialog
+								
+					$.Dialogs({
+					    "id" : "diglog_wrapper",
+					    "overlay" : true,
+					    "cls" : "dialog-wrapper popbox-bankrank",
+					    "closebtn" : ".quit,span.close",
+					    "auto" : false,
+					    "msg" :self.tpl.recharge()
 					});
 				}
 			});

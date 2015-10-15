@@ -83,7 +83,7 @@ var hqb = {
 					var parse_obj = _rel.result;
 					$.extend(parse_obj,_asset.result);
 					for(var i in parse_obj){
-						if(typeof parse_obj[i] == "number" && parse_obj[i] >= 10000000){
+						if(typeof parse_obj[i] == "number" && parse_obj[i] >= 10000){
 							if(i == "fbuyBalance"){
 								parse_obj[i] = (parse_obj[i]/10000).toFixed(0);
 							}else{
