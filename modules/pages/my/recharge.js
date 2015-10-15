@@ -362,7 +362,7 @@ var recharge = {
  				return false;
  			}
 
- 			if(money.indexOf("-") > 0){
+ 			if(money.indexOf("-") >= 0){
  				error_msg.text("请输入正确的充值金额");
  				return false;
  			}
@@ -558,6 +558,11 @@ var recharge = {
 
  			if(money > 1000000){
  				error_msg.text("充值金额不能超过100万");
+ 				return false;
+ 			}
+
+ 			if(money.indexOf("-") >= 0){
+ 				error_msg.text("请输入正确的充值金额");
  				return false;
  			}
 

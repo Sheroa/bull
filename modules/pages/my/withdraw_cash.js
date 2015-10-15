@@ -185,6 +185,11 @@
 				return false;
 			}
 
+			if(_this.val().indexOf("-") >= 0){
+				error_msg.text("请输入正确的充值金额");
+				return false;
+			}
+
 			error_msg.text("");
 		});
 
