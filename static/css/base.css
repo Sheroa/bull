@@ -142,7 +142,7 @@ a.app1:hover{background: url(/static/img/iphone2.jpg) no-repeat;}
 a.app2{background: url(/static/img/android.jpg) no-repeat;}
 a.app2:hover{background: url(/static/img/android2.jpg) no-repeat;}
 .footer .about .wmain .fr p{font-size: 12px;margin-top: 5px;}
-.footer .about .wmain .fl p.cert{font-size: 12px;margin-bottom: 9px;}
+.footer .about .wmain .fl p.cert{font-size: 12px;margin-bottom: 15px;}
 .footer .about .wmain .fl p.cert a{height:32px;margin-right: 10px;display: inline-block;}
 .footer .about .wmain .fl p.cert a img{height:32px;}
 
