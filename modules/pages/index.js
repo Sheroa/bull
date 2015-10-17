@@ -23,16 +23,28 @@ var index_page = {
 			self = this;
 
 		if(K.login()){ //用户登入
-			login_area.addClass('login-after');
-			var str = self.tpl.login_success();
-			login_area.html(str.replace(/\{\{.+\}\}/,K.phone_num_map(phone_num)));
+			api.call('/api/account/getUserWallet.do',{
 
-			//首页-活期宝-剩余金额		
-			api.call('/api/product/current/queryProductInfo',{},function(_rel){
+			},function(_rel){
 				var result = _rel.result,
-					remaMoney = result.remaMoney;				
-				$(".fRedeemMoney").append('<p>剩余金额：<em>'+(remaMoney/10000).toFixed(2)+'</em></p>');
+					toInvestAmount = (result.toInvestAmount/10000).toFixed(2),
+					redPacketCount = result.redPacketCount;
+				login_area.addClass('login-after');
+				var str = self.tpl.login_success();
+				login_area.html(str.replace(/\{\{.+\}\}/,K.phone_num_map(phone_num)));
+				$("#toInvestAmount").text("￥"+toInvestAmount);
+				$("#redPacketCount").text(redPacketCount+"个");
+
+				//首页-活期宝-剩余金额		
+				api.call('/api/product/current/queryProductInfo',{},function(_rel){
+					var result = _rel.result,
+						remaMoney = result.remaMoney;				
+					$(".fRedeemMoney").append('<p>剩余金额：<em>'+(remaMoney/10000).toFixed(2)+'</em></p>');
+				});
+			},function(_rel){
+
 			});
+
 			//debugger;
 
 		}else{ //用户未登入
@@ -62,8 +74,9 @@ var index_page = {
 	tpl:{
 		login_success:function(){
 			var buf = [];
-			buf.push('<h4>{{login_name}}</h4>');
-			buf.push('<h5>欢迎您访问小牛钱罐子</h5>');
+			buf.push('<h4>{{login_name}}<i style="font-size:14px;font-style:normal;">欢迎您！</i></h4>');
+			buf.push('<h5><span>账户余额</span><em id="toInvestAmount"></em></h5>');
+			buf.push('<h5><span>未使用红包</span><em id="redPacketCount"></em><a href="/my/discount.html">点击查看</a></h5>');
 			buf.push('<a href="/my/personCenter.html" class="light-btn">进入个人中心</a>');
 			buf.push('<p class="assure2"><img src="/static/img/assure.png" alt="" align="absmiddle"><span>账户资金安全由中国人保承保</span></p>');		
 			return buf.join("");

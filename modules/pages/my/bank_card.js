@@ -203,12 +203,13 @@
 
 
     		 			api.call('/api/payment/getBankCardInfo.do',{
-    		 				'bankCardNo':bank_number.val()
+    		 				'bankCardNo':bank_card_num
     		 			},function(_rel){
     		 				var bank_code_rel = _rel.result.bankCodeData.bank_code;
     		 				if(bank_code_rel != $("#bank-select").find('option:selected').attr('data-code')){
     		 					//银行于银行卡号不配
     		 					error_msg.text("银行卡号与银行名称不符");
+    		 					return false;
     		 				}else{
 
     		 					//发送ajax请求，修改银行卡
