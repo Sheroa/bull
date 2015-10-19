@@ -36,11 +36,11 @@ var hqb = {
 		ydl:function(){
 			var buf = [];
 			buf.push('<p><span class="p-ti">剩余金额</span><span class="num">￥{{#remaMoney}}</span></p>');
-			buf.push('<p><span class="p-ti">账户余额</span><span class="num ableBalanceAmount">￥{{#ableBalanceAmount}}</span><a href="/my/refund/recharge.html" class="recharge">[充值]</a></p>');
+			buf.push('<p><span class="p-ti">账户余额</span><span class="num ableBalanceAmount">￥{{#ableBalanceAmount}}</span><a href="javascript:void(0)" class="recharge recharge_btn">[充值]</a></p>');
 			buf.push('<p style="margin-bottom:5px;">');
 			buf.push('<span class="p-ti">购买金额</span><input id="purchase_money" type="number" placeholder="100元起购"></p>');
 			buf.push('<p class="error-msg"></p>');
-			buf.push('<p class="sub-text" style="letter-spacing:-1px;">每人累计可购买50000元，您还可以购买{{#fbuyBalance}}元</p>');
+			buf.push('<p class="sub-text" style="letter-spacing:-1px;">每人累计可购买50000元，您还可以购买<i style="font-style:normal">{{#fbuyBalance}}</i>元</p>');
 			buf.push('<p class="sub-text"><input type="checkbox" checked="checked" class="check"><a class="protocol" href="javascript:void(0)">《活期宝投资协议》</a></p>');
 			buf.push('<p><a class="light-btn purchase">购买</a></p>	');
 			return buf.join("");	
@@ -83,7 +83,7 @@ var hqb = {
 					var parse_obj = _rel.result;
 					$.extend(parse_obj,_asset.result);
 					for(var i in parse_obj){
-						if(typeof parse_obj[i] == "number" && parse_obj[i] >= 10000000){
+						if(typeof parse_obj[i] == "number" && parse_obj[i] >= 10000){
 							if(i == "fbuyBalance"){
 								parse_obj[i] = (parse_obj[i]/10000).toFixed(0);
 							}else{
@@ -144,6 +144,7 @@ var hqb = {
 			
 			var _this     = $(this),
 				error_msg = $("#entrance").find(".error-msg"),
+				max_money = parseFloat(error_msg.next().find("i").text()),
 				purchase_money = $.trim($("#purchase_money").val()),
 				ableBalanceAmount = $.trim($(".ableBalanceAmount").text().replace('￥','')),
 				checked = $("#entrance").find("input[type='checkbox']").is(":checked");
@@ -158,7 +159,7 @@ var hqb = {
 				return false;
 			}
 
-			if(parseFloat(purchase_money) > 50000){
+			if(parseFloat(purchase_money)>max_money ||  parseFloat(purchase_money) > 50000){
 				error_msg.text('填写金额超过个人限额！');
 				return false;
 			}
@@ -416,11 +417,12 @@ var hqb = {
 		$("#purchase_money").on("blur",function(){
 			var _this = $(this),
 				purchase_money = _this.val(),
-				error_msg = _this.parents("#entrance").find(".error-msg");
+				error_msg = _this.parents("#entrance").find(".error-msg"),
+				max_money = parseFloat(error_msg.next().find("i").text());
 			if(purchase_money < 100){
 				error_msg.text("购买金额100元起！");
 				return false;
-			}else if(purchase_money > 50000){
+			}else if(purchase_money>max_money ||  purchase_money > 50000){
 				error_msg.text("填写金额超过个人限额！");
 				return false;
 			}

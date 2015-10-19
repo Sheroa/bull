@@ -45,7 +45,7 @@
 			buf.push('<p class="card-kind">储蓄卡</p>');
 			buf.push('<p class="card-bound"><i>已绑定</i><em>'+K.bank_card_map(userCardData.user_card_no)+'</em></p>');	
 			buf.push('<img src="/static/img/bank/'+userCardData.bank_code+'2.png">');	
-			container_binded.append('<p class="sub-text">单笔限额20万，单日限额200万。<br>实际请参考您的银行限额设置。</p>');
+			// container_binded.append('<p class="sub-text">单笔限额20万，单日限额200万。<br>实际请参考您的银行限额设置。</p>');
 			info_pad.html(buf.join(""));
 			container_binded.show();
 
@@ -53,7 +53,7 @@
 			api.call('/api/account/getUserAsset.do',{},function(_data){
 				 var ableBalanceAmount = (_data.result.ableBalanceAmount/10000).toFixed(2);
 				 $(".ableBalanceAmount").text("￥"+ableBalanceAmount);
-				 $(".money").attr("placeholder","本次可提取"+(ableBalanceAmount-2)+"元");
+				 
 
 				 var userOutFee = _rel.result.userOutFee,
 				 	limitTimes = userOutFee.limitTimes,
@@ -61,10 +61,13 @@
 				 	fee = userOutFee.fee;
 				 if(limitTimes > 0){
 				 	$("#tip").html('<span class="p-ti">提现费用</span>本月还能免费提现<i>'+limitTimes+'</i>次');
+				 	$(".money").attr("placeholder","本次可提取"+(ableBalanceAmount)+"元");
 				 }else{
 				 	if(ableBalanceAmount < 2){
+				 		$(".money").attr("placeholder","本次可提取"+(ableBalanceAmount)+"元");
 				 		$("#tip").html('<span class="p-ti">提现费用</span><i>账户余额不足支付2元手续费</i>');
 				 	}else if(fee > 0){
+				 		$(".money").attr("placeholder","本次可提取"+(ableBalanceAmount-2)+"元");
 				 		$("#tip").html('<span class="p-ti">提现费用</span>账户余额将扣除'+(fee/10000).toFixed(2)+'元手续费');
 				 	}
 				 }
@@ -179,6 +182,11 @@
 				error_msg = _this.parents("div").find(".error-msg");
 			if(parseFloat(_this.val()) > parseFloat(ableBalanceAmount)){
 				error_msg.text("输入金额超过上限,请重新输入");
+				return false;
+			}
+
+			if(_this.val().indexOf("-") >= 0){
+				error_msg.text("请输入正确的充值金额");
 				return false;
 			}
 

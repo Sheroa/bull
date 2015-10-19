@@ -38,7 +38,7 @@ var hqb = {
 		},
 		ydl:function(){
 			var buf = [];
-			buf.push('<p><span class="p-ti">账户余额</span><span class="num ableBalanceAmount">￥{{#ableBalanceAmount}}</span><a href="/my/refund/recharge.html" class="recharge">[充值]</a></p>');
+			buf.push('<p><span class="p-ti">账户余额</span><span class="num ableBalanceAmount">￥{{#ableBalanceAmount}}</span><a href="javascript:void(0)" class="recharge recharge_btn">[充值]</a></p>');
 			buf.push('<p style="margin-bottom:5px;"><span class="p-ti">购买金额</span><input id="purchase_money" type="number" placeholder="100元起购"></p>');
 			buf.push('<p class="error-msg"></p>');
 			buf.push('<p><span class="p-ti">使用红包</span><select name="redbag-select" class="redbag-select" id="redbag-select"></select><a href="javascript:void(0);" id="red_paper_detail" class="redDetail">详情</a></p>');
@@ -289,8 +289,8 @@ var hqb = {
 					if(purchase_money < 100){
 						error_msg.text("购买金额100元起！");
 						return false;
-					}else if(purchase_money > 100000){
-						error_msg.text("填写金额超过个人限额！");
+					}else if(purchase_money > 1000000){
+						error_msg.text("超过单笔限额100万！");
 						return false;
 					}
 
@@ -326,8 +326,8 @@ var hqb = {
 				if(purchase_money < 100){
 					error_msg.text("购买金额100元起！");
 					return false;
-				}else if(purchase_money > 100000){
-					error_msg.text("填写金额超过个人限额！");
+				}else if(purchase_money > 1000000){
+					error_msg.text("超过单笔限额100万");
 					return false;
 				}
 
@@ -359,8 +359,8 @@ var hqb = {
 				error_msg  =  _this.parents("#entrance").find(".error-msg");
 			
 			//输入金额的限制
-			if(purchase_money > 100000){
-				error_msg.text("填写金额超过个人限额！");
+			if(purchase_money > 1000000){
+				error_msg.text("超过单笔限额100万");
 				return false;
 			}
 
@@ -543,8 +543,8 @@ var hqb = {
 				return false;
 			}
 
-			if(parseFloat(purchase_money) > 100000){
-				error_msg.text('填写金额超过个人限额！');
+			if(parseFloat(purchase_money) > 1000000){
+				error_msg.text('超过单笔限额100万');
 				return false;
 			}
 

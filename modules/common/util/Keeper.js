@@ -368,7 +368,7 @@ $.extend(Keeper,{
 	inverse_to_money:function(parse_obj){
 		for(var i in parse_obj){
 			console.log();
-			if(typeof parse_obj[i] == "number" && parse_obj[i] >= 10000000){
+			if(typeof parse_obj[i] == "number" && parse_obj[i] >= 100000){
 				parse_obj[i] = (parse_obj[i]/10000).toFixed(2);
 			}
 		}

@@ -28,7 +28,10 @@ $.fn.extend({
 
 			_thisObj.find(opts.className).removeClass('show');
 			_thisObj.find(opts.className).eq(index+parseInt(opts.offset)).addClass('show');
-			callback();
+			if(callback){
+				callback();
+			}
+			
 		});
 			
 	}

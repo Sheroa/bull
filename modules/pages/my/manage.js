@@ -19,11 +19,6 @@ var manage = {
 		navBar.init(index);
 		sidebar.init();
 		this.event_handler();
-
-		if(url.d){
-			$("#modifyPayPwd").trigger("click");
-		}
-
 	},
 	tpl:{
 		identify_step1:function(){
@@ -31,8 +26,8 @@ var manage = {
 			buf.push('<p>填写身份证银行信息：</p>');
 			buf.push('<p><span class="p-ti">真实姓名</span><input id="true_name" type="text" value="{{#userName}}"></p>');
 			buf.push('<p><span class="p-ti">身份证号码</span><input id="id_number" type="text" value="{{#identityCard}}"></p>');
-			buf.push('<p><span class="p-ti">选择银行</span><select name="bank-select" id="bank-select"><option data-code="0">请选择银行</option></select><span><img src="/static/img/bank/back-logo.png" alt="" class="bank-logo"></span></p>');
-			buf.push('<p class="no-margin"><span class="p-ti">银行卡号</span><input type="text" id="bank_number" value="{{#bankCardNo}}" placeholder="请输入您本人的借记卡号"></p>');
+			buf.push('<p><span class="p-ti">银行卡号</span><input type="text" id="bank_number" value="{{#bankCardNo}}" placeholder="请输入您本人的借记卡号"></p>');
+			buf.push('<p class="no-margin"><span class="p-ti">选择银行</span><select name="bank-select" id="bank-select"><option data-code="0">请选择银行</option></select><span><img src="/static/img/bank/back-logo.png" alt="" class="bank-logo"></span></p>');
 			buf.push('<p class="error-msg"></p>');
 			buf.push('<p class="btn-line2"><a href="javascript:void(0);" class="gray-btn cancel_btn">取消</a><a href="javascript:void(0);" class="light-btn confirm_btn">确认</a></p>');
 			return buf.join("");
@@ -87,6 +82,24 @@ var manage = {
 			buf.push('<p class="ti">修改成功<a href="#" class="quit"></a></p>');
 			buf.push('<div class="cont3">');
 			buf.push('<p>登陆密码修改成功</p>');
+			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn confirm">确定</a></p>');
+			buf.push('</div>');
+			return buf.join("");
+		},
+		set_success_pay_pwd:function(){
+			var buf = [];
+			buf.push('<p class="ti">设置成功<a href="#" class="quit"></a></p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p>交易密码设置成功</p>');
+			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn confirm">确定</a></p>');
+			buf.push('</div>');
+			return buf.join("");
+		},
+		modify_success_identify:function(){
+			var buf = [];
+			buf.push('<p class="ti">修改成功<a href="#" class="quit"></a></p>');
+			buf.push('<div class="cont3">');
+			buf.push('<p>身份信息修改成功</p>');
 			buf.push('<p style="margin-top:5px;"><a href="javascript:void(0);" class="light-btn confirm">确定</a></p>');
 			buf.push('</div>');
 			return buf.join("");
@@ -153,7 +166,7 @@ var manage = {
 						identify_title.addClass('cont2').html('成功充值任意金额方可认证身份证信息（<em>已填写</em>）');
 						identify_btn.find("a").remove();
 						identify_btn.append('<a href="javascript:void(0);" class="light-btn"><em id = "modify" data-code="'+bankCode+'">修改</em></a>');
-						identify_btn.append('<a href="/my/refund/recharge.html" class="light-btn">充值</a>');
+						identify_btn.append('<a href="javascript:void(0)" class="light-btn recharge_btn">充值</a>');
 
 						identify_content.html(K.ParseTpl(self.tpl.identify_step1(),user_info));
 						
@@ -162,6 +175,26 @@ var manage = {
 						identify_btn.find("a").remove();
 						identify_content.remove();
 					}
+
+						//增加身份
+						$("#bank_number").on("blur",function(){
+							var _this = $(this),
+								bank_num = _this.val(),
+								error_msg = _this.parents(".sub-msg").find(".error-msg");
+
+
+					 		api.call('/api/payment/getBankCardInfo.do',{
+					 			"bankCardNo":bank_num
+					 		},function(_rel){
+					 			var bank_code = _rel.result.cardInfoData.bank_code;
+					 			$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
+					 			$("#bank-select").change();
+					 		},function(_rel){
+					 			$("#bank-select").find("option[data-code='0']").attr("selected",true);
+					 			$("#bank-select").change();
+					 			error_msg.text("银行卡卡号格式有误，请重新输入");
+					 		});
+						});
 				})
 			}else{ //没有完成身份信息
 				identify_btn.addClass('need-write');
@@ -169,7 +202,27 @@ var manage = {
 				identify_btn.find("a").remove();
 				identify_btn.append('<a href="javascript:void(0);" class="light-btn"><em id="modify">立即填写</em></a>');
 				identify_content.html(K.ParseTpl(self.tpl.identify_step1(),user_info));
+					//增加身份
+					$("#bank_number").on("blur",function(){
+						var _this = $(this),
+							bank_num = _this.val(),
+							error_msg = _this.parents(".sub-msg").find(".error-msg");
+
+
+				 		api.call('/api/payment/getBankCardInfo.do',{
+				 			"bankCardNo":bank_num
+				 		},function(_rel){
+				 			var bank_code = _rel.result.cardInfoData.bank_code;
+				 			$("#bank-select").find("option[data-code='"+bank_code+"']").attr("selected",true);
+				 			$("#bank-select").change();
+				 		},function(_rel){
+				 			$("#bank-select").find("option[data-code='0']").attr("selected",true);
+				 			$("#bank-select").change();
+				 			error_msg.text("银行卡卡号格式有误，请重新输入");
+				 		});
+					});
 			}
+
 		});
 
 
@@ -192,7 +245,7 @@ var manage = {
 
 				//每一次选中银行，触发一次事件-修改后面图片
 				if(bank_alias == 0){
-					img.attr('src','')
+					img.attr('src','/static/img/bank/back-logo.png')
 				}else{
 					img.attr('src','/static/img/bank/'+bank_alias+".png")
 				}
@@ -263,20 +316,47 @@ var manage = {
 				// 	'name':$.trim(true_name.val()),
 				// 	'idCardNo':$.trim(id_number.val())
 				// },function(_rel){
-				// 	console.log("成功");
+				// 	console.log("成功"); 18101358213
 				// })
 				//验证通过-发送ajax				
-				api.call('/api/user/improveIdentityInfo.do',{
-					'name': true_name.val(),
-					'idCardNo':id_number.val(),
-					'bankCardNo':bank_number.val(),
-					'bankName': $('#bank-select').find('option:selected').val(),
-					'bankCode':$('#bank-select').find('option:selected').attr('data-code')
-				},function(_rel){
-					location.reload(true);
-				},function(_rel){
-					error_msg.text(_rel.msg);
-				});
+	 			api.call('/api/payment/getBankCardInfo.do',{
+	 				'bankCardNo':bank_number.val()
+	 			},function(_rel){
+	 				var bank_code_rel = _rel.result.bankCodeData.bank_code;
+	 				if(bank_code_rel != $("#bank-select").find('option:selected').attr('data-code')){
+	 					//银行于银行卡号不配
+	 					error_msg.text("银行卡号与银行名称不符");
+	 				}else{
+			 			api.call('/api/user/improveIdentityInfo.do',{
+			 				'name': true_name.val(),
+			 				'idCardNo':id_number.val(),
+			 				'bankCardNo':bank_number.val(),
+			 				'bankName': $('#bank-select').find('option:selected').val(),
+			 				'bankCode':$('#bank-select').find('option:selected').attr('data-code')
+			 			},function(_rel){
+			 				// location.reload(true);
+			 				$.Dialogs({
+			 					"id": "diglog_wrapper",
+			 					"overlay": true,
+			 					"cls": "dialog-wrapper popbox-bankrank outter",
+			 					"closebtn": ".quit,span.close",
+			 					"auto": false,
+			 					"msg": self.tpl.modify_success_identify(),
+			 					"openfun":function(){
+			 						//确定
+			 						$(".confirm").on("click",function(){
+			 							K.gotohref("/my/account/manage.html");
+			 						});
+			 					}
+			 				});
+			 			},function(_rel){
+			 				error_msg.text(_rel.msg);
+			 			});
+	 				}
+	 			},function(_rel){
+	 				error_msg.text(_rel.msg);
+	 			});
+
 			})
 
 			//取消btn
@@ -286,6 +366,7 @@ var manage = {
 				animate_obj.slideUp();
 			})
 		});
+	
 		//修改用户密码
 		$("#modify_pwd").on("click",function(){
 			var _this = $(this),
@@ -362,7 +443,7 @@ var manage = {
 							"openfun":function(){
 								//确定
 								$(".confirm").on("click",function(){
-									location.reload(true);
+									K.gotohref("/my/account/manage.html");
 								});
 							}
 						});
@@ -405,6 +486,13 @@ var manage = {
 				verifypwd_btn.find("a").remove();
 				verifypwd_btn.append('<a href="javascript:void(0);" class="light-btn" id="immidate_set"><em>立即设置</em></a>');
 			}
+
+			var url = K.getParm();
+			if(url.d){
+				$("#modifyPayPwd").trigger("click");
+				$("#immidate_set").trigger("click");
+			}
+
 		});
 
 		//立刻设置交易密码
@@ -484,7 +572,21 @@ var manage = {
 					},function(_rel){
 						var result = _rel.result;
 						if(result){
-							location.reload(true);
+							$.Dialogs({
+								"id": "diglog_wrapper",
+								"overlay": true,
+								"cls": "dialog-wrapper popbox-bankrank outter",
+								"closebtn": ".quit,span.close",
+								"auto": false,
+								"msg": self.tpl.set_success_pay_pwd(),
+								"openfun":function(){
+									//确定
+									$(".confirm").on("click",function(){
+										K.gotohref("/my/account/manage.html");
+									});
+								}
+							});
+							// K.gotohref("/my/account/manage.html");
 						}
 					},function(_rel){
 						error_msg.html(_rel.msg);
@@ -589,7 +691,7 @@ var manage = {
 											"openfun":function(){
 												//确定
 												$(".confirm").on("click",function(){
-													location.reload(true);
+													K.gotohref("/my/account/manage.html");
 												});
 											}
 										});
@@ -716,7 +818,7 @@ var manage = {
 										'smsCode':_rel.result
 
 									},function(_rel){
-										location.reload(true);
+										K.gotohref("/my/account/manage.html");
 									},function(_rel){
 										error_msg.html(_rel.msg);
 									});
